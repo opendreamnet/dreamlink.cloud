@@ -45,7 +45,7 @@
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "@opendreamnet/ipfs": "^1.0.0",
+    "@opendreamnet/ipfs": "^1.0.1",
     "@sweetalert2/theme-dark": "^5.0.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/line-clamp": "^0.2.1",
