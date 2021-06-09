@@ -33,6 +33,10 @@ export default NetworkObject.extend({
     download: {
       type: Boolean,
       default: null
+    },
+    delay: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -65,7 +69,8 @@ export default NetworkObject.extend({
   }),
 
   mounted() {
-    this.tryCheckStatus()
+    const delay = 5000 * this.delay
+    this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), delay)
   },
 
   beforeDestroy() {

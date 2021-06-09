@@ -9,7 +9,7 @@
 
       <div class="nav__center">
         <NuxtLink to="/" class="item">
-          Upload
+          Share
         </NuxtLink>
 
         <NuxtLink to="/about" class="item">

@@ -1296,7 +1296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^12.0.1":
+"@commitlint/cli@npm:^12.1.4":
   version: 12.1.4
   resolution: "@commitlint/cli@npm:12.1.4"
   dependencies:
@@ -1315,7 +1315,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:^12.0.1":
+"@commitlint/config-conventional@npm:^12.1.4":
   version: 12.1.4
   resolution: "@commitlint/config-conventional@npm:12.1.4"
   dependencies:
@@ -1560,20 +1560,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@eslint/eslintrc@npm:0.4.1"
+"@eslint/eslintrc@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@eslint/eslintrc@npm:0.4.2"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.1.1
     espree: ^7.3.0
-    globals: ^12.1.0
+    globals: ^13.9.0
     ignore: ^4.0.6
     import-fresh: ^3.2.1
     js-yaml: ^3.13.1
     minimatch: ^3.0.4
     strip-json-comments: ^3.1.1
-  checksum: 418f5810c8dd9897d2457ceef098197d0e5f1ad345fbe4cd9256fd4223d7ea83d5e350f9091b3ab3483b6b1c367fa560df3ba1fccc7eb8ca6e1aae5a5b126d60
+  checksum: 60b66ce4257bf5c36a920dea83a056102fef746e7afd7100a6fe245a126ff455f67f4948e75d28ed73090bff8f8556b6a996e74a124911ca703440bc245dbc23
   languageName: node
   linkType: hard
 
@@ -1956,16 +1956,6 @@ __metadata:
     "@hapi/bourne": 2.x.x
     "@hapi/hoek": 9.x.x
   checksum: ea3fd37926e16e0c2667e19b17a707eca1e2a58422af610a070d95c09c8b403e1069df4c04bf68ab44f8e1784bd3b7eb5ba5e05b4a13f4df43de3549dbcb9c82
-  languageName: node
-  linkType: hard
-
-"@innologica/vue-dropdown-menu@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@innologica/vue-dropdown-menu@npm:0.1.4"
-  dependencies:
-    core-js: ^2.6.5
-    vue: ^2.6.10
-  checksum: f7f84a67d0c7747da5cdb3c4e9597b0843d892973d0ea929a8ea5bc45876815f82168e5cb45b07d122feb6b445beaeb3b9e0d03432edfca228025fe4906f458b
   languageName: node
   linkType: hard
 
@@ -2408,7 +2398,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/types@npm:^2.15.2, @nuxt/types@npm:^2.15.3":
+"@nuxt/types@npm:^2.15.2, @nuxt/types@npm:^2.15.6":
   version: 2.15.6
   resolution: "@nuxt/types@npm:2.15.6"
   dependencies:
@@ -2559,7 +2549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/eslint-config-typescript@npm:^6.0.0":
+"@nuxtjs/eslint-config-typescript@npm:^6.0.1":
   version: 6.0.1
   resolution: "@nuxtjs/eslint-config-typescript@npm:6.0.1"
   dependencies:
@@ -2682,23 +2672,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/tailwindcss@npm:^4.0.1":
-  version: 4.1.2
-  resolution: "@nuxtjs/tailwindcss@npm:4.1.2"
+"@nuxtjs/tailwindcss@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "@nuxtjs/tailwindcss@npm:4.1.3"
   dependencies:
     "@nuxt/postcss8": ^1.1.3
     autoprefixer: ^10.2.5
     chalk: ^4.1.1
     clear-module: ^4.1.1
     consola: ^2.15.3
-    defu: ^4.0.1
+    defu: ^5.0.0
     postcss: ^8.2.13
     postcss-custom-properties: ^11.0.0
     postcss-nesting: ^8.0.1
     tailwind-config-viewer: ^1.5.1
     tailwindcss: ^2.1.2
     ufo: ^0.7.2
-  checksum: fec3cb05272846d614bb02650bc19d815335d6dbdd6355eb7fbc2a283b483fca03df4a533dd04420b235ee39de3bbcccaf50b057f339a65762b6f47318389158
+  checksum: 926bead0c7cdff46abf058f988b5ab44844927d1aac5522bb18c2cdaf10a51f3557c84e945fa7ffcfcadc39459276dbb481ad9bc1c736a5635b91f7c99b74ecf
   languageName: node
   linkType: hard
 
@@ -2941,17 +2931,16 @@ __metadata:
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator": ^7.14.2
     "@babel/plugin-proposal-optional-chaining": ^7.14.2
-    "@commitlint/cli": ^12.0.1
-    "@commitlint/config-conventional": ^12.0.1
+    "@commitlint/cli": ^12.1.4
+    "@commitlint/config-conventional": ^12.1.4
     "@dreamnet/deploy-cli": ^1.2.2
     "@dreamnet/eslint-config-dreamnet-nuxtjs": ^1.3.0
     "@fortawesome/free-solid-svg-icons": ^5.15.3
-    "@innologica/vue-dropdown-menu": ^0.1.4
     "@nuxt/content": ^1.14.0
     "@nuxt/image": ^0.4.14
-    "@nuxt/types": ^2.15.3
+    "@nuxt/types": ^2.15.6
     "@nuxt/typescript-build": ^2.1.0
-    "@nuxtjs/eslint-config-typescript": ^6.0.0
+    "@nuxtjs/eslint-config-typescript": ^6.0.1
     "@nuxtjs/eslint-module": ^3.0.2
     "@nuxtjs/fontawesome": ^1.1.2
     "@nuxtjs/google-fonts": ^1.3.0
@@ -2959,43 +2948,46 @@ __metadata:
     "@nuxtjs/markdownit": ^2.0.0
     "@nuxtjs/pwa": ^3.3.5
     "@nuxtjs/style-resources": ^1.1.0
-    "@nuxtjs/tailwindcss": ^4.0.1
+    "@nuxtjs/tailwindcss": ^4.1.3
     "@opendreamnet/ipfs": ^1.0.1
     "@opendreamnet/nuxtjs-base": ^1.0.2
     "@sweetalert2/theme-dark": ^5.0.0
     "@tailwindcss/aspect-ratio": ^0.2.1
     "@tailwindcss/line-clamp": ^0.2.1
     "@tailwindcss/typography": ^0.4.1
+    "@types/mime": ^2.0.3
     "@types/urijs": ^1.19.15
-    "@wdio/cli": ^7.2.1
-    "@wdio/local-runner": ^7.2.1
-    "@wdio/mocha-framework": ^7.2.1
-    "@wdio/spec-reporter": ^7.2.1
-    "@wdio/sync": ^7.2.1
+    "@wdio/cli": ^7.7.3
+    "@wdio/local-runner": ^7.7.3
+    "@wdio/mocha-framework": ^7.7.3
+    "@wdio/spec-reporter": ^7.7.3
+    "@wdio/sync": ^7.7.3
     axios: ^0.21.1
     babel-eslint: ^10.1.0
     babel-plugin-lodash: ^3.3.4
     clipboard: ^2.0.8
-    core-js: ^3.13.1
+    core-js: ^3.14.0
     dialog-polyfill: ^0.5.6
-    eslint: ^7.22.0
+    eslint: ^7.28.0
     eslint-plugin-lodash: ^7.2.0
     eslint-plugin-mocha: ^9.0.0
     eslint-plugin-nuxt: ^2.0.0
-    eslint-plugin-vue: ^7.7.0
-    eslint-plugin-wdio: ^7.0.0
+    eslint-plugin-vue: ^7.10.0
+    eslint-plugin-wdio: ^7.4.2
     husky: ^4.3.8
     is-ipfs: ^5.0.0
     lint-staged: ^10.5.4
     lodash: ^4.17.21
-    nuxt: ^2.15.3
-    postcss: ^8.2.8
+    mime: ^2.5.2
+    mooviejs: ^1.1.5
+    nuxt: ^2.15.6
+    postcss: ^8.3.0
     pretty-bytes: ^5.6.0
     sass: ^1.34.1
     sweetalert2: ^11.0.16
     tippy.js: ^6.3.1
     urijs: ^1.19.6
-    webdriverio: ^7.2.1
+    webdriverio: ^7.7.3
   languageName: unknown
   linkType: soft
 
@@ -3692,6 +3684,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/mime@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@types/mime@npm:2.0.3"
+  checksum: 6df548a912494f8579d548cd883be0425f30eaa2922283335c405e270600f49045a06d766460c0f0edabb41dff570c614d174d3c52215de3bddd11f190ec9ae9
+  languageName: node
+  linkType: hard
+
 "@types/minimist@npm:^1.2.0":
   version: 1.2.1
   resolution: "@types/minimist@npm:1.2.1"
@@ -4311,9 +4310,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/cli@npm:^7.2.1":
-  version: 7.7.2
-  resolution: "@wdio/cli@npm:7.7.2"
+"@wdio/cli@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/cli@npm:7.7.3"
   dependencies:
     "@types/ejs": ^3.0.5
     "@types/fs-extra": ^9.0.4
@@ -4322,10 +4321,10 @@ __metadata:
     "@types/lodash.pickby": ^4.6.6
     "@types/lodash.union": ^4.6.6
     "@types/recursive-readdir": ^2.2.0
-    "@wdio/config": 7.7.0
+    "@wdio/config": 7.7.3
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     async-exit-hook: ^2.0.1
     chalk: ^4.0.0
     chokidar: ^3.0.0
@@ -4338,42 +4337,42 @@ __metadata:
     lodash.union: ^4.6.0
     mkdirp: ^1.0.4
     recursive-readdir: ^2.2.2
-    webdriverio: 7.7.2
+    webdriverio: 7.7.3
     yargs: ^17.0.0
     yarn-install: ^1.0.0
   bin:
     wdio: bin/wdio.js
-  checksum: 55a7724d33ffc7212edae65760a29043419ffae9165186864d132fb2e286c35ef338a2c42f80d2428510b3384f5f8d7c98b889d246ec7b7aab502e5517213b00
+  checksum: a549a913ee5f9976d817364cb80a9c465e3f8857845afd99218f016b5205011fd1c518f55d22d8fd2e709a1ba323a98145eddf69203b3e208cb8adff1ee72fe1
   languageName: node
   linkType: hard
 
-"@wdio/config@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@wdio/config@npm:7.7.0"
+"@wdio/config@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/config@npm:7.7.3"
   dependencies:
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
+    "@wdio/types": 7.7.3
     deepmerge: ^4.0.0
     glob: ^7.1.2
-  checksum: 7e902ec0dc3e3e2fe3fddf0b2ddc4b46ce0b7de72cfcd55d48aa91df1c64d4c64d38ba86f785987aaf25d37081d582a8a5988f3ea989054f53ebbf05e0249838
+  checksum: caba6c9dfb727f800056c256319f54fc3054673bee54b9df701072bcbbbe40c7f985381b2f136a3d497eb695f81e078ca850f9477549202821be843fa5328c31
   languageName: node
   linkType: hard
 
-"@wdio/local-runner@npm:^7.2.1":
-  version: 7.7.2
-  resolution: "@wdio/local-runner@npm:7.7.2"
+"@wdio/local-runner@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/local-runner@npm:7.7.3"
   dependencies:
     "@types/stream-buffers": ^3.0.3
     "@wdio/logger": 7.7.0
-    "@wdio/repl": 7.7.2
-    "@wdio/runner": 7.7.2
-    "@wdio/types": 7.7.0
+    "@wdio/repl": 7.7.3
+    "@wdio/runner": 7.7.3
+    "@wdio/types": 7.7.3
     async-exit-hook: ^2.0.1
     split2: ^3.2.2
     stream-buffers: ^3.0.2
   peerDependencies:
     "@wdio/cli": ^7.0.0
-  checksum: 51f747c54cd4cebe15d67abb40ccdc53d1fc00d5eaafe37801faaf5445650b4a0fb7568454cf1595a09e77a2643c46e114623efd2e68c4baf621b7d82becf658
+  checksum: 94766b87541a15b52e7ea154939634093bfb792c7b614280b6d8597f8cb942cd343696ad27ab271634cf50086ddbb570e5b274b1f4716970c6f0b4597d194e1c
   languageName: node
   linkType: hard
 
@@ -4389,18 +4388,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/mocha-framework@npm:^7.2.1":
-  version: 7.7.2
-  resolution: "@wdio/mocha-framework@npm:7.7.2"
+"@wdio/mocha-framework@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/mocha-framework@npm:7.7.3"
   dependencies:
     "@types/mocha": ^8.0.0
-    "@types/node": ^14.14.31
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     expect-webdriverio: ^3.0.0
     mocha: ^8.0.1
-  checksum: 9343bd506053f1a0b18310e53793e5843048d9360fd08362ca93c46c3335a6a30af7573a8cce74bddbb919888cab1e9bf0b2ed6a5f7e101273e335412fc08e27
+  checksum: 5e97a3a966909465168be7ab424e511fe1b5ca8e7c9168dbc3b65daa2aa3cada498b275c8bfb96c501e91cdfbb08e2d312578cfdb8c729f34ce573595569efde
   languageName: node
   linkType: hard
 
@@ -4411,89 +4409,89 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wdio/repl@npm:7.7.2":
-  version: 7.7.2
-  resolution: "@wdio/repl@npm:7.7.2"
+"@wdio/repl@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/repl@npm:7.7.3"
   dependencies:
-    "@wdio/utils": 7.7.2
-  checksum: 7c926963011ee6755123ef4c9938a5efe8304e93bb8b388337e6bcb2b81d6e3a18d5fa8f5d4ec90157fac8c00e1e46bf581ec56b5538c6dbfa51194041979a54
+    "@wdio/utils": 7.7.3
+  checksum: 6e13fa34c4bb12097108dfc3c0349174d5126e784d48e7dfb159c0d68b2fd2253535b38f8e9c797a6e19e43edc5f523bf34262d52cf7dd7fc66bb1eeaf13746b
   languageName: node
   linkType: hard
 
-"@wdio/reporter@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@wdio/reporter@npm:7.7.0"
+"@wdio/reporter@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/reporter@npm:7.7.3"
   dependencies:
     "@types/node": ^14.14.31
-    "@wdio/types": 7.7.0
+    "@wdio/types": 7.7.3
     fs-extra: ^10.0.0
-  checksum: ca1ef168d383bb9545315daee2d185c0c714c0441793c30f40f88ba36a49db0c20918dc6b42a6e6bc5bdd933680152454dba6a9f205ab75e74950b805cbcf003
+  checksum: 7ee7e4daec4d0d7162f6e6b631735c39b6c0847da46a3eb140a09f5719a5856263c6eaa09b90cc3d9b1dc529bb785cce14603fb3817504e19b4cec3d80c4e90e
   languageName: node
   linkType: hard
 
-"@wdio/runner@npm:7.7.2":
-  version: 7.7.2
-  resolution: "@wdio/runner@npm:7.7.2"
+"@wdio/runner@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/runner@npm:7.7.3"
   dependencies:
-    "@wdio/config": 7.7.0
+    "@wdio/config": 7.7.3
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     deepmerge: ^4.0.0
     gaze: ^1.1.2
-    webdriver: 7.7.2
-    webdriverio: 7.7.2
-  checksum: e6a8b47a356b863a4bc36e8f5f9ef841b92666d0c46634581ddf10b973c4526d125870eb5d164ac2fe31b7010286807771256ddc58e54f10ea833d6bdb547dc5
+    webdriver: 7.7.3
+    webdriverio: 7.7.3
+  checksum: fd27a79d69d3233bf925b98ca1cd2827a9acd26787c0889b15e56390ea007d6fb256b6c3c48f60a2ef8e61fe77f7e123364c1017cc29fad41b21ee6597db5839
   languageName: node
   linkType: hard
 
-"@wdio/spec-reporter@npm:^7.2.1":
-  version: 7.7.0
-  resolution: "@wdio/spec-reporter@npm:7.7.0"
+"@wdio/spec-reporter@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/spec-reporter@npm:7.7.3"
   dependencies:
     "@types/easy-table": ^0.0.32
-    "@wdio/reporter": 7.7.0
-    "@wdio/types": 7.7.0
+    "@wdio/reporter": 7.7.3
+    "@wdio/types": 7.7.3
     chalk: ^4.0.0
     easy-table: ^1.1.1
     pretty-ms: ^7.0.0
   peerDependencies:
     "@wdio/cli": ^7.0.0
-  checksum: bc9dae64ca2aa806803fd55ca85adba652a1713c0f929f445a553560cfbff8343506505936e07926c82190f6875c917cbad0c82c3f74baa138d6fba8364f527f
+  checksum: f8d77596d76e48c971835a750829edb23c6510bc2a7abe472194863a93bbb7f6c614c56ed1429ffb8c4f1a50265d5c8d0590c090427c4a9656e3aa9f75de9b7e
   languageName: node
   linkType: hard
 
-"@wdio/sync@npm:^7.2.1":
-  version: 7.7.2
-  resolution: "@wdio/sync@npm:7.7.2"
+"@wdio/sync@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/sync@npm:7.7.3"
   dependencies:
     "@types/fibers": ^3.1.0
     "@types/puppeteer": ^5.4.0
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
+    "@wdio/types": 7.7.3
     fibers: ^5.0.0
-    webdriverio: 7.7.2
-  checksum: e044312c1764002b860c865b262880381cf8865732da6f0ef28d650764509747feee20dc4e80b7911085135b85ae4dcff8977b3b8b06cab23a6dc04c17e79cf7
+    webdriverio: 7.7.3
+  checksum: 4618ec628e4bff19da75476ffafac1040ea818ea6d75f2f5da2912fd72ca375a2cb730403053a36db98083dd95761c1f50fe6c7614701e7a782692ecc46141bf
   languageName: node
   linkType: hard
 
-"@wdio/types@npm:7.7.0":
-  version: 7.7.0
-  resolution: "@wdio/types@npm:7.7.0"
+"@wdio/types@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/types@npm:7.7.3"
   dependencies:
     "@types/node": ^14.14.31
     got: ^11.8.1
-  checksum: 8d97f27631ef1f8fc5bd670c8569964795a0dcd545955dd153332871e80398e516cea6ecfd9cf87206025286847a9e7733d6dc97e9884da8c4ab9c0800b508cf
+  checksum: 0290186407d27f2fce42f6e9960f0bd39a163ec94db3d91e5e08a584b7eba711e599cea5064c39b1f234003c91f7de5a16e5ff0923bc939e781485888b13f465
   languageName: node
   linkType: hard
 
-"@wdio/utils@npm:7.7.2":
-  version: 7.7.2
-  resolution: "@wdio/utils@npm:7.7.2"
+"@wdio/utils@npm:7.7.3":
+  version: 7.7.3
+  resolution: "@wdio/utils@npm:7.7.3"
   dependencies:
     "@wdio/logger": 7.7.0
-    "@wdio/types": 7.7.0
-  checksum: 863615d2919ca7451628080ea28242d30dfebc4db8f378a391459755fbec3017e81fa5255ed0979c94c35337e4eeee2b7f06b98543dd1dbd0f7f3059059e363a
+    "@wdio/types": 7.7.3
+  checksum: 7383024b31262e80d45e9aa8642272c64a8ad94b97a30f55a6a72f9f7a9ae84407abeffaac2cc245371cd84978003bd3a0578d51caaf55d28914ec4d691d5535
   languageName: node
   linkType: hard
 
@@ -7317,10 +7315,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.13.1":
-  version: 3.13.1
-  resolution: "core-js@npm:3.13.1"
-  checksum: 9138463ed7e6489a0b7f7e8a13cb345fde22866ab23d35f0e0e0ddc13e0374dfc7542d7316762a7dc2a5074efe22f8ff692e26ccc22860d8179de5eedf922e98
+"core-js@npm:^3.14.0":
+  version: 3.14.0
+  resolution: "core-js@npm:3.14.0"
+  checksum: fc830e61146f50241f431c711674a6af0a3633269a2a2afada3da1054f0c3b3a8b571fb4ca4c87d53193def47a4f56a18c32e832e6587b363ff0ff153508f300
   languageName: node
   linkType: hard
 
@@ -8389,23 +8387,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools@npm:7.7.2":
-  version: 7.7.2
-  resolution: "devtools@npm:7.7.2"
+"devtools@npm:7.7.3":
+  version: 7.7.3
+  resolution: "devtools@npm:7.7.3"
   dependencies:
     "@types/node": ^14.14.31
-    "@wdio/config": 7.7.0
+    "@wdio/config": 7.7.3
     "@wdio/logger": 7.7.0
     "@wdio/protocols": 7.5.3
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     chrome-launcher: ^0.14.0
     edge-paths: ^2.1.0
     puppeteer-core: ^9.1.0
     query-selector-shadow-dom: ^1.0.0
     ua-parser-js: ^0.7.21
     uuid: ^8.0.0
-  checksum: 03d4fab36d322c05dcea5d56b4ca144c9c28f12718ef8d403a941a6772b80f3d83d338f1d4c76be6670bb6fc79a08da5ab08818fe133263b5873e52185adc828
+  checksum: 95e0d2b318ff2a849294173c909c5bf1c50b597c71e3a342d3bb6355053e7e83c21eb6c258f0c6a232ba339c77a003b1152e52a1419bb2daf768c883575e0f95
   languageName: node
   linkType: hard
 
@@ -9308,7 +9306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^7.1.0, eslint-plugin-vue@npm:^7.7.0, eslint-plugin-vue@npm:^7.9.0":
+"eslint-plugin-vue@npm:^7.1.0, eslint-plugin-vue@npm:^7.10.0, eslint-plugin-vue@npm:^7.7.0, eslint-plugin-vue@npm:^7.9.0":
   version: 7.10.0
   resolution: "eslint-plugin-vue@npm:7.10.0"
   dependencies:
@@ -9322,7 +9320,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-wdio@npm:^7.0.0":
+"eslint-plugin-wdio@npm:^7.4.2":
   version: 7.4.2
   resolution: "eslint-plugin-wdio@npm:7.4.2"
   checksum: b9613c5029df5bd9fff9dc8b5907b21dfa88ff8f7e86c23383095b4ed099bd6a128134fdff95d7ae304fb7a3aab1bea21edec335dc95e9fd298f25516993b4c3
@@ -9415,12 +9413,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.22.0":
-  version: 7.27.0
-  resolution: "eslint@npm:7.27.0"
+"eslint@npm:^7.28.0":
+  version: 7.28.0
+  resolution: "eslint@npm:7.28.0"
   dependencies:
     "@babel/code-frame": 7.12.11
-    "@eslint/eslintrc": ^0.4.1
+    "@eslint/eslintrc": ^0.4.2
     ajv: ^6.10.0
     chalk: ^4.0.0
     cross-spawn: ^7.0.2
@@ -9437,7 +9435,7 @@ __metadata:
     fast-deep-equal: ^3.1.3
     file-entry-cache: ^6.0.1
     functional-red-black-tree: ^1.0.1
-    glob-parent: ^5.0.0
+    glob-parent: ^5.1.2
     globals: ^13.6.0
     ignore: ^4.0.6
     import-fresh: ^3.0.0
@@ -9460,7 +9458,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: c91a9a88091fb2654ec599b452f6d8aff22daa4a21761e762536877ec8b65cd6386c29ea2e0fec2668125a07c62973bc23922f924c999e140c1042b8cffca030
+  checksum: 9d49d53ed56a1f1ccba9c71482722a91f2423432df70a3694d36ea478f0e3bb058034f170219f34f3d6b5cd5d47510b269b75e2b4117f88a3241b1db9cb95828
   languageName: node
   linkType: hard
 
@@ -10710,7 +10708,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"glob-parent@npm:^5.0.0, glob-parent@npm:^5.1.0, glob-parent@npm:~5.1.0":
+"glob-parent@npm:^5.1.0, glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.0":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
   dependencies:
@@ -10772,16 +10770,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"globals@npm:^12.1.0":
-  version: 12.4.0
-  resolution: "globals@npm:12.4.0"
-  dependencies:
-    type-fest: ^0.8.1
-  checksum: 0b9764bdeab0bc9762dea8954a0d4c5db029420bd8bf693df9098ce7e045ccaf9b2d259185396fd048b051d42fdc8dc7ab02af62e3dbeb2324a78a05aac8d33c
-  languageName: node
-  linkType: hard
-
-"globals@npm:^13.6.0":
+"globals@npm:^13.6.0, globals@npm:^13.9.0":
   version: 13.9.0
   resolution: "globals@npm:13.9.0"
   dependencies:
@@ -16456,6 +16445,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"mooviejs@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "mooviejs@npm:1.1.5"
+  checksum: cfedc3adcd8bcc8f7e472ded92282539a5bb68517171ad8e4586140d11ca0b952930c6b7a5fe3cc08ed90222748ed496373a1a0d61c055317b05fac97ef0da7a
+  languageName: node
+  linkType: hard
+
 "mortice@npm:^2.0.0":
   version: 2.0.1
   resolution: "mortice@npm:2.0.1"
@@ -17276,7 +17272,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"nuxt@npm:^2.15.3":
+"nuxt@npm:^2.15.6":
   version: 2.15.6
   resolution: "nuxt@npm:2.15.6"
   dependencies:
@@ -19418,7 +19414,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.1.10, postcss@npm:^8.1.6, postcss@npm:^8.2.1, postcss@npm:^8.2.13, postcss@npm:^8.2.15, postcss@npm:^8.2.8":
+"postcss@npm:^8.1.10, postcss@npm:^8.1.6, postcss@npm:^8.2.1, postcss@npm:^8.2.13, postcss@npm:^8.2.15, postcss@npm:^8.3.0":
   version: 8.3.0
   resolution: "postcss@npm:8.3.0"
   dependencies:
@@ -23957,7 +23953,7 @@ typescript@~4.2:
   languageName: node
   linkType: hard
 
-"vue@npm:^2.6.10, vue@npm:^2.6.12":
+"vue@npm:^2.6.12":
   version: 2.6.13
   resolution: "vue@npm:2.6.13"
   checksum: a47c25429591259dd628697a3416960b8199c1a7d2f7157b5ccbd90112f679001245b42488682d3c63b17354bf6402239c5a53cf400a47f68ef28326ce63ba07
@@ -24028,40 +24024,40 @@ typescript@~4.2:
   languageName: node
   linkType: hard
 
-"webdriver@npm:7.7.2":
-  version: 7.7.2
-  resolution: "webdriver@npm:7.7.2"
+"webdriver@npm:7.7.3":
+  version: 7.7.3
+  resolution: "webdriver@npm:7.7.3"
   dependencies:
     "@types/node": ^14.14.31
-    "@wdio/config": 7.7.0
+    "@wdio/config": 7.7.3
     "@wdio/logger": 7.7.0
     "@wdio/protocols": 7.5.3
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     got: ^11.0.2
     lodash.merge: ^4.6.1
-  checksum: 20265e1553048c606ef9bfb0dd034aab0561710a58d69eb21f7b9b4ffba2a06b3faeedd0fe7883172b50f9711811bfa0af61429a22e08ccc52e12962f09f4afe
+  checksum: 29797c2b3af4dcaf1c8497ef4f28d9194d258b2ba9632a6199811d61e4dec9c2957b3125aa9b03ed7cfd24ceb541d0607b7e52b8dc076617b8074984de7b7b71
   languageName: node
   linkType: hard
 
-"webdriverio@npm:7.7.2, webdriverio@npm:^7.2.1":
-  version: 7.7.2
-  resolution: "webdriverio@npm:7.7.2"
+"webdriverio@npm:7.7.3, webdriverio@npm:^7.7.3":
+  version: 7.7.3
+  resolution: "webdriverio@npm:7.7.3"
   dependencies:
     "@types/aria-query": ^4.2.1
     "@types/node": ^14.14.31
-    "@wdio/config": 7.7.0
+    "@wdio/config": 7.7.3
     "@wdio/logger": 7.7.0
     "@wdio/protocols": 7.5.3
-    "@wdio/repl": 7.7.2
-    "@wdio/types": 7.7.0
-    "@wdio/utils": 7.7.2
+    "@wdio/repl": 7.7.3
+    "@wdio/types": 7.7.3
+    "@wdio/utils": 7.7.3
     archiver: ^5.0.0
     aria-query: ^4.2.2
     atob: ^2.1.2
     css-shorthand-properties: ^1.1.1
     css-value: ^0.0.1
-    devtools: 7.7.2
+    devtools: 7.7.3
     devtools-protocol: ^0.0.887710
     fs-extra: ^10.0.0
     get-port: ^5.1.1
@@ -24076,8 +24072,8 @@ typescript@~4.2:
     resq: ^1.9.1
     rgb2hex: 0.2.5
     serialize-error: ^8.0.0
-    webdriver: 7.7.2
-  checksum: 105c89c2e6691c71c32fa41251f7bed657b4bbbbc91eefc5d851ddddbf7e287e34bb3cd4bc8ce645c26deadfd962440c8579c85e161b45f4c0b5a91c6126b675
+    webdriver: 7.7.3
+  checksum: 32e54c0fe1864643824ea5369033aa512e9deb82bb35b45210eb799b2f7488dad206880e739ad1173f3c19e3d975ba45d5ad6ec78da7cafae19fba09290cc098
   languageName: node
   linkType: hard
 

@@ -1,3 +1,5 @@
+/* eslint-ignore */
+
 const Page = require('../pageObjects/main.page')
 
 describe('Example test', () => {

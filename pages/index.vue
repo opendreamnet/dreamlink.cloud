@@ -4,31 +4,43 @@
       <h1 class="title">
         Share files on the <span class="text-ipfs">IPFS network</span>.
       </h1>
-      <h2>File storage controlled by you, free and uncensored in a decentralized network.</h2>
+      <h2>File storage controlled by you, free and censorship-proof in a decentralized network.</h2>
     </div>
 
     <input v-show="false" ref="files" type="file" multiple @change="upload">
+    <input
+      v-show="false"
+      ref="directory"
+      type="file"
+      multiple
+      directory
+      webkitdirectory
+      mozdirectory
+      @change="upload"
+    >
 
     <div class="upload__content">
-      <div class="upload__buttons">
-        <Button v-if="$ipfs.ready" key="upload-button" class="button-xl" @click="$refs.files.click()">
+      <div v-if="$ipfs.ready" class="upload__buttons">
+        <Button class="button-xl" @click="$refs.files.click()">
           <span class="icon"><FontAwesomeIcon icon="upload" /></span>
-          <span>Upload files</span>
+          <span>Add files</span>
         </Button>
 
-        <Button v-else-if="$ipfs.error" key="error-button" v-tooltip="'Your IPFS node has not started correctly.'" class="button-xl button--danger" @click="$bus.emit('node.dialog')">
+        <Button class="button-xl" @click="$refs.directory.click()">
+          <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
+          <span>Add folder</span>
+        </Button>
+      </div>
+
+      <div v-else-if="$ipfs.error" class="upload__buttons">
+        <Button key="error-button" v-tooltip="'Your IPFS node has not started correctly.'" class="button-xl button--danger" @click="$bus.emit('node.dialog')">
           <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
           <span>Node Error</span>
         </Button>
+      </div>
 
-        <Button v-else key="waiting-button" class="button-xl" :loading="true">
-          <span>Upload files</span>
-        </Button>
-
-        <Button el="NuxtLink" to="/about#how" class="button--primary button-xl">
-          <span class="icon"><FontAwesomeIcon icon="question" /></span>
-          <span>How it works?</span>
-        </Button>
+      <div v-else class="flex justify-center">
+        <Loading class="scale-150" />
       </div>
 
       <p class="text-sm">

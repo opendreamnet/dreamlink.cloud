@@ -7,7 +7,13 @@ process.env.npm_package_version = pkg.version
 
 export default setNuxtConfig({
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@opendreamnet/nuxtjs-base/assets/css/reset.scss',
+    '@opendreamnet/nuxtjs-base/assets/css/input.scss',
+    '@opendreamnet/nuxtjs-base/assets/css/checkbox.scss',
+    'tippy.js/dist/tippy.css',
+    'mooviejs/css/moovie.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -72,10 +78,6 @@ export default setNuxtConfig({
   // https://github.com/nuxt-community/gtm-module
   gtm: {
     id: 'GTM-TNK475T' // Used as fallback if no runtime config is provided
-  },
-
-  publicRuntimeConfig: {
-    version: process.env.npm_package_version
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

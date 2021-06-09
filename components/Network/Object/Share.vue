@@ -16,7 +16,14 @@
 
     <section class="share__gateways">
       <p>Share any of these links to view or download the file directly:</p>
-      <NetworkObjectUrl v-for="url in gatewaysURLS" :key="url" :cid="cid" :filename="filename" :url="url" />
+      <NetworkObjectUrl
+        v-for="(url, it) in gatewaysURLS"
+        :key="url"
+        :delay="it"
+        :cid="cid"
+        :filename="filename"
+        :url="url"
+      />
     </section>
   </Box>
 </template>

@@ -13,7 +13,7 @@
 
       <Button el="a" target="_blank" :href="previewURL" :loading="!previewURL" class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="external-link-square-alt" /></span>
-        <span>Preview</span>
+        <span>Open</span>
       </Button>
     </div>
 
@@ -38,18 +38,9 @@
 </template>
 
 <script lang="ts">
-import URI from 'urijs'
 import NetworkObject from '~/mixins/NetworkObject'
 
-interface Data {
-  gatewayURI: URI | null
-}
-
 export default NetworkObject.extend({
-  data: (): Data => ({
-    gatewayURI: null
-  }),
-
   computed: {
     downloadURL(): string | null {
       if (!this.gatewayURI) {
@@ -64,30 +55,6 @@ export default NetworkObject.extend({
       }
 
       return this.gatewayURI.clone().query({ filename: this.filename, download: 'false' }).href()
-    }
-  },
-
-  created() {
-    this.$bus.on(`${this.cid}.gateway.status`, this.onStatus)
-  },
-
-  beforeDestroy() {
-    this.$bus.off(`${this.cid}.gateway.status`, this.onStatus)
-  },
-
-  methods: {
-    onStatus(uri: URI) {
-      if (uri.href().includes('odn.pw') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
-
-      if (uri.href().includes('fs.opendreamnet.cloud') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
-
-      if (uri.href().includes('ipfs.io') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
     }
   }
 })

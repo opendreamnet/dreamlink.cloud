@@ -1,5 +1,7 @@
 <template>
   <div class="explorer">
+    <NetworkObjectPreview :cid="cid" :filename="filename" class="explorer__preview" />
+
     <div class="explorer__info">
       <h1 class="title">
         {{ filename || cid }}
@@ -31,6 +33,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { MetaInfo } from 'vue-meta/types'
 import isIPFS from 'is-ipfs'
 
 export default Vue.extend({
@@ -44,9 +47,19 @@ export default Vue.extend({
     $ipfs.add(query.cid as string)
   },
 
-  data: () => ({
-    record: null
-  }),
+  head(): MetaInfo {
+    const title = this.$route.query.filename as string || this.$route.query.cid as string
+
+    return {
+      titleTemplate: `%s - ${title}`,
+      meta: [
+        {
+          name: 'description',
+          content: `Download ${title} file from IPFS.`
+        }
+      ]
+    }
+  },
 
   computed: {
     cid(): string {
@@ -79,6 +92,10 @@ export default Vue.extend({
 
 }
 
+.explorer__preview {
+  @apply mb-6 -mt-16 shadow-xl;
+}
+
 .explorer__info {
   @apply mb-6 text-center;
 
@@ -99,7 +116,7 @@ export default Vue.extend({
   @apply space-y-6;
 
   @screen md {
-    @apply flex gap-9;
+    @apply flex gap-9 space-y-0;
   }
 }
 
