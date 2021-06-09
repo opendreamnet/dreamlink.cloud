@@ -23,6 +23,10 @@ jobs:
       - name: 📁 Checkout
         uses: actions/checkout@master
 
+      - run: |
+          git config user.name github-actions
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
       - name: 📦 Cache node_modules
         uses: actions/cache@v2.1.4
         env:
