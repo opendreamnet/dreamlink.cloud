@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - "**"
       - "!package.json"
+      - "!CHANGELOG.md"
     branches:
       - master
 
