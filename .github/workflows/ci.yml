@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "!package.json"
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+
+    steps:
+      - name: 📁 Checkout
+        uses: actions/checkout@master
+
+      - name: 📦 Cache node_modules
+        uses: actions/cache@v2.1.4
+        env:
+          cache-name: dreamlink-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+
+      - name: 👨🏻‍💻 Install dependencies
+        run: yarn install
+
+      - name: 🏗️ Build
+        run: yarn run generate
+
+      - name: 🚀 Deploy
+        run: yarn run deploy
+        timeout-minutes: 20
+        env:
+          DEPLOY_PINATA_TOKEN: ${{ secrets.DEPLOY_PINATA_TOKEN }}
+          DEPLOY_DREAMLINKCLUSTER_USERNAME: dreamnet
+          DEPLOY_DREAMLINKCLUSTER_PASSWORD: ${{ secrets.DEPLOY_DREAMLINKCLUSTER_PASSWORD }}
+          DEPLOY_CLOUDFLARE_EMAIL: ${{ secrets.DEPLOY_CLOUDFLARE_EMAIL }}
+          DEPLOY_CLOUDFLARE_KEY: ${{ secrets.DEPLOY_CLOUDFLARE_KEY }}
+          DEPLOY_CLOUDFLARE_ZONE: dreamlink.cloud
+          DEPLOY_CLOUDFLARE_RECORD: _dnslink.www
