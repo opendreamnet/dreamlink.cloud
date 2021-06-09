@@ -82,7 +82,7 @@ export default Vue.extend({
           const file = files[0]
 
           cid = await this.$ipfs.upload(file, { pin: false })
-          route += `cid=${cid}&filename=${file.name}&type=${file.type}`
+          route += `cid=${cid}&filename=${file.name}`
         } else {
           cid = await this.$ipfs.upload(files, { pin: false, wrapWithDirectory: true })
           route += `cid=${cid}`
@@ -122,7 +122,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .upload__hero {
-  @apply my-20 text-center;
+  @apply mb-20 text-center;
 
   h1 {
     @apply text-4xl mb-3;

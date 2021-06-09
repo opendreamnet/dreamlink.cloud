@@ -86,7 +86,7 @@ export default NetworkObject.extend({
       await this.checkStatus()
 
       if (this.status !== true) {
-        this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 5000)
+        this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 10000)
       }
     },
 

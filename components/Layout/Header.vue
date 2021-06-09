@@ -15,10 +15,6 @@
         <NuxtLink to="/about" class="item">
           About
         </NuxtLink>
-
-        <NuxtLink to="/support" class="item">
-          Support
-        </NuxtLink>
       </div>
 
       <div class="nav__right">

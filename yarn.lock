@@ -212,7 +212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-imports@npm:^7.0.0, @babel/helper-module-imports@npm:^7.12.13, @babel/helper-module-imports@npm:^7.13.12":
+"@babel/helper-module-imports@npm:^7.0.0, @babel/helper-module-imports@npm:^7.0.0-beta.49, @babel/helper-module-imports@npm:^7.12.13, @babel/helper-module-imports@npm:^7.13.12":
   version: 7.13.12
   resolution: "@babel/helper-module-imports@npm:7.13.12"
   dependencies:
@@ -1286,7 +1286,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.13, @babel/types@npm:^7.13.0, @babel/types@npm:^7.13.12, @babel/types@npm:^7.13.16, @babel/types@npm:^7.14.0, @babel/types@npm:^7.14.2, @babel/types@npm:^7.14.4, @babel/types@npm:^7.3.0, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.0.0-beta.49, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.13, @babel/types@npm:^7.13.0, @babel/types@npm:^7.13.12, @babel/types@npm:^7.13.16, @babel/types@npm:^7.14.0, @babel/types@npm:^7.14.2, @babel/types@npm:^7.14.4, @babel/types@npm:^7.3.0, @babel/types@npm:^7.4.4, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
   version: 7.14.4
   resolution: "@babel/types@npm:7.14.4"
   dependencies:
@@ -2622,6 +2622,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nuxtjs/gtm@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@nuxtjs/gtm@npm:2.4.0"
+  dependencies:
+    chalk: ^4.1.0
+    semver: ^7.3.2
+  checksum: d843047f881a77371d08dad97824929bd0fec4d26853d1834e431bea89b7a7599f14d6040f4320bfcbc1dbe74635f46883ce8a20765d3f205744671fdf22e544
+  languageName: node
+  linkType: hard
+
 "@nuxtjs/markdownit-loader@npm:^1.1.1":
   version: 1.2.0
   resolution: "@nuxtjs/markdownit-loader@npm:1.2.0"
@@ -2945,6 +2955,7 @@ __metadata:
     "@nuxtjs/eslint-module": ^3.0.2
     "@nuxtjs/fontawesome": ^1.1.2
     "@nuxtjs/google-fonts": ^1.3.0
+    "@nuxtjs/gtm": ^2.4.0
     "@nuxtjs/markdownit": ^2.0.0
     "@nuxtjs/pwa": ^3.3.5
     "@nuxtjs/style-resources": ^1.1.0
@@ -2963,6 +2974,7 @@ __metadata:
     "@wdio/sync": ^7.2.1
     axios: ^0.21.1
     babel-eslint: ^10.1.0
+    babel-plugin-lodash: ^3.3.4
     clipboard: ^2.0.8
     core-js: ^3.13.1
     dialog-polyfill: ^0.5.6
@@ -5465,6 +5477,19 @@ __metadata:
   dependencies:
     object.assign: ^4.1.0
   checksum: 6745b8edca96f6c8bc34ab65935b5676358d2e55323e8e823b8de7aa353e3e6398a495ce434c9c36ad5fb1609467a1b1a0028946e1490bf7de8f97df3ae7f3b1
+  languageName: node
+  linkType: hard
+
+"babel-plugin-lodash@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "babel-plugin-lodash@npm:3.3.4"
+  dependencies:
+    "@babel/helper-module-imports": ^7.0.0-beta.49
+    "@babel/types": ^7.0.0-beta.49
+    glob: ^7.1.1
+    lodash: ^4.17.10
+    require-package-name: ^2.0.1
+  checksum: 219ed7b02a985ff7ae8f6eaec30825424a562d1e6e206e584e2c42adf7f6c89c524c04abd5809ac8794f85f62b56c876c7553910e98665c509b23de1da032d64
   languageName: node
   linkType: hard
 
@@ -10708,7 +10733,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.0, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6, glob@npm:^7.1.7, glob@npm:~7.1.1":
+"glob@npm:^7.0.0, glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6, glob@npm:^7.1.7, glob@npm:~7.1.1":
   version: 7.1.7
   resolution: "glob@npm:7.1.7"
   dependencies:
@@ -15392,7 +15417,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"lodash@npm:>=4, lodash@npm:^4.15.0, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.3, lodash@npm:^4.17.5, lodash@npm:~4.17.10":
+"lodash@npm:>=4, lodash@npm:^4.15.0, lodash@npm:^4.17.10, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.3, lodash@npm:^4.17.5, lodash@npm:~4.17.10":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 4983720b9abca930a4a46f18db163d7dad8dd00dbed6db0cc7b499b33b717cce69f80928b27bbb1ff2cbd3b19d251ee90669a8b5ea466072ca81c2ebe91e7468
@@ -20569,6 +20594,13 @@ fsevents@~2.3.1:
   version: 2.0.0
   resolution: "require-main-filename@npm:2.0.0"
   checksum: 8d3633149a7fef67d14613146247137fe1dc4cc969bf2d1adcd40e3c28056de503229f41e78cba5efebad3a223cbfb4215fd220d879148df10c6d9a877099dbd
+  languageName: node
+  linkType: hard
+
+"require-package-name@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "require-package-name@npm:2.0.1"
+  checksum: bc1b42ecffccc4936256536b12607115a5a6ba5bb6105e6b966fc271a1a2fd6ff2db72b44eb7e8b6366f128d0eead4541597b77d1260f53a61540bb3f074c2d1
   languageName: node
   linkType: hard
 

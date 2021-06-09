@@ -40,6 +40,9 @@ jobs:
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
 
+      - name: ✨ Release
+        run: yarn run release
+
       - name: 🏗️ Build
         run: yarn run generate
 

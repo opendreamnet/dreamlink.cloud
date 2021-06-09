@@ -39,12 +39,13 @@ export default setNuxtConfig({
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    // https://github.com/nuxt-community/gtm-module
+    '@nuxtjs/gtm'
   ],
 
   // https://github.com/nuxt-community/style-resources-module
   styleResources: {
-    // scss: '~/assets/css/functions.scss'
     scss: '@opendreamnet/nuxtjs-base/assets/css/functions.scss'
   },
 
@@ -68,6 +69,11 @@ export default setNuxtConfig({
     }
   },
 
+  // https://github.com/nuxt-community/gtm-module
+  gtm: {
+    id: 'GTM-TNK475T' // Used as fallback if no runtime config is provided
+  },
+
   publicRuntimeConfig: {
     version: process.env.npm_package_version
   },
@@ -77,7 +83,7 @@ export default setNuxtConfig({
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
       plugins: [
-        // 'lodash',
+        'lodash',
         '@babel/plugin-proposal-nullish-coalescing-operator',
         '@babel/plugin-proposal-optional-chaining'
       ]

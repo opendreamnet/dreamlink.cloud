@@ -87,7 +87,7 @@ export default Vue.extend({
   }
 
   h2 {
-    @apply text-snow-darker;
+    @apply text-snow-darker break-words;
   }
 }
 
@@ -96,7 +96,11 @@ export default Vue.extend({
 }
 
 .explorer__cols {
-  @apply flex gap-9;
+  @apply space-y-6;
+
+  @screen md {
+    @apply flex gap-9;
+  }
 }
 
 .explorer__left {
@@ -105,7 +109,10 @@ export default Vue.extend({
 
 .explorer__right {
   @apply space-y-6;
-  width: 350px;
+
+  @screen md {
+    width: 350px;
+  }
 }
 
 .explorer__remember {
