@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.1 (2021-06-09)
+
+
+### Bug Fixes
+
+* audio player does not render font correctly ([62c91cb](https://github.com/opendreamnet/dreamlink.cloud/commit/62c91cbcadadc2cb53e79b5a9947695e71718dbf))
+
 ## 1.1.0 (2021-06-09)
 
 
