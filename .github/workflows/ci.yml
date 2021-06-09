@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: 🏗 Setup NodeJS
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
