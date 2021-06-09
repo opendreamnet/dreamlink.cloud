@@ -142,7 +142,8 @@ export default NetworkObject.extend({
       const player = new Moovie({
         selector: '#video',
         dimensions: {
-          width: '100%'
+          width: '100%',
+          height: '100%'
         },
         icons: {
           path: 'https://raw.githubusercontent.com/BMSVieira/moovie.js/main/icons/'
@@ -165,7 +166,8 @@ export default NetworkObject.extend({
 }
 
 .preview--audio {
-  @apply flex justify-center py-9;
+  @apply flex justify-center p-9;
+  height: auto;
 }
 
 .preview--image {
@@ -179,6 +181,11 @@ export default NetworkObject.extend({
 
 <style lang="scss">
 .moovie {
-  @apply font-sans;
+  @apply font-sans h-full;
+}
+
+audio {
+  @apply w-full;
+  font-feature-settings: initial;
 }
 </style>

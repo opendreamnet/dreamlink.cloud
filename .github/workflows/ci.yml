@@ -30,17 +30,19 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: 📦 Cache node_modules
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         env:
-          cache-name: dreamlink-cache
+          cache-name: dreamlink-cache2
         with:
-          path: node_modules
+          path: |
+            node_modules
+            !node_modules/.cache
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: 🏗 Setup NodeJS
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
