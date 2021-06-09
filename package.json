@@ -87,7 +87,7 @@
     "@wdio/sync": "^7.2.1",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
-    "eslint": "^7.22.0",
+    "eslint": "^7.28.0",
     "eslint-plugin-lodash": "^7.2.0",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-nuxt": "^2.0.0",
