@@ -28,7 +28,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: 📦 Cache node_modules
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         env:
           cache-name: dreamlink-cache
         with:
