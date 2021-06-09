@@ -83,6 +83,6 @@ export default setNuxtConfig({
       ]
     },
 
-    transpile: ['ipfs-core']
+    transpile: ['ipfs-core', '@opendreamnet/ipfs', '@opendreamnet/app']
   }
 })
