@@ -2,7 +2,7 @@
   <footer class="footer">
     <nav class="nav">
       <NuxtLink to="/" class="item">
-        Home
+        Share
       </NuxtLink>
 
       <NuxtLink to="/docs/tos" class="item">
@@ -15,7 +15,8 @@
     </nav>
 
     <div class="footer__copyright">
-      © {{ new Date().getFullYear() }} OpenDreamNet. All rights reserved. <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="version">v{{ $config.version }}</a>
+      <p>© {{ new Date().getFullYear() }} OpenDreamNet. DreamLink is distributed under the <a href="./LICENSE.txt" target="_blank">GNU AGPLv3 license</a>.</p>
+      <p><a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="version">v{{ $config.version }}</a></p>
     </div>
   </footer>
 </template>
@@ -40,9 +41,13 @@
 
 .footer__copyright {
   @apply text-sm text-center pb-6;
+
+  a {
+    @apply underline;
+  }
 }
 
 .version {
-  @apply font-semibold underline;
+  @apply font-semibold;
 }
 </style>

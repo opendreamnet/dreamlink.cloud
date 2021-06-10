@@ -16,16 +16,16 @@
     <div class="explorer__cols">
       <div class="explorer__left">
         <NetworkObjectShare :cid="cid" :filename="filename" />
+      </div>
+
+      <div class="explorer__right">
+        <NetworkObjectDetails :cid="cid" :filename="filename" />
 
         <Box class="explorer__remember">
           <p>Remember that files uploaded with {{ $config.name }} are only persistent as long as <a href="#" @click.prevent="openNodeDialog()">your IPFS node is up</a> otherwise they can be lost in a matter of hours or days.</p>
 
           <p>If you are the uploader of this file remember to keep any {{ $config.name }} tab open and active or <a href="https://docs.ipfs.io/concepts/persistence/#pinning-in-context" target="_blank">pin the file</a> to a persistent IPFS node to keep the file alive.</p>
         </Box>
-      </div>
-
-      <div class="explorer__right">
-        <NetworkObjectDetails :cid="cid" :filename="filename" />
       </div>
     </div>
   </div>
@@ -133,6 +133,8 @@ export default Vue.extend({
 }
 
 .explorer__remember {
+  @apply text-sm;
+
   a {
     @apply text-primary underline;
   }

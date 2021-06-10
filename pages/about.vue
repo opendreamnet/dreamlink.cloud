@@ -64,9 +64,9 @@
 
           <p>{{ $config.name }} itself is a web page stored in IPFS!</p>
 
-          <p>This means that even if <span v-tooltip="'Official URL.'" class="tip">dreamlink.cloud</span> goes down you can still use it from other addresses:</p>
+          <p>This means that even if <span v-tooltip="'Official URL.'" class="tip">dreamlink.cloud</span> goes down you can still use it from other addresses or better yet, if you have an IPFS node on your computer or use a web browser like <a v-tooltip="'Web browser with integrated IPFS support.'" href="https://brave.com/" target="_blank">Brave</a>, you can download and use it at any time:</p>
 
-          <p>Or better yet, if you have an IPFS node on your computer or use a web browser like <a v-tooltip="'Web browser with integrated IPFS support.'" href="https://brave.com/">Brave</a>, you can download and use {{ $config.name }} at any time locally:</p>
+          <Gateways />
 
           <p>Your files will probably be stored on several IPFS nodes around the world so a {{ $config.name }} crash will not affect them.</p>
         </details>

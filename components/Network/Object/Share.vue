@@ -9,7 +9,7 @@
 
     <section>
       <p>Share this link so they can see file information and direct links:</p>
-      <InputPlus readonly :value="classicURL" />
+      <InputPlus readonly :value="classicURL" class="text--sm" />
     </section>
 
     <hr>

@@ -6,12 +6,14 @@ import { ipfs } from '../modules/ipfs'
 
 const plugin: Plugin = async(ctx, inject) => {
   inject('ipfs', Vue.observable(ipfs))
-  
+
   await storage.init()
   inject('storage', Vue.observable(storage))
 
-  // @ts-ignore
-  window.ipfs = ipfs
+  if (process.env.NODE_ENV !== 'production') {
+    // @ts-ignore
+    window.ipfs = ipfs
+  }
 }
 
 export default plugin

@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * audio player does not render font correctly ([62c91cb](https://github.com/opendreamnet/dreamlink.cloud/commit/62c91cbcadadc2cb53e79b5a9947695e71718dbf))
+* video player does not resize correctly ([62c91cb](https://github.com/opendreamnet/dreamlink.cloud/commit/62c91cbcadadc2cb53e79b5a9947695e71718dbf))
 
 ## 1.1.0 (2021-06-09)
 
@@ -15,7 +16,9 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * directory upload support ([b28c691](https://github.com/opendreamnet/dreamlink.cloud/commit/b28c69180892ca46494a8507453e0125294cbdff))
-
+* added preview for images, audio, video and pdf ([b28c691](https://github.com/opendreamnet/dreamlink.cloud/commit/b28c69180892ca46494a8507453e0125294cbdff))
+* now we check the status of public gateways gradually ([b28c691](https://github.com/opendreamnet/dreamlink.cloud/commit/b28c69180892ca46494a8507453e0125294cbdff))
+ 
 ### 1.0.1 (2021-06-09)
 
 
