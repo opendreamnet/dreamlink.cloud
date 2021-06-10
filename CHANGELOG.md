@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.2 (2021-06-10)
+
+
+### Bug Fixes
+
+* added the GNU AGPLv3 license ([e17efe7](https://github.com/opendreamnet/dreamlink.cloud/commit/e17efe7f00820de3993eacc52b9310f88e10cbd2)), closes [#13](https://github.com/opendreamnet/dreamlink.cloud/issues/13)
+
 ### 1.1.1 (2021-06-09)
 
 
