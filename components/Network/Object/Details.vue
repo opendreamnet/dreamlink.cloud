@@ -9,7 +9,7 @@
 
     <div v-if="record" class="details">
       <p>
-        <span class="title">CID: <Tooltip content="This is how your file is identified on the IPFS network. Save it!" /></span>
+        <span class="title">CID: <Tooltip content="This is how your file is identified on the network and is necessary to return to it." /></span>
         <InputPlus class="input--sm" :value="record.cid" />
       </p>
 

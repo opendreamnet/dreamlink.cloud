@@ -6,7 +6,8 @@
       <h1 class="title">
         {{ filename || cid }}
       </h1>
-      <h2 v-if="filename">
+
+      <h2 v-if="filename" v-tooltip="'This is how your file is identified on the network and is necessary to return to it.'" class="text-blue">
         {{ cid }}
       </h2>
     </div>
