@@ -8,9 +8,9 @@ updates:
     time: '00:00'
   open-pull-requests-limit: 3
   reviewers:
-    - opendreamnet
+    - kolessios
   assignees:
-    - opendreamnet
+    - kolessios
   commit-message:
     prefix: fix
     prefix-development: chore
@@ -23,9 +23,9 @@ updates:
     time: '00:00'
   open-pull-requests-limit: 3
   reviewers:
-    - opendreamnet
+    - kolessios
   assignees:
-    - opendreamnet
+    - kolessios
   commit-message:
     prefix: fix
     prefix-development: chore
