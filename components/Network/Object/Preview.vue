@@ -52,11 +52,11 @@ export default NetworkObject.extend({
 
   computed: {
     mime(): string | null {
-      if (!this.record) {
+      if (this.record && this.record.isDirectory) {
         return null
       }
 
-      if (this.record.isDirectory) {
+      if (!this.filename) {
         return null
       }
 
