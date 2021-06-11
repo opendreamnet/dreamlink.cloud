@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { isNil } from 'lodash'
+import mime from 'mime'
 import NetworkObject from '~/mixins/NetworkObject'
 
 export default NetworkObject.extend({
@@ -58,7 +59,13 @@ export default NetworkObject.extend({
       return this.gatewayURI.clone().query({ filename: this.filename, download: 'false' }).href()
     },
     canDownload(): boolean {
-      return (this.record && !this.record.isDirectory) || !isNil(this.downloadURL)
+      if (this.record && this.record.isDirectory) {
+        return false
+      } else if (this.filename && !mime.getType(this.filename)) {
+        return false
+      }
+
+      return !isNil(this.downloadURL)
     },
     canOpen(): boolean {
       return !isNil(this.previewURL)
