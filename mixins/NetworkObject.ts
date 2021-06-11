@@ -53,7 +53,7 @@ export default Vue.extend({
       try {
         this.record = await this.$ipfs.add(this.cid, { name: this.filename })
       } catch(err) {
-        console.warn('[NetworkObject] Failed to obtain the record, trying again.', this.$vnode.tag, this.$el)
+        console.warn('[NetworkObject] Failed to obtain the record, trying again.')
 
         this.$ipfs.remove(this.cid)
         this._fetchTimeout = setTimeout(this.fetchRecord.bind(this), 500)
