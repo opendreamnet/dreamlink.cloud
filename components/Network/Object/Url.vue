@@ -77,7 +77,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    const delay = 5000 * this.delay
+    const delay = 2000 * this.delay
     this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), delay)
   },
 
