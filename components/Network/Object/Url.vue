@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import { isNil } from 'lodash'
 import URI from 'urijs'
 import axios from 'axios'
-import NetworkObject from '~/mixins/NetworkObject'
 
 interface Data {
   status: boolean | string
@@ -24,8 +24,16 @@ interface Data {
 
 const MAX_ATTEMPTS = 5
 
-export default NetworkObject.extend({
+export default Vue.extend({
   props: {
+    cid: {
+      type: String,
+      required: true
+    },
+    filename: {
+      type: String,
+      default: null
+    },
     url: {
       type: String,
       default: 'https://ipfs.io'
@@ -39,6 +47,12 @@ export default NetworkObject.extend({
       default: 0
     }
   },
+
+  data: (): Data => ({
+    status: false,
+    attempts: 0,
+    tryTimeout: null
+  }),
 
   computed: {
     shareURI(): URI {
@@ -61,12 +75,6 @@ export default NetworkObject.extend({
       return this.status === true
     }
   },
-
-  data: (): Data => ({
-    status: false,
-    attempts: 0,
-    tryTimeout: null
-  }),
 
   mounted() {
     const delay = 5000 * this.delay
