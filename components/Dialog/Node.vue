@@ -11,7 +11,7 @@
         <div class="node__right node__details">
           <p>
             <span class="title">
-              CID: <Tooltip :content="{ content: 'Identification of your node in the network.', appendTo: $el }" />
+              Peer ID: <Tooltip :content="{ content: 'A Peer ID is how each unique IPFS node is identified on the network. The Peer ID is created when the IPFS node is initialized and is essentially a cryptographic hash of the node\'s public key.', appendTo: $el }" />
             </span>
             <span class="value">{{ $ipfs.identity.id }}</span>
           </p>
