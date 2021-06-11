@@ -1,6 +1,6 @@
 <template>
-  <div v-if="record" class="object">
-    <div v-if="!record.isDirectory" class="justify-center buttons">
+  <div class="object">
+    <div v-if="canDownload" class="justify-center buttons">
       <Button v-if="!downloadURL" @click="nodeDownload()">
         <span class="icon"><FontAwesomeIcon icon="download" /></span>
         <span>Download</span>
@@ -11,33 +11,34 @@
         <span>Download</span>
       </Button>
 
-      <Button el="a" target="_blank" :href="previewURL" :loading="!previewURL" class="button--primary">
+      <Button
+        v-if="canOpen"
+        el="a"
+        target="_blank"
+        :href="previewURL"
+        :loading="!previewURL"
+        class="button--primary"
+      >
         <span class="icon"><FontAwesomeIcon icon="external-link-square-alt" /></span>
         <span>Open</span>
       </Button>
     </div>
 
-    <div v-else class="justify-center buttons">
+    <div v-else-if="canOpen" class="justify-center buttons">
       <Button el="a" target="_blank" :href="previewURL" :loading="!previewURL" class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
         <span>Open</span>
       </Button>
     </div>
-  </div>
 
-  <div v-else-if="$ipfs.error" class="flex justify-center" @click="$bus.emit('node.dialog')">
-    <Button class="button--danger">
-      <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
-      <span>Node Error</span>
-    </Button>
-  </div>
-
-  <div v-else class="flex justify-center">
-    <Loading class="scale-150" />
+    <div v-else class="flex justify-center">
+      <Loading class="scale-150" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { isNil } from 'lodash'
 import NetworkObject from '~/mixins/NetworkObject'
 
 export default NetworkObject.extend({
@@ -55,6 +56,12 @@ export default NetworkObject.extend({
       }
 
       return this.gatewayURI.clone().query({ filename: this.filename, download: 'false' }).href()
+    },
+    canDownload(): boolean {
+      return (this.record && !this.record.isDirectory) || !isNil(this.downloadURL)
+    },
+    canOpen(): boolean {
+      return !isNil(this.previewURL)
     }
   }
 })
