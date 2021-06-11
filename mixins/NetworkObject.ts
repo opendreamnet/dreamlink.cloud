@@ -7,6 +7,7 @@ interface Data {
   record: Record | null
   gatewayURI: URI | null
   nodeDownloadLoading: boolean
+  _fetchTimeout: NodeJS.Timeout | null
 }
 
 export default Vue.extend({
@@ -24,21 +25,41 @@ export default Vue.extend({
   data: (): Data => ({
     record: null,
     gatewayURI: null,
-    nodeDownloadLoading: false
+    nodeDownloadLoading: false,
+    _fetchTimeout: null
   }),
 
   created() {
-    // eslint-disable-next-line promise/catch-or-return
-    this.$ipfs.add(this.cid, { name: this.filename }).then((record) => this.record = record)
-
+    this.fetchRecord()
     this.$bus.on(`${this.cid}.gateway.status`, this.onGatewayStatus)
   },
 
   beforeDestroy() {
+    if (this._fetchTimeout) {
+      clearTimeout(this._fetchTimeout)
+    }
+
     this.$bus.off(`${this.cid}.gateway.status`, this.onGatewayStatus)
   },
 
   methods: {
+    async fetchRecord() {
+      if (this.record) {
+        return
+      }
+
+      this._fetchTimeout = null
+
+      try {
+        this.record = await this.$ipfs.add(this.cid, { name: this.filename })
+      } catch(err) {
+        console.warn('[NetworkObject] Failed to obtain the record, trying again.', this.$vnode.tag, this.$el)
+
+        this.$ipfs.remove(this.cid)
+        this._fetchTimeout = setTimeout(this.fetchRecord.bind(this), 500)
+      }
+    },
+
     async nodeDownload() {
       if (!this.record || this.record.isDirectory || !this.record.file) {
         return
