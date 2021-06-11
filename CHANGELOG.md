@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.2.0...v1.2.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* increased event listeners to 30 ([c3d1aef](https://github.com/opendreamnet/dreamlink.cloud/commit/c3d1aefd3a0ea5cabac8ed490d3a7ee8da456710))
+* more gateways without CORS added to the blacklist ([4162670](https://github.com/opendreamnet/dreamlink.cloud/commit/4162670d8661a764a58878ebacc6bfc95f06b331))
+* the preview is now displayed regardless of whether the node has been able to get the content ([22b7252](https://github.com/opendreamnet/dreamlink.cloud/commit/22b7252ca174dd0d5efef00afd03ced719284081))
+
 ## 1.2.0 (2021-06-11)
 
 
