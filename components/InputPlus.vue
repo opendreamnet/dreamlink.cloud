@@ -28,13 +28,16 @@ import Vue from 'vue'
 import ClipboardJS from 'clipboard'
 
 export default Vue.extend({
-
   model: {
     prop: 'value',
     event: 'update'
   },
+
   props: {
-    value: {},
+    value: {
+      type: [String, Number, Boolean, Date],
+      default: null
+    },
     status: {
       type: Boolean,
       default: null

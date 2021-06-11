@@ -13,6 +13,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'vue/no-mutating-props': 'off'
+    'vue/no-mutating-props': 'off',
+    'no-console': 'off'
   }
 }

@@ -27,7 +27,6 @@ import mime from 'mime'
 // @ts-ignore
 import Moovie from 'mooviejs'
 import { startsWith } from 'lodash'
-
 import NetworkObject from '~/mixins/NetworkObject'
 
 interface Data {
@@ -139,7 +138,8 @@ export default NetworkObject.extend({
     },
 
     createVideoPlayer() {
-      const player = new Moovie({
+      // eslint-disable-next-line no-new
+      new Moovie({
         selector: '#video',
         dimensions: {
           width: '100%',
