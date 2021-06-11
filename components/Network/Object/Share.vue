@@ -1,31 +1,38 @@
 <template>
-  <Box>
-    <template #header>
-      <h2 class="title">
-        <span class="icon"><FontAwesomeIcon icon="share" /></span>
-        <span>Share</span>
-      </h2>
-    </template>
+  <div class="share">
+    <Box>
+      <template #header>
+        <h2 class="title">
+          <span class="icon"><FontAwesomeIcon icon="share" /></span>
+          <span>Share</span>
+        </h2>
+      </template>
 
-    <section>
-      <p>Share this link so they can see file information and direct links:</p>
-      <InputPlus readonly :value="classicURL" class="text--sm" />
-    </section>
+      <section>
+        <InputPlus readonly :value="classicURL" class="text--sm" />
+      </section>
+    </Box>
 
-    <hr>
+    <Box>
+      <template #header>
+        <h2 class="title">
+          <span class="icon"><FontAwesomeIcon icon="share" /></span>
+          <span>Direct Links</span>
+        </h2>
+      </template>
 
-    <section class="share__gateways">
-      <p>Share any of these links to view or download the file directly:</p>
-      <NetworkObjectUrl
-        v-for="(url, it) in gatewaysURLS"
-        :key="url"
-        :delay="it"
-        :cid="cid"
-        :filename="filename"
-        :url="url"
-      />
-    </section>
-  </Box>
+      <section class="share__gateways">
+        <NetworkObjectUrl
+          v-for="(url, it) in gatewaysURLS"
+          :key="url"
+          :delay="it"
+          :cid="cid"
+          :filename="filename"
+          :url="url"
+        />
+      </section>
+    </Box>
+  </div>
 </template>
 
 <script lang="ts">
@@ -83,6 +90,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.share {
+  @apply space-y-6;
+}
+
 section {
   @apply mb-6;
 }
