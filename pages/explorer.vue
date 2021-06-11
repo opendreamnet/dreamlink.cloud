@@ -100,7 +100,7 @@ export default Vue.extend({
   @apply mb-6 text-center;
 
   h1 {
-    @apply text-2xl;
+    @apply text-2xl break-words;
   }
 
   h2 {
