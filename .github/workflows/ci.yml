@@ -3,14 +3,8 @@ name: Deploy
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "**.js"
-      - "**.ts"
-      - "**.vue"
-      - "content/**.md"
-      - "static/**"
-    branches:
-      - master
+    tags:
+      - v*
 
 jobs:
   ci:
@@ -49,9 +43,6 @@ jobs:
 
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
-
-      - name: ✨ Release
-        run: yarn run release
 
       - name: 🏗️ Build
         run: yarn run generate
