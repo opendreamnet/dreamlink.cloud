@@ -1,11 +1,36 @@
 <template>
   <div class="about">
     <Box id="dreamlink" title="What is DreamLink?">
-      <p>{{ $config.name }} is a small web application that provides you with a basic <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a> node to easily upload and share files on a decentralized peer-to-peer network.</p>
+      <p>{{ $config.name }} is a website that provides you with a basic <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a> node to easily upload and share files on a decentralized peer-to-peer network.</p>
 
       <p>{{ $config.name }} works similar to a file hosting but thanks to IPFS there are no server costs and your files are distributed by your web browser and other IPFS nodes around the world.</p>
 
-      <p>{{ $config.name }} is ideal for free and fast file sharing.</p>
+      <p>{{ $config.name }} is ideal for fast file sharing.</p>
+    </Box>
+
+    <Box id="differences" title="Differences from traditional file hosting.">
+      <div class="prose">
+        <p class="title text-success">
+          Advantages:
+        </p>
+
+        <ul>
+          <li>Upload files for free and without registration.</li>
+          <li>No file size or bandwidth limits.</li>
+          <li>Your file is uncensorable as it is distributed on several nodes around the world.</li>
+          <li>Even if DreamLink goes down, your files will still be distributed over the network.</li>
+        </ul>
+
+        <p class="text-danger">
+          Disadvantages:
+        </p>
+
+        <ul>
+          <li>Storage and bandwidth are at your expense.</li>
+          <li>If you do not keep DreamLink open or <a v-tooltip="'Pinning is the method of telling an IPFS node that particular data is important and so it will never be removed from that node\'s cache.'" href="https://docs.ipfs.io/concepts/persistence/#pinning-in-context" target="_blank">pin the file</a> it could become unavailable in a matter of hours or days.</li>
+          <li>In a peer-to-peer network you have to sacrifice some <a href="https://docs.ipfs.io/concepts/privacy/" target="_blank">privacy</a>.</li>
+        </ul>
+      </div>
     </Box>
 
     <Box id="how" title="How it works?">
