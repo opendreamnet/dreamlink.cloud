@@ -62,7 +62,10 @@ export default Vue.extend({
         'ipfs.runfission.com',
         'trusti.id',
         'hashnews.k1ic.com',
-        'ipfs.mihir.ch'
+        'ipfs.mihir.ch',
+        'ipfs.globalupload.io',
+        'ipfs.eternum.io',
+        'bin.d0x.to'
       ]
 
       return gateways.filter((url) => {
