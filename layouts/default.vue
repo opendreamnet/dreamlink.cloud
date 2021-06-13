@@ -14,6 +14,6 @@
 
 <style lang="scss" scoped>
 .container {
-  @apply space-y-20;
+  @apply space-y-16;
 }
 </style>

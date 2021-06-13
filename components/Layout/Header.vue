@@ -12,6 +12,10 @@
           Share
         </NuxtLink>
 
+        <NuxtLink to="/pastebin" class="item">
+          Pastebin
+        </NuxtLink>
+
         <NuxtLink to="/about" class="item">
           About
         </NuxtLink>
