@@ -18,7 +18,7 @@
 
           <p>
             <span class="title">
-              Storage: <Tooltip :content="{ content: 'The total storage space depends on your web browser and may increase as you use it.', appendTo: $el }" />
+              Storage: <Tooltip :content="{ content: 'The total storage space depends on your web browser and does not always mark the correct amount. (It is usually much larger)', appendTo: $el }" />
             </span>
             <NetworkStorageSize class="value" />
           </p>
