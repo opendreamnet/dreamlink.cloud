@@ -1,17 +1,27 @@
 <template>
   <div v-if="canShow" class="preview" :class="cssPreview">
-    <video v-if="isVideo" id="video" ref="video" controls>
+    <!-- Markdown -->
+    <div v-if="isMarkdown" class="prose preview__markdown" v-html="$md.render(content)" />
+
+    <!-- Text / Code -->
+    <pre v-else-if="isText" class="preview__text"><code class="hljs" v-html="codeHighlight" /></pre>
+
+    <!-- Video -->
+    <video v-else-if="isVideo" id="video" ref="video" controls>
       <source :src="previewURL" :type="mime">
       Your browser does not support the video tag.
     </video>
 
+    <!-- Audio -->
     <audio v-else-if="isAudio" ref="audio" controls>
       <source :src="previewURL" :type="mime">
       Your browser does not support the audio tag.
     </audio>
 
+    <!-- Image -->
     <img v-else-if="isImage" :src="previewURL">
 
+    <!-- Safe formats (PDF) -->
     <iframe
       v-else
       :src="previewURL"
@@ -26,16 +36,21 @@
 import mime from 'mime'
 // @ts-ignore
 import Moovie from 'mooviejs'
-import { startsWith } from 'lodash'
+import { startsWith, isNil } from 'lodash'
+import hljs from 'highlight.js'
 import NetworkObject from '~/mixins/NetworkObject'
 
 interface Data {
   installed: boolean
+  content: string
+  codeHighlight: string | null
 }
 
 export default NetworkObject.extend({
   data: (): Data => ({
-    installed: false
+    installed: false,
+    content: '',
+    codeHighlight: null
   }),
 
   watch: {
@@ -51,30 +66,47 @@ export default NetworkObject.extend({
   },
 
   computed: {
+    /**
+     * Mimetype of the file.
+     */
     mime(): string | null {
       if (this.record && this.record.isDirectory) {
+        // We now know that it is a directory.
         return null
       }
 
       if (!this.filename) {
+        // Without a file name we cannot know what it is.
         return null
       }
 
       return mime.getType(this.filename)
     },
 
+    /**
+     * True if we can show a preview of the file.
+     */
     canShow(): boolean {
       if (!this.mime) {
         return false
       }
 
-      if (!this.previewURL) {
+      if (!this.isText && !this.previewURL) {
+        // We need a public gateway to display the content.
         return false
       }
 
-      return this.isVideo || this.isAudio || this.isImage || this.isSecure
+      if (this.isText && (!this.record || !this.record.size || this.record.size >= 5242880)) {
+        // To display a text we must download it and for security reasons we will not download a large file.
+        return false
+      }
+
+      return this.isFrame || this.isText || this.isVideo || this.isAudio || this.isImage
     },
 
+    /**
+     * True if the file is a video.
+     */
     isVideo(): boolean {
       if (!this.mime) {
         return false
@@ -83,6 +115,9 @@ export default NetworkObject.extend({
       return startsWith(this.mime, 'video/')
     },
 
+    /**
+     * True if the file is an audio.
+     */
     isAudio(): boolean {
       if (!this.mime) {
         return false
@@ -91,6 +126,9 @@ export default NetworkObject.extend({
       return startsWith(this.mime, 'audio/')
     },
 
+    /**
+     * True if the file is an image.
+     */
     isImage(): boolean {
       if (!this.mime) {
         return false
@@ -99,18 +137,58 @@ export default NetworkObject.extend({
       return startsWith(this.mime, 'image/')
     },
 
-    isSecure(): boolean {
+    /**
+     * True if the file is text (or code).
+     */
+    isText(): boolean {
+      if (!this.mime) {
+        return false
+      }
+
+      return !isNil(this.language) || startsWith(this.mime, 'text/')
+    },
+
+    /**
+     * True if the file is markdown.
+     */
+    isMarkdown(): boolean {
+      return this.language === 'Markdown'
+    },
+
+    /**
+     * True when the file is a safe format that we can display in an iframe.
+     */
+    isFrame(): boolean {
       return this.mime === 'application/pdf'
     },
 
+    /**
+     * Language detected by file name.
+     */
+    language(): string | null {
+      if (!this.filename) {
+        return null
+      }
+
+      const ext = this.filename.split('.').pop() || ''
+      const lang = hljs.getLanguage(ext)
+
+      return lang?.name || null
+    },
+
+    /**
+     * CSS classes added to the container.
+     */
     cssPreview(): any {
       return {
-        'preview--video': this.isVideo,
         'preview--audio': this.isAudio,
         'preview--image': this.isImage
       }
     },
 
+    /**
+     * Public gateway URL to the content.
+     */
     previewURL(): string | null {
       if (!this.gatewayURI) {
         return null
@@ -121,20 +199,47 @@ export default NetworkObject.extend({
   },
 
   methods: {
-    install() {
+    /**
+     * Install what is necessary to display the preview.
+     */
+    async install() {
       if (this.installed) {
         return
       }
 
-      if (!this.canShow || !this.previewURL) {
+      if (!this.canShow) {
+        console.trace('This should not happen! [!this.canShow || !this.previewURL]')
         return
       }
 
-      this.installed = true
+      if (this.isText || this.isMarkdown) {
+        if (!this.record) {
+          console.trace('This should not happen! [!this.record]')
+          return
+        }
 
-      if (this.isVideo) {
+        await this.record.waitUntilReady()
+
+        if (!this.record.file) {
+          console.trace('This should not happen! [!this.record.file]')
+          return
+        }
+
+        this.content = await this.record.file.getContentString()
+
+        if (!this.isMarkdown) {
+          try {
+            // Markdown is rendered with another module.
+            this.codeHighlight = hljs.highlight(this.content, { language: this.language || '', ignoreIllegals: true }).value
+          } catch (err) {
+            this.codeHighlight = this.content
+          }
+        }
+      } else if (this.isVideo) {
         this.createVideoPlayer()
       }
+
+      this.installed = true
     },
 
     createVideoPlayer() {
@@ -156,7 +261,7 @@ export default NetworkObject.extend({
 
 <style lang="scss" scoped>
 .preview {
-  @apply bg-black;
+  @apply bg-black overflow-y-auto;
   min-height: 100px;
   height: 75vh;
 
@@ -176,6 +281,19 @@ export default NetworkObject.extend({
   img {
     @apply object-contain;
   }
+}
+
+.preview__text {
+  @apply block overflow-y-auto overflow-x-hidden;
+  @apply font-mono h-full w-full;
+
+  code {
+    @apply h-full;
+  }
+}
+
+.preview__markdown {
+  @apply p-6 max-w-none;
 }
 </style>
 

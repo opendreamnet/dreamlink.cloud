@@ -11,8 +11,12 @@ export default setNuxtConfig({
     '@opendreamnet/nuxtjs-base/assets/css/reset.scss',
     '@opendreamnet/nuxtjs-base/assets/css/input.scss',
     '@opendreamnet/nuxtjs-base/assets/css/checkbox.scss',
+
     'tippy.js/dist/tippy.css',
-    'mooviejs/css/moovie.css'
+    'mooviejs/css/moovie.css',
+
+    'highlight.js/styles/default.css',
+    'highlight.js/styles/atom-one-dark.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

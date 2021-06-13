@@ -94,7 +94,7 @@ export default Vue.extend({
 }
 
 .explorer__preview {
-  @apply mb-6 -mt-16 shadow-xl;
+  @apply mb-6 -mt-12 shadow-xl;
 }
 
 .explorer__info {
