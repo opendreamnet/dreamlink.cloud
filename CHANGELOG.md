@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.2.1...v1.3.0) (2021-06-13)
+
+
+### Features
+
+* added syntax highlight, markdown and text preview support ([5603149](https://github.com/opendreamnet/dreamlink.cloud/commit/5603149bc3639d4b7e1ffaf51b5934d9900a8607))
+* pastebin feature added ([c2d4acf](https://github.com/opendreamnet/dreamlink.cloud/commit/c2d4acf19f2804a343c74ec990d5868286bcc2b3))
+
+
+### Bug Fixes
+
+* best description of total storage space ([18be76d](https://github.com/opendreamnet/dreamlink.cloud/commit/18be76dcbd505aa975b8464f6332e350b189da90))
+* improved directory detection to avoid displaying "download" button ([828a467](https://github.com/opendreamnet/dreamlink.cloud/commit/828a4678bddc6d623d6696b7b7645b8f85dca52b))
+* pastebin error handler ([7f3065a](https://github.com/opendreamnet/dreamlink.cloud/commit/7f3065a7f6449aa1fc7988bbdcb55973fbd726a1))
+
 ### [1.2.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.2.0...v1.2.1) (2021-06-11)
 
 
