@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Swal from 'sweetalert2'
 
 export default Vue.extend({
   data: () => ({
@@ -34,6 +35,10 @@ export default Vue.extend({
 
   methods: {
     async submit() {
+      if (!this.paste) {
+        return
+      }
+
       try {
         this.loading = true
 
@@ -42,7 +47,11 @@ export default Vue.extend({
 
         this.$router.push(`/explorer?cid=${cid}&filename=${filename}`)
       } catch (err) {
-
+        Swal.fire({
+          title: 'A problem has occurred',
+          text: err.message,
+          icon: 'error'
+        })
       } finally {
         this.loading = false
       }
