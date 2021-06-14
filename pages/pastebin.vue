@@ -1,7 +1,7 @@
 <template>
   <div class="pastebin">
-    <Box title="Pastebin" subtitle="Create texts in different formats and share them via IPFS.">
-      <form class="pastebin__form" @submit.prevent="submit()">
+    <Box title="Pastebin" subtitle="Share texts of different formats in IPFS.">
+      <form v-if="$ipfs.ready" class="pastebin__form" @submit.prevent="submit()">
         <p>
           <input v-model="filename" class="input" placeholder="Filename (Optional). Examples: text.txt, about.md or code.js">
           <span class="hint">Syntax Highlight in the output will depend on the file name.</span>
@@ -9,7 +9,7 @@
 
         <p>
           <textarea v-model="paste" class="input" autofocus required />
-          <span class="hint">Remember that things in IPFS cannot be deleted. Do not upload private information!</span>
+          <span class="hint">Remember that things in IPFS cannot be deleted. Do not share private information!</span>
         </p>
 
         <p>
@@ -18,6 +18,10 @@
           </Button>
         </p>
       </form>
+
+      <div v-else class="flex justify-center">
+        <Loading class="scale-150" />
+      </div>
     </Box>
   </div>
 </template>
