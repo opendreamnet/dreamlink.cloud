@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.3.0...v1.4.0) (2021-06-16)
+
+
+### Features
+
+* added `toRelative` filter for dates ([34ffcb3](https://github.com/opendreamnet/dreamlink.cloud/commit/34ffcb3b180c19a3c22d2d9b2a48681ccc5043eb))
+* added IPFS record fetching with DNSLink and file search powered by ipfs-search.com ([4dba7f3](https://github.com/opendreamnet/dreamlink.cloud/commit/4dba7f322bdd18b9ee7ba8e56e7793b3094e9565))
+
+
+### Bug Fixes
+
+* added "loading" animation on pastebin ([c56b694](https://github.com/opendreamnet/dreamlink.cloud/commit/c56b6948fd0240df6099eb9ada01b2d113a0beb2))
+
 ## [1.3.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.2.1...v1.3.0) (2021-06-13)
 
 
