@@ -51,10 +51,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import dialogPolyfill from 'dialog-polyfill'
+import Dialog from '~/mixins/Dialog'
 
-export default Vue.extend({
+export default Dialog.extend({
   data: () => ({
     gcLoading: false
   }),
@@ -80,12 +79,6 @@ export default Vue.extend({
   },
 
   mounted() {
-    // For Firefox...
-    dialogPolyfill.registerDialog(this.$el as HTMLDialogElement)
-
-    // this.$forceUpdate()
-
-    //
     this.$bus.on('node.dialog', this.open)
   },
 
@@ -94,12 +87,6 @@ export default Vue.extend({
   },
 
   methods: {
-    open() {
-      (this.$el as HTMLDialogElement).showModal()
-    },
-    close() {
-      (this.$el as HTMLDialogElement).close()
-    },
     async freeUp() {
       this.gcLoading = true
 
