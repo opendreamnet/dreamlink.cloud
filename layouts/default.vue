@@ -2,9 +2,7 @@
   <div class="container mx-auto">
     <LayoutHeader />
 
-    <div class="body">
-      <Nuxt />
-    </div>
+    <Nuxt class="body" />
 
     <LayoutFooter />
 
