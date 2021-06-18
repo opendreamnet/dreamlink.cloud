@@ -101,7 +101,7 @@
     "eslint-plugin-wdio": "^7.4.2",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
-    "postcss": "8.3.0",
+    "postcss": "8.3.5",
     "sass": "^1.35.1",
     "standard-version": "^9.3.0",
     "webdriverio": "^7.7.3"
