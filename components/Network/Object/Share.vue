@@ -1,37 +1,42 @@
 <template>
   <div class="share">
-    <Box>
-      <template #header>
-        <h2 class="title">
-          <span class="icon"><FontAwesomeIcon icon="share" /></span>
-          <span>Share</span>
-        </h2>
-      </template>
+    <div class="share__content">
+      <Box>
+        <template #header>
+          <h2 class="title">
+            <span class="icon"><FontAwesomeIcon icon="share" /></span>
+            <span>Share</span>
+          </h2>
+        </template>
 
-      <section>
         <InputPlus readonly :value="classicURL" class="text--sm" />
-      </section>
-    </Box>
+      </Box>
 
-    <Box>
-      <template #header>
-        <h2 class="title">
-          <span class="icon"><FontAwesomeIcon icon="share" /></span>
-          <span>Direct Links</span>
-        </h2>
-      </template>
+      <Box>
+        <template #header>
+          <div class="flex items-center gap-3">
+            <h2 class="flex-1 title">
+              <span class="icon"><FontAwesomeIcon icon="share" /></span>
+              <span>Direct Links</span>
+            </h2>
 
-      <section class="share__gateways">
-        <NetworkObjectUrl
-          v-for="(url, it) in gatewaysURLS"
-          :key="url"
-          :delay="it"
-          :cid="cid"
-          :filename="filename"
-          :url="url"
-        />
-      </section>
-    </Box>
+            <a href="#" class="text-sm text-danger" @click.prevent="$refs.dialog.open()">Not working?</a>
+          </div>
+        </template>
+
+        <div class="share__gateways">
+          <NetworkObjectUrl
+            v-for="(url, it) in gatewaysURLS"
+            :key="url"
+            :delay="it"
+            :cid="cid"
+            :filename="filename"
+            :url="url" />
+        </div>
+      </Box>
+    </div>
+
+    <DialogPersistence ref="dialog" />
   </div>
 </template>
 
@@ -72,7 +77,9 @@ export default Vue.extend({
         'ipfs.mihir.ch',
         'ipfs.globalupload.io',
         'ipfs.eternum.io',
-        'bin.d0x.to'
+        'bin.d0x.to',
+        'drink.cafe',
+        'ipfs.taxi'
       ]
 
       return gateways.filter((url) => {
@@ -90,7 +97,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.share {
+.share__content {
   @apply space-y-6;
 }
 
