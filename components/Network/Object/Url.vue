@@ -5,8 +5,7 @@
     :disabled="!ready"
     readonly
     :open="true"
-    class="text-sm"
-  />
+    class="text-sm" />
 </template>
 
 <script lang="ts">
@@ -22,7 +21,7 @@ interface Data {
   tryTimeout: NodeJS.Timeout | null
 }
 
-const MAX_ATTEMPTS = 5
+const MAX_ATTEMPTS = 12 // 2 minutes
 
 export default Vue.extend({
   props: {
@@ -76,7 +75,7 @@ export default Vue.extend({
     }
   },
 
-  mounted() {
+  created() {
     const delay = 2000 * this.delay
     this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), delay)
   },
@@ -99,14 +98,14 @@ export default Vue.extend({
       await this.checkStatus()
 
       if (this.status !== true) {
-        this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 10000)
+        this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 10 * 1000)
       }
     },
 
     async checkStatus() {
       try {
         await axios.head(this.shareURL, {
-          timeout: 5000
+          timeout: 3000
         })
 
         this.status = true
