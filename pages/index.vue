@@ -1,6 +1,7 @@
 <template>
-  <div class="upload">
-    <div class="upload__hero">
+  <div class="home">
+    <!-- Hero -->
+    <div class="home__hero">
       <h1 class="title">
         Share files on the <span class="text-ipfs">IPFS network</span>.
       </h1>
@@ -8,8 +9,10 @@
       <h2>File storage controlled by you, free and censorship-proof in a decentralized network.</h2>
     </div>
 
-    <div class="upload__content">
-      <input v-show="false" ref="files" type="file" multiple @change="upload">
+    <div class="home__content">
+      <input
+        v-show="false" ref="files" type="file"
+        multiple @change="upload">
 
       <input
         v-show="false"
@@ -19,109 +22,105 @@
         directory
         webkitdirectory
         mozdirectory
-        @change="upload"
-      >
+        @change="upload">
 
-      <!-- Upload Buttons -->
-      <div v-if="$ipfs.ready" class="upload__buttons">
-        <Button class="button-xl" @click="$refs.files.click()">
-          <span class="icon"><FontAwesomeIcon icon="upload" /></span>
-          <span>Add files</span>
+      <!-- Methods -->
+      <div class="home__methods">
+        <Button :class="{ 'item--active': method === 0 }" @click.prevent="method = 0">
+          Upload
         </Button>
 
-        <Button class="button-xl" @click="$refs.directory.click()">
-          <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
-          <span>Add folder</span>
+        <Button v-tooltip="'Get an IPFS record by its CID.'" :class="{ 'item--active': method === 1 }" @click.prevent="method = 1">
+          CID
         </Button>
-      </div>
-
-      <!-- Error -->
-      <div v-else-if="$ipfs.error" class="upload__buttons">
-        <Button key="error-button" v-tooltip="'Your IPFS node has not started correctly.'" class="button-xl button--danger" @click="$bus.emit('node.dialog')">
-          <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
-          <span>Node Error</span>
-        </Button>
-      </div>
-
-      <!-- Loading -->
-      <div v-else class="flex justify-center">
-        <Loading class="scale-150" />
-      </div>
-
-      <p class="text-sm">
-        OR...
-      </p>
-
-      <div class="upload__others">
-        <div class="upload__methods">
-          <Button v-tooltip="'Get an IPFS record by its CID.'" :class="{ 'item--active': method === 0 }" @click.prevent="method = 0">
-            CID
-          </Button>
-          <!--
-          <Button v-tooltip="'Get the latest version of an IPFS object with its IPNS.'" :class="{ 'item--active': method === 1 }" @click.prevent="method = 1">
+        <!--
+          <Button v-tooltip="'Get the latest version of an IPFS object with its IPNS.'" :class="{ 'item--active': method === 2 }" @click.prevent="method = 2">
             IPNS
           </Button>
           -->
-          <Button v-tooltip="'Get an IPFS record using its link to the DNS.'" :class="{ 'item--active': method === 2 }" @click.prevent="method = 2">
-            DNSLink
+        <Button v-tooltip="'Get an IPFS record using its link to the DNS.'" :class="{ 'item--active': method === 3 }" @click.prevent="method = 3">
+          DNSLink
+        </Button>
+      </div>
+
+      <!-- Upload -->
+      <section v-show="method === 0" class="home__section">
+        <div v-if="$ipfs.ready" class="home__buttons">
+          <Button class="button-xl" @click="$refs.files.click()">
+            <span class="icon"><FontAwesomeIcon icon="upload" /></span>
+            <span>Add files</span>
           </Button>
-          <Button v-tooltip="'Search records in the IPFS network powered by ipfs-search.com'" :class="{ 'item--active': method === 3 }" @click.prevent="method = 3">
-            Search
+
+          <Button class="button-xl" @click="$refs.directory.click()">
+            <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
+            <span>Add folder</span>
           </Button>
         </div>
 
-        <section v-show="method === 0" class="upload__cid">
-          <form @submit.prevent="openCID()">
-            <input v-model="cid" placeholder="CID" class="input" required>
+        <!-- Error -->
+        <div v-else-if="$ipfs.error" class="home__buttons">
+          <Button
+            key="error-button" v-tooltip="'Your IPFS node has not started correctly.'" class="button-xl button--danger"
+            @click="$bus.emit('node.dialog')">
+            <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
+            <span>Node Error</span>
+          </Button>
+        </div>
 
-            <input v-model="filename" placeholder="File name (Optional)" class="input">
+        <!-- Loading -->
+        <div v-else class="flex justify-center">
+          <Loading class="scale-150" />
+        </div>
+      </section>
 
-            <Button class="button--sm">
-              Open
-            </Button>
-          </form>
-        </section>
+      <!-- CID -->
+      <section v-show="method === 1" class="home__section">
+        <form @submit.prevent="openCID()">
+          <input
+            v-model="cid" placeholder="CID" class="input"
+            required>
 
-        <section v-show="method === 1" class="upload__cid">
-          <form @submit.prevent="openIPNS()">
-            <input v-model="ipns" placeholder="IPNS" class="input" required>
+          <input v-model="filename" placeholder="File name (Optional)" class="input">
 
-            <input v-model="filename" placeholder="File name (Optional)" class="input">
+          <Button class="button--sm">
+            Open
+          </Button>
+        </form>
+      </section>
 
-            <Button class="button--sm">
-              Open
-            </Button>
-          </form>
-        </section>
+      <!-- IPNS (Unfinished) -->
+      <section v-show="method === 2" class="home__section">
+        <form @submit.prevent="openIPNS()">
+          <input
+            v-model="ipns" placeholder="IPNS" class="input"
+            required>
 
-        <section v-show="method === 2" class="upload__cid">
-          <form v-if="$ipfs.ready" @submit.prevent="openDNS()">
-            <input v-model="dnslink" placeholder="www.dreamlink.cloud" class="input" required>
+          <input v-model="filename" placeholder="File name (Optional)" class="input">
 
-            <Button class="button--sm">
-              Open
-            </Button>
-          </form>
+          <Button class="button--sm">
+            Open
+          </Button>
+        </form>
+      </section>
 
-          <!-- Loading -->
-          <div v-else class="flex justify-center">
-            <Loading class="scale-150" />
-          </div>
-        </section>
+      <!-- DNSLink -->
+      <section v-show="method === 3" class="home__section">
+        <form v-if="$ipfs.ready" @submit.prevent="openDNS()">
+          <input
+            v-model="dnslink" placeholder="www.dreamlink.cloud" class="input"
+            required>
 
-        <section v-show="method === 3" class="upload__cid">
-          <form @submit.prevent="search()">
-            <input v-model="query" placeholder="Search..." class="input" required>
+          <Button class="button--sm">
+            Open
+          </Button>
+        </form>
 
-            <Button class="button--sm">
-              Submit
-            </Button>
-          </form>
-        </section>
-      </div>
+        <!-- Loading -->
+        <div v-else class="flex justify-center">
+          <Loading class="scale-150" />
+        </div>
+      </section>
     </div>
-
-    <DialogSearch ref="searchDialog" />
   </div>
 </template>
 
@@ -254,11 +253,15 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.upload__hero {
-  @apply mb-20 text-center;
+.home {
+  @apply space-y-20;
+}
+
+.home__hero {
+  @apply text-center;
 
   h1 {
-    @apply text-4xl mb-3;
+    @apply text-4xl mb-2;
   }
 
   h2 {
@@ -266,29 +269,20 @@ export default Vue.extend({
   }
 }
 
-.upload__content {
-  @apply flex flex-col items-center gap-6 mx-auto;
-  width: 350px;
+.home__content {
+  @apply flex flex-col items-center gap-3 mx-auto max-w-prose;
 }
 
-.upload__buttons {
-  @apply text-center space-x-3;
-}
-
-.upload__cid {
-  @apply text-center;
+.home__section {
+  @apply w-full text-center;
 
   form {
     @apply space-y-3;
   }
 }
 
-.upload__others {
-  @apply w-full;
-}
-
-.upload__methods {
-  @apply flex justify-between mb-3;
+.home__methods {
+  @apply flex justify-between w-full mb-3;
 
   .button {
     @apply flex-1 rounded-none bg-opacity-0 border-t border-b border-button;
