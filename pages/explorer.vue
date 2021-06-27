@@ -7,7 +7,7 @@
         {{ filename || cid }}
       </h1>
 
-      <h2 v-if="filename" v-tooltip="'This is how your file is identified on the network and is necessary to return to it.'" class="text-blue">
+      <h2 v-if="filename" v-tooltip="'This is how your file is identified on the network and is necessary to download it.'" class="text-blue">
         {{ cid }}
       </h2>
     </div>
@@ -21,12 +21,6 @@
 
       <div class="explorer__right">
         <NetworkObjectDetails :cid="cid" :filename="filename" />
-
-        <Box class="explorer__remember">
-          <p>Remember that files uploaded with {{ $config.name }} are only persistent as long as <a href="#" @click.prevent="openNodeDialog()">your IPFS node is up</a> otherwise they can be lost in a matter of hours or days.</p>
-
-          <p>If you are the uploader of this file remember to keep any {{ $config.name }} tab open and active or <a href="https://docs.ipfs.io/concepts/persistence/#pinning-in-context" target="_blank">pin the file</a> to a persistent IPFS node to keep the file alive.</p>
-        </Box>
       </div>
     </div>
   </div>
@@ -116,7 +110,7 @@ export default Vue.extend({
 .explorer__cols {
   @apply space-y-6;
 
-  @screen md {
+  @screen lg {
     @apply flex gap-9 space-y-0;
   }
 }
@@ -128,7 +122,7 @@ export default Vue.extend({
 .explorer__right {
   @apply space-y-6;
 
-  @screen md {
+  @screen lg {
     width: 350px;
   }
 }
