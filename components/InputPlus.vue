@@ -8,16 +8,20 @@
       ref="input"
       :value="value"
       class="input"
+      :class="inputClass"
       v-bind="$attrs"
       v-on="$listeners"
-      @input="$emit('update', $event.target.value)"
-    >
+      @input="$emit('update', $event.target.value)">
 
-    <div v-if="copy" ref="copyButton" v-tooltip="'Copy'" class="plus__box plus__box--button" :data-clipboard-text="value">
+    <div
+      v-if="copy" ref="copyButton" v-tooltip="'Copy'"
+      class="plus__box plus__box--button" :data-clipboard-text="value">
       <FontAwesomeIcon icon="clone" />
     </div>
 
-    <a v-if="open" v-tooltip="'Open'" :href="value" target="_blank" class="rounded-r plus__box plus__box--button">
+    <a
+      v-if="open" v-tooltip="'Open'" :href="value"
+      target="_blank" class="rounded-r plus__box plus__box--button">
       <FontAwesomeIcon icon="external-link-square-alt" />
     </a>
   </div>
@@ -49,13 +53,17 @@ export default Vue.extend({
     open: {
       type: Boolean,
       default: false
+    },
+    inputClass: {
+      type: [String, Object],
+      default: null
     }
   },
 
   mounted() {
     if (this.copy && this.$refs.copyButton) {
-      // eslint-disable-next-line no-new
-      new ClipboardJS(this.$refs.copyButton as Element)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const clipboard = new ClipboardJS(this.$refs.copyButton as Element)
     }
   }
 })
