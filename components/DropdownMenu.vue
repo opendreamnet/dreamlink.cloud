@@ -5,8 +5,7 @@
     @mouseleave="mouseLeave"
     @mouseover="mouseOver"
     @mouseenter="mouseEnter"
-    @click="toggleMenu"
-  >
+    @click="toggleMenu">
     <slot />
 
     <transition :name="transition">
@@ -18,8 +17,7 @@
         :style="styles"
         @mouseleave="startTimer"
         @mouseenter="stopTimer"
-        @click.stop
-      >
+        @click.stop>
         <slot name="dropdown" />
       </div>
     </transition>
