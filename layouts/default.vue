@@ -1,17 +1,30 @@
 <template>
-  <div class="container mx-auto">
+  <div class="layout">
     <LayoutHeader />
 
-    <Nuxt class="body" />
+    <Nuxt class="container body" />
 
     <LayoutFooter />
 
-    <script async defer data-domain="dreamlink.cloud" src="https://analytics.dreamnet.tech/js/script.js" />
+    <!-- Plausible Analytics -->
+    <script
+      async defer data-domain="dreamlink.cloud"
+      src="https://analytics.dreamnet.tech/js/script.js" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.layout {
+  @apply space-y-20;
+}
+</style>
+
+<style lang="scss">
+.hint {
+  @apply text-xs text-snow-dark;
+}
+
 .container {
-  @apply space-y-16;
+  @apply mx-auto px-2;
 }
 </style>
