@@ -9,10 +9,10 @@ export class Storage {
   public isChrome = false
 
   public quota: number | null = null
-  
+
   public usage: number | null = null
 
-  public async init() {
+  public async init(): Promise<void> {
     this.isChrome = this.checkChrome()
 
     if (!await navigator.storage.persisted()) {
@@ -33,7 +33,7 @@ export class Storage {
         console.log('[Storage] The web browser has given us a storage of', prettyBytes(bytes))
 
         this.quota = bytes
-    
+
         // @ts-ignore
         window.webkitRequestFileSystem(window.PERSISTENT, bytes, () => { }, (err: Error) => console.warn('[Storage]', err))
       }, (err: Error) => console.warn('[Storage]', err))
@@ -74,7 +74,7 @@ export class Storage {
         )
       })
     }
-    
+
     if (!estimation.quota) {
       const est = await navigator.storage.estimate()
 
@@ -88,7 +88,7 @@ export class Storage {
     return estimation
   }
 
-  protected checkChrome() {
+  protected checkChrome(): boolean {
     // @ts-ignore
     return !isNil(navigator.webkitPersistentStorage)
   }
