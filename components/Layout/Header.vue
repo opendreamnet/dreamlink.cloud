@@ -8,19 +8,19 @@
       </div>
 
       <div class="nav__center">
-        <NuxtLink to="/" class="item">
+        <NuxtLink v-tooltip="'Share files or even folders on the network.'" to="/" class="item">
           Share
         </NuxtLink>
 
-        <div class="item" @click="$refs.searchDialog.open()">
+        <div v-tooltip="'Search for files or folders thanks to ipfs-search.com'" class="item" @click="$refs.searchDialog.open()">
           Search
         </div>
 
-        <NuxtLink to="/pastebin" class="item">
+        <NuxtLink v-tooltip="'Create and share any text format.'" to="/pastebin" class="item">
           Pastebin
         </NuxtLink>
 
-        <NuxtLink to="/chat" class="item">
+        <NuxtLink v-tooltip="'Create an encrypted P2P chat room for free communication between people you trust.'" to="/chat" class="item">
           Chat
         </NuxtLink>
 
