@@ -62,3 +62,8 @@ jobs:
           DEPLOY_CLOUDFLARE_KEY: ${{ secrets.DEPLOY_CLOUDFLARE_KEY }}
           DEPLOY_CLOUDFLARE_ZONE: dreamlink.cloud
           DEPLOY_CLOUDFLARE_RECORD: _dnslink.www
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
