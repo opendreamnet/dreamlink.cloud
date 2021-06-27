@@ -7,10 +7,10 @@
       </h2>
     </template>
 
-    <div v-if="record" class="details">
+    <div v-if="record" class="prose details">
       <p>
-        <span class="title">CID: <Tooltip content="This is how your file is identified on the network and is necessary to return to it." /></span>
-        <InputPlus class="input--sm" :value="record.cid" />
+        <span class="title"><Tooltip content="This is how your file is identified on the network and is necessary to download it." />  CID:</span>
+        <InputPlus input-class="input--sm" :value="record.cid" />
       </p>
 
       <p>
@@ -23,12 +23,12 @@
         <span class="value">{{ record.files.length }}</span>
       </p>
 
-      <hr>
-
       <div class="details__actions">
-        <Button v-if="!record.isDirectory" v-tooltip="downloadTooltip" :loading="nodeDownloadLoading" @click="nodeDownload">
+        <Button
+          v-if="!record.isDirectory" v-tooltip="downloadTooltip" :loading="nodeDownloadLoading"
+          @click="nodeDownload">
           <span class="icon"><FontAwesomeIcon icon="save" /></span>
-          <span>Download</span>
+          <span>Local Download</span>
         </Button>
       </div>
     </div>
@@ -54,7 +54,7 @@ export default NetworkObject.extend({
     downloadTooltip() {
       return this.$md.render(`Download the file using your IPFS node:
       
-- If the file is not in your storage then this may take several minutes but you will increase the life of the file by starting to seed it.
+- If the file is not in your storage then this may take several minutes but you will increase the availability of the file by starting to distributing it.
 - Otherwise you will download the file instantly.`)
     }
   },
