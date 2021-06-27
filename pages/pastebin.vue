@@ -8,7 +8,9 @@
         </p>
 
         <p>
-          <textarea v-model="paste" class="input" autofocus required />
+          <textarea
+            v-model="paste" class="input" autofocus
+            required />
           <span class="hint">Remember that things in IPFS cannot be deleted. Do not share private information!</span>
         </p>
 
@@ -65,20 +67,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.pastebin {
-
-}
-
 .pastebin__form {
-  @apply space-y-3;
+  @apply space-y-5;
 
   textarea {
     @apply font-mono;
     min-height: 300px;
-  }
-
-  .hint {
-    @apply text-xs;
   }
 }
 </style>
