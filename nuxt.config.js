@@ -34,8 +34,6 @@ export default setNuxtConfig({
     '@nuxtjs/tailwindcss',
     // https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
-    // https://github.com/nuxt-community/google-fonts-module
-    '@nuxtjs/google-fonts',
     // https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
     // https://image.nuxtjs.org/
@@ -54,11 +52,6 @@ export default setNuxtConfig({
     '@nuxtjs/gtm'
   ],
 
-  // https://github.com/nuxt-community/style-resources-module
-  styleResources: {
-    scss: '@opendreamnet/nuxtjs-base/assets/css/functions.scss'
-  },
-
   // https://github.com/nuxt-community/fontawesome-module
   fontawesome: {
     icons: {
@@ -74,7 +67,10 @@ export default setNuxtConfig({
         'faBook',
         'faDirections',
         'faSave',
-        'faExclamationTriangle'
+        'faExclamationTriangle',
+        'faUsers',
+        'faComments',
+        'faCog'
       ]
     }
   },
