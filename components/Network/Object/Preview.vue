@@ -7,7 +7,9 @@
     <pre v-else-if="isText" class="preview__text"><code class="hljs" v-html="codeHighlight" /></pre>
 
     <!-- Video -->
-    <video v-else-if="isVideo" id="video" ref="video" controls>
+    <video
+      v-else-if="isVideo" id="video" ref="video"
+      controls>
       <source :src="previewURL" :type="mime">
       Your browser does not support the video tag.
     </video>
@@ -27,8 +29,7 @@
       :src="previewURL"
       frameborder="0"
       marginheight="0px"
-      marginwidth="0px"
-    />
+      marginwidth="0px" />
   </div>
 </template>
 
