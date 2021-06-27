@@ -80,7 +80,7 @@
             v-model="cid" placeholder="CID" class="input"
             required>
 
-          <input v-model="filename" placeholder="File name (Optional)" class="input">
+          <input v-model="filename" placeholder="Object name (Optional)" class="input">
 
           <Button class="button--sm">
             Open
@@ -95,7 +95,7 @@
             v-model="ipns" placeholder="IPNS" class="input"
             required>
 
-          <input v-model="filename" placeholder="File name (Optional)" class="input">
+          <input v-model="filename" placeholder="Object name (Optional)" class="input">
 
           <Button class="button--sm">
             Open

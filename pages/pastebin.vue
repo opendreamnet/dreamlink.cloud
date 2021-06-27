@@ -1,6 +1,6 @@
 <template>
   <div class="pastebin">
-    <Box title="Pastebin" subtitle="Share texts of different formats in IPFS.">
+    <Box title="Pastebin" subtitle="Create and share any text format on IPFS.">
       <form v-if="$ipfs.ready" class="pastebin__form" @submit.prevent="submit()">
         <p>
           <input v-model="filename" class="input" placeholder="Filename (Optional). Examples: text.txt, about.md or code.js">
