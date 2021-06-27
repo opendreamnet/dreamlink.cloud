@@ -1,68 +1,64 @@
 <template>
   <div class="about">
-    <Box id="dreamlink" title="What is DreamLink?">
-      <p>{{ $config.name }} is a website that provides you with a basic <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a> node to easily upload and share files on a decentralized peer-to-peer network.</p>
+    <Box id="dreamlink" :title="`🤔 What is ${$config.name}?`">
+      <div class="prose">
+        <p>
+          {{ $config.name }} is a website that offers a set of tools that run entirely on the decentralized P2P network: <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a>.
+        </p>
 
-      <p>{{ $config.name }} works similar to a file hosting but thanks to IPFS there are no server costs and your files are distributed by your web browser and other IPFS nodes around the world.</p>
+        <p>
+          All tools (except for search) run without central servers, on a network of thousands of nodes around the world, making it <a href="https://docs.ipfs.io/concepts/what-is-ipfs/#decentralization" target="_blank">fail-safe and censorship-proof</a>.
+        </p>
 
-      <p>{{ $config.name }} is ideal for fast file sharing.</p>
+        <p>
+          The moment you enter you are already connected to the IPFS network, as we provide you with a node that runs in your web browser, without installing anything!
+        </p>
+      </div>
     </Box>
 
-    <Box id="differences" title="Differences from traditional file hosting.">
+    <Box id="tools" :title="`✨ Tools available in ${$config.name}.`">
       <div class="prose">
-        <p class="title text-success">
-          Advantages:
-        </p>
+        <p>All the magic happens between you and your web browser, there are no servers in between that can process, track or censor your activity.</p>
 
         <ul>
-          <li>Upload files for free and without registration.</li>
-          <li>No file size or bandwidth limits.</li>
-          <li>Your file is uncensorable as it is distributed on several nodes around the world.</li>
-          <li>Even if DreamLink goes down, your files will still be distributed over the network.</li>
-        </ul>
-
-        <p class="text-danger">
-          Disadvantages:
-        </p>
-
-        <ul>
-          <li>Storage and bandwidth are at your expense.</li>
-          <li>If you do not keep DreamLink open or <a v-tooltip="'Pinning is the method of telling an IPFS node that particular data is important and so it will never be removed from that node\'s cache.'" href="https://docs.ipfs.io/concepts/persistence/#pinning-in-context" target="_blank">pin the file</a> it could become unavailable in a matter of hours or days.</li>
-          <li>In a peer-to-peer network you have to sacrifice some <a href="https://docs.ipfs.io/concepts/privacy/" target="_blank">privacy</a>.</li>
+          <li>
+            <strong>Share.</strong> Upload files or even folders, <span class="text-primary">without registration, size or bandwith limits</span>. You are your own file distributor.
+          </li>
+          <li>
+            <strong>Search.</strong> Search for files or folders thanks to <a href="https://ipfs-search.com" target="_blank">ipfs-search.com</a>
+          </li>
+          <li>
+            <strong>Pastebin.</strong> Create and share any text format.
+          </li>
+          <li>
+            <strong>Chat.</strong> Create an encrypted P2P chat room for free communication between people you trust.
+          </li>
         </ul>
       </div>
     </Box>
 
-    <Box id="how" title="How it works?">
-      <p>All the magic happens between you and your web browser, there are no servers in between that can process, track or censor your files!</p>
-
-      <p>This is possible thanks to a decentralized network called IPFS, you can get more information about how it works <a href="https://docs.ipfs.io/concepts/how-ipfs-works/" target="_blank">here</a> but below is the summary of what happens when using {{ $config.name }}:</p>
-
+    <Box id="down" :title="`😨 What if ${$config.name} goes down?`">
       <div class="prose">
-        <ul>
-          <li>When you enter we give you a basic IPFS node whose <span v-tooltip="'The Datastore is the on-disk storage system used by an IPFS node.'" class="tip">DataStore</span> depends on the limits of your web browser. It is totally free and without installing anything.</li>
+        <p>{{ $config.name }} itself is a web page stored in IPFS!</p>
 
-          <li>When you upload a file your IPFS node split the file into several <span v-tooltip="'A Block is a binary blob of data, identified by a CID.'" class="tip">blocks</span> that stores inside your web browser and shows you a page with information, sharing links and the <span v-tooltip="'A Content Identifier (CID) is a self-describing content-addressed label used to point to the data stored in IPFS. It is the core identifier used for IPFS and IPLD.'" class="tip">CID</span> of your file.</li>
+        <p>This means that even if <span v-tooltip="'Official URL.'" class="tip">dreamlink.cloud</span> goes down you can still use it from other addresses or better yet, if you have an IPFS node on your computer or use a web browser like <a v-tooltip="'Web browser with integrated IPFS support.'" href="https://brave.com/" target="_blank">Brave</a>, you can download and use it at any time:</p>
 
-          <li>Almost instantly your IPFS node will start sharing the file you just uploaded with other IPFS nodes around the world, these nodes will store your file for a limited time so anyone can continue downloading it even if you disconnect.</li>
-
-          <li>Your IPFS node will continue to live and share all the files you have uploaded as long as you have a {{ $config.name }} tab open.</li>
-        </ul>
+        <Gateways />
       </div>
     </Box>
 
-    <Box id="faq" title="FAQ">
+    <Box id="faq" title="❓ FAQ">
       <div class="space-y-3 prose">
         <details>
           <summary class="title">
             Is it safe to upload files in {{ $config.name }}?
           </summary>
 
-          <p>Yes, however it depends on what you consider safe.</p>
+          <p>Depends on what you consider safe.</p>
 
           <p>OpenDreamNet does not store your files on private servers, they stay within your web browser's storage and on IPFS nodes around the world.</p>
 
-          <p>IPFS is a peer-to-peer protocol so please note the following:</p>
+          <p>IPFS is a P2P protocol so please note the following:</p>
 
           <ul>
             <li>All data you upload to IPFS is public.</li>
@@ -84,20 +80,6 @@
 
         <details>
           <summary class="title">
-            What if {{ $config.name }} goes down?
-          </summary>
-
-          <p>{{ $config.name }} itself is a web page stored in IPFS!</p>
-
-          <p>This means that even if <span v-tooltip="'Official URL.'" class="tip">dreamlink.cloud</span> goes down you can still use it from other addresses or better yet, if you have an IPFS node on your computer or use a web browser like <a v-tooltip="'Web browser with integrated IPFS support.'" href="https://brave.com/" target="_blank">Brave</a>, you can download and use it at any time:</p>
-
-          <Gateways />
-
-          <p>Your files will probably be stored on several IPFS nodes around the world so a {{ $config.name }} crash will not affect them.</p>
-        </details>
-
-        <details>
-          <summary class="title">
             Why do I have a small storage space?
           </summary>
 
@@ -108,7 +90,7 @@
       </div>
     </Box>
 
-    <Box title="Support">
+    <Box title="🥰 Support">
       <p>If you like {{ $config.name }} you can show your support in the following ways, this will also allow us to create new versions with more features.</p>
 
       <div class="prose">
@@ -116,18 +98,18 @@
           <li><a href="https://www.patreon.com/bePatron?u=22042208" data-patreon-widget-type="become-patron-button">Become a Patron!</a></li>
           <li><a href="https://commerce.coinbase.com/checkout/24a8bcb6-22db-4166-9bea-fb24fe78f1cd" target="_blank">Donate with Coinbase</a></li>
           <!--<li>dreamnet.crypto</li>-->
-          <li><b>BTC:</b> <InputPlus value="18iqRVaETRcUgCnGeaT3EspPDJHPxAkWpt" /></li>
-          <li><b>ETH:</b> <InputPlus value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" /></li>
-          <li><b>LTC:</b> <InputPlus value="LaQqVAECSDVejAhhwk8XRce6YCEYsfAvuR" /></li>
-          <li><b>ZIL:</b> <InputPlus value="zil1nf5u7geagm0rpc0armd47rjd0terjcjauctz6k" /></li>
-          <li><b>BAT:</b> <InputPlus value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" /></li>
-          <li><b>BCH:</b> <InputPlus value="18iqRVaETRcUgCnGeaT3EspPDJHPxAkWpt" /></li>
-          <li><b>DAI:</b> <InputPlus value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" /></li>
-          <li><b>XMR:</b> <InputPlus value="87ePGFG3ioZckJmNwPNatJaEbvAQoL49kiJrdhYcAjwsadG2CVJCiN2Jo8CqX5YFHH6J7fx9qtirWQv9DqBwzunH3SjY9Si" /></li>
-          <li><b>DOGE:</b> <InputPlus value="DN4CknBXKhScFvkPVvraDosFrt4S5Mk8JP" /></li>
-          <li><b>BTT:</b> <InputPlus value="TL7ttndKtBkL3rjQ7Sv89ZFmJAb8xDKGnY" /></li>
-          <li><b>LINK:</b> <InputPlus value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" /></li>
-          <li><b>FIL:</b> <InputPlus value="f167goxu4nw3b4ewt2gsjc7dfhugm5gjfymaijdpy" /></li>
+          <li><b>BTC:</b> <InputPlus readonly value="18iqRVaETRcUgCnGeaT3EspPDJHPxAkWpt" input-class="input--sm" /></li>
+          <li><b>ETH:</b> <InputPlus readonly value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" input-class="input--sm" /></li>
+          <li><b>LTC:</b> <InputPlus readonly value="LaQqVAECSDVejAhhwk8XRce6YCEYsfAvuR" input-class="input--sm" /></li>
+          <li><b>ZIL:</b> <InputPlus readonly value="zil1nf5u7geagm0rpc0armd47rjd0terjcjauctz6k" input-class="input--sm" /></li>
+          <li><b>BAT:</b> <InputPlus readonly value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" input-class="input--sm" /></li>
+          <li><b>BCH:</b> <InputPlus readonly value="18iqRVaETRcUgCnGeaT3EspPDJHPxAkWpt" input-class="input--sm" /></li>
+          <li><b>DAI:</b> <InputPlus readonly value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" input-class="input--sm" /></li>
+          <li><b>XMR:</b> <InputPlus readonly value="87ePGFG3ioZckJmNwPNatJaEbvAQoL49kiJrdhYcAjwsadG2CVJCiN2Jo8CqX5YFHH6J7fx9qtirWQv9DqBwzunH3SjY9Si" input-class="input--sm" /></li>
+          <li><b>DOGE:</b> <InputPlus readonly value="DN4CknBXKhScFvkPVvraDosFrt4S5Mk8JP" input-class="input--sm" /></li>
+          <li><b>BTT:</b> <InputPlus readonly value="TL7ttndKtBkL3rjQ7Sv89ZFmJAb8xDKGnY" input-class="input--sm" /></li>
+          <li><b>LINK:</b> <InputPlus readonly value="0xdd3ccb03ec13ef6b36d58b62fc2462ce625bc454" input-class="input--sm" /></li>
+          <li><b>FIL:</b> <InputPlus readonly value="f167goxu4nw3b4ewt2gsjc7dfhugm5gjfymaijdpy" input-class="input--sm" /></li>
         </ul>
       </div>
     </Box>
@@ -136,8 +118,7 @@
 
 <style lang="scss" scoped>
 .about {
-  @apply mx-auto space-y-6;
-  max-width: 500px;
+  @apply mx-auto space-y-6 max-w-prose;
 
   a {
     @apply text-primary underline;
