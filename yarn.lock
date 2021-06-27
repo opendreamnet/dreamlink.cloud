@@ -3001,8 +3001,8 @@ __metadata:
     "@nuxtjs/style-resources": ^1.2.0
     "@nuxtjs/tailwindcss": ^4.2.0
     "@opendreamnet/ipfs": ^1.2.0
-    "@opendreamnet/nuxtjs-base": ^1.1.0
-    "@sweetalert2/theme-dark": ^5.0.0
+    "@opendreamnet/nuxtjs-base": ^1.1.1
+    "@sweetalert2/theme-dark": ^5.0.1
     "@tailwindcss/aspect-ratio": ^0.2.1
     "@tailwindcss/line-clamp": ^0.2.1
     "@tailwindcss/typography": ^0.4.1
@@ -3080,9 +3080,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opendreamnet/nuxtjs-base@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@opendreamnet/nuxtjs-base@npm:1.1.0"
+"@opendreamnet/nuxtjs-base@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@opendreamnet/nuxtjs-base@npm:1.1.1"
   dependencies:
     lodash: ^4.17.21
     tinycolor2: ^1.4.2
@@ -3092,7 +3092,7 @@ __metadata:
     "@nuxtjs/tailwindcss": "*"
     lodash: "*"
     tippy.js: "*"
-  checksum: 2b4d2b4a75ef74c8ee8f1c9bef79fae510c2d839c315856070683ab9d48811adcfaf00c2eee61cc1d809835e4fe4b05cb301be6e43c21aa1c68bdd2597894db6
+  checksum: 076d1924a1564b5838aa7d0e65e061e4829bffc3aa38f5f40b34bb8412485575a41f371184ed7789f02c1be8ef711bea981b74855f13513445c76d6b3cb20979
   languageName: node
   linkType: hard
 
@@ -3263,10 +3263,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sweetalert2/theme-dark@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "@sweetalert2/theme-dark@npm:5.0.0"
-  checksum: 749cc1c3eedad32fa20e7bb2a956287f7a018dca25a1214f2c92d2975ef552af465de58619da8f10c8a0a4719e4b7d0962c5d3bdf62f94e8cc3c73f1b7dcd12c
+"@sweetalert2/theme-dark@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@sweetalert2/theme-dark@npm:5.0.1"
+  checksum: cf40e2d94f7e0d008aeaa972915cababca994a54a46e3b9e3512df79342a11234c16f081bdcdea66dbd0ecc8563c960d2bc13e5d127665c284f3a58c4fa1deba
   languageName: node
   linkType: hard
 
