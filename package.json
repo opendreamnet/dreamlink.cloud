@@ -27,7 +27,17 @@
   "standard-version": {
     "path": ".",
     "tag-prefix": "v",
-    "releaseCommitMessageFormat": "chore(release): {{currentTag}}"
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
+    "types": [
+      {"type": "feat", "section": "Features"},
+      {"type": "fix", "section": "Bug Fixes"},
+      {"type": "docs", "hidden": true},
+      {"type": "style", "section": "Design"},
+      {"type": "refactor", "hidden": true},
+      {"type": "perf", "hidden": true},
+      {"type": "test", "hidden": true},
+      {"type": "chore", "section": "Others"}
+    ]
   },
   "browserslist": {
     "production": [
