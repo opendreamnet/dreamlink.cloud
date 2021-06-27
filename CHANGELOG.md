@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.4.0...v1.5.0) (2021-06-27)
+
+
+### Features
+
+* added chat rooms feature and Settings class to save settings in localStorage. ([bd03799](https://github.com/opendreamnet/dreamlink.cloud/commit/bd037999304490857d719cb190eebfaa5d2ebcf6))
+
+
+### Bug Fixes
+
+* improved Storage description. ([5de4b88](https://github.com/opendreamnet/dreamlink.cloud/commit/5de4b883bde8652a01842a416506a518ee037218))
+* increased the number of retries when checking the availability of a file on the gateways. ([992c0ed](https://github.com/opendreamnet/dreamlink.cloud/commit/992c0ed74342e7f2f1203463a902c55ff07c66ef))
+* LICENSE link now opens the github repository. ([3cec6f1](https://github.com/opendreamnet/dreamlink.cloud/commit/3cec6f1d9cadbd18566b9944e9b0e1ca13a3ce59))
+* the download button using the node does not appear. ([27389a5](https://github.com/opendreamnet/dreamlink.cloud/commit/27389a535d18cf8fb6e0427043bd821dea8b3dd2))
+
+
+### Improvements
+
+* added dialog explaining the availability and persistence of a file. ([e4c07d3](https://github.com/opendreamnet/dreamlink.cloud/commit/e4c07d38b9cb4f295e1a99caf925a32cfa31e51e))
+* improved about page text. ([f5140c2](https://github.com/opendreamnet/dreamlink.cloud/commit/f5140c25523f949f5f93b5edebb17b60672b768b))
+
+
+### Design
+
+* DreamLink alternative gateways CID input made smaller ([96d006a](https://github.com/opendreamnet/dreamlink.cloud/commit/96d006a47c2e22e588f3612b8297e41a37ef5eec))
+* improved file explorer on mobile devices. ([7a7df57](https://github.com/opendreamnet/dreamlink.cloud/commit/7a7df579b2dd9f7919bf1f0c865b105771dffee1))
+* improved the header design and the search has been moved to the header. ([cbab933](https://github.com/opendreamnet/dreamlink.cloud/commit/cbab9339b9a4aeafe768b03e20539c6d03628b37))
+* ipfs icon on the node button is now smaller. ([f6320a3](https://github.com/opendreamnet/dreamlink.cloud/commit/f6320a3d776dbbf96d617c878193facea12f3209))
+* small improvements in the "pastebin" page. ([74f7c3b](https://github.com/opendreamnet/dreamlink.cloud/commit/74f7c3bac7ce0e7e2031cfb4560220ada3c04fd0))
+* small improvements to the file details box. ([9ccd6da](https://github.com/opendreamnet/dreamlink.cloud/commit/9ccd6dab48189f3d864b9958c5555f4da1de3396))
+* small improvements to the layout. ([6c85f0b](https://github.com/opendreamnet/dreamlink.cloud/commit/6c85f0b306f5806f54989a2c6d1c9d0011264973))
+* the file upload buttons are now in a section next to CID and DNSLink. ([33f26a0](https://github.com/opendreamnet/dreamlink.cloud/commit/33f26a09e000ca8864a73bfeffe259596d754d4a))
+* the search input is now larger. ([2371d7e](https://github.com/opendreamnet/dreamlink.cloud/commit/2371d7e525d5bbb0ca2d84f88922ead878ea73f8))
+
+
+### Others
+
+* added "dateFormat" filter. ([c4a6890](https://github.com/opendreamnet/dreamlink.cloud/commit/c4a68909fdc0caa8ec2847748eab9920e691dfd4))
+* added "improvement" commit for general improvements. ([fc33f71](https://github.com/opendreamnet/dreamlink.cloud/commit/fc33f7102201a0a15fc0bd08946984def5cb2708))
+* added chat message encryption and decryption functions. ([425ce04](https://github.com/opendreamnet/dreamlink.cloud/commit/425ce0400f1193a3f3c6df09837c81797620b945))
+* added file with definitions/constants. ([1810e2d](https://github.com/opendreamnet/dreamlink.cloud/commit/1810e2d7f37d979b6b28300317cc81a8db287944))
+* added more types of commits to the changelog ([b4a1de3](https://github.com/opendreamnet/dreamlink.cloud/commit/b4a1de33859a368f81545f5cca2831784315f9b2))
+* added prop "input-class" to modify the input class in InputPlus ([0544e6f](https://github.com/opendreamnet/dreamlink.cloud/commit/0544e6f91a7cea2092994d3475bf9af53ce2e0f2))
+* added settings to the boot. ([5cfd482](https://github.com/opendreamnet/dreamlink.cloud/commit/5cfd4821f2be7c6028a34b1f68b75676e0d69992))
+* improvements and added icons ([5fc74c9](https://github.com/opendreamnet/dreamlink.cloud/commit/5fc74c9c201e0957b7b1f7fe0cab5e44d274cbe9))
+* lint fixes ([75a7d0a](https://github.com/opendreamnet/dreamlink.cloud/commit/75a7d0a4410476175958a3aeb18f3cb68c240f57))
+* lint fixes. ([32ed0f5](https://github.com/opendreamnet/dreamlink.cloud/commit/32ed0f5bdfba630d0165bb6450f4b46007dfbcbe))
+* updated dependencies ([395de72](https://github.com/opendreamnet/dreamlink.cloud/commit/395de72a887cd4153557118f689c1fb68f5eac10))
+
 ## [1.4.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.3.0...v1.4.0) (2021-06-16)
 
 

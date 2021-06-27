@@ -2,7 +2,7 @@
   "name": "@opendreamnet/dreamlink-cloud",
   "displayName": "DreamLink",
   "description": "Easy, fast and censorship-proof file sharing on the IPFS network.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
@@ -29,15 +29,42 @@
     "tag-prefix": "v",
     "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
     "types": [
-      {"type": "feat", "section": "Features"},
-      {"type": "fix", "section": "Bug Fixes"},
-      {"type": "improvement", "section": "Improvements"},
-      {"type": "docs", "hidden": true},
-      {"type": "style", "section": "Design"},
-      {"type": "refactor", "hidden": true},
-      {"type": "perf", "hidden": true},
-      {"type": "test", "hidden": true},
-      {"type": "chore", "section": "Others"}
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "improvement",
+        "section": "Improvements"
+      },
+      {
+        "type": "docs",
+        "hidden": true
+      },
+      {
+        "type": "style",
+        "section": "Design"
+      },
+      {
+        "type": "refactor",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "hidden": true
+      },
+      {
+        "type": "chore",
+        "section": "Others"
+      }
     ]
   },
   "browserslist": {
