@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.0...v1.5.1) (2021-06-27)
+
+
+### Others
+
+* updated dependencies. ([e994d83](https://github.com/opendreamnet/dreamlink.cloud/commit/e994d83358fe3e28b7321b85ab108a090f44d2f0))
+
+
+### Improvements
+
+* added tooltips with descriptions of the tools in navigation ([8ebf3cd](https://github.com/opendreamnet/dreamlink.cloud/commit/8ebf3cd7fae2b80e6bb47930bf0d573d7dda184a))
+* improved pastebin and index texts ([bbf5be1](https://github.com/opendreamnet/dreamlink.cloud/commit/bbf5be18040c49c7e8a4a428fc23bce364e68d40))
+* improved texts when creating a chat room ([a3360c5](https://github.com/opendreamnet/dreamlink.cloud/commit/a3360c5421800838fc3b8edf60fe9ac9f256434c))
+
 ## [1.5.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.4.0...v1.5.0) (2021-06-27)
 
 
