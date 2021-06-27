@@ -1,10 +1,10 @@
 <template>
-  <Box title="Join Room">
+  <Box title="Chat" subtitle="Create an encrypted P2P chat room for free communication between people you trust.">
     <form v-if="$ipfs.ready" class="chat__form" @submit.prevent="submit">
       <p>
         <label class="label">Room ID:</label>
         <input v-model="roomID" class="input" required>
-        <span class="hint">Create or join a chat room that works with IPFS.</span>
+        <span class="hint">It can be whatever you want, the topic you will talk about or a super secret room name.</span>
       </p>
 
       <p>
