@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <nav class="nav">
+    <nav class="container nav">
       <div class="nav__left">
         <div class="logo title">
           {{ $config.name || 'DreamLink' }}
@@ -12,8 +12,16 @@
           Share
         </NuxtLink>
 
+        <div class="item" @click="$refs.searchDialog.open()">
+          Search
+        </div>
+
         <NuxtLink to="/pastebin" class="item">
           Pastebin
+        </NuxtLink>
+
+        <NuxtLink to="/chat" class="item">
+          Chat
         </NuxtLink>
 
         <NuxtLink to="/about" class="item">
@@ -25,6 +33,8 @@
         <NetworkStatus />
       </div>
     </nav>
+
+    <DialogSearch ref="searchDialog" />
   </header>
 </template>
 
@@ -38,11 +48,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header {
-  @apply bg-menus py-3 px-6 rounded-bl rounded-br shadow-lg;
+  @apply border-b border-menus-light py-5 shadow-sm;
 }
 
 .nav {
-  @apply flex gap-6;
+  @apply flex flex-wrap items-center gap-6;
 }
 
 .nav__left {
@@ -50,7 +60,7 @@ export default Vue.extend({
 }
 
 .nav__center {
-  @apply flex flex-wrap justify-between items-center gap-6;
+  @apply flex flex-wrap justify-between items-center gap-9;
 }
 
 .nav__right {
@@ -58,14 +68,14 @@ export default Vue.extend({
 }
 
 .logo {
-  @apply text-2xl;
+  @apply text-white tracking-widest text-xl;
 }
 
 .item {
-  @apply text-snow-light;
+  @apply text-snow-darker transition-colors cursor-pointer;
 
   &:hover {
-    @apply text-primary;
+    @apply text-primary-light;
   }
 }
 </style>
