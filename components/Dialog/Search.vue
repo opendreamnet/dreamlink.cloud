@@ -1,11 +1,13 @@
 <template>
   <dialog ref="dialog" class="dialog">
-    <Box title="Search">
+    <Box>
       <div class="search">
         <form class="search__form" @submit.prevent="search">
-          <input v-model="value" placeholder="Search..." class="flex-1 input" required>
+          <input
+            v-model="value" placeholder="Search..." class="flex-1 input input--lg"
+            required>
 
-          <select v-model="type" class="input">
+          <select v-model="type" class="rounded-none input input--lg">
             <option value="any">
               Any
             </option>
@@ -29,13 +31,15 @@
             </option>
           </select>
 
-          <Button :loading="loading">
+          <Button :loading="loading" class="button--lg">
             Search
           </Button>
         </form>
 
         <div v-if="payload && payload.total > 0" class="search__results">
-          <NuxtLink v-for="item in payload.hits" :key="item.hash" :to="{ path: '/explorer', query: { cid: item.hash, filename: item.title } }" target="_blank" class="item">
+          <NuxtLink
+            v-for="item in payload.hits" :key="item.hash" :to="{ path: '/explorer', query: { cid: item.hash, filename: item.title } }"
+            target="_blank" class="item">
             <div class="title">
               {{ item.title }}
             </div>
@@ -62,10 +66,14 @@
           <div class="center" />
 
           <div class="right">
-            <Button class="button--xs" :disabled="page === 0" :loading="loading" @click.prevent="page -= 1">
+            <Button
+              class="button--xs" :disabled="page === 0" :loading="loading"
+              @click.prevent="page -= 1">
               &#x3C;
             </Button>
-            <Button class="button--xs" :disabled="page === pageCount" :loading="loading" @click.prevent="page += 1">
+            <Button
+              class="button--xs" :disabled="page === pageCount" :loading="loading"
+              @click.prevent="page += 1">
               &#x3E;
             </Button>
           </div>
@@ -216,7 +224,6 @@ export default Dialog.extend({
 <style lang="scss" scoped>
 .search {
   @apply space-y-3;
-  width: 500px;
 }
 
 .search__form {
@@ -224,11 +231,10 @@ export default Dialog.extend({
 
   .button {
     @apply rounded-l-none;
-    height: 44px;
   }
 
   select.input {
-    width: 100px;
+    width: 120px;
   }
 }
 
