@@ -31,6 +31,7 @@
     "types": [
       {"type": "feat", "section": "Features"},
       {"type": "fix", "section": "Bug Fixes"},
+      {"type": "improvement", "section": "Improvements"},
       {"type": "docs", "hidden": true},
       {"type": "style", "section": "Design"},
       {"type": "refactor", "hidden": true},
