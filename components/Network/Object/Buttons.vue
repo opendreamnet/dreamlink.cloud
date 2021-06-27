@@ -1,7 +1,7 @@
 <template>
   <div class="object">
     <div v-if="canDownload" class="justify-center buttons">
-      <Button v-if="!downloadURL" @click="nodeDownload()">
+      <Button v-if="!downloadURL || nodeDownloadLoading" :loading="nodeDownloadLoading" @click="nodeDownload()">
         <span class="icon"><FontAwesomeIcon icon="download" /></span>
         <span>Download</span>
       </Button>
@@ -17,15 +17,16 @@
         target="_blank"
         :href="previewURL"
         :loading="!previewURL"
-        class="button--primary"
-      >
+        class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="external-link-square-alt" /></span>
         <span>Open</span>
       </Button>
     </div>
 
     <div v-else-if="canOpen" class="justify-center buttons">
-      <Button el="a" target="_blank" :href="previewURL" :loading="!previewURL" class="button--primary">
+      <Button
+        el="a" target="_blank" :href="previewURL"
+        :loading="!previewURL" class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
         <span>Open</span>
       </Button>
@@ -65,7 +66,7 @@ export default NetworkObject.extend({
         return false
       }
 
-      return !isNil(this.downloadURL)
+      return this.$ipfs.ready || !isNil(this.downloadURL)
     },
     canOpen(): boolean {
       return !isNil(this.previewURL)
