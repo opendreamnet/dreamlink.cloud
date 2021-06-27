@@ -6,6 +6,9 @@ on:
     tags:
       - v*
 
+env:
+  NODE_ENV: production 
+
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
