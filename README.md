@@ -1,16 +1,19 @@
 # DreamLink
 
-DreamLink is a static web application that allows you to use a basic IPFS node to upload, download and distribute files on the peer-to-peer network.
+DreamLink is a static website with tools running entirely on the decentralized P2P network: [IPFS](https://ipfs.io).
 
-DreamLink allows people with no IPFS experience to easily upload and download files.
+There is no need to install an IPFS node on your computer, DreamLink provides you with one that runs in your web browser automatically. 
 
-# 🍕 Features
+# ✨ Tools
 
-- JS node ready to use, without installing anything.
-- Upload files and folders instantly, without the need for an account, ads, bandwidth limits, etc.
-- Page with download buttons, urls to public gateways, basic file information and preview for image, video, audio and PDF.
+All tools (except for search) run without central servers, on a network of thousands of nodes around the world, making it [fail-safe and censorship-proof](https://docs.ipfs.io/concepts/what-is-ipfs/#decentralization).
 
-# 📖 Build Setup
+- **Share.** Upload files or even folders, without registration, size or bandwith limits. You are your own file distributor.
+- **Search.** Search for files or folders thanks to [ipfs-search.com](https://ipfs-search.com)
+- **Pastebin.** Create and share any text format.
+- **Chat.** Create an encrypted P2P chat room for free communication between people you trust.
+
+# 📖 Build
 
 ```bash
 # install dependencies
@@ -18,12 +21,10 @@ $ yarn install
 
 # serve with hot reload at localhost:3000
 $ yarn dev
+```
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
+```bash
+# generate static project ready to deploy
 $ yarn generate
 ```
 
