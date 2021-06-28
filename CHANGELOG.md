@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.3...v1.5.4) (2021-06-28)
+
+
+### Bug Fixes
+
+* "fixed" storage tooltip visible when opening the node dialog. ([e846431](https://github.com/opendreamnet/dreamlink.cloud/commit/e846431fa015e7c32fcee773bd01cd2e5281e997))
+* error when a title of the search results was null. ([511de21](https://github.com/opendreamnet/dreamlink.cloud/commit/511de21733ebedbc08fbb2779c1d763f65d7fa1f))
+* the titles in the search results are now displayed correctly. ([b6e9fe8](https://github.com/opendreamnet/dreamlink.cloud/commit/b6e9fe8d7c9fdc0a8fca91f18213e78db764a139)), closes [#20](https://github.com/opendreamnet/dreamlink.cloud/issues/20)
+
+
+### Improvements
+
+* removed "await" at startup ([f234b29](https://github.com/opendreamnet/dreamlink.cloud/commit/f234b29257b05092dee0aa5987d8817372363ba6))
+
+
+### Design
+
+* improved footer. ([91c9b87](https://github.com/opendreamnet/dreamlink.cloud/commit/91c9b877c958f8076382a8396edf11a8f0ae785c))
+* improved header on mobile devices. ([3a7b2bd](https://github.com/opendreamnet/dreamlink.cloud/commit/3a7b2bdc598164ddb3f48c3ea86d10ed672aebf2))
+* small improvements in some pages. ([b66f760](https://github.com/opendreamnet/dreamlink.cloud/commit/b66f7605174256e0e6f37db6525be2fbf7f986e1))
+
+
+### Others
+
+* added funding.yml ([4047ac5](https://github.com/opendreamnet/dreamlink.cloud/commit/4047ac5ced09a6614cfed3e3b63e98e9be8e24ed))
+* base design dependency update. ([df7a9d0](https://github.com/opendreamnet/dreamlink.cloud/commit/df7a9d069a443165cb8e30b2f59f82611c062ea9))
+* moved google tag manager to env variables. ([45d3437](https://github.com/opendreamnet/dreamlink.cloud/commit/45d3437de944f30ce58392918f07ba1413f457c9))
+* removed analytics code. ([dffe443](https://github.com/opendreamnet/dreamlink.cloud/commit/dffe443dd9c1bdb6fc41bdff76dcf401d8724f9d))
+* updated README recent description and tool list. ([f8fe2c7](https://github.com/opendreamnet/dreamlink.cloud/commit/f8fe2c72c9cbabfd665825b3be698e590adc03e6))
+
 ### [1.5.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.2...v1.5.3) (2021-06-28)
 
 
