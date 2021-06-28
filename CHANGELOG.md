@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.2...v1.5.3) (2021-06-28)
+
+
+### Bug Fixes
+
+* more fixes for safari/iOS ([3cc324e](https://github.com/opendreamnet/dreamlink.cloud/commit/3cc324eb559aa82c37a0c6ea24801caafdb62d61))
+
 ### [1.5.2](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.1...v1.5.2) (2021-06-28)
 
 
