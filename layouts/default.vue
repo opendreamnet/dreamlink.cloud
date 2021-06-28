@@ -5,11 +5,6 @@
     <Nuxt class="container body" />
 
     <LayoutFooter />
-
-    <!-- Plausible Analytics -->
-    <script
-      async defer data-domain="dreamlink.cloud"
-      src="https://analytics.dreamnet.tech/js/script.js" />
   </div>
 </template>
 
