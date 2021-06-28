@@ -8,6 +8,8 @@ process.env.npm_package_version = pkg.version
 export default setNuxtConfig({
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'dialog-polyfill/dialog-polyfill.css',
+
     '@opendreamnet/nuxtjs-base/assets/css/reset.scss',
     '@opendreamnet/nuxtjs-base/assets/css/input.scss',
     '@opendreamnet/nuxtjs-base/assets/css/checkbox.scss',

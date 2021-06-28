@@ -24,6 +24,10 @@
   @apply text-xs text-snow-dark;
 }
 
+dialog {
+  @apply border-none;
+}
+
 .container {
   @apply mx-auto px-2;
 }

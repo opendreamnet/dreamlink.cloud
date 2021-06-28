@@ -11,9 +11,9 @@ export default Vue.extend({
     open() {
       (this.$el as HTMLDialogElement).showModal()
     },
-    
+
     close() {
       (this.$el as HTMLDialogElement).close()
-    },
+    }
   }
 })

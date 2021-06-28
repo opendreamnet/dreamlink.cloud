@@ -10,9 +10,13 @@ export class Storage {
   public usage: number | null = null
 
   public async init(): Promise<void> {
+    if (isNil(navigator.storage)) {
+      return
+    }
+
     this.isChrome = this.checkChrome()
 
-    if (!isNil(navigator.storage?.persisted) && !await navigator.storage.persisted()) {
+    if (!await navigator.storage.persisted()) {
       await navigator.storage.persist()
     }
 
