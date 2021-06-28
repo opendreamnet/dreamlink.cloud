@@ -52,6 +52,8 @@ jobs:
         run: yarn install
 
       - name: 🏗️ Build
+        env:
+          GOOGLE_TAG_MANAGER_ID: GTM-TNK475T
         run: yarn run generate
 
       - name: 🚀 Deploy

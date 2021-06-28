@@ -77,9 +77,12 @@ export default setNuxtConfig({
     }
   },
 
-  // https://github.com/nuxt-community/gtm-module
-  gtm: {
-    id: 'GTM-TNK475T' // Used as fallback if no runtime config is provided
+  publicRuntimeConfig: {
+    // https://github.com/nuxt-community/gtm-module
+    // Used for basic analytics and displaying the coookie consent alert.
+    gtm: {
+      id: process.env.GOOGLE_TAG_MANAGER_ID
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
