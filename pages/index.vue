@@ -2,28 +2,30 @@
   <div class="home">
     <!-- Hero -->
     <div class="home__hero">
-      <h1 class="title">
-        Share files on the <span class="text-ipfs">IPFS network</span>.
+      <h1 class="mb-2 text-4xl title">
+        Share files using <span class="text-ipfs">IPFS</span>.
       </h1>
 
-      <h2>File storage controlled by you, free and censorship-proof in a decentralized network.</h2>
+      <h2 class="text-lg text-snow-dark">
+        File storage controlled by you, free and censorship-proof in a decentralized network.
+      </h2>
     </div>
 
-    <div class="home__content">
-      <input
+    <input
         v-show="false" ref="files" type="file"
         multiple @change="upload">
 
-      <input
-        v-show="false"
-        ref="directory"
-        type="file"
-        multiple
-        directory
-        webkitdirectory
-        mozdirectory
-        @change="upload">
+    <input
+      v-show="false"
+      ref="directory"
+      type="file"
+      multiple
+      directory
+      webkitdirectory
+      mozdirectory
+      @change="upload">
 
+    <div class="home__content">
       <!-- Methods -->
       <div class="home__methods">
         <Button :class="{ 'item--active': method === 0 }" @click.prevent="method = 0">
@@ -45,7 +47,7 @@
 
       <!-- Upload -->
       <section v-show="method === 0" class="home__section">
-        <div v-if="$ipfs.ready" class="home__buttons">
+        <div v-if="$ipfs.ready" class="flex justify-center gap-6">
           <Button class="button-xl" @click="$refs.files.click()">
             <span class="icon"><FontAwesomeIcon icon="upload" /></span>
             <span>Add files</span>
@@ -270,19 +272,19 @@ export default Vue.extend({
 }
 
 .home__content {
-  @apply flex flex-col items-center gap-3 mx-auto max-w-prose;
+  @apply flex flex-col items-center gap-10 mx-auto max-w-prose;
 }
 
 .home__section {
-  @apply w-full text-center;
+  @apply w-full;
 
   form {
-    @apply space-y-3;
+    @apply space-y-4;
   }
 }
 
 .home__methods {
-  @apply flex justify-between w-full mb-3;
+  @apply flex justify-between w-full;
 
   .button {
     @apply flex-1 rounded-none bg-opacity-0 border-t border-b border-button;

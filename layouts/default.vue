@@ -10,13 +10,17 @@
 
 <style lang="scss" scoped>
 .layout {
-  @apply space-y-20;
+  @apply space-y-10;
+
+  @screen md {
+    @apply space-y-20;
+  }
 }
 </style>
 
 <style lang="scss">
 .hint {
-  @apply text-xs text-snow-dark;
+  @apply text-xs text-snow-darker leading-3;
 }
 
 dialog {

@@ -126,34 +126,12 @@
 
   details {
     summary {
-      @apply text-lg cursor-pointer;
+      @apply cursor-pointer;
     }
   }
 }
 
 .tip {
   @apply text-primary cursor-help border-b border-dotted;
-}
-</style>
-
-<style lang="scss">
-.prose {
-  @apply text-snow;
-
-  h1 {
-    @apply text-snow-lighter;
-  }
-
-  h2 {
-    @apply text-snow-light;
-  }
-
-  a {
-    @apply text-primary;
-  }
-
-  b, strong {
-    @apply text-snow-light;
-  }
 }
 </style>

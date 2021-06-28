@@ -3,7 +3,7 @@
     <Box title="Pastebin" subtitle="Create and share any text format on IPFS.">
       <form v-if="$ipfs.ready" class="pastebin__form" @submit.prevent="submit()">
         <p>
-          <input v-model="filename" class="input" placeholder="Filename (Optional). Examples: text.txt, about.md or code.js">
+          <input v-model="filename" class="input" placeholder="File name (Optional)">
           <span class="hint">Syntax Highlight in the output will depend on the file name.</span>
         </p>
 
