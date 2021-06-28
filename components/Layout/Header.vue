@@ -48,11 +48,15 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header {
-  @apply border-b border-menus-light py-5 shadow-sm;
+  @apply border-b border-menus py-5 px-3;
 }
 
 .nav {
-  @apply flex flex-wrap items-center gap-6;
+  @apply flex flex-col items-center gap-6;
+
+  @screen md {
+    @apply flex-row;
+  }
 }
 
 .nav__left {
@@ -64,7 +68,8 @@ export default Vue.extend({
 }
 
 .nav__right {
-  @apply flex flex-1 justify-end items-center gap-6;
+  @apply flex-1 w-full;
+  @apply flex justify-end items-center gap-6;
 }
 
 .logo {
@@ -72,7 +77,11 @@ export default Vue.extend({
 }
 
 .item {
-  @apply text-snow-darker transition-colors cursor-pointer;
+  @apply text-snow-darker text-lg transition-colors cursor-pointer;
+
+  @screen md {
+    @apply text-base;
+  }
 
   &:hover {
     @apply text-primary-light;

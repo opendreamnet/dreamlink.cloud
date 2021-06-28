@@ -32,6 +32,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .status {
+  @apply w-full;
+
+  @screen md {
+    @apply w-auto;
+  }
+  
   &::v-deep {
     .dropdown-menu {
       min-width: 315px;
@@ -40,7 +46,7 @@ export default Vue.extend({
 }
 
 .status__button {
-  @apply gap-2 relative;
+  @apply gap-2 relative w-full;
 
   svg {
     @apply inline-block;
