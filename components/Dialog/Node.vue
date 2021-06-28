@@ -42,14 +42,14 @@
 
       <template #footer>
         <div class="flex justify-end gap-3">
+          <Button class="button--danger button--sm" @click="close">
+            Close
+          </Button>
+
           <Button
             v-if="$ipfs.ready" v-tooltip="storageTooltip" class="button--primary button--sm"
             :loading="gcLoading" @click="freeUp">
             Free up storage
-          </Button>
-
-          <Button class="button--danger button--sm" @click="close">
-            Close
           </Button>
         </div>
       </template>
