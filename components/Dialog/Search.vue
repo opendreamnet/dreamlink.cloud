@@ -38,11 +38,9 @@
 
         <div v-if="payload && payload.total > 0" class="search__results">
           <NuxtLink
-            v-for="item in payload.hits" :key="item.hash" :to="{ path: '/explorer', query: { cid: item.hash, filename: item.title } }"
+            v-for="item in payload.hits" :key="item.hash" :to="{ path: '/explorer', query: { cid: item.hash, filename: item.title.replace( /(<([^>]+)>)/ig, '') } }"
             target="_blank" class="item">
-            <div class="title">
-              {{ item.title }}
-            </div>
+            <div class="title" v-html="item.title" />
 
             <div class="extra">
               {{ item.size | prettyBytes }}  - {{ item['last-seen'] | toRelative }}
@@ -59,11 +57,11 @@
         </div>
 
         <div v-if="payload && payload.total > 0" class="search__pagination">
-          <div class="left">
-            Page <input v-model.number="page" type="number" class="input input--xs input--page"> of {{ pageCount }}
+          <div class="text-sm">
+            Page <input v-model.number="page" type="number" class="w-16 input input--xs"> of {{ pageCount }}
           </div>
 
-          <div class="center" />
+          <div class="flex-1" />
 
           <div class="right">
             <Button
@@ -245,42 +243,32 @@ export default Dialog.extend({
 
 .search__pagination {
   @apply flex items-center;
-
-  .left {
-    @apply text-sm;
-  }
-
-  .center {
-    @apply flex-1;
-  }
-
-  .input--page {
-    width: 50px;
-  }
 }
 
 .item {
-  @apply block border-menus-light p-3 text-sm cursor-pointer;
+  @apply block px-3 py-5 cursor-pointer;
 
   &:hover {
     @apply bg-menus-light;
   }
 
-  &:not(:last-child) {
-    @apply border-b;
-  }
-
   .title {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+
+    &::v-deep {
+      em {
+        @apply text-primary;
+      }
+    }
   }
 
   .hash {
-    @apply text-xs text-snow-dark;
+    @apply text-xs text-snow-darker;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 
   .extra {
-    @apply text-xs text-snow-light;
+    @apply text-xs text-snow-dark;
   }
 }
 </style>
