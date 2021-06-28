@@ -43,7 +43,7 @@
       },
       {
         "type": "docs",
-        "hidden": true
+        "section": "Others"
       },
       {
         "type": "style",
@@ -51,11 +51,11 @@
       },
       {
         "type": "refactor",
-        "hidden": true
+        "section": "Others"
       },
       {
         "type": "perf",
-        "hidden": true
+        "section": "Improvements"
       },
       {
         "type": "test",
@@ -119,7 +119,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.2.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
-    "@opendreamnet/nuxtjs-base": "^1.1.1",
+    "@opendreamnet/nuxtjs-base": "^1.1.2",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",

@@ -3001,7 +3001,7 @@ __metadata:
     "@nuxtjs/style-resources": ^1.2.0
     "@nuxtjs/tailwindcss": ^4.2.0
     "@opendreamnet/ipfs": ^1.2.0
-    "@opendreamnet/nuxtjs-base": ^1.1.1
+    "@opendreamnet/nuxtjs-base": ^1.1.2
     "@sweetalert2/theme-dark": ^5.0.1
     "@tailwindcss/aspect-ratio": ^0.2.1
     "@tailwindcss/line-clamp": ^0.2.1
@@ -3081,9 +3081,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opendreamnet/nuxtjs-base@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@opendreamnet/nuxtjs-base@npm:1.1.1"
+"@opendreamnet/nuxtjs-base@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@opendreamnet/nuxtjs-base@npm:1.1.2"
   dependencies:
     lodash: ^4.17.21
     tinycolor2: ^1.4.2
@@ -3093,7 +3093,7 @@ __metadata:
     "@nuxtjs/tailwindcss": "*"
     lodash: "*"
     tippy.js: "*"
-  checksum: 076d1924a1564b5838aa7d0e65e061e4829bffc3aa38f5f40b34bb8412485575a41f371184ed7789f02c1be8ef711bea981b74855f13513445c76d6b3cb20979
+  checksum: fb1efefd47ba26017a6b5d895c7cea7974eddd027a184e00241667d5d245193d94336930fbfd61aba0c4deeafea2ebaf507dff360fa85dbd31d71da6906d24bc
   languageName: node
   linkType: hard
 
