@@ -1,9 +1,6 @@
 import { isNil } from 'lodash'
-import prettyBytes from 'pretty-bytes'
 import { bus } from './bus'
 import { ipfs } from './ipfs'
-
-const REQUESTED_QUOTA = 100*1024*1024*1024 // 100 GB
 
 export class Storage {
   public isChrome = false
@@ -15,7 +12,7 @@ export class Storage {
   public async init(): Promise<void> {
     this.isChrome = this.checkChrome()
 
-    if (!await navigator.storage.persisted()) {
+    if (!isNil(navigator.storage?.persisted) && !await navigator.storage.persisted()) {
       await navigator.storage.persist()
     }
 

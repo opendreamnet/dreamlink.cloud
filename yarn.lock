@@ -3033,6 +3033,7 @@ __metadata:
     highlight.js: ^11.0.1
     husky: ^4.3.8
     is-ipfs: ^5.0.0
+    jsbi: ^3.1.5
     lint-staged: ^10.5.4
     lodash: ^4.17.21
     luxon: ^1.27.0
@@ -14573,6 +14574,13 @@ fsevents@^1.2.7:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 46b61f889796a20d16b0b64580a01b6a02b2e45c1a2744906346da54d07e14cde764e887ab6d1512d8b2541c63711bd4b75859c28eb99605baf59fa173fc38c2
+  languageName: node
+  linkType: hard
+
+"jsbi@npm:^3.1.5":
+  version: 3.1.5
+  resolution: "jsbi@npm:3.1.5"
+  checksum: f7716254f7ce1adf643e5b920f76332e55421f0262642b43a087294cdf1bed2ad44d2793a79a5037385d73edc3eac6329720acf91dd5ef3f33e5d2e8b7e5cdbb
   languageName: node
   linkType: hard
 
