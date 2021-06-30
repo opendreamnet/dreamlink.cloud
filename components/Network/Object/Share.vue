@@ -1,6 +1,7 @@
 <template>
   <div class="share">
     <div class="share__content">
+      <!-- Explorer URL -->
       <Box>
         <template #header>
           <h2 class="title">
@@ -9,9 +10,10 @@
           </h2>
         </template>
 
-        <InputPlus readonly :value="classicURL" class="text--sm" />
+        <InputPlus readonly :value="explorerURL" class="text--sm" />
       </Box>
 
+      <!-- Direct Links -->
       <Box>
         <template #header>
           <div class="flex items-center gap-3">
@@ -20,7 +22,7 @@
               <span>Direct Links</span>
             </h2>
 
-            <a href="#" class="text-sm text-danger" @click.prevent="$refs.dialog.open()">Not working?</a>
+            <a href="#" class="text-sm text-danger hover:underline" @click.prevent="$refs.dialog.open()">Not working?</a>
           </div>
         </template>
 
@@ -42,7 +44,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import queryString from 'query-string'
 import gateways from '@opendreamnet/ipfs/src/data/ipfs-gateways.json'
+import { GATEWAYS_CORS_BLOCKED } from '~/modules/defs'
 
 export default Vue.extend({
   props: {
@@ -61,29 +65,24 @@ export default Vue.extend({
   }),
 
   computed: {
-    classicURL(): string {
-      return document.location.href
+    /**
+     * URL to the explorer.
+     */
+    explorerURL(): string {
+      return document.location.origin + '/explorer?' + queryString.stringify({
+        cid: this.cid,
+        filename: this.filename
+      }, {
+        skipNull: true
+      })
     },
 
+    /**
+     * URLs to public gateways.
+     */
     gatewaysURLS() {
-      const corsBlock = [
-        'cf-ipfs.com',
-        'overpi.com',
-        'ipfs.fooock.com',
-        'storjipfs-gateway.com',
-        'ipfs.runfission.com',
-        'trusti.id',
-        'hashnews.k1ic.com',
-        'ipfs.mihir.ch',
-        'ipfs.globalupload.io',
-        'ipfs.eternum.io',
-        'bin.d0x.to',
-        'drink.cafe',
-        'ipfs.taxi'
-      ]
-
       return gateways.filter((url) => {
-        for (const u of corsBlock) {
+        for (const u of GATEWAYS_CORS_BLOCKED) {
           if (url.includes(u)) {
             return false
           }
