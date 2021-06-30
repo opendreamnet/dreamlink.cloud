@@ -12,8 +12,8 @@
     </div>
 
     <input
-        v-show="false" ref="files" type="file"
-        multiple @change="upload">
+      v-show="false" ref="files" type="file"
+      multiple @change="upload">
 
     <input
       v-show="false"
@@ -127,6 +127,7 @@
 </template>
 
 <script lang="ts">
+import queryString, { ParsedQuery } from 'query-string'
 import Vue from 'vue'
 import isIPFS from 'is-ipfs'
 import Swal from 'sweetalert2'
@@ -153,8 +154,9 @@ export default Vue.extend({
         return
       }
 
-      let cid = ''
-      let route = '/explorer?'
+      const query = {
+        uploader: 'true'
+      } as ParsedQuery
 
       try {
         Swal.fire({
@@ -168,17 +170,16 @@ export default Vue.extend({
         if (files.length === 1) {
           const file = files[0]
 
-          cid = await this.$ipfs.upload(file, { pin: false })
-          route += `cid=${cid}&filename=${file.name}`
+          query.cid = await this.$ipfs.upload(file, { pin: true })
+          query.filename = file.name
         } else {
-          cid = await this.$ipfs.upload(files, { pin: false, wrapWithDirectory: true })
-          route += `cid=${cid}`
+          query.cid = await this.$ipfs.upload(files, { pin: true, wrapWithDirectory: true })
         }
 
         Swal.close()
 
         this.$bus.emit('upload.success')
-        this.$router.push(route)
+        this.$router.push('/explorer?' + queryString.stringify(query, { skipNull: true }))
       } catch (err) {
         Swal.fire({
           title: 'A problem has occurred',
