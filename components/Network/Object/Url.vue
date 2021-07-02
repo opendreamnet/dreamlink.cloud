@@ -16,7 +16,7 @@ import axios from 'axios'
 import { GATEWAYS_TRUSTED } from '~/modules/defs'
 
 interface Data {
-  status: boolean | string
+  status: boolean
   attempts: number
   // eslint-disable-next-line no-undef
   tryTimeout: NodeJS.Timeout | null
@@ -77,7 +77,7 @@ export default Vue.extend({
   },
 
   created() {
-    const delay = 2000 * this.delay
+    const delay = 3000 * this.delay
     this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), delay)
   },
 
@@ -98,7 +98,7 @@ export default Vue.extend({
 
       await this.checkStatus()
 
-      if (this.status !== true) {
+      if (!this.status) {
         this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 10 * 1000)
       }
     },
@@ -106,7 +106,7 @@ export default Vue.extend({
     async checkStatus() {
       try {
         await axios.head(this.shareURL, {
-          timeout: 3000
+          timeout: 5 * 1000
         })
 
         this.status = true
@@ -117,7 +117,6 @@ export default Vue.extend({
           }
         }
       } catch (err) {
-        // this.status = err
         this.status = false
       }
     }
