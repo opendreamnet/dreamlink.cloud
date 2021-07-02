@@ -42,6 +42,8 @@ export default setNuxtConfig({
     '@nuxt/image',
     // https://github.com/nuxt-community/markdownit-module
     '@nuxtjs/markdownit'
+    // https://typed-vuex.roe.dev/
+    // 'nuxt-typed-vuex'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -72,7 +74,8 @@ export default setNuxtConfig({
         'faExclamationTriangle',
         'faUsers',
         'faComments',
-        'faCog'
+        'faCog',
+        'faSpinner'
       ]
     }
   },
