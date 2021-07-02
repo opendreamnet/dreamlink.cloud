@@ -34,7 +34,8 @@ export const GATEWAYS_CORS_BLOCKED = [
   'ipfs.eternum.io',
   'bin.d0x.to',
   'drink.cafe',
-  'ipfs.taxi'
+  'ipfs.taxi',
+  'ipfs.xoqq.ch'
 ]
 
 /**
