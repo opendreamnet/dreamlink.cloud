@@ -21,8 +21,6 @@
               <span class="icon"><FontAwesomeIcon icon="share" /></span>
               <span>Direct Links</span>
             </h2>
-
-            <a href="#" class="text-sm text-danger hover:underline" @click.prevent="$refs.dialog.open()">Not working?</a>
           </div>
         </template>
 
@@ -37,8 +35,6 @@
         </div>
       </Box>
     </div>
-
-    <DialogPersistence ref="dialog" />
   </div>
 </template>
 
