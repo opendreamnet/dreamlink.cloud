@@ -111,7 +111,7 @@
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@dreamnet/deploy-cli": "^1.2.2",
-    "@dreamnet/eslint-config-dreamnet-nuxtjs": "^1.4.0",
+    "@dreamnet/eslint-config-dreamnet-nuxtjs": "^1.5.0",
     "@nuxt/image": "^0.4.17",
     "@nuxt/types": "2.15.6",
     "@nuxt/typescript-build": "^2.1.0",
