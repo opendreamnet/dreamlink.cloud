@@ -1,6 +1,8 @@
 import { IPFS } from '@opendreamnet/ipfs'
 import EventEmitter from 'events'
 import { DateTime } from 'luxon'
+import BigInt from 'jsbi'
+import { accessorType } from '~/store'
 import { Storage } from '~/modules/storage'
 import { Settings } from '~/modules/settings'
 
@@ -18,6 +20,10 @@ declare module '@nuxt/types' {
     $bus: EventEmitter
     $settings: Settings
   }
+
+  interface NuxtAppOptions {
+    $accessor: typeof accessorType
+  }
 }
 
 declare module 'vue/types/vue' {
@@ -27,6 +33,10 @@ declare module 'vue/types/vue' {
     $bus: EventEmitter
     $settings: Settings
   }
+
+  interface Vue {
+    $accessor: typeof accessorType
+  }
 }
 
 declare module 'vuex/types/index' {
@@ -35,6 +45,13 @@ declare module 'vuex/types/index' {
     $storage: Storage
     $bus: EventEmitter
     $settings: Settings
+  }
+}
+
+declare global {
+  interface Window { 
+    ipfs?: IPFS
+    BigInt?: BigInt
   }
 }
 

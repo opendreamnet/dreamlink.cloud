@@ -6,14 +6,15 @@ import BaseMixin from '../mixins/BaseMixin'
 import { bus } from '../modules/bus'
 import { settings } from '../modules/settings'
 
+// Base Mixins
 Vue.mixin(Vue.extend(ThemeBaseMixin))
 Vue.mixin(BaseMixin)
 
-if (isNil(window['BigInt'])) {
+// BigInt polyfill for Safari and other browsers.
+if (isNil(window.BigInt)) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const JSBI = require('jsbi')
-  // @ts-ignore
-  window['BigInt'] = JSBI.BigInt
+  window.BigInt = JSBI.BigInt
 }
 
 const plugin: Plugin = async(ctx, inject) => {
