@@ -36,3 +36,15 @@ export const GATEWAYS_CORS_BLOCKED = [
   'drink.cafe',
   'ipfs.taxi'
 ]
+
+/**
+ * Trusted gateways.
+ */
+export const GATEWAYS_TRUSTED = [
+  'odn.pw',
+  'fs.dreamlink.cloud',
+  'ipfs.io',
+  'dweb.link',
+  'infura-ipfs.io',
+  'pinata.cloud'
+]

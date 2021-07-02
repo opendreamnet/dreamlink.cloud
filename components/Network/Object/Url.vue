@@ -13,6 +13,7 @@ import Vue from 'vue'
 import { isNil } from 'lodash'
 import URI from 'urijs'
 import axios from 'axios'
+import { GATEWAYS_TRUSTED } from '~/modules/defs'
 
 interface Data {
   status: boolean | string
@@ -109,7 +110,12 @@ export default Vue.extend({
         })
 
         this.status = true
-        this.$bus.emit(`${this.cid}.gateway.status`, this.shareURI)
+
+        for (const domain of GATEWAYS_TRUSTED) {
+          if (this.shareURI.href().includes(domain)) {
+            this.$bus.emit(`${this.cid}.gateway.status`, this.shareURI)
+          }
+        }
       } catch (err) {
         // this.status = err
         this.status = false

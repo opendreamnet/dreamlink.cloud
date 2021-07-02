@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import URI from 'urijs'
 import { Record } from '@opendreamnet/ipfs'
+
 import { downloadBlob } from '../modules/utils'
 
 interface Data {
@@ -43,6 +44,9 @@ export default Vue.extend({
   },
 
   methods: {
+    /**
+     * Try to fetch the record with the information from the IPFS object.
+     */
     async fetchRecord() {
       if (this.record) {
         return
@@ -54,7 +58,6 @@ export default Vue.extend({
         this.record = await this.$ipfs.add(this.cid, { name: this.filename })
       } catch(err) {
         console.warn('[NetworkObject] Failed to obtain the record, trying again.')
-
         this.$ipfs.remove(this.cid)
         this._fetchTimeout = setTimeout(this.fetchRecord.bind(this), 500)
       }
@@ -80,19 +83,7 @@ export default Vue.extend({
     },
 
     onGatewayStatus(uri: URI) {
-      if (uri.href().includes('odn.pw') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
-
-      if (uri.href().includes('fs.dreamlink.cloud') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
-
-      if (uri.href().includes('ipfs.io') && !this.gatewayURI) {
-        this.gatewayURI = uri
-      }
-
-      if (uri.href().includes('dweb.link') && !this.gatewayURI) {
+      if (!this.gatewayURI) {
         this.gatewayURI = uri
       }
     }
