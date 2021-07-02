@@ -3,11 +3,11 @@
     <Box title="File availability.">
       <div class="prose">
         <p>
-          If you are unable to view or download this file it is possible that there are no peers left on the network that are still distributing it.
+          Files on the IPFS network need to be distributed by other nodes to remain available, similar to how Torrents work.
         </p>
 
         <p>
-          Files on the IPFS network need to be distributed by other nodes (peers) to remain available.
+          If after waiting several minutes the file has not yet loaded, it is very likely that there is no node left that continues distributing it.
         </p>
 
         <p>
@@ -15,7 +15,6 @@
         </p>
 
         <ul>
-          <li>If you have just uploaded your file, wait a few minutes until it is distributed on the network.</li>
           <li>Try to keep your IPFS node active.</li>
           <li>Pin the file to a persistent node or on <a href="https://docs.ipfs.io/concepts/persistence/#pinning-services" target="_blank">pinning services</a>.</li>
         </ul>
