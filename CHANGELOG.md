@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.5](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.4...v1.5.5) (2021-07-02)
+
+
+### Design
+
+* the preview area now occupies the empty space above it. ([007cadf](https://github.com/opendreamnet/dreamlink.cloud/commit/007cadf325956296f4a5ab6b75c4e2f7562a89ba))
+
+
+### Improvements
+
+* added loading message in the preview area and now completely occupies the side spaces. ([6ceb0c6](https://github.com/opendreamnet/dreamlink.cloud/commit/6ceb0c62cee02b4b822093b8cde040c39798f5ba))
+* improved detection of the download button and added more documentation. ([a131e24](https://github.com/opendreamnet/dreamlink.cloud/commit/a131e2475b399238025e99d7bf2a1e72a9dbcb52))
+* improvements in the file availability dialog text. ([2dd9973](https://github.com/opendreamnet/dreamlink.cloud/commit/2dd99735b56493c6b05100f831d3cdb2189f097c))
+* small adjustments to the loading times of the public gateways. ([1b79af9](https://github.com/opendreamnet/dreamlink.cloud/commit/1b79af974503ec991dcbd8e4dc3810cf3b8b214c))
+
+
+### Others
+
+* added documentation for constants. ([e3885f1](https://github.com/opendreamnet/dreamlink.cloud/commit/e3885f1e684eeb8cc1864a725ebf4b481fd6d3c6))
+* added ipfs.xoqq.ch to the blacklist. ([7e6dffc](https://github.com/opendreamnet/dreamlink.cloud/commit/7e6dffc729fd7ee7955d1abf7d53ff3a28c8419f))
+* explorer url now uses query-string. ([338eb95](https://github.com/opendreamnet/dreamlink.cloud/commit/338eb95b50b98eabdc986a082b6bd8e5b8ef0849))
+* removed "not working?" link. ([78ac502](https://github.com/opendreamnet/dreamlink.cloud/commit/78ac502011136d8b91c5625788c1df2c56d5c68c))
+* small eslint changes. ([a95e359](https://github.com/opendreamnet/dreamlink.cloud/commit/a95e359ded537d54c1a11de1a48ccec340d2b6bb))
+* small improvements for the types. ([7f788e6](https://github.com/opendreamnet/dreamlink.cloud/commit/7f788e69f0e21c47d8a7bac180f395da9a0528d7))
+* the list of trusted gateways is now a constant. ([c0f429a](https://github.com/opendreamnet/dreamlink.cloud/commit/c0f429a49bc6fab20efdf81c084e652d615e6fa5))
+* url generator when uploading file now uses query-string ([ae8e651](https://github.com/opendreamnet/dreamlink.cloud/commit/ae8e651ed0e827194ead7ee8e51572fdbacc6387))
+
 ### [1.5.4](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.3...v1.5.4) (2021-06-28)
 
 
