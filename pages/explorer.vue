@@ -12,7 +12,10 @@
       </h2>
     </div>
 
-    <NetworkObjectButtons :cid="cid" :filename="filename" class="explorer__buttons" />
+    <NetworkObjectButtons
+      :cid="cid"
+      :filename="filename"
+      class="explorer__buttons" />
 
     <div class="explorer__cols">
       <div class="explorer__left">
@@ -62,15 +65,6 @@ export default Vue.extend({
     },
     filename(): string {
       return this.$route.query.filename as string
-    },
-    type(): string {
-      return this.$route.query.type as string
-    },
-    downloadURL(): string {
-      return `https://odn.pw/ipfs/${this.cid}?filename=${this.filename}&download=true`
-    },
-    previewURL(): string {
-      return `https://odn.pw/ipfs/${this.cid}?filename=${this.filename}&download=false`
     }
   },
 
@@ -88,7 +82,11 @@ export default Vue.extend({
 }
 
 .explorer__preview {
-  @apply mb-6 -mt-12 shadow-xl;
+  @apply mb-6 -mt-10;
+
+  @screen md {
+    @apply -mt-20;
+  }
 }
 
 .explorer__info {
