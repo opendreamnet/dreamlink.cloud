@@ -346,8 +346,7 @@ export default NetworkObject.extend({
 }
 
 .preview--audio {
-  @apply flex justify-center p-9;
-  height: auto;
+  @apply flex justify-center items-center p-9;
 }
 
 .preview--image {
