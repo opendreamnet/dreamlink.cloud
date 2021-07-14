@@ -10,7 +10,6 @@
     <LayoutFooter />
 
     <!-- Global Dialogs -->
-    <LazyDialogNode />
     <LazyDialogSearch />
   </div>
 </template>

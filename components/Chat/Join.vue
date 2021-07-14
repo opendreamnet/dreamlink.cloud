@@ -33,8 +33,12 @@ import faker from 'faker'
 export default Vue.extend({
   data: () => ({
     roomID: '',
-    secretKey: faker.datatype.string(20)
+    secretKey: ''
   }),
+
+  mounted() {
+    this.secretKey = faker.datatype.string(20)
+  },
 
   methods: {
     submit() {

@@ -23,12 +23,12 @@
 
     <div class="explorer__cols">
       <div class="explorer__left">
-        <NetworkObjectShare :cid="cid" :filename="filename" />
+        <LazyNetworkObjectShare :cid="cid" :filename="filename" />
       </div>
 
       <div class="explorer__right">
-        <NetworkObjectDetails :cid="cid" :filename="filename" />
-        <NetworkObjectActions :cid="cid" :filename="filename" />
+        <LazyNetworkObjectDetails :cid="cid" :filename="filename" />
+        <LazyNetworkObjectActions :cid="cid" :filename="filename" />
       </div>
     </div>
   </div>
