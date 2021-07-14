@@ -23,7 +23,7 @@
         v-tooltip="'Prevents the file from being deleted from your storage and keeps it in an easily accessible list in your profile.'"
         :loading="pinLoading"
         @click="pin">
-        <span class="icon"><FontAwesomeIcon icon="star" /></span>
+        <span class="icon"><FontAwesomeIcon icon="heart" /></span>
         <span>Pin</span>
       </Button>
 
@@ -34,7 +34,7 @@
         class="button--danger"
         :loading="unpinLoading"
         @click="unpin">
-        <span class="icon"><FontAwesomeIcon icon="trash-alt" /></span>
+        <span class="icon"><FontAwesomeIcon icon="heart-broken" /></span>
         <span>Unpin</span>
       </Button>
     </div>

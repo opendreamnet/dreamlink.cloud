@@ -84,6 +84,8 @@ export default setNuxtConfig({
         'faFolder',
         'faTrashAlt',
         'faStar',
+        'faHeart',
+        'faHeartBroken',
         'faDatabase'
       ]
     }

@@ -51,7 +51,7 @@
 
           <div class="actions">
             <Button v-tooltip="'Unpin'" class="button--danger button--xs" @click="unpin(item.cid)">
-              <FontAwesomeIcon icon="trash-alt" />
+              <FontAwesomeIcon icon="heart-broken" />
             </Button>
           </div>
         </div>
