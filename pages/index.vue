@@ -184,6 +184,12 @@ export default Vue.extend({
           query.filename = files[0].name
           size = files[0].size
           query.cid = await this.$ipfs.upload(files[0], { pin: true })
+
+          await this.$accessor.pins.pin({
+            cid: query.cid,
+            name: query.filename,
+            size
+          })
         } else {
           // @ts-ignore
           const relativePath: string | undefined = files[0].webkitRelativePath
