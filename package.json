@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext \".js,.vue\" .",
     "test:e2e": "wdio wdio.conf.js",
-    "deploy": "deploy dist -c -p pinata -d cloudflare -n www-dreamlink",
+    "deploy": "deploy dist -p pinata -d cloudflare -n www-dreamlink",
     "release": "standard-version"
   },
   "lint-staged": {
