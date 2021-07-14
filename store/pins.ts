@@ -94,7 +94,9 @@ export const actions = actionTree({ state, getters, mutations }, {
       record.date = DateTime.now().toISO()
     }
 
-    await storageDb.pins.add(record)
+    try {
+      await storageDb.pins.add(record)
+    } catch (err) { }
 
     this.app.$accessor.pins.addFromStorage(record)
   },
