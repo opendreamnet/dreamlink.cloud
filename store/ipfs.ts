@@ -47,7 +47,7 @@ export const actions = actionTree({ state, getters, mutations }, {
       return avatarURL
     }).catch(noop)
 
-    this.app.$accessor.ipfs.fetchWebCID()
+    this.app.$accessor.ipfs.fetchWebCID().catch(noop)
   },
 
   /**
