@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.5...v1.6.0) (2021-07-14)
+
+
+### Features
+
+* a LOT of changes. added profile section to manage pins, settings, private/public keys, etc. ([bdc3c4f](https://github.com/opendreamnet/dreamlink.cloud/commit/bdc3c4f35aba8315a66728d9eb42bb5c54f37e3c))
+
+
+### Bug Fixes
+
+* audio preview design left an empty space. ([4310ed7](https://github.com/opendreamnet/dreamlink.cloud/commit/4310ed7751519b18a1906d4e6190b2b816cd213a))
+
 ### [1.5.5](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.4...v1.5.5) (2021-07-02)
 
 
