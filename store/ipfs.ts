@@ -87,12 +87,7 @@ export const actions = actionTree({ state, getters, mutations }, {
         'coast',
         'topaz',
         'lavender',
-        'sky',
-        'salmon',
-        'calm',
-        'mellow',
-        'black',
-        'white'
+        'salmon'
       ]
     }
 
