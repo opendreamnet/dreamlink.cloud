@@ -2,6 +2,7 @@ const { setNuxtConfig } = require('@opendreamnet/nuxtjs-base')
 const pkg = require('./package.json')
 
 process.env.npm_package_name = pkg.name
+process.env.npm_package_description = pkg.description
 process.env.npm_package_displayName = pkg.displayName
 process.env.npm_package_version = pkg.version
 
@@ -91,12 +92,10 @@ export default setNuxtConfig({
     }
   },
 
-  publicRuntimeConfig: {
-    // https://github.com/nuxt-community/gtm-module
-    // Used for basic analytics and displaying the coookie consent alert.
-    gtm: {
-      id: process.env.GOOGLE_TAG_MANAGER_ID
-    }
+  // https://github.com/nuxt-community/gtm-module
+  // Used for basic analytics and displaying the coookie consent alert.
+  gtm: {
+    id: process.env.GOOGLE_TAG_MANAGER_ID
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

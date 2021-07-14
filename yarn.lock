@@ -2693,13 +2693,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/gtm@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@nuxtjs/gtm@npm:2.4.0"
+"@nuxtjs/gtm@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@nuxtjs/gtm@npm:2.3.2"
   dependencies:
     chalk: ^4.1.0
     semver: ^7.3.2
-  checksum: d843047f881a77371d08dad97824929bd0fec4d26853d1834e431bea89b7a7599f14d6040f4320bfcbc1dbe74635f46883ce8a20765d3f205744671fdf22e544
+  checksum: bb30f5cb3f2ca28bdf5f7cda740da1e856b8a95df064d0c72b1408da44ead24c5d7f619449e00b3e12c4b695edbadc85344d19370b4da311b28569a94e19d331
   languageName: node
   linkType: hard
 
@@ -3024,7 +3024,7 @@ __metadata:
     "@nuxtjs/eslint-config-typescript": ^6.0.1
     "@nuxtjs/eslint-module": ^3.0.2
     "@nuxtjs/fontawesome": ^1.1.2
-    "@nuxtjs/gtm": ^2.4.0
+    "@nuxtjs/gtm": 2.3.2
     "@nuxtjs/markdownit": ^2.0.0
     "@nuxtjs/pwa": ^3.3.5
     "@nuxtjs/style-resources": ^1.2.0
