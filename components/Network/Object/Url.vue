@@ -113,7 +113,7 @@ export default Vue.extend({
 
         for (const domain of GATEWAYS_TRUSTED) {
           if (this.shareURI.href().includes(domain)) {
-            this.$bus.emit(`${this.cid}.gateway.status`, this.shareURI)
+            this.$events.emit(`${this.cid}.gateway.status`, this.shareURI)
           }
         }
       } catch (err) {

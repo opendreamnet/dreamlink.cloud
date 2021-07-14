@@ -14,7 +14,9 @@
           <div class="flex gap-3">
             <!-- Peers -->
             <Button
-              v-if="joined" v-tooltip="'Peers in the room.'" class="button--sm"
+              v-if="joined"
+              v-tooltip="'Peers in the room.'"
+              class="button--sm"
               @click="$refs.peersDialog.open()">
               <span class="icon"><FontAwesomeIcon icon="users" /></span>
               <span>{{ numPeers }}</span>
@@ -22,7 +24,9 @@
 
             <!-- Settings -->
             <Button
-              v-if="joined" v-tooltip="'Settings'" class="button--sm"
+              v-if="joined"
+              v-tooltip="'Settings'"
+              class="button--sm"
               @click="$refs.settingsDialog.open()">
               <span class="icon"><FontAwesomeIcon icon="cog" /></span>
             </Button>
@@ -43,7 +47,9 @@
 
         <!-- Messages -->
         <ChatMessage
-          v-for="(record, it) of records" :key="it" :record="record"
+          v-for="(record, it) of records"
+          :key="it"
+          :record="record"
           :secret-key="masterKey" />
       </div>
 
@@ -55,7 +61,9 @@
       <template #footer>
         <form class="room__input" @submit.prevent="sendMessage">
           <input
-            v-model="message" class="input" :placeholder="`Message #${roomId}`"
+            v-model="message"
+            class="input"
+            :placeholder="`Message #${roomId}`"
             required>
 
           <Button :loading="messageLoading || !joined">
@@ -65,9 +73,13 @@
       </template>
     </Box>
 
-    <DialogChatPeers ref="peersDialog" :peers="peers" />
-    <DialogChatAbout ref="aboutDialog" />
-    <DialogChatSettings ref="settingsDialog" :secret-key.sync="masterKey" :room-id="roomId" />
+    <!-- Dialogs -->
+    <LazyDialogChatAbout ref="aboutDialog" />
+    <LazyDialogChatPeers v-if="joined" ref="peersDialog" :peers="peers" />
+    <LazyDialogChatSettings v-if="joined"
+                            ref="settingsDialog"
+                            :secret-key.sync="masterKey"
+                            :room-id="roomId" />
   </div>
 </template>
 
@@ -243,7 +255,7 @@ export default Vue.extend({
       try {
         this.messageLoading = true
 
-        const payload = encryptMessage(this.$settings.username, this.message, this.masterKey)
+        const payload = encryptMessage(this.$accessor.settings.username, this.message, this.masterKey)
 
         await this.$ipfs.api.pubsub.publish(this.topic, payload)
 

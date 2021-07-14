@@ -1,10 +1,17 @@
 <template>
   <div class="layout">
+    <!-- Header -->
     <LayoutHeader />
 
+    <!-- Body -->
     <Nuxt class="container body" />
 
+    <!-- Footer -->
     <LayoutFooter />
+
+    <!-- Global Dialogs -->
+    <LazyDialogNode />
+    <LazyDialogSearch />
   </div>
 </template>
 

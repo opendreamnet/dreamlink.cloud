@@ -4,21 +4,18 @@ import { DateTime } from 'luxon'
 import BigInt from 'jsbi'
 import { accessorType } from '~/store'
 import { Storage } from '~/modules/storage'
-import { Settings } from '~/modules/settings'
 
 declare module '@nuxt/types' {
   interface Context {
     $ipfs: IPFS
     $storage: Storage
-    $bus: EventEmitter
-    $settings: Settings
+    $events: EventEmitter
   }
 
   interface NuxtAppOptions {
     $ipfs: IPFS
     $storage: Storage
-    $bus: EventEmitter
-    $settings: Settings
+    $events: EventEmitter
   }
 
   interface NuxtAppOptions {
@@ -30,8 +27,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $ipfs: IPFS
     $storage: Storage
-    $bus: EventEmitter
-    $settings: Settings
+    $events: EventEmitter
   }
 
   interface Vue {
@@ -43,8 +39,7 @@ declare module 'vuex/types/index' {
   interface Store<S> {
     $ipfs: IPFS
     $storage: Storage
-    $bus: EventEmitter
-    $settings: Settings
+    $events: EventEmitter
   }
 }
 

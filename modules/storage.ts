@@ -1,5 +1,5 @@
 import { isNil } from 'lodash'
-import { bus } from './bus'
+import { events } from './bus'
 import { ipfs } from './ipfs'
 
 export class Storage {
@@ -21,9 +21,9 @@ export class Storage {
     }
 
     ipfs.on('ready', this.check.bind(this))
-    bus.on('upload.success', this.check.bind(this))
-    bus.on('node.gc', this.check.bind(this))
-    bus.on('node.download', this.check.bind(this))
+
+    events.on('upload.success', this.check.bind(this))
+    events.on('storage.refresh', this.check.bind(this))
   }
 
   /*

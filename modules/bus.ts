@@ -1,5 +1,4 @@
 import EventEmitter from 'events'
+export const events = new EventEmitter()
 
-export const bus = new EventEmitter()
-
-bus.setMaxListeners(30)
+events.setMaxListeners(50)

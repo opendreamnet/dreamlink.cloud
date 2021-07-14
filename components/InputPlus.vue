@@ -1,9 +1,11 @@
 <template>
   <div class="plus">
+    <!-- Status -->
     <div v-if="status !== null" class="rounded-l plus__box">
       <Light v-model="status" :ping="false" />
     </div>
 
+    <!-- Input -->
     <input
       ref="input"
       :value="value"
@@ -14,14 +16,20 @@
       @input="$emit('update', $event.target.value)">
 
     <div
-      v-if="copy" ref="copyButton" v-tooltip="'Copy'"
-      class="plus__box plus__box--button" :data-clipboard-text="value">
+      v-if="copy"
+      ref="copyButton"
+      v-clipboard="value"
+      v-tooltip="'Copy'"
+      class="plus__box plus__box--button">
       <FontAwesomeIcon icon="clone" />
     </div>
 
     <a
-      v-if="open" v-tooltip="'Open'" :href="value"
-      target="_blank" class="rounded-r plus__box plus__box--button">
+      v-if="open"
+      v-tooltip="'Open'"
+      :href="value"
+      target="_blank"
+      class="rounded-r plus__box plus__box--button">
       <FontAwesomeIcon icon="external-link-square-alt" />
     </a>
   </div>
@@ -29,7 +37,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ClipboardJS from 'clipboard'
 
 export default Vue.extend({
   model: {
@@ -58,13 +65,6 @@ export default Vue.extend({
       type: [String, Object],
       default: null
     }
-  },
-
-  mounted() {
-    if (this.copy && this.$refs.copyButton) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const clipboard = new ClipboardJS(this.$refs.copyButton as Element)
-    }
   }
 })
 </script>
@@ -75,7 +75,8 @@ export default Vue.extend({
 }
 
 .plus__box {
-  @apply bg-menus-dark px-3 shadow-sm transition-colors;
+  @apply bg-menus-dark px-3 shadow-sm text-sm transition-colors;
+  @apply border-input-dark border-t border-b border-r;
   @include centered();
 
   &.plus__box--button {

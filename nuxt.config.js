@@ -41,9 +41,9 @@ export default setNuxtConfig({
     // https://image.nuxtjs.org/
     '@nuxt/image',
     // https://github.com/nuxt-community/markdownit-module
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
     // https://typed-vuex.roe.dev/
-    // 'nuxt-typed-vuex'
+    'nuxt-typed-vuex'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -75,7 +75,16 @@ export default setNuxtConfig({
         'faUsers',
         'faComments',
         'faCog',
-        'faSpinner'
+        'faSpinner',
+        'faFileVideo',
+        'faFileAudio',
+        'faFileImage',
+        'faFileAlt',
+        'faFilePdf',
+        'faFolder',
+        'faTrashAlt',
+        'faStar',
+        'faDatabase'
       ]
     }
   },

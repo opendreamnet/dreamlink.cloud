@@ -4,7 +4,9 @@
       <div class="search">
         <form class="search__form" @submit.prevent="search">
           <input
-            v-model="value" placeholder="Search..." class="flex-1 input input--lg"
+            v-model="value"
+            placeholder="Search..."
+            class="flex-1 input input--lg"
             required>
 
           <select v-model="type" class="rounded-none input input--lg">
@@ -38,8 +40,11 @@
 
         <div v-if="payload && payload.total > 0" class="search__results">
           <NuxtLink
-            v-for="item in payload.hits" :key="item.hash" :to="{ path: '/explorer', query: { cid: item.hash, filename: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
-            target="_blank" class="item">
+            v-for="item in payload.hits"
+            :key="item.hash"
+            :to="{ path: '/explorer', query: { cid: item.hash, filename: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
+            target="_blank"
+            class="item">
             <div class="title" v-html="item.title" />
 
             <div class="extra">
@@ -65,12 +70,16 @@
 
           <div class="right">
             <Button
-              class="button--xs" :disabled="page === 0" :loading="loading"
+              class="button--xs"
+              :disabled="page === 0"
+              :loading="loading"
               @click.prevent="page -= 1">
               &#x3C;
             </Button>
             <Button
-              class="button--xs" :disabled="page === pageCount" :loading="loading"
+              class="button--xs"
+              :disabled="page === pageCount"
+              :loading="loading"
               @click.prevent="page += 1">
               &#x3E;
             </Button>

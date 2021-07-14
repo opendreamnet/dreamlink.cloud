@@ -10,7 +10,9 @@
 
     <li>
       <InputPlus
-        :value="cid" readonly input-class="input--sm"
+        :value="cid"
+        readonly
+        input-class="input--sm"
         class="my-0" />
     </li>
   </ul>

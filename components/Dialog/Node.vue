@@ -47,8 +47,11 @@
           </Button>
 
           <Button
-            v-if="$ipfs.ready" v-tooltip="storageTooltip" class="button--primary button--sm"
-            :loading="gcLoading" @click="freeUp">
+            v-if="$ipfs.ready"
+            v-tooltip="storageTooltip"
+            class="button--primary button--sm"
+            :loading="gcLoading"
+            @click="freeUp">
             Free up storage
           </Button>
         </div>
@@ -85,14 +88,6 @@ export default Dialog.extend({
     }
   },
 
-  mounted() {
-    this.$bus.on('node.dialog', this.open)
-  },
-
-  beforeDestroy() {
-    this.$bus.off('node.dialog', this.open)
-  },
-
   methods: {
     async freeUp() {
       this.gcLoading = true
@@ -107,7 +102,7 @@ export default Dialog.extend({
       // eslint-disable-next-line no-console
       console.log(count, 'objects have been deleted successfully.')
 
-      this.$bus.emit('node.gc')
+      this.$events.emit('node.gc')
       this.gcLoading = false
     }
   }

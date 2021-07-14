@@ -1,13 +1,17 @@
 <template>
   <div class="explorer">
+    <!-- Preview -->
     <NetworkObjectPreview :cid="cid" :filename="filename" class="explorer__preview" />
 
+    <!-- Title -->
     <div class="explorer__info">
       <h1 class="title">
         {{ filename || cid }}
       </h1>
 
-      <h2 v-if="filename" v-tooltip="'This is how your file is identified on the network and is necessary to download it.'" class="text-blue">
+      <h2 v-if="filename"
+          v-tooltip="'CID: This is how your file is identified on the network. Click to copy.'"
+          v-clipboard="cid">
         {{ cid }}
       </h2>
     </div>
@@ -24,6 +28,7 @@
 
       <div class="explorer__right">
         <NetworkObjectDetails :cid="cid" :filename="filename" />
+        <NetworkObjectActions :cid="cid" :filename="filename" />
       </div>
     </div>
   </div>
@@ -35,14 +40,12 @@ import { MetaInfo } from 'vue-meta/types'
 import isIPFS from 'is-ipfs'
 
 export default Vue.extend({
-  middleware: ({ route, redirect, $ipfs }) => {
+  middleware: ({ route, redirect }) => {
     const { query } = route
 
     if (!query.cid || !isIPFS.cid(query.cid)) {
       return redirect('/')
     }
-
-    $ipfs.add(query.cid as string)
   },
 
   head(): MetaInfo {
@@ -65,12 +68,6 @@ export default Vue.extend({
     },
     filename(): string {
       return this.$route.query.filename as string
-    }
-  },
-
-  methods: {
-    openNodeDialog() {
-      this.$bus.emit('node.dialog')
     }
   }
 })
@@ -97,7 +94,7 @@ export default Vue.extend({
   }
 
   h2 {
-    @apply text-snow-darker break-words;
+    @apply text-snow-darker text-sm break-words cursor-pointer;
   }
 }
 

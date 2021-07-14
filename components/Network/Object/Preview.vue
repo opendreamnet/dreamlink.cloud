@@ -67,7 +67,8 @@
       </h2>
     </div>
 
-    <DialogPersistence ref="dialogPersistence" />
+    <!-- Dialogs -->
+    <LazyDialogPersistence ref="dialogPersistence" />
   </div>
 </template>
 

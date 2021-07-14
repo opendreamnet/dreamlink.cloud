@@ -9,7 +9,9 @@
 
         <p>
           <textarea
-            v-model="paste" class="input" autofocus
+            v-model="paste"
+            class="input"
+            autofocus
             required />
           <span class="hint">Remember that things in IPFS cannot be deleted. Do not share private information!</span>
         </p>
@@ -32,8 +34,14 @@
 import Vue from 'vue'
 import Swal from 'sweetalert2'
 
+interface IData {
+  filename: string | null
+  paste: string | null
+  loading: boolean
+}
+
 export default Vue.extend({
-  data: () => ({
+  data: (): IData => ({
     filename: null,
     paste: null,
     loading: false
@@ -48,8 +56,16 @@ export default Vue.extend({
       try {
         this.loading = true
 
-        const cid = await this.$ipfs.upload(this.paste, { pin: false })
+        const cid = await this.$ipfs.upload(this.paste, { pin: true })
         const filename = this.filename || `${cid}.txt`
+
+        this.$accessor.pins.create({
+          cid,
+          name: filename,
+          size: new Blob([this.paste]).size
+        })
+
+        this.$events.emit('upload.success')
 
         this.$router.push(`/explorer?cid=${cid}&filename=${filename}`)
       } catch (err) {

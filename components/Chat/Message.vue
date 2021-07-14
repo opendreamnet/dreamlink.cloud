@@ -69,7 +69,7 @@ export default Vue.extend({
     },
 
     canShow(): boolean {
-      if (!this.content && this.$settings.ignoreInvalid) {
+      if (!this.content && this.$accessor.settings.ignoreInvalid) {
         return false
       }
 

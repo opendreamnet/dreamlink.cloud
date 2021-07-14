@@ -1,0 +1,1 @@
+export { storageDb } from './storage'

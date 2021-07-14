@@ -1,9 +1,17 @@
 <template>
   <footer class="footer">
     <div class="container">
+      <!-- Copyright -->
       <div class="footer__copyright">
         <p>
-          <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="version">v{{ $config.version }}</a>
+          <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/CHANGELOG.md" target="_blank" class="version">v{{ $config.version }}</a>
+        </p>
+
+        <p v-if="$accessor.ipfs.webCID.length > 0"
+           v-tooltip="`${$config.name} CID. Click to copy.`"
+           v-clipboard="$accessor.ipfs.webCID"
+           class="cid">
+          {{ $accessor.ipfs.webCID }}
         </p>
 
         <p>
@@ -15,8 +23,51 @@
         </p>
       </div>
 
-      <div class="w-16 h-16" />
+      <div class="w-10 h-10" />
 
+      <!-- Gateways -->
+      <nav v-if="$accessor.ipfs.webCID.length > 0" class="nav">
+        <a href="https://www.dreamlink.cloud" target="_blank" class="item">
+          dreamlink.cloud
+        </a>
+
+        <a :href="`https://dweb.link/ipfs/${$accessor.ipfs.webCID}`" target="_blank" class="item">
+          dweb.link
+        </a>
+
+        <a :href="`https://infura-ipfs.io/ipfs/${$accessor.ipfs.webCID}`" target="_blank" class="item">
+          infura-ipfs.io
+        </a>
+
+        <a :href="`ipfs://${$accessor.ipfs.webCID}`" target="_blank" class="item">
+          ipfs://
+        </a>
+      </nav>
+
+      <!-- IPFS -->
+      <nav class="nav">
+        <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank" class="item">
+          What is IPFS?
+        </a>
+
+        <a href="https://docs.ipfs.io/concepts/persistence/" target="_blank" class="item">
+          What is a pinned file?
+        </a>
+
+        <a href="https://docs.ipfs.io/concepts/privacy/" target="_blank" class="item">
+          IPFS and privacy
+        </a>
+
+        <a href="https://docs.ipfs.io/install/ipfs-companion/" target="_blank" class="item">
+          IPFS browser extension
+        </a>
+
+        <a href="https://docs.ipfs.io/install/ipfs-desktop/" target="_blank" class="item">
+          IPFS on your desktop
+        </a>
+      </nav>
+
+      <!-- Links -->
       <nav class="nav">
         <NuxtLink to="/docs/tos" class="item">
           Terms of Service
@@ -28,6 +79,10 @@
 
         <a href="mailto:hello@opendreamnet.com" class="item">
           Contact
+        </a>
+
+        <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="item">
+          Github
         </a>
 
         <a href="https://twitter.com/opendreamnetdev" target="_blank" class="item">
@@ -48,9 +103,9 @@
   }
 
   .container {
-    @apply flex flex-col-reverse justify-between;
+    @apply flex flex-col-reverse justify-between gap-6;
 
-    @screen md {
+    @screen lg {
       @apply flex-row;
     }
   }
@@ -69,10 +124,8 @@
 }
 
 .footer__copyright {
-  p {
-    @apply mb-1;
-  }
-  
+  @apply space-y-1;
+
   a {
     @apply text-white;
 
@@ -80,9 +133,14 @@
       @apply text-primary underline;
     }
   }
-}
 
-.version {
-  @apply font-semibold;
+  .version {
+    @apply font-semibold;
+  }
+
+  .cid {
+    @apply text-xs text-snow-darker cursor-default;
+    @apply mb-6 #{!important};
+  }
 }
 </style>

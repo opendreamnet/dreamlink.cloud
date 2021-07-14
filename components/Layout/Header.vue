@@ -12,7 +12,7 @@
           Share
         </NuxtLink>
 
-        <div v-tooltip="'Search for files or folders thanks to ipfs-search.com'" class="item" @click="$refs.searchDialog.open()">
+        <div v-tooltip="'Search for files or folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
           Search
         </div>
 
@@ -24,7 +24,7 @@
           Chat
         </NuxtLink>
 
-        <NuxtLink to="/about" class="item">
+        <NuxtLink to="/app/about" class="item">
           About
         </NuxtLink>
       </div>
@@ -33,8 +33,6 @@
         <NetworkStatus />
       </div>
     </nav>
-
-    <DialogSearch ref="searchDialog" />
   </header>
 </template>
 
@@ -64,7 +62,7 @@ export default Vue.extend({
 }
 
 .nav__center {
-  @apply flex flex-wrap justify-between items-center gap-9;
+  @apply flex flex-wrap justify-between items-center gap-12;
 }
 
 .nav__right {

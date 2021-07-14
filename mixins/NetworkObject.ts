@@ -5,8 +5,17 @@ import { Record } from '@opendreamnet/ipfs'
 import { downloadBlob } from '../modules/utils'
 
 interface Data {
+  /**
+   * Instance with object information.
+   */
   record: Record | null
+  /**
+   * URI instance of the first trusted gateway to have the object.
+   */
   gatewayURI: URI | null
+  /**
+   * True if the object is being downloaded using the node.
+   */
   nodeDownloadLoading: boolean
   _fetchTimeout: NodeJS.Timeout | null
 }
@@ -32,7 +41,7 @@ export default Vue.extend({
 
   created() {
     this.fetchRecord()
-    this.$bus.on(`${this.cid}.gateway.status`, this.onGatewayStatus)
+    this.$events.on(`${this.cid}.gateway.status`, this.onGatewayStatus)
   },
 
   beforeDestroy() {
@@ -40,29 +49,44 @@ export default Vue.extend({
       clearTimeout(this._fetchTimeout)
     }
 
-    this.$bus.off(`${this.cid}.gateway.status`, this.onGatewayStatus)
+    this.$events.off(`${this.cid}.gateway.status`, this.onGatewayStatus)
   },
 
   methods: {
     /**
-     * Try to fetch the record with the information from the IPFS object.
+     * Try to fetch the record.
      */
     async fetchRecord() {
       if (this.record) {
         return
       }
 
-      this._fetchTimeout = null
-
       try {
-        this.record = await this.$ipfs.add(this.cid, { name: this.filename })
+        this.record = await this.$ipfs.add(this.cid, {
+          name: this.filename,
+          timeout: 300000 // 5 minutes
+        })
+
+        // Debug
+        if (process.env.NODE_ENV !== 'production') {
+          // @ts-ignore
+          window.ipfsRecord = this.record
+        }
       } catch(err) {
-        console.warn('[NetworkObject] Failed to obtain the record, trying again.')
+        // @ts-ignore
+        console.warn(`[NetworkObject][${this.$options._componentTag}] Failed to fetch the record:`, err.message)
         this.$ipfs.remove(this.cid)
-        this._fetchTimeout = setTimeout(this.fetchRecord.bind(this), 500)
+
+        if (this.$el) {
+          // The page is still active, we can try again.
+          this._fetchTimeout = setTimeout(this.fetchRecord.bind(this), 1000)
+        }
       }
     },
 
+    /**
+     * Download the object using the IPFS node.
+     */
     async nodeDownload() {
       if (!this.record || this.record.isDirectory || !this.record.file) {
         return
@@ -71,12 +95,10 @@ export default Vue.extend({
       try {
         this.nodeDownloadLoading = true
 
-        const blob = await this.record.file.getBlob()
+        await this.record.file.downloadAsBlob(this.filename || this.cid)
 
-        downloadBlob(blob, this.filename || this.cid)
-
-        this.$bus.emit('node.download')
-      } catch (err){
+        this.$events.emit('node.download')
+      } catch (err ){
       } finally {
         this.nodeDownloadLoading = false
       }

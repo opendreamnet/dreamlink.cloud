@@ -3,7 +3,7 @@
     <!-- Hero -->
     <div class="home__hero">
       <h1 class="mb-2 text-4xl title">
-        Share files using <span class="text-ipfs">IPFS</span>.
+        Share files using <span class="text-ipfs">IPFS</span>
       </h1>
 
       <h2 class="text-lg text-snow-dark">
@@ -12,8 +12,11 @@
     </div>
 
     <input
-      v-show="false" ref="files" type="file"
-      multiple @change="upload">
+      v-show="false"
+      ref="files"
+      type="file"
+      multiple
+      @change="upload">
 
     <input
       v-show="false"
@@ -27,23 +30,7 @@
 
     <div class="home__content">
       <!-- Methods -->
-      <div class="home__methods">
-        <Button :class="{ 'item--active': method === 0 }" @click.prevent="method = 0">
-          Upload
-        </Button>
-
-        <Button v-tooltip="'Get an IPFS record by its CID.'" :class="{ 'item--active': method === 1 }" @click.prevent="method = 1">
-          CID
-        </Button>
-        <!--
-          <Button v-tooltip="'Get the latest version of an IPFS object with its IPNS.'" :class="{ 'item--active': method === 2 }" @click.prevent="method = 2">
-            IPNS
-          </Button>
-          -->
-        <Button v-tooltip="'Get an IPFS record using its link to the DNS.'" :class="{ 'item--active': method === 3 }" @click.prevent="method = 3">
-          DNSLink
-        </Button>
-      </div>
+      <ButtonsMenu v-model="method" class="home__methods" :data="{ 'Upload': 0, 'CID': 1, 'DNSLink': 3 }" />
 
       <!-- Upload -->
       <section v-show="method === 0" class="home__section">
@@ -53,7 +40,7 @@
             <span>Add files</span>
           </Button>
 
-          <Button class="button-xl" @click="$refs.directory.click()">
+          <Button v-if="hasDirectorySupport" class="button-xl" @click="$refs.directory.click()">
             <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
             <span>Add folder</span>
           </Button>
@@ -62,10 +49,13 @@
         <!-- Error -->
         <div v-else-if="$ipfs.error" class="home__buttons">
           <Button
-            key="error-button" v-tooltip="'Your IPFS node has not started correctly.'" class="button-xl button--danger"
-            @click="$bus.emit('node.dialog')">
+            key="error-button"
+            v-tooltip="'Your IPFS node has not started correctly.'"
+            el="NuxtLink"
+            to="/app/profile"
+            class="button-xl button--danger">
             <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
-            <span>Node Error</span>
+            <span>IPFS Error</span>
           </Button>
         </div>
 
@@ -79,7 +69,9 @@
       <section v-show="method === 1" class="home__section">
         <form @submit.prevent="openCID()">
           <input
-            v-model="cid" placeholder="CID" class="input"
+            v-model="cid"
+            placeholder="CID"
+            class="input"
             required>
 
           <input v-model="filename" placeholder="Object name (Optional)" class="input">
@@ -94,7 +86,9 @@
       <section v-show="method === 2" class="home__section">
         <form @submit.prevent="openIPNS()">
           <input
-            v-model="ipns" placeholder="IPNS" class="input"
+            v-model="ipns"
+            placeholder="IPNS"
+            class="input"
             required>
 
           <input v-model="filename" placeholder="Object name (Optional)" class="input">
@@ -109,7 +103,9 @@
       <section v-show="method === 3" class="home__section">
         <form v-if="$ipfs.ready" @submit.prevent="openDNS()">
           <input
-            v-model="dnslink" placeholder="www.dreamlink.cloud" class="input"
+            v-model="dnslink"
+            placeholder="www.dreamlink.cloud"
+            class="input"
             required>
 
           <Button class="button--sm">
@@ -129,6 +125,7 @@
 <script lang="ts">
 import queryString, { ParsedQuery } from 'query-string'
 import Vue from 'vue'
+import { isString, reduce } from 'lodash'
 import isIPFS from 'is-ipfs'
 import Swal from 'sweetalert2'
 
@@ -145,6 +142,20 @@ export default Vue.extend({
     query: ''
   }),
 
+  computed: {
+    hasDirectorySupport(): boolean {
+      const input = document.createElement('input')
+
+      if ('webkitdirectory' in input ||
+              'mozdirectory' in input ||
+              'odirectory' in input ||
+              'msdirectory' in input ||
+              'directory' in input) { return true }
+
+      return false
+    }
+  },
+
   methods: {
     async upload(event: Event) {
       const input = event.target as HTMLInputElement
@@ -154,9 +165,11 @@ export default Vue.extend({
         return
       }
 
-      const query = {
+      const query: ParsedQuery = {
         uploader: 'true'
-      } as ParsedQuery
+      }
+
+      let size: number | undefined
 
       try {
         Swal.fire({
@@ -168,17 +181,43 @@ export default Vue.extend({
         })
 
         if (files.length === 1) {
-          const file = files[0]
-
-          query.cid = await this.$ipfs.upload(file, { pin: true })
-          query.filename = file.name
+          query.filename = files[0].name
+          size = files[0].size
+          query.cid = await this.$ipfs.upload(files[0], { pin: true })
         } else {
-          query.cid = await this.$ipfs.upload(files, { pin: true, wrapWithDirectory: true })
+          // @ts-ignore
+          const relativePath: string | undefined = files[0].webkitRelativePath
+
+          size = reduce(files, (accumulator, value) => {
+            return accumulator + value.size
+          }, 0)
+
+          if (relativePath) {
+            // This is a directory, we can take the name out and pin it.
+            query.filename = relativePath.split('/')[0]
+            query.cid = await this.$ipfs.upload(files, { pin: true })
+
+            await this.$accessor.pins.create({
+              cid: query.cid,
+              name: isString(query.filename) ? query.filename : undefined,
+              size
+            })
+          } else {
+            // This is multiple files selected, we must get the name from the CID and pin only the virtual directory CID.
+            query.cid = await this.$ipfs.upload(files, { pin: false, wrapWithDirectory: true })
+            query.filename = query.cid.substring(query.cid.length - 10)
+
+            await this.$accessor.pins.pin({
+              cid: query.cid,
+              name: query.filename,
+              size
+            })
+          }
         }
 
         Swal.close()
 
-        this.$bus.emit('upload.success')
+        this.$events.emit('upload.success')
         this.$router.push('/explorer?' + queryString.stringify(query, { skipNull: true }))
       } catch (err) {
         Swal.fire({
@@ -262,14 +301,6 @@ export default Vue.extend({
 
 .home__hero {
   @apply text-center;
-
-  h1 {
-    @apply text-4xl mb-2;
-  }
-
-  h2 {
-    @apply text-lg text-snow-dark;
-  }
 }
 
 .home__content {

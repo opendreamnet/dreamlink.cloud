@@ -19,7 +19,7 @@
           <label class="label">Username:</label>
           <input
             ref="username"
-            :value="$settings.username"
+            :value="$accessor.settings.username"
             class="input"
             placeholder="Username"
             maxlength="20"
@@ -29,7 +29,9 @@
         <p>
           <label class="label">Encryption Key:</label>
           <input
-            ref="secretKey" :value="secretKey" class="input"
+            ref="secretKey"
+            :value="secretKey"
+            class="input"
             required>
           <span class="hint">Only users who have the same encryption key will be able to view your messages.</span>
         </p>
@@ -37,8 +39,11 @@
         <p class="flex items-center gap-3">
           <span class="checkbox">
             <input
-              id="ignoreInvalid" ref="ignoreInvalid" :value="true"
-              :checked="$settings.ignoreInvalid" type="checkbox">
+              id="ignoreInvalid"
+              ref="ignoreInvalid"
+              :value="true"
+              :checked="$accessor.settings.ignoreInvalid"
+              type="checkbox">
             <label for="ignoreInvalid" />
           </span>
 
@@ -101,11 +106,11 @@ export default Dialog.extend({
       const username = (this.$refs.username as HTMLInputElement).value
 
       if (username.length <= MAX_USERNAME_LENGTH) {
-        this.$settings.setUsername(username)
+        this.$accessor.settings.setUsername(username)
       }
 
       // Ignore invalid messages
-      this.$settings.setIgnoreInvalid((this.$refs.ignoreInvalid as HTMLInputElement).checked)
+      this.$accessor.settings.setIgnoreInvalid((this.$refs.ignoreInvalid as HTMLInputElement).checked)
 
       // Close dialog
       this.close()

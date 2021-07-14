@@ -9,34 +9,25 @@
 
     <div v-if="record" class="prose details">
       <p>
-        <span class="title"><Tooltip content="This is how your file is identified on the network and is necessary to download it." />  CID:</span>
-        <InputPlus input-class="input--sm" :value="record.cid" />
-      </p>
-
-      <p>
         <span class="title">Size:</span>
         <span class="value">{{ record.length | prettyBytes }}</span>
       </p>
 
-      <p>
+      <p v-if="record.isDirectory">
         <span class="title">Files:</span>
         <span class="value">{{ record.files.length }}</span>
       </p>
 
-      <div class="details__actions">
-        <Button
-          v-if="!record.isDirectory" v-tooltip="downloadTooltip" :loading="nodeDownloadLoading"
-          @click="nodeDownload">
-          <span class="icon"><FontAwesomeIcon icon="save" /></span>
-          <span>Local Download</span>
-        </Button>
-      </div>
+      <p v-if="record.isStored !== undefined" v-tooltip="'This file is taking up space on your device and you are contributing to its distribution.'">
+        <span class="title">In storage:</span>
+        <span class="value">{{ record.isStored ? 'Yes' : 'No' }}</span>
+      </p>
     </div>
 
-    <div v-else-if="$ipfs.error" class="flex justify-center" @click="$bus.emit('node.dialog')">
-      <Button class="button--danger">
+    <div v-else-if="$ipfs.error" class="flex justify-center">
+      <Button el="NuxtLink" to="/app/profile" class="button--danger">
         <span class="icon"><FontAwesomeIcon icon="exclamation-triangle" /></span>
-        <span>Node Error</span>
+        <span>IPFS Error</span>
       </Button>
     </div>
 
@@ -57,11 +48,6 @@ export default NetworkObject.extend({
 - If the file is not in your storage then this may take several minutes but you will increase the availability of the file by starting to distributing it.
 - Otherwise you will download the file instantly.`)
     }
-  },
-
-  created() {
-    // eslint-disable-next-line promise/catch-or-return,promise/always-return
-    this.$ipfs.add(this.cid).then((record) => { this.record = record })
   }
 })
 </script>
@@ -73,15 +59,7 @@ export default NetworkObject.extend({
   }
 
   .value {
-    @apply text-sm;
-  }
-}
-
-.details__actions {
-  @apply space-y-3;
-
-  .button {
-    @apply block w-full;
+    @apply text-sm text-snow-dark;
   }
 }
 </style>

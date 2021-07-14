@@ -85,7 +85,11 @@
 
           <p>The total storage space depends on your web browser and does not always mark the correct amount. (It is usually much larger)</p>
 
-          <p>In case you need more space you can always use the <a href="#" @click.prevent="$bus.emit('node.dialog')">"Free up storage"</a> button to delete all the files you have uploaded in the past or you can access {{ $config.name }} in another web browser or gateway.</p>
+          <p>
+            In case you need more space you can always use the <NuxtLink to="/app/profile">
+              "Free up storage"
+            </NuxtLink> button to delete all the files you have uploaded in the past or you can access {{ $config.name }} in another web browser or gateway.
+          </p>
         </details>
       </div>
     </Box>

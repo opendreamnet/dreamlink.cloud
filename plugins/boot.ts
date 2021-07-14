@@ -3,8 +3,7 @@ import { Plugin } from '@nuxt/types'
 import ThemeBaseMixin from '@opendreamnet/nuxtjs-base/mixins/BaseMixin'
 import { isNil } from 'lodash'
 import BaseMixin from '../mixins/BaseMixin'
-import { bus } from '../modules/bus'
-import { settings } from '../modules/settings'
+import { events } from '../modules/bus'
 
 // Base Mixins
 Vue.mixin(Vue.extend(ThemeBaseMixin))
@@ -18,8 +17,7 @@ if (isNil(window.BigInt)) {
 }
 
 const plugin: Plugin = async(ctx, inject) => {
-  inject('bus', bus)
-  inject('settings', Vue.observable(settings))
+  inject('events', events)
 }
 
 export default plugin
