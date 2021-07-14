@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.2...v1.6.3) (2021-07-14)
+
+
+### Bug Fixes
+
+* indexed-db error when re-uploading a file. ([e3ead19](https://github.com/opendreamnet/dreamlink.cloud/commit/e3ead19fec16f7eb9cbd5ee1b9ddbde1c0abf2dc))
+* mute error when trying to get the cid from www.dreamlink.cloud ([31d32b8](https://github.com/opendreamnet/dreamlink.cloud/commit/31d32b8165921eaba852d07bdd72049a2d4bc245))
+
+
+### Design
+
+* design improvements on mobile devices. ([b6511fb](https://github.com/opendreamnet/dreamlink.cloud/commit/b6511fbb03c1d00edee862a90abc567f2acf4eda))
+
+
+### Improvements
+
+* small improvements to the initial load speed. ([c38649a](https://github.com/opendreamnet/dreamlink.cloud/commit/c38649ae01a1b4df4b529b47693824ffc4090a19))
+
 ### [1.6.2](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.1...v1.6.2) (2021-07-14)
 
 
