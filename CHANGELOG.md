@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.2](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.1...v1.6.2) (2021-07-14)
+
+
+### Bug Fixes
+
+* the code for basic analytics was not implemented. ([4ad3b27](https://github.com/opendreamnet/dreamlink.cloud/commit/4ad3b270a46494a88b9e3ce0751089e5b60aa081))
+
 ### [1.6.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.0...v1.6.1) (2021-07-14)
 
 
