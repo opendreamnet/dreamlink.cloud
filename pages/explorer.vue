@@ -90,11 +90,21 @@ export default Vue.extend({
   @apply mb-6 text-center;
 
   h1 {
-    @apply text-2xl break-words;
+    @apply text-xl break-words;
+
+    @screen md {
+      @apply text-2xl;
+    }
   }
 
   h2 {
-    @apply text-snow-darker text-sm break-words cursor-pointer;
+    @apply text-snow-darker text-xs cursor-pointer;
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    max-width: 90vw;
+
+    @screen md {
+      @apply text-sm;
+    }
   }
 }
 

@@ -130,5 +130,7 @@ export default Dialog.extend({
 
 .peerid {
   @apply  text-snow-darker;
+  @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+  max-width: 90vw;
 }
 </style>

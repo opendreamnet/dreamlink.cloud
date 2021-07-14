@@ -113,7 +113,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .files__row {
-  @apply flex items-center gap-x-6 px-3;
+  @apply flex items-center gap-x-6 px-3 overflow-x-auto;
   @apply border-menus-lighten;
   min-height: 60px;
 
@@ -149,8 +149,12 @@ export default Vue.extend({
 }
 
 .cid {
-  @apply overflow-hidden overflow-ellipsis whitespace-nowrap;
+  @apply hidden;
   width: 390px;
+
+  @screen sm {
+    @apply block;
+  }
 }
 
 .size {
@@ -158,10 +162,14 @@ export default Vue.extend({
 }
 
 .date {
-  @apply flex-shrink-0 w-56;
+  @apply hidden flex-shrink-0 w-56;
+
+  @screen md {
+    @apply block;
+  }
 }
 
 .actions {
-  @apply flex-shrink-0 w-20;
+  @apply w-20;
 }
 </style>

@@ -80,10 +80,14 @@ export default Vue.extend({
 
   .username {
     @apply font-bold text-2xl text-white;
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    max-width: 90vw;
   }
 
   .peerid {
     @apply text-sm text-snow-darker cursor-default;
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    max-width: 90vw;
   }
 }
 

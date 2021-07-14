@@ -29,6 +29,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .menu {
   @apply flex justify-between w-full;
+  @apply overflow-x-auto;
 
   .button {
     @apply flex-1 rounded-none bg-opacity-0 text-snow-darker border-t border-b border-menus-light;

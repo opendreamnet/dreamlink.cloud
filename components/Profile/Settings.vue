@@ -4,7 +4,7 @@
       <input
         ref="username"
         :value="$accessor.settings.username"
-        class="input w-96"
+        class="max-w-xl input"
         placeholder="Username"
         maxlength="20"
         required>
