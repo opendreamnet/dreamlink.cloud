@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.0...v1.6.1) (2021-07-14)
+
+
+### Bug Fixes
+
+* uploading individual files did not save the information in pins. ([bb50b29](https://github.com/opendreamnet/dreamlink.cloud/commit/bb50b29e22dddb85fa9565731e9fe22b4a9ef4d8))
+* **deps:** bump actions/setup-node from 2.1.5 to 2.2.0 ([ce9c329](https://github.com/opendreamnet/dreamlink.cloud/commit/ce9c32917ed3728c96c2bab7b1a58e2a1d1d022b))
+
+
+### Design
+
+* changed star icon to heart when pinning. ([9bed98c](https://github.com/opendreamnet/dreamlink.cloud/commit/9bed98ccb43930749facfeef64fe0dacd32c10d5))
+
 ## [1.6.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.5.5...v1.6.0) (2021-07-14)
 
 
