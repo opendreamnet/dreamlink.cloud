@@ -40,7 +40,7 @@ export default setNuxtConfig({
     // https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
     // https://image.nuxtjs.org/
-    '@nuxt/image',
+    // '@nuxt/image',
     // https://github.com/nuxt-community/markdownit-module
     '@nuxtjs/markdownit',
     // https://typed-vuex.roe.dev/
@@ -87,7 +87,8 @@ export default setNuxtConfig({
         'faStar',
         'faHeart',
         'faHeartBroken',
-        'faDatabase'
+        'faDatabase',
+        'faCaretDown'
       ]
     }
   },
