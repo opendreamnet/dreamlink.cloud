@@ -3,27 +3,26 @@ name: Deploy
 on:
   workflow_dispatch:
   push:
-    tags:
-      - v*
+    tags: [ v* ]
 
 env:
   NODE_ENV: production 
 
 jobs:
-  ci:
+  deploy:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node: [14]
+        os: [ ubuntu-latest ]
+        node: [ 14 ]
 
     steps:
       - name: 📁 Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: 📦 Cache node_modules
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2
         env:
           cache-name: dreamlink-cache2
         with:
@@ -38,7 +37,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
 
-      - name: 🏗 Setup NodeJS
+      - name: 🧰 Setup NodeJS
         uses: actions/setup-node@v2.2.0
         with:
           node-version: ${{ matrix.node }}
@@ -64,7 +63,8 @@ jobs:
           DEPLOY_CLOUDFLARE_ZONE: dreamlink.cloud
           DEPLOY_CLOUDFLARE_RECORD: _dnslink.www
 
-      - uses: actions/upload-artifact@v2
+      - name: ✨ Upload artifact
+        uses: actions/upload-artifact@v2
         with:
           name: dist
           path: dist
