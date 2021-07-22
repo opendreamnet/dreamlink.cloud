@@ -5,7 +5,11 @@
     </li>
 
     <li>
-      <a :href="`ipfs://${cid}`" target="_blank">ipfs://{{ cid }}</a>
+      <a :href="`https://infura-ipfs.io/ipfs/${cid}`" target="_blank">infura-ipfs.io</a>
+    </li>
+
+    <li>
+      <a :href="`ipfs://${cid}`" target="_blank">ipfs://</a>
     </li>
 
     <li>
