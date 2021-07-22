@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.4](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.3...v1.6.4) (2021-07-22)
+
+
+### Bug Fixes
+
+* removed some alternative options for the profile picture. ([5ecd674](https://github.com/opendreamnet/dreamlink.cloud/commit/5ecd6747f10fafac1a64b6db5802cad16c1fd032))
+
+
+### Others
+
+* dependencies upgrade ([d854acf](https://github.com/opendreamnet/dreamlink.cloud/commit/d854acfe2a4f101343b302ff8d3e01f8e85f9824))
+* removed @nuxt/image ([ccf08f9](https://github.com/opendreamnet/dreamlink.cloud/commit/ccf08f9f68a4ceb96008d6f3cf571b6d263e80f5))
+
+
+### Improvements
+
+* about page improvements ([4b52bd8](https://github.com/opendreamnet/dreamlink.cloud/commit/4b52bd82f572b250074e90208c73ff519a21a46e))
+
 ### [1.6.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.2...v1.6.3) (2021-07-14)
 
 
