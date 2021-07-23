@@ -54,6 +54,7 @@ export default setNuxtConfig({
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     // https://github.com/nuxt-community/gtm-module
+    // ! Use v2.3.2: https://github.com/nuxt-community/gtm-module/issues/118
     '@nuxtjs/gtm'
   ],
 
@@ -91,12 +92,6 @@ export default setNuxtConfig({
         'faCaretDown'
       ]
     }
-  },
-
-  // https://github.com/nuxt-community/gtm-module
-  // Used for basic analytics and displaying the coookie consent alert.
-  gtm: {
-    id: process.env.GOOGLE_TAG_MANAGER_ID
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
