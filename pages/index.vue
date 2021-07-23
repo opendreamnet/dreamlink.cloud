@@ -74,7 +74,7 @@
             class="input"
             required>
 
-          <input v-model="filename" placeholder="Object name (Optional)" class="input">
+          <input v-model="filename" placeholder="File name (Optional)" class="input">
 
           <Button class="button--sm">
             Open
@@ -91,7 +91,7 @@
             class="input"
             required>
 
-          <input v-model="filename" placeholder="Object name (Optional)" class="input">
+          <input v-model="filename" placeholder="File name (Optional)" class="input">
 
           <Button class="button--sm">
             Open

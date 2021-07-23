@@ -1,13 +1,15 @@
 <template>
-  <header class="header">
-    <nav class="container nav">
-      <div class="nav__left">
-        <div class="logo title">
+  <header eader class="header" :class="headerClass">
+    <div class="container nav">
+      <!-- Left (Logo) -->
+      <nav class="nav__left">
+        <NuxtLink to="/" class="logo title">
           {{ $config.name || 'DreamLink' }}
-        </div>
-      </div>
+        </NuxtLink>
+      </nav>
 
-      <div class="nav__center">
+      <!-- Navigation -->
+      <nav class="nav__center">
         <NuxtLink v-tooltip="'Share files or even folders on the network.'" to="/" class="item">
           Share
         </NuxtLink>
@@ -27,12 +29,13 @@
         <NuxtLink to="/app/about" class="item">
           About
         </NuxtLink>
-      </div>
+      </nav>
 
-      <div class="nav__right">
+      <!-- Status/Account -->
+      <nav class="nav__right">
         <NetworkStatus />
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -40,34 +43,66 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  data: () => ({
+    scrollTop: 0
+  }),
 
+  computed: {
+    headerClass() {
+      return {
+        'header--scrolled': this.scrollTop > 80
+      }
+    }
+  },
+
+  mounted() {
+    window.addEventListener('scroll', () => {
+      // Get the scroll position
+      this.scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    })
+  }
 })
 </script>
 
 <style lang="scss" scoped>
 .header {
-  @apply border-b border-menus py-5 px-3;
+  @apply py-5 px-3 sticky top-0 z-50;
+  @apply bg-background transition-shadow;
+  transition-timing-function: ease-in-out;
+
+  &.header--scrolled {
+    @apply shadow-lg;
+  }
+
+  @supports (backdrop-filter: blur(8px)) {
+    @apply backdrop-blur bg-opacity-95;
+  }
 }
 
 .nav {
-  @apply flex flex-col items-center gap-6;
+  @apply grid items-center gap-6;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:  "left right"
+                        "center center";
 
   @screen md {
-    @apply flex-row;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: "left center right";
   }
 }
 
 .nav__left {
-  @apply flex-1;
+  grid-area: left;
 }
 
 .nav__center {
-  @apply flex flex-wrap justify-between items-center gap-12;
+  @apply flex flex-wrap items-center justify-center gap-9;
+  grid-area: center;
 }
 
 .nav__right {
-  @apply flex-1 w-full;
-  @apply flex justify-end items-center gap-6;
+  @apply flex items-center justify-end gap-9;
+  grid-area: right;
 }
 
 .logo {
@@ -81,7 +116,8 @@ export default Vue.extend({
     @apply text-base;
   }
 
-  &:hover {
+  &:hover,
+  &.nuxt-link-exact-active {
     @apply text-primary-light;
   }
 }
