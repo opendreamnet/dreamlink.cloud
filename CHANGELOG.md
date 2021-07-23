@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.5](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.4...v1.6.5) (2021-07-23)
+
+
+### Others
+
+* dependencies update ([93782ec](https://github.com/opendreamnet/dreamlink.cloud/commit/93782ec85d61b9d6bf60f1426a9304734da18055))
+
+
+### Design
+
+* header improvements ([dc662a8](https://github.com/opendreamnet/dreamlink.cloud/commit/dc662a8172dca1571231baf84d1301edbb9ba24d))
+* search dialog fixes ([f1e015c](https://github.com/opendreamnet/dreamlink.cloud/commit/f1e015c1f9c37704d89e4528d0f02c834ed9f64c))
+
 ### [1.6.4](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.3...v1.6.4) (2021-07-22)
 
 
