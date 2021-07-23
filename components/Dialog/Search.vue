@@ -6,10 +6,10 @@
           <input
             v-model="value"
             placeholder="Search..."
-            class="flex-1 input input--lg"
+            class="flex-1 border-r-0 rounded-r-none input"
             required>
 
-          <select v-model="type" class="rounded-none input input--lg">
+          <select v-model="type" class="border-l-0 border-r-0 rounded-none input">
             <option value="any">
               Any
             </option>
@@ -33,7 +33,7 @@
             </option>
           </select>
 
-          <Button :loading="loading" class="button--lg">
+          <Button :loading="loading" class="rounded-l-none">
             Search
           </Button>
         </form>
@@ -58,7 +58,7 @@
         </div>
 
         <div v-else class="flex justify-center py-6">
-          <p>No results found.</p>
+          <p>🔍 No results found.</p>
         </div>
 
         <div v-if="payload && payload.total > 0" class="search__pagination">
@@ -200,6 +200,10 @@ export default Dialog.extend({
     },
 
     async _search() {
+      if (this.value.length === 0) {
+        return
+      }
+
       try {
         this.loading = true
 
@@ -236,12 +240,8 @@ export default Dialog.extend({
 .search__form {
   @apply flex;
 
-  .button {
-    @apply rounded-l-none;
-  }
-
   select.input {
-    width: 120px;
+    width: 130px;
   }
 }
 
