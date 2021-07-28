@@ -77,16 +77,16 @@
           Privacy Policy
         </NuxtLink>
 
+        <NuxtLink to="/docs/report" class="item">
+          Report content
+        </NuxtLink>
+
         <a href="mailto:hello@opendreamnet.com" class="item">
           Contact
         </a>
 
         <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="item">
           Github
-        </a>
-
-        <a href="https://twitter.com/opendreamnetdev" target="_blank" class="item">
-          Twitter
         </a>
       </nav>
     </div>
