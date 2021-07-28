@@ -98,3 +98,4 @@ sw.*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+/pages/playground.vue
