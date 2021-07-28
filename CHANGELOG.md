@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.6](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.5...v1.6.6) (2021-07-28)
+
+
+### Others
+
+* added information for reporting illegal content ([056c050](https://github.com/opendreamnet/dreamlink.cloud/commit/056c0508199e59eea9538bcb6940e88f689f5208))
+* added playground.vue to .gitignore ([00aa037](https://github.com/opendreamnet/dreamlink.cloud/commit/00aa037e9e51771fc98458d5eae2db267e4d6cb8))
+
 ### [1.6.5](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.4...v1.6.5) (2021-07-23)
 
 
