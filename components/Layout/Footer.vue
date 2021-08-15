@@ -8,7 +8,7 @@
         </p>
 
         <p v-if="$accessor.ipfs.webCID.length > 0"
-           v-tooltip="`${$config.name} CID. Click to copy.`"
+           v-tooltip="`Current version CID. Click to copy.`"
            v-clipboard="$accessor.ipfs.webCID"
            class="cid">
           {{ $accessor.ipfs.webCID }}

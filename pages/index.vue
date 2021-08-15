@@ -224,7 +224,8 @@ export default Vue.extend({
         Swal.close()
 
         this.$events.emit('upload.success')
-        this.$router.push('/explorer?' + queryString.stringify(query, { skipNull: true }))
+        // this.$router.push('/explorer?' + queryString.stringify(query, { skipNull: true }))
+        document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
       } catch (err) {
         Swal.fire({
           title: 'A problem has occurred',

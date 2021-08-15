@@ -10,15 +10,15 @@
 
       <!-- Navigation -->
       <nav class="nav__center">
-        <NuxtLink v-tooltip="'Share files or even folders on the network.'" to="/" class="item">
+        <NuxtLink v-tooltip="'Share files and folders.'" to="/" class="item">
           Share
         </NuxtLink>
 
-        <div v-tooltip="'Search for files or folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
+        <div v-tooltip="'Search for files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
           Search
         </div>
 
-        <NuxtLink v-tooltip="'Create and share any text format.'" to="/pastebin" class="item">
+        <NuxtLink v-tooltip="'Share any text format.'" to="/pastebin" class="item">
           Pastebin
         </NuxtLink>
 
