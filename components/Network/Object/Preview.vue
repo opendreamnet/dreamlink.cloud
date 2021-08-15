@@ -43,7 +43,7 @@
       </figure>
 
       <h1 class="title">
-        Your file is being distributed to other IPFS nodes around the world...
+        Your file is being distributed around the world...
       </h1>
 
       <h2 class="subtitle">
@@ -59,11 +59,11 @@
       </figure>
 
       <h1 class="title">
-        We are trying to load the file...
+        Loading file...
       </h1>
 
       <h2 class="subtitle">
-        Please wait a few minutes, if the file does not load it is possible that is <span class="underline cursor-pointer text-danger" @click.prevent="$refs.dialogPersistence.open()">no longer being distributed</span>.
+        I'm asking the IPFS nodes of the world for the file, give me a minute.... If the file does not load it is possible that is <span class="underline cursor-pointer text-danger" @click.prevent="$refs.dialogPersistence.open()">no longer being distributed</span>.
       </h2>
     </div>
 
