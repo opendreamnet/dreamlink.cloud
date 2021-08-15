@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.7](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.6...v1.6.7) (2021-08-15)
+
+
+### Bug Fixes
+
+* redirect to /explorer when uploading a file to have more chance of fast distribution ([4fe6282](https://github.com/opendreamnet/dreamlink.cloud/commit/4fe628207ab5c75750e44d56686fb26aebc5e3c4))
+* updated @opendreamnet/ipfs to fix a chat problem ([2a32b6a](https://github.com/opendreamnet/dreamlink.cloud/commit/2a32b6a07324bfff6d68d43e51d8d5fb0a51547f))
+
+
+### Others
+
+* moved the "pin/unpin" button to the top ([6431291](https://github.com/opendreamnet/dreamlink.cloud/commit/6431291bdf80a223e7b018ffaa8921d87ae04d07))
+* small improvements on "loading" text ([d8bd179](https://github.com/opendreamnet/dreamlink.cloud/commit/d8bd179ed0d13d9caa6009a5b6be62b19859cb3c))
+
 ### [1.6.6](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.5...v1.6.6) (2021-07-28)
 
 
