@@ -9,15 +9,6 @@
 
     <div v-if="record" class="actions">
       <Button
-        v-if="!record.isDirectory"
-        v-tooltip="'Download the file using your IPFS node. This file will start taking up space on your storage and you will also contribute to its distribution. The process may take several minutes if the file is not on your storage.'"
-        :loading="nodeDownloadLoading"
-        @click="nodeDownload">
-        <span class="icon"><FontAwesomeIcon icon="save" /></span>
-        <span>Download</span>
-      </Button>
-
-      <Button
         v-if="!record.isPinned"
         key="pin"
         v-tooltip="'Prevents the file from being deleted from your storage and keeps it in an easily accessible list in your profile.'"
@@ -36,6 +27,15 @@
         @click="unpin">
         <span class="icon"><FontAwesomeIcon icon="heart-broken" /></span>
         <span>Unpin</span>
+      </Button>
+
+      <Button
+        v-if="!record.isDirectory"
+        v-tooltip="'Download the file using your IPFS node. This file will start taking up space on your storage and you will also contribute to its distribution. The process may take several minutes if the file is not on your storage.'"
+        :loading="nodeDownloadLoading"
+        @click="nodeDownload">
+        <span class="icon"><FontAwesomeIcon icon="save" /></span>
+        <span>Download</span>
       </Button>
     </div>
 
