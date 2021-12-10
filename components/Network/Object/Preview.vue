@@ -43,7 +43,7 @@
       </figure>
 
       <h1 class="title">
-        Your file is being distributed around the world...
+        Distributing your file on the IPFS network...
       </h1>
 
       <h2 class="subtitle">
@@ -63,7 +63,7 @@
       </h1>
 
       <h2 class="subtitle">
-        I'm asking the IPFS nodes of the world for the file, give me a minute.... If the file does not load it is possible that is <span class="underline cursor-pointer text-danger" @click.prevent="$refs.dialogPersistence.open()">no longer being distributed</span>.
+        Asking the IPFS network for the file.... If it does not load, it is possible that the file is <span class="underline cursor-pointer text-danger" @click.prevent="$refs.dialogPersistence.open()">no longer available on any node</span>.
       </h2>
     </div>
 

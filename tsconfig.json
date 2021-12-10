@@ -27,12 +27,11 @@
     "types": [
       "@nuxt/types",
       "@nuxt/content",
-      "@types/node",
       "@nuxt/image",
-      "@nuxtjs/markdownit"
+      "@nuxtjs/markdownit",
+      "@types/node"
     ],
     "typeRoots": [
-      "node_modules/@types",
       "./types"
     ]
   },

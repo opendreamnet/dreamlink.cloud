@@ -1,5 +1,4 @@
 module.exports = {
-  mode: 'jit',
   presets: [
     require('@opendreamnet/nuxtjs-base/tailwind.config')
   ],

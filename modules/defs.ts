@@ -35,15 +35,17 @@ export const GATEWAYS_CORS_BLOCKED = [
   'bin.d0x.to',
   'drink.cafe',
   'ipfs.taxi',
-  'ipfs.xoqq.ch'
+  'ipfs.xoqq.ch',
+
+  // Down because copyright...
+  'odn.pw',
+  'fs.dreamlink.cloud'
 ]
 
 /**
  * Trusted gateways.
  */
 export const GATEWAYS_TRUSTED = [
-  'odn.pw',
-  'fs.dreamlink.cloud',
   'ipfs.io',
   'dweb.link',
   'infura-ipfs.io',

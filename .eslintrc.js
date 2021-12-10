@@ -5,11 +5,9 @@ module.exports = {
     node: true
   },
   extends: [
-    '@dreamnet/eslint-config-dreamnet-nuxtjs',
-    'plugin:wdio/recommended'
+    '@dreamnet/eslint-config-dreamnet-nuxtjs'
   ],
   plugins: [
-    'wdio'
   ],
   // add your custom rules here
   rules: {
@@ -18,6 +16,17 @@ module.exports = {
 
     '@typescript-eslint/no-explicit-any': 'off',
 
-    'no-console': 'off'
+    'no-console': 'off',
+
+    'vue/max-attributes-per-line': ['warn', {
+      singleline: {
+        max: 3,
+        allowFirstLine: true
+      },
+      multiline: {
+        max: 1,
+        allowFirstLine: true
+      }
+    }]
   }
 }

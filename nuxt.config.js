@@ -7,6 +7,17 @@ process.env.npm_package_displayName = pkg.displayName
 process.env.npm_package_version = pkg.version
 
 export default setNuxtConfig({
+  // Global page headers: https://go.nuxtjs.dev/config-head
+  head: {
+    link: [
+      // For Inter font
+      {
+        rel: 'preconnect',
+        href: 'https://dweb.link'
+      }
+    ]
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'dialog-polyfill/dialog-polyfill.css',
