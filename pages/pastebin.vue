@@ -4,7 +4,7 @@
       <form v-if="$ipfs.ready" class="pastebin__form" @submit.prevent="submit()">
         <p>
           <input v-model="filename" class="input" placeholder="File name (Optional)">
-          <span class="hint">Syntax Highlight in the output will depend on the file name.</span>
+          <span class="hint">Syntax Highlight in the preview will depend on the file name.</span>
         </p>
 
         <p>
@@ -13,7 +13,7 @@
             class="input"
             autofocus
             required />
-          <span class="hint">Remember that things in IPFS cannot be deleted. Do not share private information!</span>
+          <span class="hint">Remember that things in IPFS are public. Do not share private information!</span>
         </p>
 
         <p>

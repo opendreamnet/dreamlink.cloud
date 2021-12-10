@@ -11,7 +11,7 @@
           <label class="label">Share URL:</label>
           <InputPlus readonly :value="shareURL" />
           <span class="hint">
-            Chat rooms do not have moderation tools, we recommend only sharing this link to people you trust.
+            Chat rooms do not have moderation tools, we recommend sharing this link only to people you trust.
           </span>
         </p>
 
