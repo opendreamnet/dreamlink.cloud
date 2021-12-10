@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.9](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.8...v1.6.9) (2021-12-10)
+
+
+### Others
+
+* added web3storage to deploy ([0a25efc](https://github.com/opendreamnet/dreamlink.cloud/commit/0a25efc6cea09e0a8adf5f2af5a30ccb52ce146b))
+
 ### [1.6.8](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.7...v1.6.8) (2021-12-10)
 
 
