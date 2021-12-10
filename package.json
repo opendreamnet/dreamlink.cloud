@@ -137,7 +137,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "nuxt-typed-vuex": "^0.2.0",
-    "postcss": "8.3.5",
+    "postcss": "8.4.4",
     "sass": "^1.44.0",
     "standard-version": "^9.3.2"
   },

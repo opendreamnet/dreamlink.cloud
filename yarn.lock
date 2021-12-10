@@ -3093,7 +3093,7 @@ __metadata:
     mooviejs: ^1.1.5
     nuxt: ^2.15.8
     nuxt-typed-vuex: ^0.2.0
-    postcss: 8.3.5
+    postcss: 8.4.4
     pretty-bytes: ^5.6.0
     query-string: ^7.0.1
     sass: ^1.44.0
@@ -19057,18 +19057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.3.5":
-  version: 8.3.5
-  resolution: "postcss@npm:8.3.5"
-  dependencies:
-    colorette: ^1.2.2
-    nanoid: ^3.1.23
-    source-map-js: ^0.6.2
-  checksum: c73fc4825ed27396d453a942628cd8e34dd43c11b724f43f65f376d3900037736013b6446f1d9947ce5a847837cf96649e9a3f200ca2bd94a884e91e56ee1ceb
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^8.1.10, postcss@npm:^8.1.6, postcss@npm:^8.2.15, postcss@npm:^8.3.5":
+"postcss@npm:8.4.4, postcss@npm:^8.1.10, postcss@npm:^8.1.6, postcss@npm:^8.2.15, postcss@npm:^8.3.5":
   version: 8.4.4
   resolution: "postcss@npm:8.4.4"
   dependencies:
@@ -21179,13 +21168,6 @@ __metadata:
   version: 2.0.1
   resolution: "source-list-map@npm:2.0.1"
   checksum: 806efc6f75e7cd31e4815e7a3aaf75a45c704871ea4075cb2eb49882c6fca28998f44fc5ac91adb6de03b2882ee6fb02f951fdc85e6a22b338c32bfe19557938
-  languageName: node
-  linkType: hard
-
-"source-map-js@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "source-map-js@npm:0.6.2"
-  checksum: 9c8151a29e00fd8d3ba87709fdf9a9ce48313d653f4a29a39b4ae53d346ac79e005de624796ff42eff55cbaf26d2e87f4466001ca87831d400d818c5cf146a0e
   languageName: node
   linkType: hard
 
