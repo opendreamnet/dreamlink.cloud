@@ -7,21 +7,22 @@
             Congratulations, you are now:
           </h1>
 
+          <h2 class="peerid">
+            {{ privateKey.peerId }}
+          </h2>
+
           <figure class="avatar">
             <img :src="avatarURL">
           </figure>
-
-          <h2 class="peerid">
-            {{ privateKey.id }}
-          </h2>
         </div>
 
-        <Field title="Recovery Phrase" description="Keep the following words in a safe place, they will allow you to recover your new identity." hint="Once you close the dialog you will not be able to see it again.">
-          <textarea v-clipboard="privateKey.mnemonic"
-                    v-tooltip="'Click to copy.'"
-                    :value="privateKey.mnemonic"
-                    readonly
-                    class="h-20 input" />
+        <Field title="Protobuf" description="Keep the following string in a safe place, this will allow you to recover your new identity.">
+          <textarea
+            v-clipboard="protobuf"
+            v-tooltip="'Click to copy.'"
+            :value="protobuf"
+            readonly
+            class="h-20 input" />
         </Field>
       </div>
 
@@ -50,12 +51,14 @@ import Dialog from '~/mixins/Dialog'
 
 interface Data {
   privateKey: PrivateKey | null
+  protobuf: string | null,
   avatarURL: string
 }
 
 export default Dialog.extend({
   data: (): Data => ({
     privateKey: null,
+    protobuf: null,
     avatarURL: ''
   }),
 
@@ -85,11 +88,12 @@ export default Dialog.extend({
 
       try {
         this.privateKey = await this.$accessor.ipfs.resetIdentity()
-        this.avatarURL = await this.$accessor.ipfs.getAvatarURL(this.privateKey.id)
+        this.protobuf = this.privateKey.toProtobuf()
+        this.avatarURL = await this.$accessor.ipfs.getAvatarURL(this.privateKey.peerId)
 
-        this.$accessor.settings.setIpfsPrivateKey(this.privateKey.toProtobuf())
-        this.$accessor.settings.save()
-      } catch (err) {
+        // this.$accessor.settings.setIpfsPrivateKey(this.privateKey.toProtobuf())
+        // this.$accessor.settings.save()
+      } catch (err: any) {
         this.close()
 
         Swal.fire({
@@ -129,8 +133,7 @@ export default Dialog.extend({
 }
 
 .peerid {
-  @apply  text-snow-darker;
-  @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
-  max-width: 90vw;
+  @apply  text-white;
+  @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
 }
 </style>

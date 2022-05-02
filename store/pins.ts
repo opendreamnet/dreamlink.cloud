@@ -61,7 +61,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    * and obtains additional information from the IndexedDB.
    */
   async fetch({ commit }): Promise<void> {
-    await ipfs.waitUntilCompleted()
+    await ipfs.waitUntilStarted()
 
     commit('clear')
 

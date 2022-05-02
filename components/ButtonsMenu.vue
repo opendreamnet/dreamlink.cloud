@@ -1,9 +1,10 @@
 <template>
   <div class="menu">
-    <Button v-for="(val, label) of data"
-            :key="val"
-            :class="{ 'item--active': value === val }"
-            @click.prevent="$emit('input', val)">
+    <Button
+      v-for="(val, label) of data"
+      :key="val"
+      :class="{ 'item--active': value === val }"
+      @click.prevent="$emit('input', val)">
       {{ label }}
     </Button>
   </div>
@@ -32,11 +33,12 @@ export default Vue.extend({
   @apply overflow-x-auto;
 
   .button {
-    @apply flex-1 rounded-none bg-opacity-0 text-snow-darker border-t border-b border-menus-light;
+    @apply flex-1 rounded-none opacity-80 text-snow-darker border-menus-light;
 
     &.item--active,
     &:hover {
-      @apply bg-opacity-60 text-snow;
+      @apply opacity-100 text-snow-lighter;
+      background-color: var(--button-focus-bg-color);
     }
 
     &:hover {

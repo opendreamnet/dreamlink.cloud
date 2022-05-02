@@ -7,12 +7,13 @@
 
     <!-- Peer Addresses -->
     <Field title="Peer Addresses" description="Other nodes can connect to yours using any of these addresses.">
-      <InputPlus v-for="address of $ipfs.identity.addresses"
-                 :key="address.toString()"
-                 :value="address.toString()"
-                 readonly
-                 class="max-w-xl"
-                 input-class="input--xs" />
+      <InputPlus
+        v-for="address of $ipfs.identity.addresses"
+        :key="address.toString()"
+        :value="address.toString()"
+        readonly
+        class="max-w-xl"
+        input-class="input--xs" />
     </Field>
 
     <Field title="Public Key" description="This is the key that is shared to the world to validate that information really comes from your IPFS node.">
@@ -94,7 +95,7 @@ export default Vue.extend({
         return
       }
 
-      this.$ipfs.publicKey.downloadPem()
+      this.$ipfs.publicKey.download()
     }
   }
 })

@@ -3,7 +3,7 @@
     <Box id="dreamlink" :title="`🤔 What is ${$config.name}?`">
       <div class="prose">
         <p>
-          {{ $config.name }} is a website with a series of tools that  run entirely on the decentralized P2P network: <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a>.
+          {{ $config.name }} is a static website with tools running on the decentralized P2P network: <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a>.
         </p>
 
         <p>
@@ -11,7 +11,7 @@
         </p>
 
         <p>
-          The moment you enter {{ $config.name }} you are already connected to the IPFS network as we provide you with a node that runs in your web browser.
+          The moment you enter you are already connected to the IPFS network as we provide you with a node that runs in your web browser.
         </p>
       </div>
     </Box>
@@ -22,10 +22,10 @@
 
         <ul>
           <li>
-            <strong>Share.</strong> Upload files or even folders, <span class="text-primary">without registration, size or bandwith limits</span>. You are your own file distributor.
+            <strong>Share.</strong> Upload files and folders, <span class="text-primary">without account, size or bandwith limits</span>. You are your own file provider.
           </li>
           <li>
-            <strong>Search.</strong> Search for files or folders thanks to <a href="https://ipfs-search.com" target="_blank">ipfs-search.com</a>
+            <strong>Search.</strong> Search files and folders thanks to <a href="https://ipfs-search.com" target="_blank">ipfs-search.com</a>
           </li>
           <li>
             <strong>Pastebin.</strong> Create and share any text format.
@@ -42,7 +42,7 @@
         <p>{{ $config.name }} itself is a webpage stored in IPFS!</p>
 
         <p>
-          You can use a HTTP gateway or in case you have an IPFS node or a web browser with IPFS support you can download {{ $config.name }} on your device:
+          You can use an HTTP Gateway, a web browser with IPFS support or download it to your node:
         </p>
 
         <Gateways />

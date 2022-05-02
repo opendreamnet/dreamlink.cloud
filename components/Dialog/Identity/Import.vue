@@ -4,29 +4,16 @@
       <div class="space-y-12">
         <ButtonsMenu
           v-model="section"
-          :data="{ 'Recovery Phrase': 'seed', 'PEM': 'pem', 'Protobuf': 'protobuf', 'Key File': 'file' }" />
-
-        <!-- Seed -->
-        <form v-show="section === 'seed'" @submit.prevent="importSeed">
-          <Field title="Recovery Phrase" description="Recover your identity with the words generated during its creation.">
-            <textarea v-model="seed"
-                      required
-                      placeholder="cake unusual profit tired mass law brick fruit one chunk clinic..."
-                      class="h-40 input" />
-          </Field>
-
-          <Button class="button--danger" :loading="loading">
-            Import
-          </Button>
-        </form>
+          :data="categories" />
 
         <!-- PEM -->
         <form v-show="section === 'pem'" @submit.prevent="importPem">
           <Field title="PEM" description="Import using the contents of the key.">
-            <textarea v-model="pem"
-                      required
-                      placeholder="-----BEGIN RSA PRIVATE KEY-----"
-                      class="h-40 input" />
+            <textarea
+              v-model="pem"
+              required
+              placeholder="-----BEGIN PRIVATE KEY-----"
+              class="h-40 input" />
           </Field>
 
           <Button class="button--danger" :loading="loading">
@@ -36,11 +23,12 @@
 
         <!-- Protobuf -->
         <form v-show="section === 'protobuf'" @submit.prevent="importProtobuf">
-          <Field title="Protobuf" hint="`Identity.PrivKey` in the IPFS node configuration.">
-            <textarea v-model="protobuf"
-                      required
-                      placeholder="CAASrBIwggkoAgEAAoICAQCzcx5z/vT..."
-                      class="h-40 input" />
+          <Field title="Protobuf" description="Private key in a recognizable format for IPFS." hint="`Identity.PrivKey` in the IPFS node configuration.">
+            <textarea
+              v-model="protobuf"
+              required
+              placeholder="CAASrBIwggkoAgEAAoICAQCzcx5z/vT..."
+              class="h-40 input" />
           </Field>
 
           <Button class="button--danger" :loading="loading">
@@ -50,10 +38,11 @@
 
         <!-- Key File -->
         <Field v-show="section === 'file'" title="Key File">
-          <input v-show="false"
-                 ref="file"
-                 type="file"
-                 @change="upload">
+          <input
+            v-show="false"
+            ref="file"
+            type="file"
+            @change="upload">
 
           <div class="buttons">
             <Button class="button--danger" :loading="loading" @click="$refs.file.click()">
@@ -80,12 +69,22 @@ import Dialog from '~/mixins/Dialog'
 
 export default Dialog.extend({
   data: () => ({
-    section: 'seed',
+    section: 'protobuf',
     seed: '',
     pem: '',
     protobuf: '',
     loading: false
   }),
+
+  computed: {
+    categories() {
+      return {
+        Protobuf: 'protobuf',
+        PEM: 'pem',
+        'Key File': 'file'
+      }
+    }
+  },
 
   methods: {
     async upload(event: Event) {
@@ -107,18 +106,19 @@ export default Dialog.extend({
 
         console.log(pem)
 
-        const privateKey = await PrivateKey.fromPem(pem)
+        const privateKey = await PrivateKey.fromProtobufPem(pem)
         this.$accessor.settings.setIpfsPrivateKey(privateKey.toProtobuf())
         this.$accessor.settings.save()
 
         location.reload()
-      } catch (err) {
+      } catch (err: any) {
         alert('Error: ' + err.message)
       } finally {
         this.loading = false
       }
     },
 
+    /*
     async importSeed() {
       try {
         this.loading = true
@@ -135,17 +135,18 @@ export default Dialog.extend({
         this.loading = false
       }
     },
+    */
 
     async importPem() {
       try {
         this.loading = true
 
-        const privateKey = await PrivateKey.fromPem(this.pem)
+        const privateKey = await PrivateKey.fromProtobufPem(this.pem)
         this.$accessor.settings.setIpfsPrivateKey(privateKey.toProtobuf())
         this.$accessor.settings.save()
 
         location.reload()
-      } catch (err) {
+      } catch (err: any) {
         alert('Error: ' + err.message)
       } finally {
         this.loading = false
@@ -161,7 +162,7 @@ export default Dialog.extend({
         this.$accessor.settings.save()
 
         location.reload()
-      } catch (err) {
+      } catch (err: any) {
         alert('Error: ' + err.message)
       } finally {
         this.loading = false

@@ -4,7 +4,40 @@
       <div class="space-y-12">
         <ButtonsMenu
           v-model="section"
-          :data="{ 'PEM': 'pem', 'Protobuf': 'protobuf', 'Key File': 'file' }" />
+          :data="categories" />
+
+        <!-- PEM -->
+        <Field v-show="section === 'pem'" title="PEM" description="This is the contents of your key file.">
+          <div class="space-y-3">
+            <input
+              v-model="password"
+              type="password"
+              class="input"
+              placeholder="Password (Optional)">
+
+            <textarea
+              v-clipboard="pem"
+              v-tooltip="'Click to copy.'"
+              :value="pem"
+              readonly
+              class="h-40 input" />
+          </div>
+        </Field>
+
+        <!-- Protobuf -->
+        <Field
+          v-show="section === 'protobuf'"
+          title="Protobuf"
+          description="This is your private key in a recognizable format for IPFS."
+          hint="`Identity.PrivKey` in the IPFS node configuration.">
+          <textarea
+            ref="protobuf"
+            v-clipboard="protobuf"
+            v-tooltip="'Click to copy.'"
+            :value="protobuf"
+            readonly
+            class="h-40 input" />
+        </Field>
 
         <!-- Key File -->
         <Field v-show="section === 'file'" title="Key File" description="Download your private key and keep it secure on your device.">
@@ -15,27 +48,17 @@
           </div>
         </Field>
 
-        <!-- PEM -->
-        <Field v-show="section === 'pem'" title="PEM" description="This is the content of your key file.">
-          <textarea ref="pem"
-                    v-clipboard="pem"
-                    v-tooltip="'Click to copy.'"
-                    :value="pem"
-                    readonly
-                    class="h-40 input" />
-        </Field>
-
-        <!-- Protobuf -->
-        <Field v-show="section === 'protobuf'"
-               title="Protobuf"
-               description="This is your private key in a recognizable format for IPFS."
-               hint="If you have a IPFS node on your device you can recover your identity by placing this text in the configuration (`Identity.PrivKey`).">
-          <textarea ref="protobuf"
-                    v-clipboard="protobuf"
-                    v-tooltip="'Click to copy.'"
-                    :value="protobuf"
-                    readonly
-                    class="h-40 input" />
+        <!-- Base64 -->
+        <Field
+          v-show="section === 'base64'"
+          title="Base64"
+          description="This is your base64-encoded private key.">
+          <textarea
+            v-clipboard="base64"
+            v-tooltip="'Click to copy.'"
+            :value="base64"
+            readonly
+            class="h-40 input" />
         </Field>
       </div>
 
@@ -51,26 +74,61 @@
 </template>
 
 <script lang="ts">
+import { debounce, DebouncedFunc, noop } from 'lodash'
 import Dialog from '~/mixins/Dialog'
 
+interface IData {
+  section: 'pem' | 'protobuf' | 'file' | 'base64'
+  password: string
+  pem: string
+  generatePEM: DebouncedFunc<any>
+}
+
 export default Dialog.extend({
-  data: () => ({
-    section: 'pem'
+  data: (): IData => ({
+    section: 'pem',
+    password: '',
+    pem: '',
+    generatePEM: debounce(noop)
   }),
 
   computed: {
-    pem(): string {
-      return this.$ipfs.privateKey?.toPem() || ''
+    categories() {
+      return {
+        PEM: 'pem',
+        Protobuf: 'protobuf',
+        'Key File': 'file',
+        Base64: 'base64'
+      }
     },
 
     protobuf(): string {
       return this.$ipfs.privateKey?.toProtobuf() || ''
+    },
+
+    base64(): string {
+      return Buffer.from(this.$ipfs.privateKey?.marshal || '').toString('base64')
+    }
+  },
+
+  created() {
+    this.generatePEM = debounce(this._generatePEM, 400)
+    this.generatePEM()
+  },
+
+  watch: {
+    password() {
+      this.generatePEM()
     }
   },
 
   methods: {
+    _generatePEM() {
+      this.pem = this.$ipfs.privateKey?.toPem({ type: 'protobuf' }) || ''
+    },
+
     download() {
-      this.$ipfs.privateKey?.downloadPem()
+      this.$ipfs.privateKey?.download()
     }
   }
 })

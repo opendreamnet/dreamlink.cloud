@@ -1,21 +1,26 @@
+
 <template>
   <div class="header">
-    <figure class="header__avatar">
-      <img :src="$accessor.ipfs.avatarURL">
-      <Light v-model="$ipfs.ready" v-tooltip="'You are connected to the IPFS network!'" />
-    </figure>
+    <!-- Photo -->
+    <div class="header__avatar">
+      <figure>
+        <img :src="$accessor.ipfs.avatarURL">
+        <Light v-model="$ipfs.ready" v-tooltip="'You are connected to the IPFS network!'" />
+      </figure>
+    </div>
 
     <div class="header__identity">
-      <h1 class="username">
-        {{ isLocalUser ? $accessor.settings.username : peerId }}
-      </h1>
-
-      <h2 v-if="isLocalUser"
-          v-tooltip="'Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node\'s public key. Click to copy.'"
-          v-clipboard="peerId"
-          class="peerid">
+      <div
+        v-if="isLocalUser"
+        v-tooltip="'Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node\'s public key. Click to copy.'"
+        v-clipboard="peerId"
+        class="peerid">
         {{ peerId }}
-      </h2>
+      </div>
+
+      <div class="username">
+        {{ isLocalUser ? $accessor.settings.username : peerId }}
+      </div>
     </div>
 
     <div v-if="isLocalUser" class="header__tags">
@@ -58,11 +63,15 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header {
-  @apply flex flex-col items-center gap-9;
+  @apply space-y-9;
 }
 
 .header__avatar {
-  @apply relative;
+  @apply flex justify-center;
+
+  figure {
+    @apply relative;
+  }
 
   img {
     @apply rounded-full border-2 border-snow-darker;
@@ -76,23 +85,20 @@ export default Vue.extend({
 }
 
 .header__identity {
-  @apply text-center;
-
-  .username {
-    @apply font-bold text-2xl text-white;
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
-    max-width: 90vw;
-  }
+  @apply space-y-1 text-center;
 
   .peerid {
-    @apply text-sm text-snow-darker cursor-default;
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
-    max-width: 90vw;
+    @apply text-white font-bold text-xl cursor-pointer;
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
+  }
+
+  .username {
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
   }
 }
 
 .header__tags {
-  @apply flex space-x-6;
+  @apply flex justify-center space-x-6;
   @apply text-sm text-snow-dark;
 
   p {

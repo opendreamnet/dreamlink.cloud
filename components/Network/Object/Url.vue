@@ -13,16 +13,12 @@ import Vue from 'vue'
 import { isNil } from 'lodash'
 import URI from 'urijs'
 import axios from 'axios'
-import { GATEWAYS_TRUSTED } from '~/modules/defs'
+import pRetry, { AbortError } from 'p-retry'
 
 interface Data {
   status: boolean
-  attempts: number
-  // eslint-disable-next-line no-undef
-  tryTimeout: NodeJS.Timeout | null
+  cancel: boolean
 }
-
-const MAX_ATTEMPTS = 12 // 2 minutes
 
 export default Vue.extend({
   props: {
@@ -50,8 +46,7 @@ export default Vue.extend({
 
   data: (): Data => ({
     status: false,
-    attempts: 0,
-    tryTimeout: null
+    cancel: false
   }),
 
   computed: {
@@ -77,47 +72,49 @@ export default Vue.extend({
   },
 
   created() {
-    const delay = 3000 * this.delay
-    this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), delay)
+    this.cancel = false
+    this.start()
   },
 
   beforeDestroy() {
-    if (this.tryTimeout) {
-      clearTimeout(this.tryTimeout)
-    }
+    this.cancel = true
   },
 
   methods: {
-    async tryCheckStatus() {
-      this.tryTimeout = null
-      this.attempts += 1
+    start() {
+      pRetry(async() => {
+        if (this.cancel) {
+          throw new AbortError('Cancelled')
+        }
 
-      if (this.attempts > MAX_ATTEMPTS) {
-        return
-      }
+        await axios.head(this.shareURL, {
+          timeout: 15 * 1000
+        })
 
-      await this.checkStatus()
-
-      if (!this.status) {
-        this.tryTimeout = setTimeout(this.tryCheckStatus.bind(this), 10 * 1000)
-      }
+        this.status = true
+        this.$events.emit(`${this.cid}.gateway.status`, this.shareURI)
+      }, {
+        retries: 10,
+        minTimeout: 2000,
+        // 10 attempts in 5 minutes
+        // https://www.wolframalpha.com/input?i=Sum%5B1000*x%5Ek%2C+%7Bk%2C+0%2C+9%7D%5D+%3D+5+*+60+*+1000
+        factor: 1.71023,
+        randomize: true
+        /* onFailedAttempt: (err) => {
+          console.warn(`[${this.shareURI.host()}] ${err.message} - ${err.attemptNumber}/${err.retriesLeft}`)
+        } */
+      })
     },
 
-    async checkStatus() {
+    async fetchStatus() {
       try {
         await axios.head(this.shareURL, {
           timeout: 5 * 1000
         })
 
-        this.status = true
-
-        for (const domain of GATEWAYS_TRUSTED) {
-          if (this.shareURI.href().includes(domain)) {
-            this.$events.emit(`${this.cid}.gateway.status`, this.shareURI)
-          }
-        }
-      } catch (err) {
-        this.status = false
+        return true
+      } catch (err: any) {
+        return false
       }
     }
   }

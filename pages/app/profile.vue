@@ -21,7 +21,9 @@
   <!-- Error -->
   <div v-else-if="$ipfs.error">
     <p>An error occurred while trying to start the IPFS node, please refresh the page or try another web browser:</p>
-    <pre class="pre"><code>{{ $ipfs.error }}</code></pre>
+    <pre class="pre">
+      <code>{{ $ipfs.error }}</code>
+    </pre>
   </div>
 
   <!-- Loading -->

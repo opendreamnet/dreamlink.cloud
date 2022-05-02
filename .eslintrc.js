@@ -8,25 +8,12 @@ module.exports = {
     '@dreamnet/eslint-config-dreamnet-nuxtjs'
   ],
   plugins: [
+    'jest',
+    'unicorn'
   ],
   // add your custom rules here
   rules: {
-    'vue/no-mutating-props': 'off',
-    'vue/no-v-html': 'off',
-
-    '@typescript-eslint/no-explicit-any': 'off',
-
     'no-console': 'off',
-
-    'vue/max-attributes-per-line': ['warn', {
-      singleline: {
-        max: 3,
-        allowFirstLine: true
-      },
-      multiline: {
-        max: 1,
-        allowFirstLine: true
-      }
-    }]
+    'vue/no-mutating-props': 'off'
   }
 }

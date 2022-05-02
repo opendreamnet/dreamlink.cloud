@@ -14,7 +14,7 @@
           Share
         </NuxtLink>
 
-        <div v-tooltip="'Search for files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
+        <div v-tooltip="'Search files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
           Search
         </div>
 
@@ -22,7 +22,7 @@
           Pastebin
         </NuxtLink>
 
-        <NuxtLink v-tooltip="'Create an encrypted P2P chat room for free communication between people you trust.'" to="/chat" class="item">
+        <NuxtLink v-tooltip="'Create an encrypted P2P chat room.'" to="/chat" class="item">
           Chat
         </NuxtLink>
 

@@ -2,28 +2,12 @@
   <div class="share">
     <div class="share__content">
       <!-- Explorer URL -->
-      <Box>
-        <template #header>
-          <h2 class="title">
-            <span class="icon"><FontAwesomeIcon icon="share" /></span>
-            <span>Share</span>
-          </h2>
-        </template>
-
+      <Box title="Share" subtitle="This link allows to view, download and help in the distribution of the file.">
         <InputPlus readonly :value="explorerURL" class="text--sm" />
       </Box>
 
       <!-- Direct Links -->
-      <Box>
-        <template #header>
-          <div class="flex items-center gap-3">
-            <h2 class="flex-1 title">
-              <span class="icon"><FontAwesomeIcon icon="share" /></span>
-              <span>Direct Links</span>
-            </h2>
-          </div>
-        </template>
-
+      <Box title="Direct Links" subtitle="Trusted gateways where anyone can access the file directly.">
         <div class="share__gateways">
           <NetworkObjectUrl
             v-for="(url, it) in gatewaysURLS"
@@ -41,7 +25,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import queryString from 'query-string'
-import gateways from '@opendreamnet/ipfs/src/data/ipfs-gateways.json'
+import gateways from '@opendreamnet/ipfs/src/data/gateways.json'
 import { GATEWAYS_CORS_BLOCKED } from '~/modules/defs'
 
 export default Vue.extend({

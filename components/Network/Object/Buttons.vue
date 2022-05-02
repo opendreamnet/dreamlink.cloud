@@ -14,12 +14,13 @@
       </Button>
 
       <!-- Open in new tab -->
-      <Button v-if="canOpen"
-              el="a"
-              target="_blank"
-              :href="previewURL"
-              :loading="!previewURL"
-              class="button--primary">
+      <Button
+        v-if="canOpen"
+        el="a"
+        target="_blank"
+        :href="previewURL"
+        :loading="!previewURL"
+        class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="external-link-square-alt" /></span>
         <span>Open</span>
       </Button>
@@ -27,11 +28,12 @@
 
     <!-- No download, just open -->
     <div v-else-if="canOpen" class="justify-center buttons">
-      <Button el="a"
-              target="_blank"
-              :href="previewURL"
-              :loading="!previewURL"
-              class="button--primary">
+      <Button
+        el="a"
+        target="_blank"
+        :href="previewURL"
+        :loading="!previewURL"
+        class="button--primary">
         <span class="icon"><FontAwesomeIcon icon="folder-open" /></span>
         <span>Open</span>
       </Button>

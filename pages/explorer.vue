@@ -5,15 +5,16 @@
 
     <!-- Title -->
     <div class="explorer__info">
-      <h1 class="title">
-        {{ filename || cid }}
-      </h1>
-
-      <h2 v-if="filename"
-          v-tooltip="'CID: This is how your file is identified on the network. Click to copy.'"
-          v-clipboard="cid">
+      <div
+        v-tooltip="'CID: This is how your file is identified on the network. Click to copy.'"
+        v-clipboard="cid"
+        class="cid">
         {{ cid }}
-      </h2>
+      </div>
+
+      <div v-if="filename" class="filename">
+        {{ filename }}
+      </div>
     </div>
 
     <NetworkObjectButtons
@@ -23,7 +24,7 @@
 
     <div class="explorer__cols">
       <div class="explorer__left">
-        <LazyNetworkObjectShare :cid="cid" :filename="filename" />
+        <NetworkObjectShare :cid="cid" :filename="filename" />
       </div>
 
       <div class="explorer__right">
@@ -87,24 +88,19 @@ export default Vue.extend({
 }
 
 .explorer__info {
-  @apply mb-6 text-center;
+  @apply mb-9 space-y-1 text-center;
 
-  h1 {
-    @apply text-xl break-words;
+  .cid {
+    @apply text-white font-bold text-xl cursor-pointer;
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
 
     @screen md {
       @apply text-2xl;
     }
   }
 
-  h2 {
-    @apply text-snow-darker text-xs cursor-pointer;
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
-    max-width: 90vw;
-
-    @screen md {
-      @apply text-sm;
-    }
+  .filename {
+    @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
   }
 }
 

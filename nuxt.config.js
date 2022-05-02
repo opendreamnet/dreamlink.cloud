@@ -1,3 +1,4 @@
+const path = require('path')
 const { setNuxtConfig } = require('@opendreamnet/nuxtjs-base')
 const pkg = require('./package.json')
 
@@ -9,26 +10,16 @@ process.env.npm_package_version = pkg.version
 export default setNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    link: [
-      // For Inter font
-      {
-        rel: 'preconnect',
-        href: 'https://dweb.link'
-      }
-    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'dialog-polyfill/dialog-polyfill.css',
-
     '@opendreamnet/nuxtjs-base/assets/css/reset.scss',
     '@opendreamnet/nuxtjs-base/assets/css/input.scss',
     '@opendreamnet/nuxtjs-base/assets/css/checkbox.scss',
 
     'tippy.js/dist/tippy.css',
     'mooviejs/css/moovie.css',
-
     'highlight.js/styles/default.css',
     'highlight.js/styles/atom-one-dark.css'
   ],
@@ -50,6 +41,8 @@ export default setNuxtConfig({
     '@nuxtjs/style-resources',
     // https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
+    // https://github.com/nuxt-community/google-fonts-module
+    '@nuxtjs/google-fonts',
     // https://image.nuxtjs.org/
     // '@nuxt/image',
     // https://github.com/nuxt-community/markdownit-module
@@ -67,6 +60,12 @@ export default setNuxtConfig({
     // https://github.com/nuxt-community/gtm-module
     // ! Use v2.3.2: https://github.com/nuxt-community/gtm-module/issues/118
     '@nuxtjs/gtm'
+  ],
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: [
+    path.resolve(__dirname, 'node_modules/@opendreamnet/nuxtjs-base/components'),
+    '~/components'
   ],
 
   // https://github.com/nuxt-community/fontawesome-module
@@ -102,6 +101,13 @@ export default setNuxtConfig({
         'faDatabase',
         'faCaretDown'
       ]
+    }
+  },
+
+  googleFonts: {
+    download: process.env.NODE_ENV === 'production',
+    families: {
+      Inter: [300, 400, 600, 800]
     }
   },
 

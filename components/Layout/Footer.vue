@@ -7,10 +7,11 @@
           <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/CHANGELOG.md" target="_blank" class="version">v{{ $config.version }}</a>
         </p>
 
-        <p v-if="$accessor.ipfs.webCID.length > 0"
-           v-tooltip="`Current version CID. Click to copy.`"
-           v-clipboard="$accessor.ipfs.webCID"
-           class="cid">
+        <p
+          v-if="$accessor.ipfs.webCID.length > 0"
+          v-tooltip="`Current version CID. Click to copy.`"
+          v-clipboard="$accessor.ipfs.webCID"
+          class="cid">
           {{ $accessor.ipfs.webCID }}
         </p>
 
@@ -27,6 +28,10 @@
 
       <!-- Gateways -->
       <nav v-if="$accessor.ipfs.webCID.length > 0" class="nav">
+        <div class="font-bold item">
+          Mirrors
+        </div>
+
         <a href="https://www.dreamlink.cloud" target="_blank" class="item">
           dreamlink.cloud
         </a>
@@ -46,6 +51,10 @@
 
       <!-- IPFS -->
       <nav class="nav">
+        <div class="font-bold item">
+          IPFS
+        </div>
+
         <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank" class="item">
           What is IPFS?
         </a>
@@ -55,20 +64,24 @@
         </a>
 
         <a href="https://docs.ipfs.io/concepts/privacy/" target="_blank" class="item">
-          IPFS and privacy
+          Privacy
         </a>
 
         <a href="https://docs.ipfs.io/install/ipfs-companion/" target="_blank" class="item">
-          IPFS browser extension
+          Browser extension
         </a>
 
         <a href="https://docs.ipfs.io/install/ipfs-desktop/" target="_blank" class="item">
-          IPFS on your desktop
+          Desktop app
         </a>
       </nav>
 
       <!-- Links -->
       <nav class="nav">
+        <div class="font-bold item">
+          {{ $config.name }}
+        </div>
+
         <NuxtLink to="/docs/tos" class="item">
           Terms of Service
         </NuxtLink>
@@ -77,16 +90,12 @@
           Privacy Policy
         </NuxtLink>
 
-        <NuxtLink to="/docs/report" class="item">
-          Report content
+        <NuxtLink to="/docs/contact" class="item">
+          Contact
         </NuxtLink>
 
-        <a href="mailto:hello@opendreamnet.com" class="item">
-          Contact
-        </a>
-
         <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="item">
-          Github
+          Source code
         </a>
       </nav>
     </div>

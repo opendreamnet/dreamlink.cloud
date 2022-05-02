@@ -76,10 +76,11 @@
     <!-- Dialogs -->
     <LazyDialogChatAbout ref="aboutDialog" />
     <LazyDialogChatPeers v-if="joined" ref="peersDialog" :peers="peers" />
-    <LazyDialogChatSettings v-if="joined"
-                            ref="settingsDialog"
-                            :secret-key.sync="masterKey"
-                            :room-id="roomId" />
+    <LazyDialogChatSettings
+      v-if="joined"
+      ref="settingsDialog"
+      :secret-key.sync="masterKey"
+      :room-id="roomId" />
   </div>
 </template>
 
@@ -87,14 +88,14 @@
 import Vue from 'vue'
 import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
-import { toString, attempt } from 'lodash'
+import { toString, attempt, isString } from 'lodash'
 import queryString from 'query-string'
 import { ChatRecord } from '~/types'
 import { MAX_RECORDS, DEFAULT_ENCRYPTION_KEY } from '~/modules/defs'
 import { encryptMessage } from '~/modules/utils'
 
 interface PubsubMessage {
-  data: Uint8Array
+  data: string | Uint8Array
   from: string
   key: Uint8Array
   receivedFrom: string
@@ -219,7 +220,7 @@ export default Vue.extend({
         this.joined = true
 
         await this.fetchPeers()
-      } catch (err) {
+      } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
@@ -260,7 +261,7 @@ export default Vue.extend({
         await this.$ipfs.api.pubsub.publish(this.topic, payload)
 
         this.message = ''
-      } catch (err) {
+      } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
@@ -275,7 +276,7 @@ export default Vue.extend({
       this.records.push({
         from: payload.from,
         date: DateTime.now(),
-        data: new TextDecoder().decode(payload.data)
+        data: isString(payload.data) ? payload.data : new TextDecoder().decode(payload.data)
       })
 
       if (this.records.length > MAX_RECORDS) {

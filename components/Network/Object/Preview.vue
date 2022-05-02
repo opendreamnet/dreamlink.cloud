@@ -1,11 +1,14 @@
 <template>
+  <!-- Preview -->
   <div v-if="canShow" class="preview">
     <div class="preview__overlay" :class="cssPreview">
       <!-- Markdown -->
       <div v-if="isMarkdown" class="prose preview__markdown" v-html="$md.render(content)" />
 
       <!-- Text / Code -->
-      <pre v-else-if="isText" class="preview__text"><code class="hljs" v-html="codeHighlight" /></pre>
+      <pre v-else-if="isText" class="preview__text">
+        <code class="hljs" v-html="codeHighlight" />
+      </pre>
 
       <!-- Video -->
       <video
@@ -36,40 +39,45 @@
     </div>
   </div>
 
+  <!-- Sharing message -->
   <div v-else-if="canShowSharingWarning" class="preview">
     <div class="preview__overlay preview--loading">
       <figure class="icon">
         <FontAwesomeIcon icon="spinner" class="animate-spin" />
       </figure>
 
-      <h1 class="title">
-        Distributing your file on the IPFS network...
-      </h1>
+      <div class="title">
+        Sharing your file...
+      </div>
 
-      <h2 class="subtitle">
-        Please be patient, in a few minutes you will be able to share it with the world.
-      </h2>
+      <div class="subtitle">
+        <p>This may take a few minutes.</p>
+        <p>Taking a while? <a class="text-blue hover:underline" href="javascript:document.location.reload()">Refresh the page</a></p>
+      </div>
     </div>
   </div>
 
+  <!-- Loading message -->
   <div v-else-if="canShowLoading" class="preview">
     <div class="preview__overlay preview--loading">
       <figure class="icon">
         <FontAwesomeIcon icon="spinner" class="animate-spin" />
       </figure>
 
-      <h1 class="title">
+      <div class="title">
         Loading file...
-      </h1>
+      </div>
 
-      <h2 class="subtitle">
-        Asking the IPFS network for the file.... If it does not load, it is possible that the file is <span class="underline cursor-pointer text-danger" @click.prevent="$refs.dialogPersistence.open()">no longer available on any node</span>.
-      </h2>
+      <div class="subtitle">
+        <p>This may take a few minutes.</p>
+        <p><span class="cursor-pointer text-danger hover:underline" @click.prevent="$refs.dialogPersistence.open()">Taking a while?</span></p>
+      </d>
     </div>
 
     <!-- Dialogs -->
-    <LazyDialogPersistence ref="dialogPersistence" />
+    <DialogPersistence ref="dialogPersistence" />
   </div>
+</div>
 </template>
 
 <script lang="ts">
@@ -338,11 +346,11 @@ export default NetworkObject.extend({
   }
 
   .title {
-    @apply text-2xl text-white;
+    @apply text-2xl text-white text-center font-bold;
   }
 
   .subtitle {
-    @apply text-snow-dark;
+    @apply text-snow-dark text-center;
   }
 }
 

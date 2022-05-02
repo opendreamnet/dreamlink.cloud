@@ -110,7 +110,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    * Create a random private key for a new identity.
    */
   async resetIdentity(): Promise<PrivateKey> {
-    const privateKey = await PrivateKey.create()
+    const privateKey = await PrivateKey.fromRandom()
 
     this.app.$accessor.settings.setIpfsPrivateKey(privateKey.toProtobuf())
     this.app.$accessor.settings.save()
