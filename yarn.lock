@@ -3482,7 +3482,7 @@ __metadata:
     "@types/luxon": ^2.3.1
     "@types/mime": ^2.0.3
     "@types/sass": ^1
-    "@types/tailwindcss": ^2.2.4
+    "@types/tailwindcss": ^3.0.10
     "@types/urijs": ^1.19.19
     "@typescript-eslint/eslint-plugin": ^5.21.0
     axios: ^0.27.2
@@ -4441,10 +4441,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/tailwindcss@npm:^2.2.4":
-  version: 2.2.4
-  resolution: "@types/tailwindcss@npm:2.2.4"
-  checksum: 024fb3cfc63164390db9a1d10f4bd65c06a280f115394106dc5085db5fef9a0679c3cc45ec1196c79aaa3b45cedab101ac49767b409eb49b0ee9e16dd6aed3e7
+"@types/tailwindcss@npm:^3.0.10":
+  version: 3.0.10
+  resolution: "@types/tailwindcss@npm:3.0.10"
+  checksum: 4394244b71e1ce64f5e0cc2c5f91c34bea07a77441886cb6f6ea70a91756cf05a0a908241c1d0b377a44ecc52f83364a6253179f9e4b955015047e26a650479c
   languageName: node
   linkType: hard
 
