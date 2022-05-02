@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.9...v1.7.0) (2022-05-02)
+
+
+### Features
+
+* dependencies upgrade, color theme change, small improvements ([5757360](https://github.com/opendreamnet/dreamlink.cloud/commit/5757360a7c5415a246b6c5fd4e978a218b98310e))
+
+
+### Bug Fixes
+
+* export private key with password dont work ([cdd1ae6](https://github.com/opendreamnet/dreamlink.cloud/commit/cdd1ae60d72f63c8a5d432be0af9080e73bef9e9))
+
+
+### Others
+
+* yarn.lock update ([7d3cd56](https://github.com/opendreamnet/dreamlink.cloud/commit/7d3cd56dee9fd3875a0a01f9167d5cde145c217a))
+
 ### [1.6.9](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.8...v1.6.9) (2021-12-10)
 
 
