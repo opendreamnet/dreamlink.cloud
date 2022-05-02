@@ -19,24 +19,17 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        node: [ 16 ]
 
     steps:
       - name: 📁 Checkout
         uses: actions/checkout@v2
 
       - name: 📦 Cache node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: dreamlink-cache
         with:
-          path: |
-            node_modules
-            !node_modules/.cache
-            .yarn/cache
-            .yarn/unplugged
-            .yarn/build-state.yml
-            .yarn/install-state.gz
+          path: .yarn/cache
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
@@ -44,7 +37,7 @@ jobs:
       - name: ⚙️ Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: "16"
           check-latest: true
 
       - name: 👨🏻‍💻 Install dependencies
