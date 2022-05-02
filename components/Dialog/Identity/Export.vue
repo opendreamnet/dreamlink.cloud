@@ -124,7 +124,7 @@ export default Dialog.extend({
 
   methods: {
     _generatePEM() {
-      this.pem = this.$ipfs.privateKey?.toPem({ type: 'protobuf' }) || ''
+      this.pem = this.$ipfs.privateKey?.toPem({ type: 'protobuf', password: this.password }) || ''
     },
 
     download() {
