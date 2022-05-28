@@ -61,7 +61,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    * and obtains additional information from the IndexedDB.
    */
   async fetch({ commit }): Promise<void> {
-    await ipfs.waitUntilStarted()
+    await ipfs.waitUntil('started')
 
     commit('clear')
 
@@ -74,7 +74,7 @@ export const actions = actionTree({ state, getters, mutations }, {
         this.app.$accessor.pins.addFromStorage(record)
       } else {
         commit('add', {
-          cid,
+          cid: cid.toString(),
           name: null,
           size: null,
           date: null
@@ -114,17 +114,29 @@ export const actions = actionTree({ state, getters, mutations }, {
   },
 
   async pin({}, record: IStoragePin) {
+    if (!this.$ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
     await this.$ipfs.api.pin.add(record.cid)
     await this.app.$accessor.pins.create(record)
   },
 
   async unpin({ commit }, cid: string) {
+    if (!this.$ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
     await this.$ipfs.api.pin.rm(cid)
     await storageDb.pins.delete(cid)
     commit('remove', cid)
   },
 
   async unpinAll({ commit, state }): Promise<void> {
+    if (!this.$ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
     for (const item of state.items) {
       // eslint-disable-next-line no-await-in-loop
       await this.$ipfs.api.pin.rm(item.cid)

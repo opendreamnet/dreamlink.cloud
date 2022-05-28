@@ -7,9 +7,9 @@
       </h2>
     </template>
 
-    <div v-if="record" class="actions">
+    <div v-if="entry" class="actions">
       <Button
-        v-if="!record.isPinned"
+        v-if="!entry.isPinned"
         key="pin"
         v-tooltip="'Prevents the file from being deleted from your storage and keeps it in an easily accessible list in your profile.'"
         :loading="pinLoading"
@@ -30,7 +30,7 @@
       </Button>
 
       <Button
-        v-if="!record.isDirectory"
+        v-if="!entry.isDirectory"
         v-tooltip="'Download the file using your IPFS node. This file will start taking up space on your storage and you will also contribute to its distribution. The process may take several minutes if the file is not on your storage.'"
         :loading="nodeDownloadLoading"
         @click="nodeDownload">
@@ -70,13 +70,13 @@ export default NetworkObject.extend({
         await this.$accessor.pins.pin({
           cid: this.cid,
           name: this.filename,
-          size: this.record?.size
+          size: this.entry?.size
         })
 
-        if (this.record) {
-          this.record.isPinned = true
+        if (this.entry) {
+          this.entry.pinned = true
         }
-      } catch (err) {
+      } catch (err: any) {
         Swal.fire('Error', err.message, 'error')
       } finally {
         this.pinLoading = false
@@ -89,10 +89,10 @@ export default NetworkObject.extend({
 
         await this.$accessor.pins.unpin(this.cid)
 
-        if (this.record) {
-          this.record.isPinned = false
+        if (this.entry) {
+          this.entry.pinned = false
         }
-      } catch (err) {
+      } catch (err: any) {
         Swal.fire('Error', err.message, 'error')
       } finally {
         this.unpinLoading = false

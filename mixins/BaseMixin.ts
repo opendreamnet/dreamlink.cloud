@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import prettyBytes from 'pretty-bytes'
 import ClipboardJS from 'clipboard'
@@ -40,7 +41,7 @@ export default Vue.extend({
   filters: {
     prettyBytes(value?: number): string {
       if (!value) {
-        return '?'
+        return 'Unknown'
       }
 
       return prettyBytes(value)

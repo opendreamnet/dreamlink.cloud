@@ -19,7 +19,7 @@
       mozdirectory
       @change="upload">
 
-    <div v-if="$ipfs.ready" class="upload__buttons">
+    <div v-if="$ipfs.started" class="upload__buttons">
       <Button class="button-xl" @click="$refs.files.click()">
         <span class="icon"><FontAwesomeIcon icon="upload" /></span>
         <span>Add files</span>
@@ -101,7 +101,7 @@ export default Vue.extend({
 
           // Url query
           query.filename = files[0].name
-          query.cid = await this.$ipfs.upload(files[0], { pin: true })
+          query.cid = (await this.$ipfs.add(files[0], { pin: true })).cid.toString()
 
           // Save the record data in the database
           await this.$accessor.pins.pin({
@@ -119,7 +119,7 @@ export default Vue.extend({
           if (relativePath) {
             // This is a directory, take the name out
             query.filename = relativePath.split('/')[0]
-            query.cid = await this.$ipfs.upload(files, { pin: true })
+            query.cid = (await this.$ipfs.add(files, { pin: true })).cid.toString()
 
             // Save the record data in the database
             await this.$accessor.pins.create({
@@ -129,7 +129,7 @@ export default Vue.extend({
             })
           } else {
             // Multiple files selected, get the name from the CID and pin only the virtual directory CID.
-            query.cid = await this.$ipfs.upload(files, { pin: false, wrapWithDirectory: true })
+            query.cid = (await this.$ipfs.add(files, { pin: false })).cid.toString()
             query.filename = query.cid.substring(query.cid.length - 10)
 
             // Save the record data in the database

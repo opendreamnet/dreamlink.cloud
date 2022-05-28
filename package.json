@@ -83,7 +83,7 @@
     "@nuxtjs/gtm": "2.3.2",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "@opendreamnet/ipfs": "^2.2.0",
+    "@opendreamnet/ipfs": "^3.1.1",
     "@sweetalert2/theme-dark": "^5.0.10",
     "axios": "^0.27.2",
     "clipboard": "^2.0.10",

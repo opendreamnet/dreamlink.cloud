@@ -7,20 +7,23 @@
       </h2>
     </template>
 
-    <div v-if="record" class="prose details">
+    <div v-if="entry" class="prose details">
       <p>
         <span class="title">Size:</span>
-        <span class="value">{{ record.length | prettyBytes }}</span>
+        <span v-if="entry.size === 0 && entry.loading" class="value">Loading...</span>
+        <span v-else class="value">{{ entry.size | prettyBytes }}</span>
       </p>
 
-      <p v-if="record.isDirectory">
+      <p v-if="entry.type === 'dir'">
         <span class="title">Files:</span>
-        <span class="value">{{ record.files.length }}</span>
+        <span v-if="entry.subEntries.length === 0 && entry.loading" class="value">Loading...</span>
+        <span v-else class="value">{{ entry.subEntries.length }}</span>
       </p>
 
-      <p v-if="record.isStored !== undefined" v-tooltip="'This file is taking up space on your device and you are contributing to its distribution.'">
-        <span class="title">In storage:</span>
-        <span class="value">{{ record.isStored ? 'Yes' : 'No' }}</span>
+      <p v-tooltip="'Number of IPFS nodes distributing this entry. (Not always correct)'">
+        <span class="title">Peers:</span>
+        <span v-if="!entry.peers || entry.peers.length === 0 && entry.loading" class="value">Loading...</span>
+        <span v-else class="value">{{ entry.peers.length }}</span>
       </p>
     </div>
 
@@ -55,11 +58,11 @@ export default NetworkObject.extend({
 <style lang="scss" scoped>
 .details {
   .title {
-    @apply block;
+    @apply block font-bold;
   }
 
   .value {
-    @apply text-sm text-snow-dark;
+    @apply text-sm text-snow-darker;
   }
 }
 </style>

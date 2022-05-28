@@ -1,3 +1,6 @@
 import { IPFS } from '@opendreamnet/ipfs'
 
-export const ipfs = new IPFS({ autoStart: false })
+export const ipfs = new IPFS({
+  start: false,
+  loadRefs: true
+})

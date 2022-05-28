@@ -71,7 +71,7 @@
       <div class="subtitle">
         <p>This may take a few minutes.</p>
         <p><span class="cursor-pointer text-danger hover:underline" @click.prevent="$refs.dialogPersistence.open()">Taking a while?</span></p>
-      </d>
+      </div>
     </div>
 
     <!-- Dialogs -->
@@ -101,34 +101,12 @@ export default NetworkObject.extend({
     codeHighlight: null
   }),
 
-  watch: {
-    canShow(value: boolean) {
-      if (!value) {
-        return
-      }
-
-      this.$nextTick(() => {
-        this.install()
-      })
-    }
-  },
-
   computed: {
     /**
      * Mimetype of the file.
      */
     mime(): string | null {
-      if (this.record && this.record.isDirectory) {
-        // We now know that it is a directory.
-        return null
-      }
-
-      if (!this.filename) {
-        // Without a file name we cannot know what it is.
-        return null
-      }
-
-      return mime.getType(this.filename)
+      return this.entry?.mimetype || null
     },
 
     /**
@@ -144,7 +122,7 @@ export default NetworkObject.extend({
         return false
       }
 
-      if (this.isText && (!this.record || !this.record.size || this.record.size > 2097152)) {
+      if (this.isText && (!this.entry || !this.entry.size || this.entry.size > 2097152)) {
         // To display a text we must download it and for security/performance reasons we will not download a large file.
         return false
       }
@@ -260,6 +238,18 @@ export default NetworkObject.extend({
     }
   },
 
+  watch: {
+    canShow(value: boolean) {
+      if (!value) {
+        return
+      }
+
+      this.$nextTick(() => {
+        this.install()
+      })
+    }
+  },
+
   methods: {
     /**
      * Install what is necessary to display the preview.
@@ -275,19 +265,17 @@ export default NetworkObject.extend({
       }
 
       if (this.isText || this.isMarkdown) {
-        if (!this.record) {
-          console.trace('This should not happen! [!this.record]')
+        if (!this.entry) {
+          console.trace('This should not happen! [!this.entry]')
           return
         }
 
-        await this.record.waitUntilReady()
-
-        if (!this.record.file) {
-          console.trace('This should not happen! [!this.record.file]')
+        if (this.entry.type === 'dir') {
+          console.trace('This should not happen! [!this.entry.type]')
           return
         }
 
-        this.content = await this.record.file.getContentString()
+        this.content = await this.entry.getContentString()
 
         if (!this.isMarkdown) {
           try {

@@ -5,7 +5,7 @@
     <div class="header__avatar">
       <figure>
         <img :src="$accessor.ipfs.avatarURL">
-        <Light v-model="$ipfs.ready" v-tooltip="'You are connected to the IPFS network!'" />
+        <Light v-model="$ipfs.started" v-tooltip="'You are connected to the IPFS network!'" />
       </figure>
     </div>
 
@@ -44,14 +44,14 @@ export default Vue.extend({
     peerId: {
       type: String,
       default: () => {
-        return ipfs.identity.id
+        return ipfs.identity?.id
       }
     }
   },
 
   computed: {
     isLocalUser(): boolean {
-      return this.peerId === this.$ipfs.identity.id
+      return this.peerId === this.$ipfs.identity?.id
     },
 
     avatarURL(): string | null {

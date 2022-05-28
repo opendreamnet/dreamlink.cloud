@@ -12,17 +12,19 @@
     </div>
 
     <div v-else class="peers">
-      <li v-for="peer in record.peers" :key="peer.id" />
+      <li v-for="peer in record.peers" :key="peer.id">
+        {{ peer.id }}
+      </li>
     </div>
   </Box>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { Record } from '@opendreamnet/ipfs'
+import { Entry } from '@opendreamnet/ipfs'
 
 interface Data {
-  record: Record | null
+  record: Entry | null
 }
 
 export default Vue.extend({
@@ -39,7 +41,7 @@ export default Vue.extend({
 
   created() {
     // eslint-disable-next-line promise/catch-or-return,promise/always-return
-    this.$ipfs.add(this.cid).then((record) => { this.record = record })
+    this.$ipfs.fromCID(this.cid, { peers: true }).then((record) => { this.record = record })
   }
 })
 </script>

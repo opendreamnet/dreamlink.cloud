@@ -1,6 +1,6 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.ready" class="space-y-3" @submit.prevent="open()">
+    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
       <input
         v-model="cid"
         placeholder="CID"

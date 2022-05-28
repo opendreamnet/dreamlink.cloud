@@ -3472,7 +3472,7 @@ __metadata:
     "@nuxtjs/style-resources": ^1.2.1
     "@nuxtjs/tailwindcss": ^5.0.3
     "@opendreamnet/deploy-cli": ^1.4.0
-    "@opendreamnet/ipfs": ^2.2.0
+    "@opendreamnet/ipfs": ^3.1.1
     "@opendreamnet/nuxtjs-base": ^1.6.1
     "@sweetalert2/theme-dark": ^5.0.10
     "@tailwindcss/typography": ^0.5.2
@@ -3523,35 +3523,37 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@opendreamnet/ipfs@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@opendreamnet/ipfs@npm:2.2.0"
+"@opendreamnet/ipfs@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@opendreamnet/ipfs@npm:3.1.1"
   dependencies:
     "@fidian/dynamic-buffer": ^1.0.0
     "@opendreamnet/app": ^1.1.3
-    buffer: ^6.0.3
     crypto-key-composer: ^0.1.3
     fs-extra: ^10.1.0
     go-ipfs: ^0.12.2
     ipfs: ^0.62.3
+    ipfs-core-types: ^0.10.3
     ipfs-http-client: ^56.0.3
+    ipfs-unixfs: ^6.0.7
     ipfsd-ctl: ^10.0.6
     it-all: ^1.0.6
     it-to-stream: ^1.0.0
     libp2p-crypto: ^0.21.2
     lodash: ^4.17.21
+    luxon: ^2.4.0
     mime: ^3.0.0
+    multiformats: ^9.6.5
     node-abort-controller: ^3.0.1
     normalize-path: ^3.0.0
     peer-id: ^0.16.0
-    process: ^0.11.10
     recursive-fs: ^2.1.0
     sanitize-filename: ^1.6.3
     speedometer: ^1.1.0
     stream-to-blob: ^2.0.1
     stream-to-blob-url: ^3.0.2
     urijs: ^1.19.11
-  checksum: 9d9d172a8293c2274e982065a7a21e56539ba98ec45fc4316a611af474dcdec4b09ce9fd9e8bc8a7cc4a180ec7184b67d4934e4dc610ddb3526029c3ad4f45b2
+  checksum: d27d95c948f3a53461efb237411bb63b2a8c36c21b5288ac4be762f9195094cced8a3906da583302ffaf52ee1f13b5d23264f13bbabc96f398ee3b59391f0e50
   languageName: node
   linkType: hard
 
@@ -13201,7 +13203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ipfs-unixfs@npm:^6.0.0":
+"ipfs-unixfs@npm:^6.0.0, ipfs-unixfs@npm:^6.0.7":
   version: 6.0.7
   resolution: "ipfs-unixfs@npm:6.0.7"
   dependencies:
@@ -15926,6 +15928,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"luxon@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "luxon@npm:2.4.0"
+  checksum: 6071028d65cc3d3bdab5e6a3995dd97411c92bb3b3163a02deb7b7014318ad3a6fd750ae77131c42141b717c14aef8880d3130f265281d500ef2365f7265b3f3
+  languageName: node
+  linkType: hard
+
 "mafmt@npm:^10.0.0":
   version: 10.0.0
   resolution: "mafmt@npm:10.0.0"
@@ -17071,6 +17080,13 @@ __metadata:
   version: 9.6.4
   resolution: "multiformats@npm:9.6.4"
   checksum: b3b8e481112379d6f3aace199a06e6974dfe3ed4e2100a0effe19fef936ba31704382356df6278a3922b5cb47fcfefe3e5bc54e5bebef35272e3503bad3c62ba
+  languageName: node
+  linkType: hard
+
+"multiformats@npm:^9.6.5":
+  version: 9.6.5
+  resolution: "multiformats@npm:9.6.5"
+  checksum: f4fce459bf19e1c38e4daa0e6de3aeea55ab000620d23ef599943495ab65d1c0351c5aa53d15eb365181d30a4b0629785a0d8901d17b5d153c48f4f1a683cd47
   languageName: node
   linkType: hard
 

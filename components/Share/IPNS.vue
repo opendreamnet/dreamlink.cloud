@@ -1,6 +1,6 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.ready" class="space-y-3" @submit.prevent="open()">
+    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
       <input
         v-model="ipns"
         placeholder="IPNS"
@@ -36,8 +36,13 @@ export default Vue.extend({
     /**
      * User wants to open a IPNS
      */
+    /*
     async openIPNS() {
       try {
+        if (!this.$ipfs.api) {
+          throw new Error('IPFS API undefined!')
+        }
+
         await this.$ipfs.api.ipns.startOnline()
         const cidPath = await this.$ipfs.api.ipns.resolve(`/ipns/${this.ipns}`, { timeout: 30000 }) as string
 
@@ -62,6 +67,7 @@ export default Vue.extend({
         console.warn(err)
       }
     }
+    */
   }
 })
 </script>

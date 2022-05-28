@@ -81,9 +81,9 @@ export default NetworkObject.extend({
      * True if it is possible to download the file.
      */
     canDownload(): boolean {
-      if (this.record) {
+      if (this.entry) {
         // Only if it is not a folder.
-        return !this.record.isDirectory
+        return this.entry.type === 'file'
       }
 
       if (this.filename && !mime.getType(this.filename)) {

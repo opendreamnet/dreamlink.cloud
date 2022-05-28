@@ -52,6 +52,10 @@ export class Storage {
   public async getEstimation(): Promise<StorageEstimate> {
     const estimation: StorageEstimate = {}
 
+    if (!ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
     try {
       estimation.usage = Number((await ipfs.api.repo.stat()).repoSize)
     } catch (err) {

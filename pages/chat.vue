@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$ipfs.ready" key="loading" class="chat">
+  <div v-if="!$ipfs.started" key="loading" class="chat">
     <div class="flex justify-center">
       <Loading class="scale-150" />
     </div>

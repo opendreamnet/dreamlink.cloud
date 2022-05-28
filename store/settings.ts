@@ -1,6 +1,5 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import faker from 'faker'
-import { set, get } from 'lodash'
 
 export interface Settings {
   username: string

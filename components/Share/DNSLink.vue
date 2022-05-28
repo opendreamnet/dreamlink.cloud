@@ -1,6 +1,6 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.ready" class="space-y-3" @submit.prevent="open()">
+    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
       <input
         v-model="dnslink"
         placeholder="www.dreamlink.cloud"
@@ -33,6 +33,10 @@ export default Vue.extend({
   methods: {
     async open() {
       try {
+        if (!this.$ipfs.api) {
+          throw new Error('IPFS API undefined!')
+        }
+
         const cidPath = await this.$ipfs.api.dns(this.dnslink) as string
         const cid = cidPath.substring(6)
 

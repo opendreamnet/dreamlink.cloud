@@ -56,7 +56,11 @@ export const actions = actionTree({ state, getters, mutations }, {
    * @param { commit }
    */
   async fetchWebCID({ commit }): Promise<void> {
-    const cid = await this.$ipfs.api.dns('www.dreamlink.cloud') as string
+    if (!this.$ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
+    const cid = await this.$ipfs.api.dns('www.dreamlink.cloud')
     commit('setWebCID', cid.substring(6))
   },
 
@@ -67,7 +71,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    */
   async getAvatarURL({}, peerId?: string): Promise<string> {
     if (!peerId) {
-      peerId = ipfs.identity.id
+      peerId = ipfs.identity?.id || 'unknown'
     }
 
     // https://avatars.dicebear.com/styles/micah#style-options
@@ -98,6 +102,10 @@ export const actions = actionTree({ state, getters, mutations }, {
    * Delete all unpinned objects.
    */
   async freeUpStorage(): Promise<void> {
+    if (!this.$ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
     for await (const data of this.$ipfs.api.repo.gc()) {
       // nothing
     }

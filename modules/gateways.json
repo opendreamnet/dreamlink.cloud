@@ -1,0 +1,12 @@
+[
+	"https://dweb.link/ipfs/:hash",
+	"https://cf-ipfs.com/ipfs/:hash",
+	"https://infura-ipfs.io/ipfs/:hash",
+	"https://ipfs.io/ipfs/:hash",
+	"https://gateway.ipfs.io/ipfs/:hash",
+	"https://gateway.pinata.cloud/ipfs/:hash",
+	"https://ipfs.fleek.co/ipfs/:hash",
+	"https://cloudflare-ipfs.com/ipfs/:hash",
+	"https://ipfs.infura.io/ipfs/:hash",
+	"https://nftstorage.link/ipfs/:hash"
+]

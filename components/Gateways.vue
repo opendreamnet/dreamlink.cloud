@@ -40,9 +40,13 @@ export default Vue.extend({
 
   methods: {
     async fetchCID(): Promise<void> {
-      await this.$ipfs.waitUntilReady()
+      await this.$ipfs.waitUntil('started')
 
-      const cidPath = await this.$ipfs.api.dns('www.dreamlink.cloud') as string
+      if (!this.$ipfs.api) {
+        throw new Error('IPFS API undefined!')
+      }
+
+      const cidPath = await this.$ipfs.api.dns('www.dreamlink.cloud')
 
       this.cid = cidPath.substring(6)
     }

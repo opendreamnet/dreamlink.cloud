@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$ipfs.ready" class="profile">
+  <div v-if="$ipfs.started" class="profile">
     <!-- Header -->
     <ProfileHeader />
 

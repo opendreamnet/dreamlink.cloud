@@ -26,7 +26,7 @@ export default setNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    'node_modules/@opendreamnet/nuxtjs-base/plugins/boot.ts',
+    require.resolve('@opendreamnet/nuxtjs-base/plugins/boot.ts'),
     '~/plugins/boot.ts',
     '~/plugins/ipfs.ts'
   ],
@@ -122,6 +122,10 @@ export default setNuxtConfig({
       ]
     },
 
-    transpile: ['ipfs-core', '@opendreamnet/ipfs', '@opendreamnet/app']
+    transpile: ['@opendreamnet/ipfs', '@opendreamnet/app'],
+
+    extend(config) {
+      config.resolve.alias['@opendreamnet/ipfs'] = path.resolve('./node_modules/@opendreamnet/ipfs/src/index.ts')
+    }
   }
 })

@@ -56,7 +56,7 @@ export default Vue.extend({
   }),
 
   async created() {
-    await this.$ipfs.waitUntilReady()
+    await this.$ipfs.waitUntil('started')
   },
 
   methods: {

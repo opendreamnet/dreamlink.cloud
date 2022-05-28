@@ -1,7 +1,7 @@
 <template>
   <div class="pastebin">
     <Box title="Pastebin" subtitle="Create and share any text format on IPFS.">
-      <form v-if="$ipfs.ready" class="pastebin__form" @submit.prevent="submit()">
+      <form v-if="$ipfs.started" class="pastebin__form" @submit.prevent="submit()">
         <p>
           <input v-model="filename" class="input" placeholder="File name (Optional)">
           <span class="hint">Syntax Highlight in the preview will depend on the file name.</span>
@@ -56,19 +56,19 @@ export default Vue.extend({
       try {
         this.loading = true
 
-        const cid = await this.$ipfs.upload(this.paste, { pin: true })
-        const filename = this.filename || `${cid}.txt`
+        const entry = await this.$ipfs.add(this.paste, { pin: true })
+        const filename = this.filename || `${entry.cid.toString()}.txt`
 
         this.$accessor.pins.create({
-          cid,
+          cid: entry.cid.toString(),
           name: filename,
           size: new Blob([this.paste]).size
         })
 
         this.$events.emit('upload.success')
 
-        this.$router.push(`/explorer?cid=${cid}&filename=${filename}`)
-      } catch (err) {
+        this.$router.push(`/explorer?cid=${entry.cid.toString()}&filename=${filename}`)
+      } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,

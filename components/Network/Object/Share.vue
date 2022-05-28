@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import queryString from 'query-string'
-import gateways from '@opendreamnet/ipfs/src/data/gateways.json'
+import Vue from 'vue'
+import gateways from '~/modules/gateways.json'
 import { GATEWAYS_CORS_BLOCKED } from '~/modules/defs'
 
 export default Vue.extend({

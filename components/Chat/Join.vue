@@ -1,6 +1,6 @@
 <template>
   <Box title="Chat" subtitle="Create an encrypted P2P chat room for free communication between people you trust.">
-    <form v-if="$ipfs.ready" class="chat__form" @submit.prevent="submit">
+    <form v-if="$ipfs.started" class="chat__form" @submit.prevent="submit">
       <p>
         <label class="label">Room ID:</label>
         <input v-model="roomID" class="input" required>

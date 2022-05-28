@@ -1,7 +1,7 @@
 <template>
   <div class="explorer">
     <!-- Preview -->
-    <NetworkObjectPreview :cid="cid" :filename="filename" class="explorer__preview" />
+    <NetworkObjectPreview :entry="entry" :cid="cid" class="explorer__preview" />
 
     <!-- Title -->
     <div class="explorer__info">
@@ -17,19 +17,21 @@
       </div>
     </div>
 
-    <NetworkObjectButtons
-      :cid="cid"
-      :filename="filename"
-      class="explorer__buttons" />
+    <!-- Buttons -->
+    <NetworkObjectButtons :entry="entry" :cid="cid" class="explorer__buttons" />
 
     <div class="explorer__cols">
       <div class="explorer__left">
+        <!-- Share -->
         <NetworkObjectShare :cid="cid" :filename="filename" />
       </div>
 
       <div class="explorer__right">
-        <LazyNetworkObjectDetails :cid="cid" :filename="filename" />
-        <LazyNetworkObjectActions :cid="cid" :filename="filename" />
+        <!-- Details -->
+        <NetworkObjectDetails :entry="entry" :cid="cid" />
+
+        <!-- Node Actions -->
+        <NetworkObjectActions :entry="entry" :cid="cid" />
       </div>
     </div>
   </div>
@@ -39,6 +41,11 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta/types'
 import isIPFS from 'is-ipfs'
+import { Entry } from '@opendreamnet/ipfs'
+
+interface IData {
+  entry: Entry | null
+}
 
 export default Vue.extend({
   middleware: ({ route, redirect }) => {
@@ -48,6 +55,10 @@ export default Vue.extend({
       return redirect('/')
     }
   },
+
+  data: (): IData => ({
+    entry: null
+  }),
 
   head(): MetaInfo {
     const title = this.$route.query.filename as string || this.$route.query.cid as string
@@ -69,6 +80,37 @@ export default Vue.extend({
     },
     filename(): string {
       return this.$route.query.filename as string
+    }
+  },
+
+  created() {
+    this.createEntry()
+  },
+
+  methods: {
+    async createEntry() {
+      if (this.entry) {
+        return
+      }
+
+      try {
+        this.entry = await this.$ipfs.fromCID(this.cid, {
+          name: this.filename,
+          timeout: 15 * 60 * 1000, // 15 minutes
+          cache: 'explorer',
+          stats: true,
+          subentries: true,
+          peers: true
+        })
+
+        // Debug
+        if (process.env.NODE_ENV !== 'production') {
+          // @ts-ignore
+          window.ipfsRecord = this.entry
+        }
+      } catch (err: any) {
+        console.warn('[NetworkObject] Failed to fetch the record:', err.message)
+      }
     }
   }
 })

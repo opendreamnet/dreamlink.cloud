@@ -39,7 +39,7 @@
         </div>
       </template>
 
-      <div v-if="$ipfs.ready && joined" ref="messages" class="room__body">
+      <div v-if="$ipfs.started && joined" ref="messages" class="room__body">
         <!-- No messages -->
         <div v-if="records.length === 0" class="pt-6 text-center text-snow-dark">
           <p>No messages received since you joined. 😅</p>
@@ -90,6 +90,7 @@ import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 import { toString, attempt, isString } from 'lodash'
 import queryString from 'query-string'
+import type { Message } from 'ipfs-core-types/types/src/pubsub'
 import { ChatRecord } from '~/types'
 import { MAX_RECORDS, DEFAULT_ENCRYPTION_KEY } from '~/modules/defs'
 import { encryptMessage } from '~/modules/utils'
@@ -203,10 +204,14 @@ export default Vue.extend({
     },
 
     async join() {
-      await this.$ipfs.waitUntilReady()
+      await this.$ipfs.waitUntil('started')
 
       if (this.joined) {
         throw new Error(`You have already joined a room: ${this.roomId}`)
+      }
+
+      if (!this.$ipfs.api) {
+        throw new Error('IPFS API undefined!')
       }
 
       try {
@@ -234,14 +239,16 @@ export default Vue.extend({
         roomID = this.roomId
       }
 
-      console.log('leaveRoom', roomID)
-
       if (this.peersTimeout) {
         clearTimeout(this.peersTimeout)
         this.peersTimeout = null
       }
 
-      await this.$ipfs.waitUntilReady()
+      await this.$ipfs.waitUntil('started')
+
+      if (!this.$ipfs.api) {
+        throw new Error('IPFS API undefined!')
+      }
 
       await this.$ipfs.api.pubsub.unsubscribe(`dreamlink.chat.${roomID}`)
 
@@ -258,7 +265,11 @@ export default Vue.extend({
 
         const payload = encryptMessage(this.$accessor.settings.username, this.message, this.masterKey)
 
-        await this.$ipfs.api.pubsub.publish(this.topic, payload)
+        if (!this.$ipfs.api) {
+          throw new Error('IPFS API undefined!')
+        }
+
+        await this.$ipfs.api.pubsub.publish(this.topic, new TextEncoder().encode(payload))
 
         this.message = ''
       } catch (err: any) {
@@ -272,7 +283,7 @@ export default Vue.extend({
       }
     },
 
-    onMessage(payload: PubsubMessage) {
+    onMessage(payload: Message) {
       this.records.push({
         from: payload.from,
         date: DateTime.now(),
@@ -290,6 +301,10 @@ export default Vue.extend({
     async fetchPeers() {
       if (!this.joined) {
         return
+      }
+
+      if (!this.$ipfs.api) {
+        throw new Error('IPFS API undefined!')
       }
 
       try {
