@@ -148,7 +148,7 @@
   }
 
   .cid {
-    @apply text-xs text-snow-darker cursor-default;
+    @apply text-xs text-snow-darken cursor-default;
     @apply mb-6 #{!important};
   }
 }

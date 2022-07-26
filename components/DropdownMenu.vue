@@ -167,6 +167,19 @@ export default {
     @apply right-0 left-auto;
   }
 
+  &:deep(.dropdown__section) {
+    &:not(:last-child) {
+      @apply pb-3 mb-3 border-b border-night-light;
+    }
+  }
+
+  &:deep(.dropdown__item) {
+    &:not(:last-child) {
+      @apply pb-3;
+    }
+  }
+
+  /*
   &::v-deep {
     .dropdown__section {
       &:not(:last-child) {
@@ -180,6 +193,7 @@ export default {
       }
     }
   }
+  */
 }
 
 .dropdown-toggle {

@@ -117,7 +117,7 @@ export default Vue.extend({
   }
 
   .message__cid {
-    @apply inline-block text-xs text-snow-darker;
+    @apply inline-block text-xs text-snow-darken;
     @apply overflow-hidden overflow-ellipsis whitespace-nowrap;
   }
 
@@ -126,7 +126,7 @@ export default Vue.extend({
   }
 
   .message__content {
-    @apply text-snow-lighter;
+    @apply text-snow-lighten;
   }
 }
 </style>

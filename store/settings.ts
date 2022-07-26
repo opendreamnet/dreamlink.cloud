@@ -1,25 +1,29 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
+import type { ControllerOptions } from 'ipfsd-ctl'
 
 export interface Settings {
   username: string
   ignoreInvalid: boolean
-  ipfsController: any
   ipfsPrivateKey: string | null
+  remoteEndpoint: string | null
 }
 
 // State
 export const state = (): Settings => ({
   username: '',
   ignoreInvalid: true,
-  ipfsController: {},
-  ipfsPrivateKey: null
+  ipfsPrivateKey: null,
+  remoteEndpoint: null
 })
 
 export type State = ReturnType<typeof state>
 
 // Getters
 export const getters = getterTree(state, {
+  ipfsController(state): ControllerOptions {
+    return {}
+  }
 })
 
 // Mutations
@@ -32,18 +36,18 @@ export const mutations = mutationTree(state, {
     state.ignoreInvalid = value
   },
 
-  setIpfsController(state, value: any) {
-    state.ipfsController = value
-  },
-
   setIpfsPrivateKey(state, value: string | null) {
     state.ipfsPrivateKey = value
+  },
+
+  setRemoteEndpoint(state, value: string | null) {
+    state.remoteEndpoint = value
   },
 
   setDefaults(state) {
     state.username = faker.internet.userName()
     state.ignoreInvalid = true
-    state.ipfsController = {}
+    state.remoteEndpoint = null
   }
 })
 
@@ -52,7 +56,7 @@ export const actions = actionTree({ state, getters, mutations }, {
   /**
    * Returns the settings stored in localStorage.
    */
-  async getSettings(): Promise<Settings | null> {
+  async getSettings(): Promise<Partial<Settings> | null> {
     const text = localStorage.getItem('settings')
 
     if (!text) {
@@ -74,10 +78,10 @@ export const actions = actionTree({ state, getters, mutations }, {
       return
     }
 
-    commit('setUsername', settings.username)
-    commit('setIgnoreInvalid', settings.ignoreInvalid)
-    commit('setIpfsController', settings.ipfsController)
-    commit('setIpfsPrivateKey', settings.ipfsPrivateKey)
+    commit('setUsername', settings.username || '')
+    commit('setIgnoreInvalid', settings.ignoreInvalid || true)
+    commit('setIpfsPrivateKey', settings.ipfsPrivateKey || null)
+    commit('setRemoteEndpoint', settings.remoteEndpoint || null)
   },
 
   /**

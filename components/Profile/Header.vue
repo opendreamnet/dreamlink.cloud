@@ -37,21 +37,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ipfs } from '~/modules/ipfs'
 
 export default Vue.extend({
   props: {
     peerId: {
       type: String,
       default: () => {
-        return ipfs.identity?.id
+        return ''
       }
     }
   },
 
   computed: {
     isLocalUser(): boolean {
-      return this.peerId === this.$ipfs.identity?.id
+      return this.peerId === this.$ipfs.identity?.id.toString()
     },
 
     avatarURL(): string | null {
@@ -74,7 +73,7 @@ export default Vue.extend({
   }
 
   img {
-    @apply rounded-full border-2 border-snow-darker;
+    @apply rounded-full border-2 border-snow-darken;
     width: 130px;
     height: 130px;
   }

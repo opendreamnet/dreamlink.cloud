@@ -264,15 +264,21 @@ export default Dialog.extend({
   .title {
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
 
+    &:deep(em) {
+      @apply text-primary;
+    }
+
+    /*
     &::v-deep {
       em {
         @apply text-primary;
       }
     }
+    */
   }
 
   .hash {
-    @apply text-xs text-snow-darker;
+    @apply text-xs text-snow-darken;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 

@@ -64,7 +64,6 @@
 </template>
 
 <script lang="ts">
-import { PrivateKey } from '@opendreamnet/ipfs'
 import Dialog from '~/mixins/Dialog'
 
 export default Dialog.extend({

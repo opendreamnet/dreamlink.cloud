@@ -33,11 +33,11 @@ export default Vue.extend({
   @apply overflow-x-auto;
 
   .button {
-    @apply flex-1 rounded-none opacity-80 text-snow-darker border-menus-light;
+    @apply flex-1 rounded-none opacity-80 text-snow-darken border-menus-light;
 
     &.item--active,
     &:hover {
-      @apply opacity-100 text-snow-lighter;
+      @apply opacity-100 text-snow-lighten;
       background-color: var(--button-focus-bg-color);
     }
 

@@ -62,7 +62,7 @@ export default NetworkObject.extend({
   }
 
   .value {
-    @apply text-sm text-snow-darker;
+    @apply text-sm text-snow-darken;
   }
 }
 </style>

@@ -1,15 +1,20 @@
-const path = require('path')
-const { setNuxtConfig } = require('@opendreamnet/nuxtjs-base')
-const pkg = require('./package.json')
+import { setNuxtConfig } from '@opendreamnet/nuxtjs-base'
+import pkg from './package.json'
 
+// Base env
 process.env.npm_package_name = pkg.name
-process.env.npm_package_description = pkg.description
 process.env.npm_package_displayName = pkg.displayName
+process.env.npm_package_description = pkg.description
 process.env.npm_package_version = pkg.version
 
 export default setNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    script: [
+      {
+        src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.3/dist/index.umd.js'
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -43,8 +48,6 @@ export default setNuxtConfig({
     '@nuxtjs/fontawesome',
     // https://github.com/nuxt-community/google-fonts-module
     '@nuxtjs/google-fonts',
-    // https://image.nuxtjs.org/
-    // '@nuxt/image',
     // https://github.com/nuxt-community/markdownit-module
     '@nuxtjs/markdownit',
     // https://typed-vuex.roe.dev/
@@ -56,16 +59,7 @@ export default setNuxtConfig({
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content',
-    // https://github.com/nuxt-community/gtm-module
-    // ! Use v2.3.2: https://github.com/nuxt-community/gtm-module/issues/118
-    '@nuxtjs/gtm'
-  ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: [
-    path.resolve(__dirname, 'node_modules/@opendreamnet/nuxtjs-base/components'),
-    '~/components'
+    '@nuxt/content'
   ],
 
   // https://github.com/nuxt-community/fontawesome-module
@@ -104,10 +98,17 @@ export default setNuxtConfig({
     }
   },
 
+  // https://github.com/nuxt-community/google-fonts-module
   googleFonts: {
-    download: process.env.NODE_ENV === 'production',
+    download: process.env['NODE_ENV'] === 'production' && process.env['OPENDREAMNET'] === 'true',
     families: {
       Inter: [300, 400, 600, 800]
+    }
+  },
+
+  pwa: {
+    workbox: {
+      enabled: false
     }
   },
 
@@ -115,17 +116,15 @@ export default setNuxtConfig({
   build: {
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
+      presets(env, defaultPreset) {
+        // @ts-ignore
+        defaultPreset[1].targets = {}
+      },
       plugins: [
         'lodash',
         '@babel/plugin-proposal-nullish-coalescing-operator',
         '@babel/plugin-proposal-optional-chaining'
       ]
-    },
-
-    transpile: ['@opendreamnet/ipfs', '@opendreamnet/app'],
-
-    extend(config) {
-      config.resolve.alias['@opendreamnet/ipfs'] = path.resolve('./node_modules/@opendreamnet/ipfs/src/index.ts')
     }
   }
 })

@@ -46,7 +46,6 @@
 <script lang="ts">
 import Swal from 'sweetalert2'
 import { noop } from 'lodash'
-import { PrivateKey } from '@opendreamnet/ipfs'
 import Dialog from '~/mixins/Dialog'
 
 interface Data {
@@ -126,7 +125,7 @@ export default Dialog.extend({
 
 .avatar {
   img {
-    @apply rounded-full border-2 border-snow-darker;
+    @apply rounded-full border-2 border-snow-darken;
     height: 130px;
     width: 130px;
   }

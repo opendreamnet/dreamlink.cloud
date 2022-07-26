@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { Plugin } from '@nuxt/types'
 import { storage } from '../modules/storage'
-import { ipfs } from '../modules/ipfs'
+import { getIpfs } from '../modules/ipfs'
 
 const plugin: Plugin = async({ app }, inject) => {
   // Fetch and set the app settings.
@@ -15,6 +15,8 @@ const plugin: Plugin = async({ app }, inject) => {
 
   // Storage information.
   storage.init()
+
+  const ipfs = await getIpfs()
 
   inject('ipfs', Vue.observable(ipfs))
   inject('storage', Vue.observable(storage))

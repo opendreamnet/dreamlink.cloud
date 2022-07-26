@@ -2,7 +2,6 @@ import { startsWith } from 'lodash'
 import CryptoJS from 'crypto-js'
 import mime from 'mime'
 import { SEED_TEXT } from './defs'
-import { ipfs } from './ipfs'
 import { Message } from '~/types'
 
 /**
@@ -95,7 +94,7 @@ export function decryptMessage(message: string, secretKey: string): Message | nu
     payload.content = CryptoJS.AES.decrypt(params, secretKey).toString(CryptoJS.enc.Utf8)
 
     return payload
-  } catch (err) {
+  } catch (err: any) {
     // Developer is: sad :(
     console.warn('[decryptMessage]', err.message)
     return null

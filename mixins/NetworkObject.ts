@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import { Entry } from '@opendreamnet/ipfs'
-import { isEmpty } from 'lodash'
 
 interface IData {
   /**

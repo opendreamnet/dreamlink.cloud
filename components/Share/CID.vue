@@ -52,7 +52,10 @@ export default Vue.extend({
       }
 
       // Reload the page to get better results
-      document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
+      this.$router.push({
+        path: '/explorer',
+        query
+      })
     }
   }
 })

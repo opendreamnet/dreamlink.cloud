@@ -1,8 +1,6 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
-import { PrivateKey } from '@opendreamnet/ipfs'
 import queryString from 'query-string'
-import { noop } from 'lodash'
-import { ipfs } from '~/modules/ipfs'
+import { getIpfs } from '~/modules/ipfs'
 
 // State
 export const state = () => ({
@@ -33,21 +31,25 @@ export const actions = actionTree({ state, getters, mutations }, {
    * Start the IPFS node using the local settings.
    */
   async start({ commit }): Promise<void> {
-    const { ipfsPrivateKey, ipfsController } = this.app.$accessor.settings
+    const ipfs = await getIpfs()
+    const { ipfsPrivateKey, ipfsController, remoteEndpoint } = this.app.$accessor.settings
 
-    ipfs.setOptions({
+    console.time('ipfs.start')
+    await ipfs.start({
       privateKey: ipfsPrivateKey || undefined,
-      controller: ipfsController
+      // controller: ipfsController,
+      apiAddr: remoteEndpoint || undefined
     })
+    console.timeEnd('ipfs.start')
 
-    await ipfs.start()
-
+    /*
     this.app.$accessor.ipfs.getAvatarURL().then(avatarURL => {
       commit('setAvatarURL', avatarURL)
       return avatarURL
     }).catch(noop)
 
     this.app.$accessor.ipfs.fetchWebCID().catch(noop)
+    */
   },
 
   /**
@@ -70,8 +72,10 @@ export const actions = actionTree({ state, getters, mutations }, {
    * @param [peerId]
    */
   async getAvatarURL({}, peerId?: string): Promise<string> {
+    const ipfs = await getIpfs()
+
     if (!peerId) {
-      peerId = ipfs.identity?.id || 'unknown'
+      peerId = ipfs.identity?.id.toString() || 'unknown'
     }
 
     // https://avatars.dicebear.com/styles/micah#style-options

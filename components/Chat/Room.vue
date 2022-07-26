@@ -90,7 +90,8 @@ import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 import { toString, attempt, isString } from 'lodash'
 import queryString from 'query-string'
-import type { Message } from 'ipfs-core-types/types/src/pubsub'
+import type { Message } from '@libp2p/interfaces/pubsub'
+import type { PeerId } from '@libp2p/interfaces/peer-id'
 import { ChatRecord } from '~/types'
 import { MAX_RECORDS, DEFAULT_ENCRYPTION_KEY } from '~/modules/defs'
 import { encryptMessage } from '~/modules/utils'
@@ -111,7 +112,7 @@ interface Data {
   message: string
   messageLoading: boolean
   records: ChatRecord[]
-  peers: string[]
+  peers: PeerId[]
   // eslint-disable-next-line no-undef
   peersTimeout: NodeJS.Timeout | null
 }
@@ -215,12 +216,10 @@ export default Vue.extend({
       }
 
       try {
-        await this.$ipfs.api.pubsub.subscribe(this.topic, this.onMessage.bind(this), {
-          timeout: 5000
-        })
+        await this.$ipfs.api.pubsub.subscribe(this.topic, this.onMessage.bind(this))
 
         // gossipsub need this delay https://github.com/libp2p/go-libp2p-pubsub/issues/331
-        await new Promise(resolve => setTimeout(resolve, 5000))
+        // await new Promise(resolve => setTimeout(resolve, 5000))
 
         this.joined = true
 
@@ -285,9 +284,9 @@ export default Vue.extend({
 
     onMessage(payload: Message) {
       this.records.push({
-        from: payload.from,
+        from: payload.from.toString(),
         date: DateTime.now(),
-        data: isString(payload.data) ? payload.data : new TextDecoder().decode(payload.data)
+        data: new TextDecoder().decode(payload.data)
       })
 
       if (this.records.length > MAX_RECORDS) {
@@ -308,12 +307,12 @@ export default Vue.extend({
       }
 
       try {
-        this.peers = await this.$ipfs.api.pubsub.peers(this.topic, { timeout: 2000 })
+        this.peers = await this.$ipfs.api.pubsub.peers(this.topic, { timeout: 6000 })
       } catch (err) {
         console.warn(err)
       }
 
-      this.peersTimeout = setTimeout(this.fetchPeers.bind(this), 2000)
+      this.peersTimeout = setTimeout(this.fetchPeers.bind(this), 6000)
     },
 
     scrollChat() {

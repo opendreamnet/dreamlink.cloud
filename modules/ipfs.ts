@@ -1,6 +1,14 @@
-import { IPFS } from '@opendreamnet/ipfs'
+let ipfsInstance: IPFS
 
-export const ipfs = new IPFS({
-  start: false,
-  loadRefs: true
-})
+export async function getIpfs(): Promise<IPFS> {
+  if (ipfsInstance) {
+    return ipfsInstance
+  }
+
+  ipfsInstance = new IPFS({
+    start: false,
+    loadRefs: true
+  })
+
+  return ipfsInstance
+}

@@ -11,6 +11,7 @@
         </template>
 
         <ProfileFiles v-show="section === 'pins'" />
+        <ProfileNode v-show="section === 'node'" />
         <ProfileStorage v-show="section === 'storage'" />
         <ProfileSettings v-show="section === 'settings'" />
         <ProfileIdentity v-show="section === 'identity'" />
@@ -44,6 +45,7 @@ export default Vue.extend({
     sections(): Record<string, string> {
       return {
         'Pinned Files': 'pins',
+        Node: 'node',
         Storage: 'storage',
         Settings: 'settings',
         Identity: 'identity'
@@ -59,18 +61,30 @@ export default Vue.extend({
 }
 
 .profile__content {
+  &:deep(.button) {
+    @apply border-0 #{!important};
+  }
+
+  /*
   &::v-deep {
     .button {
       @apply border-0 #{!important};
     }
   }
+  */
 }
 
 .box--pins {
+  &:deep(.box__body) {
+    @apply px-0 #{!important};
+  }
+
+  /*
   &::v-deep {
     .box__body {
       @apply px-0 #{!important};
     }
   }
+  */
 }
 </style>

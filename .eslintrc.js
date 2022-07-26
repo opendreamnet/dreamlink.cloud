@@ -5,15 +5,12 @@ module.exports = {
     node: true
   },
   extends: [
-    '@dreamnet/eslint-config-dreamnet-nuxtjs'
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:nuxt/recommended'
   ],
   plugins: [
-    'jest',
-    'unicorn'
   ],
-  // add your custom rules here
   rules: {
-    'no-console': 'off',
-    'vue/no-mutating-props': 'off'
+    'vue/multi-word-component-names': 0
   }
 }

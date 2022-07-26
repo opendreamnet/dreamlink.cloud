@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Plugin } from '@nuxt/types'
+import type { Plugin } from '@nuxt/types'
 import ThemeBaseMixin from '@opendreamnet/nuxtjs-base/mixins/BaseMixin'
 import { isNil } from 'lodash'
 import BaseMixin from '../mixins/BaseMixin'

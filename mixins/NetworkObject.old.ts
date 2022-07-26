@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import URI from 'urijs'
-import { Entry } from '@opendreamnet/ipfs'
 
 interface Data {
   /**

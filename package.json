@@ -1,5 +1,5 @@
 {
-  "name": "@opendreamnet/dreamlink-cloud",
+  "name": "@opendreamnet/dreamlink.cloud",
   "displayName": "DreamLink",
   "description": "Easy, fast and censorship-proof file sharing on the IPFS network.",
   "version": "1.7.0",
@@ -27,45 +27,7 @@
   "standard-version": {
     "path": ".",
     "tag-prefix": "v",
-    "releaseCommitMessageFormat": "chore(release): {{currentTag}}",
-    "types": [
-      {
-        "type": "feat",
-        "section": "Features"
-      },
-      {
-        "type": "fix",
-        "section": "Bug Fixes"
-      },
-      {
-        "type": "improvement",
-        "section": "Improvements"
-      },
-      {
-        "type": "docs",
-        "section": "Others"
-      },
-      {
-        "type": "style",
-        "section": "Design"
-      },
-      {
-        "type": "refactor",
-        "section": "Others"
-      },
-      {
-        "type": "perf",
-        "section": "Improvements"
-      },
-      {
-        "type": "test",
-        "hidden": true
-      },
-      {
-        "type": "chore",
-        "section": "Others"
-      }
-    ]
+    "releaseCommitMessageFormat": "chore(release): {{currentTag}}"
   },
   "browserslist": {
     "production": [
@@ -78,73 +40,72 @@
     ]
   },
   "dependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxt/content": "^1.15.1",
-    "@nuxtjs/gtm": "2.3.2",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "@opendreamnet/ipfs": "^3.1.1",
-    "@sweetalert2/theme-dark": "^5.0.10",
+    "@opendreamnet/ipfs": "^0.1.3",
+    "@sweetalert2/theme-dark": "^5.0.11",
     "axios": "^0.27.2",
-    "clipboard": "^2.0.10",
-    "core-js": "^3.22.3",
+    "clipboard": "^2.0.11",
+    "core-js": "^3.24.0",
     "crypto-js": "^4.1.1",
     "dexie": "^3.2.2",
     "dialog-polyfill": "^0.5.6",
-    "faker": "^5.5.3",
-    "highlight.js": "^11.5.1",
+    "highlight.js": "^11.6.0",
     "is-ipfs": "^6.0.2",
     "jsbi": "^4.3.0",
     "lodash": "^4.17.21",
-    "luxon": "^2.3.2",
+    "luxon": "^3.0.1",
     "mime": "^3.0.0",
     "mooviejs": "^1.1.5",
     "nuxt": "^2.15.8",
     "p-retry": "^5.1.1",
     "pretty-bytes": "^5.6.0",
     "query-string": "^7.1.1",
-    "sweetalert2": "^11.4.10",
+    "sweetalert2": "^11.4.24",
     "tippy.js": "^6.3.7",
-    "urijs": "^1.19.11"
+    "urijs": "^1.19.11",
+    "vue": "^2.7.8",
+    "vue-server-renderer": "^2.7.8",
+    "vue-template-compiler": "^2.7.8"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
-    "@babel/plugin-proposal-optional-chaining": "^7.16.7",
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
-    "@dreamnet/eslint-config-dreamnet-nuxtjs": "^1.5.2",
-    "@nuxt/types": "2.15.8",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.18.9",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@nuxt/types": "^2.15.8",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "@nuxtjs/google-fonts": "^1.3.0",
+    "@nuxtjs/google-fonts": "^2.0.0",
     "@nuxtjs/style-resources": "^1.2.1",
-    "@nuxtjs/tailwindcss": "^5.0.3",
+    "@nuxtjs/tailwindcss": "^4.2.1",
     "@opendreamnet/deploy-cli": "^1.4.0",
-    "@opendreamnet/nuxtjs-base": "^1.6.1",
-    "@tailwindcss/typography": "^0.5.2",
+    "@opendreamnet/nuxtjs-base": "^2.0.5",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/crypto-js": "^4.1.1",
-    "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.182",
-    "@types/luxon": "^2.3.1",
+    "@types/luxon": "^3.0.0",
     "@types/mime": "^2.0.3",
     "@types/sass": "^1",
-    "@types/tailwindcss": "^3.0.10",
+    "@types/tailwindcss": "^3.0.11",
     "@types/urijs": "^1.19.19",
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "babel-eslint": "^10.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
     "babel-plugin-lodash": "^3.3.4",
-    "eslint": "^8.14.0",
-    "eslint-plugin-jest": "^26.1.5",
+    "eslint": "^8.20.0",
     "eslint-plugin-lodash": "^7.4.0",
     "eslint-plugin-nuxt": "^3.2.0",
-    "eslint-plugin-unicorn": "^42.0.0",
-    "eslint-plugin-vue": "^8.7.1",
+    "eslint-plugin-vue": "^9.3.0",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
-    "nuxt-typed-vuex": "^0.2.0",
-    "postcss": "8.4.13",
-    "sass": "^1.51.0",
-    "standard-version": "^9.3.2"
+    "nuxt-typed-vuex": "^0.3.1",
+    "postcss": "8.4.14",
+    "sass": "^1.54.0",
+    "standard-version": "^9.5.0",
+    "typescript": "^4.7.4"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.2.2"
 }

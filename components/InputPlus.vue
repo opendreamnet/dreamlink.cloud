@@ -80,10 +80,10 @@ export default Vue.extend({
   @include centered();
 
   &.plus__box--button {
-    @apply text-snow-darker cursor-pointer;
+    @apply text-snow-darken cursor-pointer;
 
     &:hover {
-      @apply text-snow-lighter bg-menus-light;
+      @apply text-snow-lighten bg-menus-light;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { IPFS } from '@opendreamnet/ipfs'
+import type * as OIPFS from '@opendreamnet/ipfs'
 import EventEmitter from 'events'
 import { DateTime } from 'luxon'
 import BigInt from 'jsbi'
@@ -7,13 +7,13 @@ import { Storage } from '~/modules/storage'
 
 declare module '@nuxt/types' {
   interface Context {
-    $ipfs: IPFS
+    $ipfs: OIPFS.IPFS
     $storage: Storage
     $events: EventEmitter
   }
 
   interface NuxtAppOptions {
-    $ipfs: IPFS
+    $ipfs: OIPFS.IPFS
     $storage: Storage
     $events: EventEmitter
   }
@@ -25,7 +25,7 @@ declare module '@nuxt/types' {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $ipfs: IPFS
+    $ipfs: OIPFS.IPFS
     $storage: Storage
     $events: EventEmitter
   }
@@ -37,18 +37,39 @@ declare module 'vue/types/vue' {
 
 declare module 'vuex/types/index' {
   interface Store<S> {
-    $ipfs: IPFS
+    $ipfs: OIPFS.IPFS
     $storage: Storage
     $events: EventEmitter
   }
 }
 
 declare global {
-  interface Window { 
-    ipfs?: IPFS
+  interface Window {
+    IPFS: typeof OIPFS.IPFS 
+    PrivateKey: typeof OIPFS.PrivateKey
+    PublicKey: typeof OIPFS.PublicKey
+    Entry: typeof OIPFS.Entry
+
+    ipfs?: OIPFS.IPFS
     BigInt?: BigInt
   }
+
+  class IPFS extends OIPFS.IPFS { }
+  class PrivateKey extends OIPFS.PrivateKey { }
+  class PublicKey extends OIPFS.PublicKey { } 
+  class Entry extends OIPFS.Entry { }
+
+  //const IPFS: typeof OIPFS.IPFS
+  //const PrivateKey: typeof OIPFS.PrivateKey
+  //const PublicKey: typeof OIPFS.PublicKey
+  //const Entry: typeof OIPFS.Entry
+
+  //type IPFS: typeof IPFS 
+  //const PrivateKey: typeof PrivateKey
+  //PublicKey: typeof PublicKey
 }
+
+
 
 interface Message {
   username: string

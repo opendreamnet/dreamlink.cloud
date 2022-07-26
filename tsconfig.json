@@ -14,7 +14,6 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -33,7 +32,10 @@
     ],
     "typeRoots": [
       "./types"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",

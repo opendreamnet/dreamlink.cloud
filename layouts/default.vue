@@ -26,7 +26,7 @@
 
 <style lang="scss">
 .hint {
-  @apply text-xs text-snow-darker leading-3;
+  @apply text-xs text-snow-darken leading-3;
 }
 
 dialog {

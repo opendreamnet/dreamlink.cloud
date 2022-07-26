@@ -22,7 +22,7 @@ export default Vue.extend({
       let seed = ''
 
       if (this.$ipfs.started && this.$ipfs.identity) {
-        seed = this.$ipfs.identity.id
+        seed = this.$ipfs.identity.id.toString()
       }
 
       return `https://avatars.dicebear.com/api/micah/${seed}.svg?hair[]=full&mouth[]=laughing&mouth[]=nervous&mouth[]=smile&glassesProbability=80&width=80&height=80`
@@ -39,11 +39,17 @@ export default Vue.extend({
     @apply w-auto;
   }
 
+  &:deep(.dropdown-menu) {
+    min-width: 315px;
+  }
+
+  /*
   &::v-deep {
     .dropdown-menu {
       min-width: 315px;
     }
   }
+  */
 }
 
 .status__button {

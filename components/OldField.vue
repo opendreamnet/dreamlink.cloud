@@ -43,16 +43,31 @@ export default Vue.extend({
 .field__title {
   @apply font-semibold text-white;
 
+  &:deep(p) {
+    @apply m-0;
+  }
+
+  /*
   &::v-deep {
     p {
       @apply m-0;
     }
   }
+  */
 }
 
 .field__description {
   @apply max-w-prose font-light text-snow-dark;
 
+  &:deep(p) {
+    @apply m-0;
+  }
+
+  &:deep(strong) {
+    @apply font-bold text-white;
+  }
+
+  /*
   &::v-deep {
     p {
       @apply m-0;
@@ -62,9 +77,10 @@ export default Vue.extend({
       @apply font-bold text-white;
     }
   }
+  */
 }
 
 .field__hint {
-  @apply text-sm text-snow-darker;
+  @apply text-sm text-snow-darken;
 }
 </style>

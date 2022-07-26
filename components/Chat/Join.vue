@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 export default Vue.extend({
   data: () => ({

@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Entry } from '@opendreamnet/ipfs'
 
 interface Data {
   record: Entry | null

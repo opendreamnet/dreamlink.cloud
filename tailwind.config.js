@@ -1,6 +1,9 @@
+// const fs = require('fs')
+
 module.exports = {
   presets: [
     require('@opendreamnet/nuxtjs-base/tailwind.config')
+    
   ],
   theme: {
     extend: {

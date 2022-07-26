@@ -41,7 +41,6 @@
 import Vue from 'vue'
 import { MetaInfo } from 'vue-meta/types'
 import isIPFS from 'is-ipfs'
-import { Entry } from '@opendreamnet/ipfs'
 
 interface IData {
   entry: Entry | null

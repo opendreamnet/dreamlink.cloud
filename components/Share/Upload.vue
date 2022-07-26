@@ -141,11 +141,18 @@ export default Vue.extend({
           }
         }
 
-        Swal.close()
         this.$events.emit('upload.success')
 
+        await new Promise(resolve => setTimeout(resolve, 5000))
+
+        Swal.close()
+
         // Reload the page to get better results
-        document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
+        this.$router.push({
+          path: '/explorer',
+          query
+        })
+        // document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
       } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
