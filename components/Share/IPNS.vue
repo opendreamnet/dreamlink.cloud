@@ -1,12 +1,7 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
-      <input
-        v-model="ipns"
-        placeholder="IPNS"
-        class="input"
-        required>
-
+    <form v-if="$ipfs.started" class="space-y-6" @submit.prevent="open()">
+      <input v-model="ipns" placeholder="/ipns/..." class="input" required>
       <input v-model="filename" placeholder="File name (Optional)" class="input">
 
       <Button class="button--sm">
@@ -24,7 +19,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import Swal from 'sweetalert2'
-import queryString, { ParsedQuery } from 'query-string'
+import axios from 'axios'
+import { ParsedQuery } from 'query-string'
 
 export default Vue.extend({
   data: () => ({
@@ -36,38 +32,39 @@ export default Vue.extend({
     /**
      * User wants to open a IPNS
      */
-    /*
-    async openIPNS() {
+    async open() {
       try {
         if (!this.$ipfs.api) {
           throw new Error('IPFS API undefined!')
         }
 
-        await this.$ipfs.api.ipns.startOnline()
-        const cidPath = await this.$ipfs.api.ipns.resolve(`/ipns/${this.ipns}`, { timeout: 30000 }) as string
+        const { data } = await axios.get('https://ipfs.io/api/v0/name/resolve', {
+          params: {
+            arg: `/ipns/${this.ipns}`,
+            recursive: true,
+            'dht-timeout': '30000ms'
+          }
+        })
 
-        console.log(cidPath)
-
-        const cid = cidPath.substring(6)
+        const cid = data.Path.substring(6)
 
         const query: ParsedQuery = {
           cid,
           filename: this.filename
         }
 
-        // Reload the page to get better results
-        document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
+        this.$router.push({
+          path: '/explorer',
+          query
+        })
       } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
           icon: 'error'
         })
-
-        console.warn(err)
       }
     }
-    */
   }
 })
 </script>
