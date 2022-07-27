@@ -2,7 +2,7 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import { DateTime } from 'luxon'
 import { findIndex, orderBy } from 'lodash'
-import { getIpfs } from '~/modules/ipfs'
+import { ipfs } from '~/modules/ipfs'
 import { storageDb, IPin as IStoragePin } from '~/modules/databases/storage'
 
 interface IPin {
@@ -51,7 +51,7 @@ export const mutations = mutationTree(state, {
   },
 
   sortByDate(state) {
-    state.items = orderBy(state.items, (item) => (item.date || DateTime.invalid('Invalid upload date.')).toSeconds(), 'desc')
+    state.items = orderBy(state.items, item => (item.date || DateTime.invalid('Invalid upload date.')).toSeconds(), 'desc')
   }
 })
 
@@ -61,7 +61,6 @@ export const actions = actionTree({ state, getters, mutations }, {
    * and obtains additional information from the IndexedDB.
    */
   async fetch({ commit }): Promise<void> {
-    const ipfs = await getIpfs()
     await ipfs.waitUntil('started')
 
     commit('clear')

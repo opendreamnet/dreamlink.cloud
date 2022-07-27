@@ -1,6 +1,6 @@
 import { isNil } from 'lodash'
 import { events } from './bus'
-import { getIpfs } from './ipfs'
+import { ipfs } from './ipfs'
 
 export class Storage {
   public isChrome = false
@@ -19,8 +19,6 @@ export class Storage {
     if (!await navigator.storage.persisted()) {
       await navigator.storage.persist()
     }
-
-    const ipfs = await getIpfs()
 
     ipfs.on('ready', this.check.bind(this))
 
@@ -53,7 +51,6 @@ export class Storage {
 
   public async getEstimation(): Promise<StorageEstimate> {
     const estimation: StorageEstimate = {}
-    const ipfs = await getIpfs()
 
     if (!ipfs.api) {
       throw new Error('IPFS API undefined!')
@@ -68,8 +65,8 @@ export class Storage {
     if (this.isChrome) {
       await new Promise((resolve, reject) => {
         // @ts-ignore
-          navigator.webkitPersistentStorage.queryUsageAndQuota(
-            (usedBytes: number, grantedBytes: number) => {
+        navigator.webkitPersistentStorage.queryUsageAndQuota(
+          (usedBytes: number, grantedBytes: number) => {
             estimation.quota = grantedBytes
 
             if (!estimation.usage) {

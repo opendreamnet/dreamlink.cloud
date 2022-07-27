@@ -19,6 +19,8 @@ module.exports = {
     'vue/html-closing-bracket-newline': ['warn', {
       singleline: 'never',
       multiline: 'never'
-    }]
+    }],
+    'no-empty-pattern': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn'
   }
 }

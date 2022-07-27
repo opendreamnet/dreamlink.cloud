@@ -1,8 +1,9 @@
 <template>
   <p
     v-if="$accessor.ipfs.appCID"
-    v-tippy="`Current version CID. Click to copy.`"
+    v-tippy
     v-clipboard="$accessor.ipfs.appCID"
+    title="Current version. Click to copy."
     class="cid">
     {{ $accessor.ipfs.appCID }}
   </p>

@@ -1,11 +1,11 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import queryString from 'query-string'
-import { getIpfs } from '~/modules/ipfs'
+import { ipfs } from '~/modules/ipfs'
 
 // State
 export const state = () => ({
   avatarURL: 'https://avatars.dicebear.com/api/initials/NA.svg',
-  appCID: null
+  appCID: null as string | null
 })
 
 export type State = ReturnType<typeof state>
@@ -30,8 +30,7 @@ export const actions = actionTree({ state, getters, mutations }, {
   /**
    * Start the IPFS node using the local settings.
    */
-  async start({ commit }): Promise<void> {
-    const ipfs = await getIpfs()
+  async start(): Promise<void> {
     const { ipfsPrivateKey, remoteEndpoint } = this.app.$accessor.settings
 
     console.time('ipfs.start')
@@ -72,9 +71,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    *
    * @param [peerId]
    */
-  async getAvatarURL({}, peerId?: string): Promise<string> {
-    const ipfs = await getIpfs()
-
+  getAvatarURL({}, peerId?: string): string {
     if (!peerId) {
       peerId = ipfs.identity?.id.toString() || 'unknown'
     }
