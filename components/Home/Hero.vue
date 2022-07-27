@@ -1,7 +1,7 @@
 <template>
   <div class="hero">
     <h2 class="hero__title">
-      Share files using <span class="text-ipfs">IPFS</span>
+      Explore and share using <span class="text-ipfs">IPFS</span>
     </h2>
 
     <div class="hero__subtitle">

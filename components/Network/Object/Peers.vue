@@ -40,7 +40,10 @@ export default Vue.extend({
 
   created() {
     // eslint-disable-next-line promise/catch-or-return,promise/always-return
-    this.$ipfs.fromCID(this.cid, { peers: true }).then((record) => { this.record = record })
+    this.$ipfs.fromCID(this.cid, { peers: true }).then((record) => {
+      this.record = record
+      console.log(record)
+    })
   }
 })
 </script>

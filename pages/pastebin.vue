@@ -1,5 +1,24 @@
 <template>
-  <div class="pastebin">
+  <div class="pastebin max-w-prose">
+    <Section title="Pastebin" subtitle="Create and share any text format on IPFS.">
+      <form v-if="$ipfs.started" class="pastebin__form" @submit.prevent="submit()">
+        <Field title="Filename" hint="Syntax Highlight in the preview will depend on the file name.">
+          <input v-model="filename" class="input" placeholder="(Optional)">
+        </Field>
+
+        <Field title="Content" hint="Remember that things in IPFS are public. Do not share private information!">
+          <textarea v-model="paste" class="input pastebin__textarea" autofocus required />
+        </Field>
+
+        <p>
+          <Button class="button--primary" :loading="loading">
+            Create Paste
+          </Button>
+        </p>
+      </form>
+    </Section>
+
+    <!--
     <Box title="Pastebin" subtitle="Create and share any text format on IPFS.">
       <form v-if="$ipfs.started" class="pastebin__form" @submit.prevent="submit()">
         <p>
@@ -27,6 +46,7 @@
         <Loading class="scale-150" />
       </div>
     </Box>
+    -->
   </div>
 </template>
 
@@ -84,11 +104,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .pastebin__form {
-  @apply space-y-5;
+  @apply space-y-8;
+}
 
-  textarea {
-    @apply font-mono;
-    min-height: 300px;
-  }
+.pastebin__textarea {
+  @apply font-mono;
+  min-height: 400px;
 }
 </style>

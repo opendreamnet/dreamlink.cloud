@@ -41,23 +41,23 @@
           IPFS
         </div>
 
-        <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank" class="item">
+        <a href="https://docs.ipfs.tech/concepts/what-is-ipfs/" target="_blank" class="item">
           What is IPFS?
         </a>
 
-        <a href="https://docs.ipfs.io/concepts/persistence/" target="_blank" class="item">
+        <a href="https://docs.ipfs.tech/concepts/persistence/" target="_blank" class="item">
           What is a pinned file?
         </a>
 
-        <a href="https://docs.ipfs.io/concepts/privacy/" target="_blank" class="item">
-          Privacy
+        <a href="https://docs.ipfs.tech/concepts/privacy-and-encryption/" target="_blank" class="item">
+          Privacy and encryption
         </a>
 
-        <a href="https://docs.ipfs.io/install/ipfs-companion/" target="_blank" class="item">
+        <a href="https://docs.ipfs.tech/install/ipfs-companion/" target="_blank" class="item">
           Browser extension
         </a>
 
-        <a href="https://docs.ipfs.io/install/ipfs-desktop/" target="_blank" class="item">
+        <a href="https://docs.ipfs.tech/install/ipfs-desktop/" target="_blank" class="item">
           Desktop app
         </a>
       </nav>
