@@ -32,7 +32,7 @@
           </div>
 
           <div class="name">
-            <NuxtLink :to="{ path: '/explorer', query: { cid: item.cid, filename: item.name }}" target="_blank">
+            <NuxtLink :to="{ path: '/explorer', query: { cid: item.cid, name: item.name }}" target="_blank">
               {{ item.name || 'Unknown' }}
             </NuxtLink>
           </div>

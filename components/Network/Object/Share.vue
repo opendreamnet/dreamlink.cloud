@@ -51,7 +51,7 @@ export default Vue.extend({
     explorerURL(): string {
       return document.location.origin + '/explorer?' + queryString.stringify({
         cid: this.cid,
-        filename: this.filename
+        name: this.filename
       }, {
         skipNull: true
       })

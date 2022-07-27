@@ -67,7 +67,7 @@ export default Vue.extend({
 
         this.$events.emit('upload.success')
 
-        this.$router.push(`/explorer?cid=${entry.cid.toString()}&filename=${filename}`)
+        this.$router.push(`/explorer?cid=${entry.cid.toString()}&name=${filename}`)
       } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',

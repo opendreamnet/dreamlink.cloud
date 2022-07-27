@@ -42,7 +42,7 @@
           <NuxtLink
             v-for="item in payload.hits"
             :key="item.hash"
-            :to="{ path: '/explorer', query: { cid: item.hash, filename: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
+            :to="{ path: '/explorer', query: { cid: item.hash, name: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
             target="_blank"
             class="item">
             <div class="title" v-html="item.title" />

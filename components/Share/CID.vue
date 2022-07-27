@@ -48,7 +48,7 @@ export default Vue.extend({
 
       const query: ParsedQuery = {
         cid: this.cid,
-        filename: this.filename
+        name: this.filename
       }
 
       // Reload the page to get better results

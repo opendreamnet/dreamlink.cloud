@@ -61,7 +61,7 @@ export default Vue.extend({
   }),
 
   head(): MetaInfo {
-    const title = this.$route.query.filename as string || this.$route.query.cid as string
+    const title = this.$route.query.name as string || this.$route.query.cid as string
 
     return {
       titleTemplate: `%s - ${title}`,
@@ -79,7 +79,7 @@ export default Vue.extend({
       return this.$route.query.cid as string
     },
     filename(): string {
-      return this.$route.query.filename as string
+      return this.$route.query.name as string
     }
   },
 

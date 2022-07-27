@@ -100,13 +100,13 @@ export default Vue.extend({
           size = files[0].size
 
           // Url query
-          query.filename = files[0].name
+          query.name = files[0].name
           query.cid = (await this.$ipfs.add(files[0], { pin: true })).cid.toString()
 
           // Save the record data in the database
           await this.$accessor.pins.pin({
             cid: query.cid,
-            name: query.filename,
+            name: query.name,
             size
           })
         } else {
@@ -118,24 +118,24 @@ export default Vue.extend({
 
           if (relativePath) {
             // This is a directory, take the name out
-            query.filename = relativePath.split('/')[0]
+            query.name = relativePath.split('/')[0]
             query.cid = (await this.$ipfs.add(files, { pin: true })).cid.toString()
 
             // Save the record data in the database
             await this.$accessor.pins.create({
               cid: query.cid,
-              name: isString(query.filename) ? query.filename : undefined,
+              name: isString(query.name) ? query.name : undefined,
               size
             })
           } else {
             // Multiple files selected, get the name from the CID and pin only the virtual directory CID.
             query.cid = (await this.$ipfs.add(files, { pin: false })).cid.toString()
-            query.filename = query.cid.substring(query.cid.length - 10)
+            query.name = query.cid.substring(query.cid.length - 10)
 
             // Save the record data in the database
             await this.$accessor.pins.pin({
               cid: query.cid,
-              name: query.filename,
+              name: query.name,
               size
             })
           }
