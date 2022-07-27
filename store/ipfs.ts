@@ -5,7 +5,7 @@ import { getIpfs } from '~/modules/ipfs'
 // State
 export const state = () => ({
   avatarURL: 'https://avatars.dicebear.com/api/initials/NA.svg',
-  webCID: ''
+  appCID: null
 })
 
 export type State = ReturnType<typeof state>
@@ -20,8 +20,8 @@ export const mutations = mutationTree(state, {
     state.avatarURL = url
   },
 
-  setWebCID(state, cid: string) {
-    state.webCID = cid
+  setAppCID(state, cid: string) {
+    state.appCID = cid
   }
 })
 
@@ -32,7 +32,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    */
   async start({ commit }): Promise<void> {
     const ipfs = await getIpfs()
-    const { ipfsPrivateKey, ipfsController, remoteEndpoint } = this.app.$accessor.settings
+    const { ipfsPrivateKey, remoteEndpoint } = this.app.$accessor.settings
 
     console.time('ipfs.start')
     await ipfs.start({
@@ -48,8 +48,9 @@ export const actions = actionTree({ state, getters, mutations }, {
       return avatarURL
     }).catch(noop)
 
-    this.app.$accessor.ipfs.fetchWebCID().catch(noop)
     */
+
+    // this.app.$accessor.ipfs.fetchWebCID().catch(noop)
   },
 
   /**
@@ -57,13 +58,13 @@ export const actions = actionTree({ state, getters, mutations }, {
    *
    * @param { commit }
    */
-  async fetchWebCID({ commit }): Promise<void> {
+  async fetchAppCID({ commit }, value: string): Promise<void> {
     if (!this.$ipfs.api) {
       throw new Error('IPFS API undefined!')
     }
 
-    const cid = await this.$ipfs.api.dns('www.dreamlink.cloud')
-    commit('setWebCID', cid.substring(6))
+    const cid = await this.$ipfs.api.dns(value)
+    commit('setAppCID', cid.substring(6))
   },
 
   /**

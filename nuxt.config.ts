@@ -116,7 +116,18 @@ export default setNuxtConfig({
   },
 
   publicRuntimeConfig: {
-    opendreamnet: process.env.OPENDREAMNET === 'true'
+    build: {
+      opendreamnet: process.env.OPENDREAMNET === 'true'
+    },
+    app: {
+      url: process.env.APP_URL,
+      githubUrl: process.env.APP_GITHUB_URL
+    },
+    company: {
+      name: process.env.COMPANY_NAME || 'Iván Bravo Bravo',
+      logo: process.env.COMPANY_LOGO,
+      url: process.env.COMPANY_URL || 'mailto:kolessios@gmail.com'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -16,7 +16,7 @@ if (isNil(window.BigInt)) {
   window.BigInt = JSBI.BigInt
 }
 
-const plugin: Plugin = async(ctx, inject) => {
+const plugin: Plugin = (ctx, inject) => {
   inject('events', events)
 }
 

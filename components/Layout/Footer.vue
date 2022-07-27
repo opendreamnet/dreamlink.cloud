@@ -1,37 +1,19 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <!-- Copyright -->
-      <div class="footer__copyright">
-        <p>
-          <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/CHANGELOG.md" target="_blank" class="version">v{{ $config.version }}</a>
-        </p>
+      <!-- Copyright & Logos -->
+      <div class="footer__left">
+        <FooterVersion />
 
-        <p>
-          <img src="https://static.opendreamnet.com/logo.svg">
-        </p>
+        <FooterCID />
 
-        <p
-          v-if="$accessor.ipfs.webCID.length > 0"
-          v-tippy="`Current version CID. Click to copy.`"
-          v-clipboard="$accessor.ipfs.webCID"
-          class="cid">
-          {{ $accessor.ipfs.webCID }}
-        </p>
-
-        <p>
-          © {{ new Date().getFullYear() }} <a href="https://opendreamnet.com" target="_blank">OpenDreamNet</a>. Distributed under the <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/LICENSE" target="_blank">GNU AGPLv3 license</a>.
-        </p>
-
-        <p>
-          <a href="https://ipfs.io/" target="_blank">IPFS</a> is a trademark of <a href="https://protocol.ai/" target="_blank">Protocol Labs</a>.
-        </p>
+        <FooterCopyright />
       </div>
 
       <div class="w-10 h-10" />
 
       <!-- Gateways -->
-      <nav v-if="$accessor.ipfs.webCID.length > 0" class="nav">
+      <nav v-if="$accessor.ipfs.appCID" class="nav">
         <div class="font-bold item">
           Mirrors
         </div>
@@ -40,15 +22,15 @@
           dreamlink.cloud
         </a>
 
-        <a :href="`https://dweb.link/ipfs/${$accessor.ipfs.webCID}`" target="_blank" class="item">
+        <a :href="`https://dweb.link/ipfs/${$accessor.ipfs.appCID}`" target="_blank" class="item">
           dweb.link
         </a>
 
-        <a :href="`https://infura-ipfs.io/ipfs/${$accessor.ipfs.webCID}`" target="_blank" class="item">
+        <a :href="`https://infura-ipfs.io/ipfs/${$accessor.ipfs.appCID}`" target="_blank" class="item">
           infura-ipfs.io
         </a>
 
-        <a :href="`ipfs://${$accessor.ipfs.webCID}`" target="_blank" class="item">
+        <a :href="`ipfs://${$accessor.ipfs.appCID}`" target="_blank" class="item">
           ipfs://
         </a>
       </nav>
@@ -98,7 +80,7 @@
           Contact
         </NuxtLink>
 
-        <a href="https://github.com/opendreamnet/dreamlink.cloud" target="_blank" class="item">
+        <a v-if="$config.app.githubUrl" :href="$config.app.githubUrl" target="_blank" class="item">
           Source code
         </a>
       </nav>
@@ -108,7 +90,7 @@
 
 <style lang="scss" scoped>
 .footer {
-  @apply border-t border-menus p-10;
+  @apply border-t-2 border-menus p-10;
   @apply mt-40 #{!important};
 
   @screen md {
@@ -125,35 +107,14 @@
 }
 
 .nav {
-  @apply space-y-2;
+  @apply space-y-4;
 
   a {
-    @apply block font-semibold text-white;
+    @apply block font-semibold text-origin-darken;
 
     &:hover {
-      @apply text-primary underline;
+      @apply text-origin-lighten underline;
     }
-  }
-}
-
-.footer__copyright {
-  @apply space-y-1;
-
-  a {
-    @apply text-white;
-
-    &:hover {
-      @apply text-primary underline;
-    }
-  }
-
-  .version {
-    @apply font-semibold;
-  }
-
-  .cid {
-    @apply text-xs text-snow-darken cursor-default;
-    @apply mb-6 #{!important};
   }
 }
 </style>
