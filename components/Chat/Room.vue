@@ -15,7 +15,7 @@
             <!-- Peers -->
             <Button
               v-if="joined"
-              v-tooltip="'Peers in the room.'"
+              v-tippy="'Peers in the room.'"
               class="button--sm"
               @click="$refs.peersDialog.open()">
               <span class="icon"><FontAwesomeIcon icon="users" /></span>
@@ -25,14 +25,14 @@
             <!-- Settings -->
             <Button
               v-if="joined"
-              v-tooltip="'Settings'"
+              v-tippy="'Settings'"
               class="button--sm"
               @click="$refs.settingsDialog.open()">
               <span class="icon"><FontAwesomeIcon icon="cog" /></span>
             </Button>
 
             <!-- About -->
-            <Button v-tooltip="'About chat rooms'" class="button--sm" @click="$refs.aboutDialog.open()">
+            <Button v-tippy="'About chat rooms'" class="button--sm" @click="$refs.aboutDialog.open()">
               <span class="icon"><FontAwesomeIcon icon="question" /></span>
             </Button>
           </div>

@@ -7,9 +7,13 @@
           <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/CHANGELOG.md" target="_blank" class="version">v{{ $config.version }}</a>
         </p>
 
+        <p>
+          <img src="https://static.opendreamnet.com/logo.svg">
+        </p>
+
         <p
           v-if="$accessor.ipfs.webCID.length > 0"
-          v-tooltip="`Current version CID. Click to copy.`"
+          v-tippy="`Current version CID. Click to copy.`"
           v-clipboard="$accessor.ipfs.webCID"
           class="cid">
           {{ $accessor.ipfs.webCID }}

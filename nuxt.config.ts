@@ -12,7 +12,10 @@ export default setNuxtConfig({
   head: {
     script: [
       {
-        src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.3/dist/index.umd.js'
+        // The latest IPFS-JS libraries are now ESM forcing us to use the
+        // @opendreamnet/ipfs version built with Webpack 5. (This NuxtJS uses Webpack 4)
+        // We still include the library to use the types.
+        src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.4/dist/index.umd.js'
       }
     ]
   },
@@ -100,7 +103,7 @@ export default setNuxtConfig({
 
   // https://github.com/nuxt-community/google-fonts-module
   googleFonts: {
-    download: process.env['NODE_ENV'] === 'production' && process.env['OPENDREAMNET'] === 'true',
+    download: process.env.NODE_ENV === 'production' && process.env.OPENDREAMNET === 'true',
     families: {
       Inter: [300, 400, 600, 800]
     }
@@ -112,10 +115,15 @@ export default setNuxtConfig({
     }
   },
 
+  publicRuntimeConfig: {
+    opendreamnet: process.env.OPENDREAMNET === 'true'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
+      // @ts-ignore
       presets(env, defaultPreset) {
         // @ts-ignore
         defaultPreset[1].targets = {}

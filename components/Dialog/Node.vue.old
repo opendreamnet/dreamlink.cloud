@@ -48,7 +48,7 @@
 
           <Button
             v-if="$ipfs.ready"
-            v-tooltip="storageTooltip"
+            v-tippy="storageTooltip"
             class="button--primary button--sm"
             :loading="gcLoading"
             @click="freeUp">

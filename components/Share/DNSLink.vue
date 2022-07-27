@@ -1,11 +1,7 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
-      <input
-        v-model="dnslink"
-        placeholder="www.dreamlink.cloud"
-        class="input"
-        required>
+    <form v-if="$ipfs.started" class="space-y-6" @submit.prevent="open()">
+      <input v-model="dnslink" placeholder="www.dreamlink.cloud" class="input" required>
 
       <Button class="button--sm">
         Open
@@ -22,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Swal from 'sweetalert2'
-import queryString, { ParsedQuery } from 'query-string'
+import { ParsedQuery } from 'query-string'
 
 export default Vue.extend({
   data: () => ({
@@ -45,8 +41,10 @@ export default Vue.extend({
           filename: this.filename
         }
 
-        // Reload the page to get better results
-        document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
+        this.$router.push({
+          path: '/explorer',
+          query
+        })
       } catch (err) {
         Swal.fire({
           title: 'A problem has occurred',

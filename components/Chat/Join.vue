@@ -1,17 +1,13 @@
 <template>
   <Box title="Chat" subtitle="Create an encrypted P2P chat room for free communication between people you trust.">
     <form v-if="$ipfs.started" class="chat__form" @submit.prevent="submit">
-      <p>
-        <label class="label">Room ID:</label>
-        <input v-model="roomID" class="input" required>
-        <span class="hint">It can be whatever you want, the topic you will talk about or a super secret room name.</span>
-      </p>
+      <Field title="Room ID" hint="It can be whatever you want, the topic you will talk about or a super secret room name.">
+        <input v-model="roomID" class="input" required></input>
+      </Field>
 
-      <p>
-        <label class="label">Encryption key:</label>
-        <input v-model="secretKey" class="input" required>
-        <span class="hint">Only users who have the same encryption key will be able to view your messages.</span>
-      </p>
+      <Field title="Encryption key" hint="Only users who have the same encryption key will be able to view your messages.">
+        <input v-model="secretKey" class="input" required></input>
+      </Field>
 
       <p>
         <Button>
@@ -36,12 +32,12 @@ export default Vue.extend({
     secretKey: ''
   }),
 
-  mounted() {
+  mounted () {
     this.secretKey = faker.datatype.string(20)
   },
 
   methods: {
-    submit() {
+    submit () {
       if (this.roomID.length === 0) {
         return
       }
@@ -54,6 +50,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .chat__form {
-  @apply space-y-5;
+  @apply space-y-10;
 }
 </style>

@@ -50,7 +50,7 @@
           </div>
 
           <div class="actions">
-            <Button v-tooltip="'Unpin'" class="button--danger button--xs" @click="unpin(item.cid)">
+            <Button v-tippy="'Unpin'" class="button--danger button--xs" @click="unpin(item.cid)">
               <FontAwesomeIcon icon="heart-broken" />
             </Button>
           </div>
@@ -79,7 +79,7 @@ export default Vue.extend({
     /**
      * Returns the icon according to the file type.
      */
-    getIcon(filename?: string): string {
+    getIcon (filename?: string): string {
       switch (getObjectType(filename)) {
         case 'directory':
           return 'folder'
@@ -104,7 +104,7 @@ export default Vue.extend({
       }
     },
 
-    async unpin(cid: string) {
+    async unpin (cid: string) {
       await this.$accessor.pins.unpin(cid)
     }
   }

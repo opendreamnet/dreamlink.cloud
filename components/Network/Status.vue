@@ -2,7 +2,7 @@
   <div class="status">
     <!-- Button -->
     <Button
-      v-tooltip="'My node'"
+      v-tippy="'My node'"
       el="NuxtLink"
       to="/app/profile"
       class="status__button button--sm">

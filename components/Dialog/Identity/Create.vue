@@ -19,7 +19,7 @@
         <Field title="Protobuf" description="Keep the following string in a safe place, this will allow you to recover your new identity.">
           <textarea
             v-clipboard="protobuf"
-            v-tooltip="'Click to copy.'"
+            v-tippy="'Click to copy.'"
             :value="protobuf"
             readonly
             class="h-20 input" />

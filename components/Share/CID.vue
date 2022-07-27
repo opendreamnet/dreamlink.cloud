@@ -1,12 +1,7 @@
 <template>
   <div class="open">
-    <form v-if="$ipfs.started" class="space-y-3" @submit.prevent="open()">
-      <input
-        v-model="cid"
-        placeholder="CID"
-        class="input"
-        required>
-
+    <form v-if="$ipfs.started" class="space-y-6" @submit.prevent="open()">
+      <input v-model="cid" placeholder="/ipfs/..." class="input" required>
       <input v-model="filename" placeholder="File name (Optional)" class="input">
 
       <Button class="button--sm">
@@ -23,9 +18,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import isIPFS from 'is-ipfs'
+import { cid } from 'is-ipfs'
 import Swal from 'sweetalert2'
-import queryString, { ParsedQuery } from 'query-string'
+import { ParsedQuery } from 'query-string'
 
 export default Vue.extend({
   data: () => ({
@@ -38,7 +33,7 @@ export default Vue.extend({
      * User wants to open a CID
      */
     open() {
-      if (!isIPFS.cid(this.cid)) {
+      if (!cid(this.cid)) {
         return Swal.fire({
           title: 'CID invalid',
           html: 'Please enter a valid IPFS CID.',

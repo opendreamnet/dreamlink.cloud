@@ -6,7 +6,8 @@
       ref="files"
       type="file"
       multiple
-      @change="upload">
+      @change="upload"
+    >
 
     <!-- Directory upload -->
     <input
@@ -17,7 +18,8 @@
       directory
       webkitdirectory
       mozdirectory
-      @change="upload">
+      @change="upload"
+    >
 
     <div v-if="$ipfs.started" class="upload__buttons">
       <Button class="button-xl" @click="$refs.files.click()">
@@ -41,7 +43,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Swal from 'sweetalert2'
-import queryString, { ParsedQuery } from 'query-string'
+import { ParsedQuery } from 'query-string'
 import { isString, reduce } from 'lodash'
 import { DefaultNuxtLoading } from '@nuxt/types/app'
 

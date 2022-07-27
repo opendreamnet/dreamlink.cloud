@@ -19,14 +19,14 @@
       v-if="copy"
       ref="copyButton"
       v-clipboard="value"
-      v-tooltip="'Copy'"
+      v-tippy="'Copy'"
       class="plus__box plus__box--button">
       <FontAwesomeIcon icon="clone" />
     </div>
 
     <a
       v-if="open"
-      v-tooltip="'Open'"
+      v-tippy="'Open'"
       :href="value"
       target="_blank"
       class="rounded-r plus__box plus__box--button">

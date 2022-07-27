@@ -6,7 +6,7 @@
     <!-- Title -->
     <div class="explorer__info">
       <div
-        v-tooltip="'CID: This is how your file is identified on the network. Click to copy.'"
+        v-tippy="'CID: This is how your file is identified on the network. Click to copy.'"
         v-clipboard="cid"
         class="cid">
         {{ cid }}

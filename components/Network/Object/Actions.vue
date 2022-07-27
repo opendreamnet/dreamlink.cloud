@@ -11,7 +11,7 @@
       <Button
         v-if="!entry.isPinned"
         key="pin"
-        v-tooltip="'Prevents the file from being deleted from your storage and keeps it in an easily accessible list in your profile.'"
+        v-tippy="'Prevents the file from being deleted from your storage and keeps it in an easily accessible list in your profile.'"
         :loading="pinLoading"
         @click="pin">
         <span class="icon"><FontAwesomeIcon icon="heart" /></span>
@@ -21,7 +21,7 @@
       <Button
         v-else
         key="unpin"
-        v-tooltip="'This file no longer interests you and can be deleted from your storage.'"
+        v-tippy="'This file no longer interests you and can be deleted from your storage.'"
         class="button--danger"
         :loading="unpinLoading"
         @click="unpin">
@@ -31,7 +31,7 @@
 
       <Button
         v-if="!entry.isDirectory"
-        v-tooltip="'Download the file using your IPFS node. This file will start taking up space on your storage and you will also contribute to its distribution. The process may take several minutes if the file is not on your storage.'"
+        v-tippy="'Download the file using your IPFS node. This file will start taking up space on your storage and you will also contribute to its distribution. The process may take several minutes if the file is not on your storage.'"
         :loading="nodeDownloadLoading"
         @click="nodeDownload">
         <span class="icon"><FontAwesomeIcon icon="save" /></span>

@@ -1,7 +1,7 @@
 <template>
   <div class="share">
     <!-- Categories -->
-    <ButtonsMenu v-model="category" class="share__categories" :data="categories" />
+    <Tabs v-model="category" :tabs="categories" />
 
     <!-- Upload -->
     <ShareUpload v-show="category === 'upload'" />
@@ -10,10 +10,10 @@
     <ShareCID v-show="category === 'cid'" />
 
     <!-- Open IPNS -->
-    <ShareCID v-show="category === 'ipns'" />
+    <ShareIPNS v-show="category === 'ipns'" />
 
     <!-- Open DNSLink -->
-    <ShareDNSLink v-show="category === 'dnslink'" />
+    <ShareDNSLink v-show="category === 'dns-link'" />
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 import Vue from 'vue'
 
 interface IData {
-  category: 'upload' | 'cid' | 'ipns' | 'dnslink'
+  category: 'upload' | 'cid' | 'ipns' | 'dns-link'
 }
 
 export default Vue.extend({
@@ -31,12 +31,12 @@ export default Vue.extend({
 
   computed: {
     categories() {
-      return {
-        Upload: 'upload',
-        CID: 'cid',
-        // IPNS: 'ipns',
-        DNSLink: 'dnslink'
-      }
+      return [
+        'Upload',
+        'CID',
+        'IPNS',
+        'DNSLink'
+      ]
     }
   }
 })

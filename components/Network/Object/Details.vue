@@ -20,7 +20,7 @@
         <span v-else class="value">{{ entry.subEntries.length }}</span>
       </p>
 
-      <p v-tooltip="'Number of IPFS nodes distributing this entry. (Not always correct)'">
+      <p v-tippy="'Number of IPFS nodes distributing this entry. (Not always correct)'">
         <span class="title">Peers:</span>
         <span v-if="!entry.peers || entry.peers.length === 0 && entry.loading" class="value">Loading...</span>
         <span v-else class="value">{{ entry.peers.length }}</span>

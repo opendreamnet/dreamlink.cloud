@@ -5,14 +5,14 @@
     <div class="header__avatar">
       <figure>
         <img :src="$accessor.ipfs.avatarURL">
-        <Light v-model="$ipfs.started" v-tooltip="'You are connected to the IPFS network!'" />
+        <Light v-model="$ipfs.started" v-tippy="'You are connected to the IPFS network!'" />
       </figure>
     </div>
 
     <div class="header__identity">
       <div
         v-if="isLocalUser"
-        v-tooltip="'Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node\'s public key. Click to copy.'"
+        v-tippy="'Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node\'s public key. Click to copy.'"
         v-clipboard="peerId"
         class="peerid">
         {{ peerId }}
@@ -24,11 +24,11 @@
     </div>
 
     <div v-if="isLocalUser" class="header__tags">
-      <p v-tooltip="'Pinned files.'">
+      <p v-tippy="'Pinned files.'">
         <span class="value">{{ $accessor.pins.items.length }}</span> Files
       </p>
 
-      <p v-tooltip="'Space occupied by pinned and unpinned files.'">
+      <p v-tippy="'Space occupied by pinned and unpinned files.'">
         <span class="value">{{ $storage.usage | prettyBytes }}</span>
       </p>
     </div>

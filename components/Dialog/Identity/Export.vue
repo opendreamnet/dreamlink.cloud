@@ -17,7 +17,7 @@
 
             <textarea
               v-clipboard="pem"
-              v-tooltip="'Click to copy.'"
+              v-tippy="'Click to copy.'"
               :value="pem"
               readonly
               class="h-40 input" />
@@ -33,7 +33,7 @@
           <textarea
             ref="protobuf"
             v-clipboard="protobuf"
-            v-tooltip="'Click to copy.'"
+            v-tippy="'Click to copy.'"
             :value="protobuf"
             readonly
             class="h-40 input" />
@@ -55,7 +55,7 @@
           description="This is your base64-encoded private key.">
           <textarea
             v-clipboard="base64"
-            v-tooltip="'Click to copy.'"
+            v-tippy="'Click to copy.'"
             :value="base64"
             readonly
             class="h-40 input" />

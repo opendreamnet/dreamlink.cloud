@@ -10,19 +10,19 @@
 
       <!-- Navigation -->
       <nav class="nav__center">
-        <NuxtLink v-tooltip="'Share files and folders.'" to="/" class="item">
+        <NuxtLink v-tippy="'Share files and folders.'" to="/" class="item">
           Share
         </NuxtLink>
 
-        <div v-tooltip="'Search files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
+        <div v-tippy="'Search files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
           Search
         </div>
 
-        <NuxtLink v-tooltip="'Share any text format.'" to="/pastebin" class="item">
+        <NuxtLink v-tippy="'Share any text format.'" to="/pastebin" class="item">
           Pastebin
         </NuxtLink>
 
-        <NuxtLink v-tooltip="'Create an encrypted P2P chat room.'" to="/chat" class="item">
+        <NuxtLink v-tippy="'Create an encrypted P2P chat room.'" to="/chat" class="item">
           Chat
         </NuxtLink>
 
@@ -48,14 +48,14 @@ export default Vue.extend({
   }),
 
   computed: {
-    headerClass() {
+    headerClass () {
       return {
         'header--scrolled': this.scrollTop > 80
       }
     }
   },
 
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', () => {
       // Get the scroll position
       this.scrollTop = window.pageYOffset || document.documentElement.scrollTop
@@ -107,6 +107,7 @@ export default Vue.extend({
 
 .logo {
   @apply text-white tracking-widest text-xl;
+  font-family: Anke;
 }
 
 .item {
