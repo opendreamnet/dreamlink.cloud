@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.7.0...v1.7.1) (2022-07-27)
+
+
+### Features
+
+* upgraded @opendreamnet/ipfs, some performance changes ([1cc7b49](https://github.com/opendreamnet/dreamlink.cloud/commit/1cc7b49ca2ae527822eaf66da207f953e132de1a))
+
+
+### Bug Fixes
+
+* changed `filename` to `name` ([d6b38f7](https://github.com/opendreamnet/dreamlink.cloud/commit/d6b38f77bc912bfb97cf140c28f4dde996e9db73))
+
+
+### Others
+
+* added google fonts to ignore ([9db26aa](https://github.com/opendreamnet/dreamlink.cloud/commit/9db26aa61521d667ffeb38e2e0c3898a1cdcf5a1))
+* funding.yml update ([b68eef8](https://github.com/opendreamnet/dreamlink.cloud/commit/b68eef819dd1e01e39b2333f5f817122a96913fa))
+* removed unreliable gateways ([385be4a](https://github.com/opendreamnet/dreamlink.cloud/commit/385be4adfc911154bdfdad7ce38802d288b98506))
+
 ## [1.7.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.9...v1.7.0) (2022-05-02)
 
 
