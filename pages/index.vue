@@ -1,10 +1,7 @@
 <template>
   <div class="home">
-    <!-- Hero -->
-    <HomeHero />
-
     <!-- Categories -->
-    <ShareCategories class="home__content" />
+    <ShareCategories />
   </div>
 </template>
 
@@ -16,14 +13,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.home {
-  @apply space-y-24;
-}
-
-.home__hero {
-  @apply text-center;
-}
-
 .home__content {
   @apply space-y-9 mx-auto max-w-prose;
 }

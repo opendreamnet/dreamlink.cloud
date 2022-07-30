@@ -3,8 +3,14 @@
     <!-- Categories -->
     <Tabs v-model="category" :tabs="categories" />
 
-    <!-- Upload -->
-    <ShareUpload v-show="category === 'upload'" />
+    <!-- My Files / Upload -->
+    <div v-show="category === 'my-files'">
+      <!-- Upload -->
+      <ShareUpload class="mb-10" />
+
+      <!-- Root explorer -->
+      <FilesFromMFS />
+    </div>
 
     <!-- Open CID -->
     <ShareCID v-show="category === 'cid'" />
@@ -21,18 +27,18 @@
 import Vue from 'vue'
 
 interface IData {
-  category: 'upload' | 'cid' | 'ipns' | 'dns-link'
+  category: 'my-files' | 'cid' | 'ipns' | 'dns-link'
 }
 
 export default Vue.extend({
   data: (): IData => ({
-    category: 'upload'
+    category: 'my-files'
   }),
 
   computed: {
     categories() {
       return [
-        'Upload',
+        'My Files',
         'CID',
         'IPNS',
         'DNSLink'

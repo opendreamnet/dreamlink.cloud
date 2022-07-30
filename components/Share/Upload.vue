@@ -6,8 +6,7 @@
       ref="files"
       type="file"
       multiple
-      @change="upload"
-    >
+      @change="upload">
 
     <!-- Directory upload -->
     <input
@@ -18,8 +17,7 @@
       directory
       webkitdirectory
       mozdirectory
-      @change="upload"
-    >
+      @change="upload">
 
     <div v-if="$ipfs.started" class="upload__buttons">
       <Button class="button-xl" @click="$refs.files.click()">
@@ -44,13 +42,13 @@
 import Vue from 'vue'
 import Swal from 'sweetalert2'
 import { ParsedQuery } from 'query-string'
-import { isString, reduce } from 'lodash'
 import { DefaultNuxtLoading } from '@nuxt/types/app'
+import { UPLOAD_DELAY } from '~/modules/defs'
 
 export default Vue.extend({
   computed: {
     /**
-     * Indicates if the web browser has support for directory upload
+     * True if the web browser has support for directory upload
      */
     hasDirectorySupport(): boolean {
       const input = document.createElement('input')
@@ -77,90 +75,57 @@ export default Vue.extend({
         return
       }
 
-      const query: ParsedQuery = {
-        // More appropriate messages for the uploader
-        uploader: 'true'
-      }
-
-      // Total file size
-      let size: number | undefined
-
       try {
-        // Show loading
-        (this.$nuxt.$loading as DefaultNuxtLoading).continuous = true
-        this.$nuxt.$loading.start()
-
         Swal.fire({
           title: 'Uploading...',
-          text: 'This can take up to several minutes for large files.',
+          text: 'This may take several minutes on large files.',
           allowOutsideClick: false,
           allowEscapeKey: false,
           showConfirmButton: false
         })
 
-        if (files.length === 1) {
-          size = files[0].size
+        // Upload to MFS
+        const { cid, name } = await this.$accessor.ipfs.upload({
+          files,
+          loading: this.$nuxt.$loading as DefaultNuxtLoading
+        })
 
-          // Url query
-          query.filename = files[0].name
-          query.cid = (await this.$ipfs.add(files[0], { pin: true })).cid.toString()
-
-          // Save the record data in the database
-          await this.$accessor.pins.pin({
-            cid: query.cid,
-            name: query.filename,
-            size
-          })
-        } else {
-          // @ts-ignore
-          const relativePath: string | undefined = files[0].webkitRelativePath
-
-          // Total for all files
-          size = reduce(files, (accumulator, value) => accumulator + value.size, 0)
-
-          if (relativePath) {
-            // This is a directory, take the name out
-            query.filename = relativePath.split('/')[0]
-            query.cid = (await this.$ipfs.add(files, { pin: true })).cid.toString()
-
-            // Save the record data in the database
-            await this.$accessor.pins.create({
-              cid: query.cid,
-              name: isString(query.filename) ? query.filename : undefined,
-              size
-            })
-          } else {
-            // Multiple files selected, get the name from the CID and pin only the virtual directory CID.
-            query.cid = (await this.$ipfs.add(files, { pin: false })).cid.toString()
-            query.filename = query.cid.substring(query.cid.length - 10)
-
-            // Save the record data in the database
-            await this.$accessor.pins.pin({
-              cid: query.cid,
-              name: query.filename,
-              size
-            })
-          }
-        }
-
+        // Notify storage
         this.$events.emit('upload.success')
 
-        await new Promise(resolve => setTimeout(resolve, 5000))
+        Swal.fire({
+          title: 'Sharing your file...',
+          text: 'This may take a few minutes.',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          showConfirmButton: false
+        })
 
+        // Request caching on the most popular gateway
+        await this.$accessor.ipfs.finishUpload(cid)
+
+        // Close alert
         Swal.close()
 
-        // Reload the page to get better results
+        const query: ParsedQuery = {
+          uploader: 'true', // More appropriate messages for the uploader
+          cid,
+          name
+        }
+
+        // Open explorer
         this.$router.push({
           path: '/explorer',
           query
         })
-        // document.location.href = '/explorer?' + queryString.stringify(query, { skipNull: true })
       } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
           icon: 'error'
         })
+
+        console.trace(err)
       }
 
       // Reset

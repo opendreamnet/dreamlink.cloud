@@ -96,7 +96,8 @@ export default setNuxtConfig({
         'faHeart',
         'faHeartBroken',
         'faDatabase',
-        'faCaretDown'
+        'faCaretDown',
+        'faThumbtack'
       ]
     }
   },

@@ -4,6 +4,8 @@ import { noop } from 'lodash'
 import { storage } from '../modules/storage'
 import { ipfs } from '../modules/ipfs'
 
+window.global = window
+
 const plugin: Plugin = async({ app, $config }, inject) => {
   // Inject ipfs into context
   inject('ipfs', Vue.observable(ipfs))

@@ -18,36 +18,4 @@ export const MAX_USERNAME_LENGTH = 20
  */
 export const DEFAULT_ENCRYPTION_KEY = 'bR^x&)k4+fx=:3DLYLJ#FI'
 
-/**
- * Gateways that do not support * CORS.
- */
-export const GATEWAYS_CORS_BLOCKED = [
-  'cf-ipfs.com',
-  'overpi.com',
-  'ipfs.fooock.com',
-  'storjipfs-gateway.com',
-  'ipfs.runfission.com',
-  'trusti.id',
-  'hashnews.k1ic.com',
-  'ipfs.mihir.ch',
-  'ipfs.globalupload.io',
-  'ipfs.eternum.io',
-  'bin.d0x.to',
-  'drink.cafe',
-  'ipfs.taxi',
-  'ipfs.xoqq.ch',
-
-  // Down because copyright...
-  'odn.pw',
-  'fs.dreamlink.cloud'
-]
-
-/**
- * Trusted gateways.
- */
-export const GATEWAYS_TRUSTED = [
-  'ipfs.io',
-  'dweb.link',
-  'infura-ipfs.io',
-  'pinata.cloud'
-]
+export const UPLOAD_DELAY = 5000

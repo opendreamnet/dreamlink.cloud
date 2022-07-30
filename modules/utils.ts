@@ -1,6 +1,6 @@
 import { startsWith } from 'lodash'
 import CryptoJS from 'crypto-js'
-import mime from 'mime'
+import { getType } from 'mime'
 import { SEED_TEXT } from './defs'
 import { Message } from '~/types'
 
@@ -103,13 +103,17 @@ export function decryptMessage(message: string, secretKey: string): Message | nu
 
 type ObjectType = 'directory' | 'video' | 'audio' | 'image' | 'text' | 'pdf' | null
 
-export function getObjectType(filename?: string | null): ObjectType {
+export function getTypeFromFilename(filename?: string | null): ObjectType {
   if (!filename) {
     return null
   }
 
-  const mimetype = mime.getType(filename)
+  const mimetype = getType(filename)
 
+  return getTypeFromMime(mimetype || undefined)
+}
+
+export function getTypeFromMime(mimetype?: string) {
   if (!mimetype) {
     return 'directory'
   }

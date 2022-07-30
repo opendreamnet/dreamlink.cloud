@@ -1,7 +1,7 @@
 
 <template>
-  <div class="header">
-    <!-- Photo -->
+  <div v-if="$ipfs.started" class="header">
+    <!-- Avatar -->
     <div class="header__avatar">
       <figure>
         <img :src="$accessor.ipfs.avatarURL">
@@ -9,21 +9,24 @@
       </figure>
     </div>
 
+    <!-- Identity -->
     <div class="header__identity">
-      <div
-        v-if="isLocalUser"
-        v-tippy="'Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node\'s public key. Click to copy.'"
-        v-clipboard="peerId"
-        class="peerid">
-        {{ peerId }}
-      </div>
-
+      <!--
       <div class="username">
         {{ isLocalUser ? $accessor.settings.username : peerId }}
       </div>
+      -->
+
+      <div
+        v-tippy
+        v-clipboard="peerId"
+        title="Peer ID: This is how your IPFS node is identified on the network. Essentially a cryptographic hash of the node's public key. Click to copy."
+        class="peerid">
+        <InputPlus :value="peerId" input-class="input--sm" />
+      </div>
     </div>
 
-    <div v-if="isLocalUser" class="header__tags">
+    <div class="header__tags">
       <p v-tippy="'Pinned files.'">
         <span class="value">{{ $accessor.pins.items.length }}</span> Files
       </p>
@@ -33,28 +36,24 @@
       </p>
     </div>
   </div>
+
+  <!-- Loading -->
+  <div v-else class="flex justify-center">
+    <Loading class="scale-150" />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
 export default Vue.extend({
-  props: {
-    peerId: {
-      type: String,
-      default: () => {
-        return ''
-      }
-    }
-  },
-
   computed: {
-    isLocalUser(): boolean {
-      return this.peerId === this.$ipfs.identity?.id.toString()
+    peerId(): string | null {
+      return this.$ipfs.identity?.id.toString() || null
     },
 
     avatarURL(): string | null {
-      return `https://avatars.dicebear.com/api/micah/${this.peerId}.svg?glassesProbability=80&width=130&height=130`
+      return this.$accessor.ipfs.avatarURL
     }
   }
 })
@@ -62,7 +61,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header {
-  @apply space-y-9;
+  @apply space-y-8;
 }
 
 .header__avatar {
@@ -74,12 +73,12 @@ export default Vue.extend({
 
   img {
     @apply rounded-full border-2 border-snow-darken;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
   }
 
   .light {
-    @apply absolute right-4 bottom-3 scale-150 transform;
+    @apply absolute right-2 bottom-3 scale-150 transform;
   }
 }
 
@@ -87,11 +86,12 @@ export default Vue.extend({
   @apply space-y-1 text-center;
 
   .peerid {
-    @apply text-white font-bold text-xl cursor-pointer;
+    @apply text-origin-lighten font-bold text-xl cursor-pointer;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
   }
 
   .username {
+    @apply text-origin-darken font-semibold;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
   }
 }

@@ -7,12 +7,9 @@
     <Section title="Direct links" subtitle="Trusted gateways where anyone can access the file directly.">
       <div class="share__gateways">
         <NetworkObjectUrl
-          v-for="(url, it) in gatewaysURLS"
-          :key="url"
-          :delay="it"
-          :cid="cid"
-          :filename="filename"
-          :url="url" />
+          v-for="(gateway, it) in gateways"
+          :key="it"
+          :gateway="gateway" />
       </div>
     </Section>
   </div>
@@ -21,8 +18,7 @@
 <script lang="ts">
 import queryString from 'query-string'
 import Vue from 'vue'
-import gateways from '~/modules/gateways.json'
-import { GATEWAYS_CORS_BLOCKED } from '~/modules/defs'
+import { Gateway } from '~/modules/gateway'
 
 export default Vue.extend({
   props: {
@@ -30,15 +26,11 @@ export default Vue.extend({
       type: String,
       required: true
     },
-    filename: {
+    name: {
       type: String,
       default: null
     }
   },
-
-  data: () => ({
-    gateways
-  }),
 
   computed: {
     /**
@@ -47,7 +39,7 @@ export default Vue.extend({
     explorerURL(): string {
       return document.location.origin + '/explorer?' + queryString.stringify({
         cid: this.cid,
-        filename: this.filename
+        name: this.name
       }, {
         skipNull: true
       })
@@ -56,16 +48,8 @@ export default Vue.extend({
     /**
      * URLs to public gateways.
      */
-    gatewaysURLS() {
-      return gateways.filter((url) => {
-        for (const u of GATEWAYS_CORS_BLOCKED) {
-          if (url.includes(u)) {
-            return false
-          }
-        }
-
-        return true
-      })
+    gateways() {
+      return Gateway.fromAll(this.cid, this.name)
     }
   }
 })

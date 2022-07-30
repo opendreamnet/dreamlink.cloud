@@ -1,4 +1,9 @@
 <template>
+  <p class="text-center">
+    Chat features will be back soon!
+  </p>
+
+  <!--
   <div v-if="!$ipfs.started" key="loading" class="chat">
     <div class="flex justify-center">
       <Loading class="scale-150" />
@@ -12,6 +17,7 @@
   <div v-else key="room" class="chat">
     <ChatRoom ref="room" :room-id="roomID" :primary="true" />
   </div>
+  -->
 </template>
 
 <script lang="ts">

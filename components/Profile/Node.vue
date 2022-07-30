@@ -1,26 +1,30 @@
 <template>
-  <form id="nodeForm" @submit.prevent="submit()">
-    <Field title="Type" description="">
-      <select v-model="type" class="max-w-xl input" required>
-        <option value="browser">
-          Browser
-        </option>
-        <option value="external">
-          External
-        </option>
-      </select>
-    </Field>
+  <Section title="Node" subtitle="Settings on the communication with the IPFS network.">
+    <form id="nodeForm" @submit.prevent="submit()">
+      <!-- Type -->
+      <Field title="Type" :description="typeDescription">
+        <select v-model="type" class="max-w-xl input" required>
+          <option value="browser">
+            Browser
+          </option>
+          <option value="external">
+            External
+          </option>
+        </select>
+      </Field>
 
-    <Field v-if="type === 'external'" title="Endpoint" description="">
-      <input v-model="endpoint" class="max-w-xl input" required>
-    </Field>
+      <!-- Endpoint -->
+      <Field v-if="type === 'external'" title="Endpoint" description="Where can we connect to your node?" :hint="`Remember to add <code>${origin}</code> to <code>API.HTTPHeaders.Access-Control-Allow-Origin</code> in your node configuration.`">
+        <input v-model="endpoint" class="max-w-xl input" required>
+      </Field>
 
-    <div class="justify-end buttons">
-      <Button class="button--primary">
-        Save
-      </Button>
-    </div>
-  </form>
+      <div>
+        <Button class="button--primary">
+          Save
+        </Button>
+      </div>
+    </form>
+  </Section>
 </template>
 
 <script lang="ts">
@@ -37,6 +41,20 @@ export default Vue.extend({
     type: 'browser',
     endpoint: '/ip4/127.0.0.1/tcp/5001'
   }),
+
+  computed: {
+    origin(): string {
+      return document.location.origin
+    },
+
+    typeDescription(): string {
+      if (this.type === 'external') {
+        return 'Use the IPFS node you have installed on your device and maintain a more reliable connection.'
+      }
+
+      return 'Use the IPFS node that we install in your web browser. Easy but may have reliability issues.'
+    }
+  },
 
   created() {
     if (isNil(this.$accessor.settings.remoteEndpoint)) {

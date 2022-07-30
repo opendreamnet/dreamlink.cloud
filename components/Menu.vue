@@ -1,17 +1,17 @@
 <template>
-  <div class="tabs">
-    <div class="tabs__nav">
+  <Box>
+    <div class="menu">
       <div
         v-for="item in tabsArray"
         :key="item.id"
         :data-id="item.id"
-        class="tabs__item"
+        class="menu__item"
         :class="getClass(item)"
         @click="select(item.id)">
         {{ item.label }}
       </div>
     </div>
-  </div>
+  </Box>
 </template>
 
 <script lang="ts">
@@ -31,7 +31,7 @@ export type TabType = string | Partial<ITab>
 
 export default Vue.extend({
   props: {
-    tabs: {
+    items: {
       type: [Array as () => TabType[]],
       required: true
     },
@@ -43,7 +43,7 @@ export default Vue.extend({
 
   computed: {
     tabsArray(): ITab[] {
-      return this.normalizeTabs(this.tabs)
+      return this.normalizeTabs(this.items)
     }
   },
 
@@ -73,9 +73,9 @@ export default Vue.extend({
 
     getClass(item: ITab) {
       return {
-        'tab--active': this.value === item.id,
-        'tab--hidden': item.hidden,
-        'tab--disabled': item.disabled
+        'item--active': this.value === item.id,
+        'item--hidden': item.hidden,
+        'item--disabled': item.disabled
       }
     },
 
@@ -110,17 +110,27 @@ export default Vue.extend({
   box-shadow: inset 0 -1px 0 0 rgb(119 126 144 / 30%);
 }
 
-.tabs__item {
-  @apply block font-semibold text-origin-dark mr-20 transition-colors cursor-pointer;
-  @apply border-b border-transparent;
-  height: 48px;
+.menu__item {
+  @apply block font-semibold text-origin-darken transition-colors cursor-pointer;
+
+  &:not(:last-child) {
+    @apply pb-6;
+  }
 
   &:hover {
     @apply text-origin-lighten;
   }
 
-  &.tab--active {
-    @apply text-origin-lighten border-origin-lighten;
+  &.item--active {
+    @apply text-origin-lighten;
+  }
+
+  &.item--hidden {
+    @apply hidden;
+  }
+
+  &.item--disabled {
+    @apply pointer-events-none cursor-not-allowed;
   }
 }
 </style>

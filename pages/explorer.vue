@@ -12,8 +12,8 @@
         {{ cid }}
       </div>
 
-      <div v-if="filename" class="filename">
-        {{ filename }}
+      <div v-if="name" class="filename">
+        {{ name }}
       </div>
     </div>
 
@@ -23,7 +23,7 @@
     <div class="explorer__cols">
       <div class="explorer__left">
         <!-- Share -->
-        <NetworkObjectShare :cid="cid" :filename="filename" />
+        <NetworkObjectShare :cid="cid" :name="name" />
       </div>
 
       <div class="explorer__right">
@@ -60,7 +60,7 @@ export default Vue.extend({
   }),
 
   head(): MetaInfo {
-    const title = this.$route.query.filename as string || this.$route.query.cid as string
+    const title = this.$route.query.name as string || this.$route.query.cid as string
 
     return {
       titleTemplate: `%s - ${title}`,
@@ -77,8 +77,9 @@ export default Vue.extend({
     cid(): string {
       return this.$route.query.cid as string
     },
-    filename(): string {
-      return this.$route.query.filename as string
+
+    name(): string {
+      return this.$route.query.name as string
     }
   },
 
@@ -94,7 +95,7 @@ export default Vue.extend({
 
       try {
         this.entry = await this.$ipfs.fromCID(this.cid, {
-          name: this.filename,
+          name: this.name,
           timeout: 15 * 60 * 1000, // 15 minutes
           cache: 'explorer',
           stats: true,

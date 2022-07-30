@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import type { Entry } from '@opendreamnet/ipfs'
 
 interface IData {
   /**
@@ -46,7 +47,7 @@ export default Vue.extend({
     /**
      * Download the object using the IPFS node.
      */
-     async nodeDownload() {
+    async nodeDownload() {
       if (!this.entry || this.entry.type === 'dir') {
         return
       }
@@ -57,7 +58,7 @@ export default Vue.extend({
         await this.entry.downloadAsBlob(this.filename || this.cid)
 
         this.$events.emit('node.download')
-      } catch (err ){
+      } catch (err) {
       } finally {
         this.nodeDownloadLoading = false
       }

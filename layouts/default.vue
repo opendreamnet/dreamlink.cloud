@@ -3,6 +3,8 @@
     <!-- Header -->
     <LayoutHeader />
 
+    <NodeError />
+
     <!-- Body -->
     <Nuxt class="container body" />
 

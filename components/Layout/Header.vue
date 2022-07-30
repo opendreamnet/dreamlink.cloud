@@ -31,9 +31,9 @@
         </NuxtLink>
       </nav>
 
-      <!-- Status/Account -->
+      <!-- Node -->
       <nav class="nav__right">
-        <NetworkStatus />
+        <NodeStatus />
       </nav>
     </div>
   </header>
@@ -48,14 +48,14 @@ export default Vue.extend({
   }),
 
   computed: {
-    headerClass () {
+    headerClass() {
       return {
         'header--scrolled': this.scrollTop > 80
       }
     }
   },
 
-  mounted () {
+  mounted() {
     window.addEventListener('scroll', () => {
       // Get the scroll position
       this.scrollTop = window.pageYOffset || document.documentElement.scrollTop

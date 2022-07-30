@@ -52,7 +52,6 @@
 
       <div class="subtitle">
         <p>This may take a few minutes.</p>
-        <p>Taking a while? <a class="text-blue hover:underline" href="javascript:document.location.reload()">Refresh the page</a></p>
       </div>
     </div>
   </div>
@@ -77,7 +76,7 @@
     <!-- Dialogs -->
     <DialogPersistence ref="dialogPersistence" />
   </div>
-</div>
+  </div>
 </template>
 
 <script lang="ts">

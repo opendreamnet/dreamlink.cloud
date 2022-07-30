@@ -1,23 +1,30 @@
 <template>
-  <div class="space-y-16">
-    <Field title="Garbage collection" description="Frees up storage space by deleting all unpinned files.">
-      <Button :loading="gcLoading || unpinAllLoading" @click="freeUpStorage">
-        Start
-      </Button>
-    </Field>
+  <Section title="Storage">
+    <div v-if="$ipfs.started" class="space-y-16">
+      <Field title="Garbage collection" description="Frees up storage space by deleting all unpinned files.">
+        <Button :loading="gcLoading || unpinAllLoading" @click="freeUpStorage">
+          Start
+        </Button>
+      </Field>
 
-    <Field title="Unpin all" description="Remove the pin from all your files." class="field--danger">
-      <Button class="button--danger" :loading="unpinAllLoading" @click.prevent="unpinAll">
-        Unpin all
-      </Button>
-    </Field>
+      <Field title="Unpin all" description="Remove the pin from all your files." class="field--danger">
+        <Button class="button--danger" :loading="unpinAllLoading" @click.prevent="unpinAll">
+          Unpin all
+        </Button>
+      </Field>
 
-    <Field title="Delete all" description="Remove the pin from all your files and then perform a garbage collection to empty your storage." class="field--danger">
-      <Button class="button--danger" :loading="gcLoading || unpinAllLoading" @click.prevent="deleteAll">
-        Delete all
-      </Button>
-    </Field>
-  </div>
+      <Field title="Delete all" description="Remove the pin from all your files and then perform a garbage collection to empty your storage." class="field--danger">
+        <Button class="button--danger" :loading="gcLoading || unpinAllLoading" @click.prevent="deleteAll">
+          Delete all
+        </Button>
+      </Field>
+    </div>
+
+    <!-- Loading -->
+    <div v-else class="flex justify-center">
+      <Loading class="scale-150" />
+    </div>
+  </Section>
 </template>
 
 <script lang="ts">

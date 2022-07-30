@@ -1,35 +1,21 @@
 <template>
-  <div v-if="$ipfs.started" class="profile">
-    <!-- Header -->
-    <ProfileHeader />
+  <div class="profile">
+    <div class="profile__left">
+      <!-- Profile -->
+      <Profile />
 
-    <!-- Sections -->
-    <div class="profile__content">
-      <Box :class="`box--${section}`">
-        <template #header>
-          <ButtonsMenu v-model="section" :data="sections" />
-        </template>
-
-        <ProfileFiles v-show="section === 'pins'" />
-        <ProfileNode v-show="section === 'node'" />
-        <ProfileStorage v-show="section === 'storage'" />
-        <ProfileSettings v-show="section === 'settings'" />
-        <ProfileIdentity v-show="section === 'identity'" />
-      </Box>
+      <!-- Menu -->
+      <Menu v-model="section" :items="sections" />
     </div>
-  </div>
 
-  <!-- Error -->
-  <div v-else-if="$ipfs.error">
-    <p>An error occurred while trying to start the IPFS node, please refresh the page or try another web browser:</p>
-    <pre class="pre">
-      <code>{{ $ipfs.error }}</code>
-    </pre>
-  </div>
-
-  <!-- Loading -->
-  <div v-else class="flex justify-center">
-    <Loading class="scale-150" />
+    <div class="profile__right">
+      <!-- Sections -->
+      <ProfileFiles v-if="section === 'files'" />
+      <ProfileNode v-if="section === 'node'" />
+      <ProfileStorage v-if="section === 'storage'" />
+      <ProfileSettings v-if="section === 'settings'" />
+      <ProfileIdentity v-if="section === 'identity'" />
+    </div>
   </div>
 </template>
 
@@ -38,18 +24,17 @@ import Vue from 'vue'
 
 export default Vue.extend({
   data: () => ({
-    section: 'pins'
+    section: 'storage'
   }),
 
   computed: {
-    sections(): Record<string, string> {
-      return {
-        'Pinned Files': 'pins',
-        Node: 'node',
-        Storage: 'storage',
-        Settings: 'settings',
-        Identity: 'identity'
-      }
+    sections(): any {
+      return [
+        'Storage',
+        'Settings',
+        'Identity',
+        'Node'
+      ]
     }
   }
 })
@@ -57,7 +42,16 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .profile {
+  @apply flex gap-12;
+}
+
+.profile__left {
   @apply space-y-12;
+  width: 280px;
+}
+
+.profile__right {
+  @apply flex-1;
 }
 
 .profile__content {
