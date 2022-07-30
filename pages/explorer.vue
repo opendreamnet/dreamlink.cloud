@@ -121,7 +121,7 @@ export default Vue.extend({
 }
 
 .explorer__preview {
-  @apply mb-6 -mt-10;
+  @apply mb-10 -mt-10;
 
   @screen md {
     @apply -mt-20;
@@ -129,10 +129,10 @@ export default Vue.extend({
 }
 
 .explorer__info {
-  @apply mb-9 space-y-1 text-center;
+  @apply mb-10 space-y-1 text-center;
 
   .cid {
-    @apply text-white font-bold text-xl cursor-pointer;
+    @apply text-origin-lighten font-bold text-xl cursor-pointer;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
 
     @screen md {
@@ -141,28 +141,27 @@ export default Vue.extend({
   }
 
   .filename {
+    @apply text-origin-dark;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap break-words;
   }
 }
 
 .explorer__buttons {
-  @apply mb-14;
+  @apply mb-10;
 }
 
 .explorer__cols {
-  @apply space-y-6;
-
   @screen lg {
-    @apply flex gap-9 space-y-0;
+    @apply flex gap-12 space-y-0;
   }
 }
 
 .explorer__left {
-  @apply flex-1 space-y-6;
+  @apply flex-1;
 }
 
 .explorer__right {
-  @apply space-y-6;
+  @apply space-y-12;
 
   @screen lg {
     width: 350px;

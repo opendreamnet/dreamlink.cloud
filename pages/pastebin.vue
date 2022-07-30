@@ -16,37 +16,11 @@
           </Button>
         </p>
       </form>
-    </Section>
-
-    <!--
-    <Box title="Pastebin" subtitle="Create and share any text format on IPFS.">
-      <form v-if="$ipfs.started" class="pastebin__form" @submit.prevent="submit()">
-        <p>
-          <input v-model="filename" class="input" placeholder="File name (Optional)">
-          <span class="hint">Syntax Highlight in the preview will depend on the file name.</span>
-        </p>
-
-        <p>
-          <textarea
-            v-model="paste"
-            class="input"
-            autofocus
-            required />
-          <span class="hint">Remember that things in IPFS are public. Do not share private information!</span>
-        </p>
-
-        <p>
-          <Button :loading="loading">
-            Create Paste
-          </Button>
-        </p>
-      </form>
 
       <div v-else class="flex justify-center">
         <Loading class="scale-150" />
       </div>
-    </Box>
-    -->
+    </Section>
   </div>
 </template>
 

@@ -3888,7 +3888,7 @@ __metadata:
 
 "@opendreamnet/nuxtjs-base@file:/C:/src/odn/monorepo/workspaces/nuxtjs-base::locator=%40opendreamnet%2Fdreamlink.cloud%40workspace%3A.":
   version: 2.0.5
-  resolution: "@opendreamnet/nuxtjs-base@file:/C%3A/src/odn/monorepo/workspaces/nuxtjs-base#/C%3A/src/odn/monorepo/workspaces/nuxtjs-base::hash=547bf7&locator=%40opendreamnet%2Fdreamlink.cloud%40workspace%3A."
+  resolution: "@opendreamnet/nuxtjs-base@file:/C%3A/src/odn/monorepo/workspaces/nuxtjs-base#/C%3A/src/odn/monorepo/workspaces/nuxtjs-base::hash=36f01c&locator=%40opendreamnet%2Fdreamlink.cloud%40workspace%3A."
   dependencies:
     "@nuxtjs/style-resources": ^1
     "@tailwindcss/typography": ^0.4
@@ -3906,7 +3906,7 @@ __metadata:
       optional: true
     "@tailwindcss/typography":
       optional: true
-  checksum: 3dc3b645608ae1d71b2d649918ccbf906a3d940f97d11197a22e8f0e4eea7bf19cdf8c263577177cf6ab9e097bfe3ce345e7cf93459c8b58519643e6e7d34688
+  checksum: f1c736e0531d51f46b27a88522308f4f8d269a3bed9b35a78694ab383bd6556b932459349000fedd7c4907b2ccf97d18709673163b8b971fab1231b99602827e
   languageName: node
   linkType: hard
 

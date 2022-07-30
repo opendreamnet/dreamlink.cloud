@@ -1,24 +1,20 @@
 <template>
   <div class="share">
-    <div class="share__content">
-      <!-- Explorer URL -->
-      <Box title="Share" subtitle="This link allows to view, download and help in the distribution of the file.">
-        <InputPlus readonly :value="explorerURL" class="text--sm" />
-      </Box>
+    <Section title="Share" subtitle="View, download and help in the distribution of the file.">
+      <InputPlus readonly :value="explorerURL" class="text--sm" />
+    </Section>
 
-      <!-- Direct Links -->
-      <Box title="Direct Links" subtitle="Trusted gateways where anyone can access the file directly.">
-        <div class="share__gateways">
-          <NetworkObjectUrl
-            v-for="(url, it) in gatewaysURLS"
-            :key="url"
-            :delay="it"
-            :cid="cid"
-            :filename="filename"
-            :url="url" />
-        </div>
-      </Box>
-    </div>
+    <Section title="Direct links" subtitle="Trusted gateways where anyone can access the file directly.">
+      <div class="share__gateways">
+        <NetworkObjectUrl
+          v-for="(url, it) in gatewaysURLS"
+          :key="url"
+          :delay="it"
+          :cid="cid"
+          :filename="filename"
+          :url="url" />
+      </div>
+    </Section>
   </div>
 </template>
 
@@ -85,8 +81,7 @@ section {
 }
 
 .share__gateways {
-  @apply overflow-auto overscroll-contain pr-3 space-y-3;
-  max-height: 300px;
+  @apply overflow-auto overscroll-contain pr-3 space-y-6;
 
   h2 {
     @apply text-lg font-semibold;

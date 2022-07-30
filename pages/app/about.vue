@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <Box id="dreamlink" :title="`🤔 What is ${$config.name}?`">
-      <div class="prose">
+    <Section :title="`🤔 What is ${$config.name}?`">
+      <div class="prose prose-lg">
         <p>
           {{ $config.name }} is a static website with tools running on the decentralized P2P network: <a href="https://docs.ipfs.io/concepts/what-is-ipfs/" target="_blank">IPFS</a>.
         </p>
@@ -14,10 +14,10 @@
           The moment you enter you are already connected to the IPFS network as we provide you with a node that runs in your web browser.
         </p>
       </div>
-    </Box>
+    </Section>
 
-    <Box id="tools" title="✨ Tools available">
-      <div class="prose">
+    <Section title="✨ Tools available">
+      <div class="prose prose-lg">
         <p>All the magic happens between you and your web browser, there are no servers in between that can censor your activity.</p>
 
         <ul>
@@ -35,10 +35,10 @@
           </li>
         </ul>
       </div>
-    </Box>
+    </Section>
 
-    <Box id="down" :title="`😨 What if ${$config.name} goes down?`">
-      <div class="prose">
+    <Section :title="`😨 What if ${$config.name} goes down?`">
+      <div class="prose prose-lg">
         <p>{{ $config.name }} itself is a webpage stored in IPFS!</p>
 
         <p>
@@ -47,10 +47,10 @@
 
         <Gateways />
       </div>
-    </Box>
+    </Section>
 
-    <Box id="faq" title="❓ FAQ">
-      <div class="space-y-3 prose">
+    <Section id="faq" title="❓ FAQ">
+      <div class="space-y-3 prose prose-lg">
         <details>
           <summary class="title">
             Is it safe to upload files in {{ $config.name }}?
@@ -82,17 +82,7 @@
           </p>
         </details>
       </div>
-    </Box>
-
-    <Box title="🥰 Sponsor">
-      <p class="mb-3">
-        Do you like {{ $config.name }}? Your sponsorship would help us to keep the project open-source and up to date!
-      </p>
-
-      <Button el="a" href="https://www.opendreamnet.com/contact" target="_blank">
-        How?
-      </Button>
-    </Box>
+    </Section>
   </div>
 </template>
 

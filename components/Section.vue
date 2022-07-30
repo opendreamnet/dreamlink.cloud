@@ -42,16 +42,20 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .section {
   &:not(:last-child) {
-    @apply border-b border-menus pb-10;
+    @apply border-b border-menus pb-12;
+  }
+
+  &:not(:first-child) {
+    @apply pt-12;
   }
 }
 
 .section__header {
-  @apply mb-16;
+  @apply mb-14;
 }
 
 .section__title {
-  @apply text-origin-lighten font-bold text-5xl;
+  @apply text-origin-lighten font-bold text-4xl;
 }
 
 .section__subtitle {

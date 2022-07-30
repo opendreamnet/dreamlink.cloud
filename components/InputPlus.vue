@@ -1,7 +1,7 @@
 <template>
   <div class="plus">
     <!-- Status -->
-    <div v-if="status !== null" class="rounded-l plus__box">
+    <div v-if="status !== null" class="plus__box">
       <Light v-model="status" :ping="false" />
     </div>
 
@@ -29,7 +29,7 @@
       v-tippy="'Open'"
       :href="value"
       target="_blank"
-      class="rounded-r plus__box plus__box--button">
+      class="plus__box plus__box--button">
       <FontAwesomeIcon icon="external-link-square-alt" />
     </a>
   </div>
@@ -75,9 +75,16 @@ export default Vue.extend({
 }
 
 .plus__box {
-  @apply bg-menus-dark px-3 shadow-sm text-sm transition-colors;
-  @apply border-input-dark border-t border-b border-r;
+  @apply bg-button px-3 shadow-sm text-sm transition-colors;
   @include centered();
+
+  &:first-child {
+    @apply rounded-l-md;
+  }
+
+  &:last-child {
+    @apply rounded-r-md;
+  }
 
   &.plus__box--button {
     @apply text-snow-darken cursor-pointer;
@@ -90,5 +97,9 @@ export default Vue.extend({
 
 .input {
   @apply rounded-none;
+
+  &:first-child {
+    @apply rounded-l-md;
+  }
 }
 </style>
