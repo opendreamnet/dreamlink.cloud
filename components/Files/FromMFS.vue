@@ -53,10 +53,13 @@ export default Vue.extend({
         if (entry.type === 'file') {
           this.entries.push(entry)
         } else {
-          this.entries.push(...entry.subEntries!)
+          // Filter the directory itself (this only happens on external nodes)
+          // TODO: Patch this on @opendreamnet/ipfs
+          const subEntries = (entry.subEntries!).filter(e => !e.cid.equals(entry.cid))
+          this.entries.push(...subEntries)
         }
       } catch (err: any) {
-        if (err.message === 'file does not exist') {
+        if (err.message === 'file does not exist' || err.message.includes('does not exist')) {
           return
         }
 
