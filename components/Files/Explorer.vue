@@ -17,9 +17,11 @@
           Size
         </th>
 
+        <!--
         <th class="date">
           Date
         </th>
+        -->
 
         <th class="actions" />
       </tr>
@@ -52,9 +54,11 @@
           <span>{{ entry.size | prettyBytes }}</span>
         </td>
 
+        <!--
         <td data-label="Date" class="date">
           <span>{{ entry.mtime?.secs | secsToDateLocale }}</span>
         </td>
+        -->
 
         <td data-label="" class="actions">
           <div class="lg:flex lg:justify-center">
