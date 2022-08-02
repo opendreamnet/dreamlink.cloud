@@ -1,3 +1,4 @@
+import path from 'path'
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import queryString from 'query-string'
 import { isEmpty, reduce, round } from 'lodash'
@@ -9,8 +10,9 @@ import { ipfs } from '~/modules/ipfs'
 import { Gateway } from '~/modules/gateway'
 
 export interface UploadPayload {
-  files: FileList
+  files: FileList | File[]
   loading: DefaultNuxtLoading
+  path?: string
 }
 
 // State
@@ -179,7 +181,7 @@ export const actions = actionTree({ state, getters, mutations }, {
 
     // Root directory or file
     // @ts-ignore
-    const root = !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name
+    const root = path.join(payload.path, !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
 
     // Track progress function
     const progressFunc = (bytes: number) => {
@@ -189,9 +191,9 @@ export const actions = actionTree({ state, getters, mutations }, {
     }
 
     for (let it = 0; it < files.length; ++it) {
-      const file = files.item(it)!
+      const file = files[it]
       // @ts-ignore
-      const filepath = file.webkitRelativePath || file.name
+      const filepath = path.join(payload.path, (file.webkitRelativePath || file.name))
 
       await ipfs.api.files.write(`/.dreamlink/${filepath}`, file, {
         create: true,

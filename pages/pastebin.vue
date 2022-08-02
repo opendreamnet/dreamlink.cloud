@@ -25,8 +25,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
+import Vue from 'vue'
+import { ParsedQuery } from 'query-string'
+import type { DefaultNuxtLoading } from '@nuxt/types/app'
 
 interface IData {
   filename: string | null
@@ -50,24 +53,40 @@ export default Vue.extend({
       try {
         this.loading = true
 
-        const entry = await this.$ipfs.add(this.paste, { pin: true })
-        const filename = this.filename || `${entry.cid.toString()}.txt`
+        const filename = this.filename || `${DateTime.now().toFormat('kkkk-LL-dd_HH-mm')}.txt`
+        const file = new File([this.paste], filename)
 
-        this.$accessor.pins.create({
-          cid: entry.cid.toString(),
-          name: filename,
-          size: new Blob([this.paste]).size
+        // Upload to MFS
+        const { cid } = await this.$accessor.ipfs.upload({
+          files: [file],
+          loading: this.$nuxt.$loading as DefaultNuxtLoading,
+          path: '.pastebin'
         })
 
         this.$events.emit('upload.success')
 
-        this.$router.push(`/explorer?cid=${entry.cid.toString()}&filename=${filename}`)
+        // Request caching on the most popular gateway
+        // await this.$accessor.ipfs.finishUpload(cid)
+
+        const query: ParsedQuery = {
+          uploader: 'true', // More appropriate messages for the uploader
+          cid,
+          name: filename
+        }
+
+        // Open explorer
+        this.$router.push({
+          path: '/explorer',
+          query
+        })
       } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
           icon: 'error'
         })
+
+        console.trace(err)
       } finally {
         this.loading = false
       }
