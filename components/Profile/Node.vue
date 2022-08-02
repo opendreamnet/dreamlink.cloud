@@ -52,7 +52,7 @@ export default Vue.extend({
         return 'Use the IPFS node you have installed on your device and maintain a more reliable connection.'
       }
 
-      return 'Use the IPFS node that we install in your web browser. Easy but may have reliability issues.'
+      return 'Node in your web browser ready to use, ideal for small files and operations, may have reliability problems.'
     }
   },
 

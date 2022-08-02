@@ -43,7 +43,6 @@ import Vue from 'vue'
 import Swal from 'sweetalert2'
 import { ParsedQuery } from 'query-string'
 import { DefaultNuxtLoading } from '@nuxt/types/app'
-import { UPLOAD_DELAY } from '~/modules/defs'
 
 export default Vue.extend({
   computed: {

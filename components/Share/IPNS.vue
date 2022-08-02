@@ -1,7 +1,7 @@
 <template>
   <div class="open">
     <form v-if="$ipfs.started" class="space-y-6" @submit.prevent="open()">
-      <input v-model="ipns" placeholder="/ipns/..." class="input" required>
+      <input v-model="ipns" placeholder="IPNS" class="input" required>
       <input v-model="filename" placeholder="File name (Optional)" class="input">
 
       <Button class="button--sm">

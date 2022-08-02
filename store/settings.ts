@@ -1,6 +1,7 @@
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import { faker } from '@faker-js/faker'
 import type { ControllerOptions } from 'ipfsd-ctl'
+import { isNil } from 'lodash'
 
 export interface Settings {
   username: string
@@ -23,6 +24,10 @@ export type State = ReturnType<typeof state>
 export const getters = getterTree(state, {
   ipfsController(state): ControllerOptions {
     return {}
+  },
+
+  isExternalNode({ remoteEndpoint }): boolean {
+    return !isNil(remoteEndpoint)
   }
 })
 
