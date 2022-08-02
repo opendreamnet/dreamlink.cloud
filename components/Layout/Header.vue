@@ -14,9 +14,9 @@
           Share
         </NuxtLink>
 
-        <div v-tippy="'Search files and folders thanks to ipfs-search.com'" class="item" @click="$events.emit('dialog.search.open')">
+        <NuxtLink v-tippy title="Search files and folders." class="item" to="/search">
           Search
-        </div>
+        </NuxtLink>
 
         <NuxtLink v-tippy="'Share any text format.'" to="/pastebin" class="item">
           Pastebin

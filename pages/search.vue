@@ -1,15 +1,16 @@
 <template>
-  <dialog ref="dialog" class="dialog">
-    <Box>
-      <div class="search">
-        <form class="search__form" @submit.prevent="search">
+  <div class="search max-w-prose">
+    <Section title="Search" subtitle="Powered by ipfs-search.com">
+      <!-- Form -->
+      <form class="search__form" @submit.prevent="search">
+        <div class="search__input">
           <input
             v-model="value"
             placeholder="Search..."
-            class="flex-1 border-r-0 rounded-r-none input"
+            class="input w-auto flex-1"
             required>
 
-          <select v-model="type" class="border-l-0 border-r-0 rounded-none input">
+          <select v-model="type" class="input w-auto">
             <option value="any">
               Any
             </option>
@@ -32,95 +33,93 @@
               Image
             </option>
           </select>
+        </div>
 
-          <Button :loading="loading" class="rounded-l-none">
+        <div class="flex justify-center">
+          <Button :loading="loading">
             Search
           </Button>
-        </form>
-
-        <div v-if="payload && payload.total > 0" class="search__results">
-          <NuxtLink
-            v-for="item in payload.hits"
-            :key="item.hash"
-            :to="{ path: '/explorer', query: { cid: item.hash, filename: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
-            target="_blank"
-            class="item">
-            <div class="title" v-html="item.title" />
-
-            <div class="extra">
-              {{ item.size | prettyBytes }}  - {{ item['last-seen'] | toRelative }}
-            </div>
-
-            <div class="hash">
-              {{ item.hash }}
-            </div>
-          </NuxtLink>
         </div>
+      </form>
+    </Section>
 
-        <div v-else class="flex justify-center py-6">
-          <p>🔍 No results found.</p>
-        </div>
+    <Section v-if="searched" title="Results">
+      <div v-if="payload && payload.total > 0" class="search__results">
+        <NuxtLink
+          v-for="item in payload.hits"
+          :key="item.hash"
+          :to="{ path: '/explorer', query: { cid: item.hash, name: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
+          target="_blank"
+          class="item">
+          <div class="title" v-html="item.title" />
 
-        <div v-if="payload && payload.total > 0" class="search__pagination">
-          <div class="text-sm">
-            Page <input v-model.number="page" type="number" class="w-16 input input--xs"> of {{ pageCount }}
+          <div class="hash">
+            {{ item.hash }}
           </div>
 
-          <div class="flex-1" />
-
-          <div class="right">
-            <Button
-              class="button--xs"
-              :disabled="page === 0"
-              :loading="loading"
-              @click.prevent="page -= 1">
-              &#x3C;
-            </Button>
-            <Button
-              class="button--xs"
-              :disabled="page === pageCount"
-              :loading="loading"
-              @click.prevent="page += 1">
-              &#x3E;
-            </Button>
+          <div class="extra">
+            {{ item.size | prettyBytes }}  - {{ item['last-seen'] | toRelative }}
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
-      <template #footer>
-        <div class="justify-end buttons">
-          <Button class="button--danger button--sm" @click="close">
-            Close
+      <div v-else class="flex justify-center py-6">
+        <p>🔍 No results found.</p>
+      </div>
+
+      <div v-if="payload && payload.total > 0" class="search__pagination">
+        <div class="text-sm">
+          Page <input v-model.number="page" type="number" class="w-16 input input--xs"> of {{ pageCount }}
+        </div>
+
+        <div class="flex-1" />
+
+        <div class="right">
+          <Button
+            class="button--xs"
+            :disabled="page === 0"
+            :loading="loading"
+            @click.prevent="page -= 1">
+            &#x3C;
+          </Button>
+          <Button
+            class="button--xs"
+            :disabled="page === pageCount"
+            :loading="loading"
+            @click.prevent="page += 1">
+            &#x3E;
           </Button>
         </div>
-      </template>
-    </Box>
-  </dialog>
+      </div>
+    </Section>
+  </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { debounce, DebouncedFunc } from 'lodash'
-import Dialog from '~/mixins/Dialog'
 
-interface Data {
+interface IData {
   value: string
   loading: boolean
   payload: any
   page: number
   search: DebouncedFunc<() => Promise<void>> | null
   type: 'any' | 'file' | 'directory' | 'text' | 'audio' | 'video' | 'image'
+  searched: boolean
 }
 
-export default Dialog.extend({
-  data: (): Data => ({
+export default Vue.extend({
+  data: (): IData => ({
     value: '',
     loading: false,
     payload: null,
     page: 0,
     search: null,
-    type: 'any'
+    type: 'any',
+    searched: false
   }),
 
   computed: {
@@ -183,12 +182,6 @@ export default Dialog.extend({
   },
 
   methods: {
-    openSearch(query: string) {
-      this.value = query
-      this.open()
-      this._search()
-    },
-
     normalizePage() {
       let normalized = this.page
       normalized = Math.max(normalized, 0)
@@ -218,7 +211,8 @@ export default Dialog.extend({
         })
 
         this.payload = response.data
-      } catch (err) {
+        this.searched = true
+      } catch (err: any) {
         Swal.fire({
           title: 'A problem has occurred',
           text: err.message,
@@ -233,21 +227,12 @@ export default Dialog.extend({
 </script>
 
 <style lang="scss" scoped>
-.search {
-  @apply space-y-3;
-}
-
-.search__form {
-  @apply flex;
-
-  select.input {
-    width: 130px;
-  }
+.search__input {
+  @apply flex mb-6 gap-6;
 }
 
 .search__results {
-  @apply overflow-y-auto overflow-x-hidden;
-  max-height: 60vh;
+  @apply mb-6;
 }
 
 .search__pagination {
@@ -255,7 +240,7 @@ export default Dialog.extend({
 }
 
 .item {
-  @apply block px-3 py-5 cursor-pointer;
+  @apply block p-4 cursor-pointer;
 
   &:hover {
     @apply bg-menus-light;
@@ -265,25 +250,17 @@ export default Dialog.extend({
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
 
     &:deep(em) {
-      @apply text-primary;
+      @apply text-primary-lighten;
     }
-
-    /*
-    &::v-deep {
-      em {
-        @apply text-primary;
-      }
-    }
-    */
   }
 
   .hash {
-    @apply text-xs text-snow-darken;
+    @apply text-xs text-origin-darken;
     @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
   }
 
   .extra {
-    @apply text-xs text-snow-dark;
+    @apply text-xs text-origin-dark;
   }
 }
 </style>
