@@ -36,7 +36,8 @@ export default setNuxtConfig({
   plugins: [
     require.resolve('@opendreamnet/nuxtjs-base/plugins/boot.ts'),
     '~/plugins/boot.ts',
-    '~/plugins/ipfs.ts'
+    '~/plugins/ipfs.ts',
+    '~/plugins/vue-modal.ts'
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

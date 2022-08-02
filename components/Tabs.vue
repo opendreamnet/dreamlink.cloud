@@ -88,7 +88,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .tabs {
-  @apply mb-10;
+  @apply mb-10 overflow-x-auto;
 
   &.tabs--sm {
     .tabs__item {
@@ -111,9 +111,13 @@ export default Vue.extend({
 }
 
 .tabs__item {
-  @apply block font-semibold text-origin-dark mr-20 transition-colors cursor-pointer;
+  @apply block font-semibold text-origin-dark transition-colors cursor-pointer;
   @apply border-b border-transparent;
   height: 48px;
+
+  &:not(:last-child) {
+    @apply mr-20;
+  }
 
   &:hover {
     @apply text-origin-lighten;

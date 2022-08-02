@@ -3,6 +3,7 @@
     <!-- Header -->
     <LayoutHeader />
 
+    <!-- IPFS error -->
     <NodeError />
 
     <!-- Body -->
@@ -10,9 +11,6 @@
 
     <!-- Footer -->
     <LayoutFooter />
-
-    <!-- Global Dialogs -->
-    <LazyDialogSearch />
   </div>
 </template>
 
@@ -21,21 +19,21 @@
   @apply space-y-10;
 
   @screen md {
-    @apply space-y-20;
+    @apply space-y-14;
   }
 }
 </style>
 
 <style lang="scss">
-.hint {
-  @apply text-xs text-snow-darken leading-3;
-}
-
-dialog {
-  @apply border-none;
-}
-
 .container {
   @apply mx-auto px-2;
+}
+
+.vm--overlay {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.vm--modal {
+  @apply bg-transparent #{!important};
 }
 </style>

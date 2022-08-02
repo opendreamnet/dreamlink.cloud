@@ -41,11 +41,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .section {
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     @apply border-b border-menus pb-12;
   }
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     @apply pt-12;
   }
 }

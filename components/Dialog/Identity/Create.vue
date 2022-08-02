@@ -1,52 +1,49 @@
 <template>
-  <dialog class="dialog">
-    <Box v-if="privateKey" title="New Identity">
-      <div class="identity">
-        <div class="identity__header">
-          <h1 class="title">
-            Congratulations, you are now:
-          </h1>
+  <Box v-if="privateKey" title="New Identity">
+    <div class="identity">
+      <div class="identity__header">
+        <h1 class="title">
+          Congratulations, you are now:
+        </h1>
 
-          <h2 class="peerid">
-            {{ privateKey.peerId }}
-          </h2>
+        <h2 class="peerid">
+          {{ privateKey.peerId }}
+        </h2>
 
-          <figure class="avatar">
-            <img :src="avatarURL">
-          </figure>
-        </div>
-
-        <Field title="Protobuf" description="Keep the following string in a safe place, this will allow you to recover your new identity.">
-          <textarea
-            v-clipboard="protobuf"
-            v-tippy="'Click to copy.'"
-            :value="protobuf"
-            readonly
-            class="h-20 input" />
-        </Field>
+        <figure class="avatar">
+          <img :src="avatarURL">
+        </figure>
       </div>
 
-      <template #footer>
-        <div class="flex justify-end gap-3">
-          <Button class="button--danger button--sm" @click="reload">
-            Close
-          </Button>
-        </div>
-      </template>
-    </Box>
+      <Field title="Protobuf" description="Keep the following string in a safe place, this will allow you to recover your new identity.">
+        <textarea
+          v-clipboard="protobuf"
+          v-tippy="'Click to copy.'"
+          :value="protobuf"
+          readonly
+          class="h-20 input" />
+      </Field>
+    </div>
 
-    <Box v-else title="Creating new identity...">
-      <div class="flex justify-center">
-        <Loading class="scale-150" />
+    <template #footer>
+      <div class="flex justify-end gap-3">
+        <Button class="button--danger button--sm" @click="reload">
+          Close
+        </Button>
       </div>
-    </Box>
-  </dialog>
+    </template>
+  </Box>
+
+  <Box v-else title="Creating new identity...">
+    <div class="flex justify-center">
+      <Loading class="scale-150" />
+    </div>
+  </Box>
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import Swal from 'sweetalert2'
-import { noop } from 'lodash'
-import Dialog from '~/mixins/Dialog'
 
 interface Data {
   privateKey: PrivateKey | null
@@ -54,47 +51,24 @@ interface Data {
   avatarURL: string
 }
 
-export default Dialog.extend({
+export default Vue.extend({
   data: (): Data => ({
     privateKey: null,
     protobuf: null,
     avatarURL: ''
   }),
 
+  created() {
+    this.run()
+  },
+
   methods: {
-    ask() {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Are you sure you want to get a new identity?',
-        text: 'You will lose administrator access to your databases, boards and you will have to share your new identity with people you trust.',
-        confirmButtonText: 'Yes',
-        confirmButtonColor: '#BF616A',
-        showCancelButton: true
-      }).then((value) => {
-        if (value.isConfirmed) {
-          this.run()
-        }
-
-        return value
-      }).catch(noop)
-    },
-
     async run() {
-      this.open()
-
-      // Scroll to top
-      window.scrollTo(0, 0)
-
       try {
         this.privateKey = await this.$accessor.ipfs.resetIdentity()
         this.protobuf = this.privateKey.toProtobuf()
-        this.avatarURL = await this.$accessor.ipfs.getAvatarURL(this.privateKey.peerId)
-
-        // this.$accessor.settings.setIpfsPrivateKey(this.privateKey.toProtobuf())
-        // this.$accessor.settings.save()
+        this.avatarURL = await this.$accessor.ipfs.fetchAvatarURL(this.privateKey.peerId)
       } catch (err: any) {
-        this.close()
-
         Swal.fire({
           icon: 'error',
           title: 'Error',

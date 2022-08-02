@@ -1,72 +1,68 @@
 <template>
-  <dialog class="dialog">
-    <Box title="Import Private Key">
-      <div class="space-y-12">
-        <ButtonsMenu
-          v-model="section"
-          :data="categories" />
+  <Box title="Import Private Key">
+    <div class="space-y-12">
+      <Tabs v-model="section" :tabs="categories" />
 
-        <!-- PEM -->
-        <form v-show="section === 'pem'" @submit.prevent="importPem">
-          <Field title="PEM" description="Import using the contents of the key.">
-            <textarea
-              v-model="pem"
-              required
-              placeholder="-----BEGIN PRIVATE KEY-----"
-              class="h-40 input" />
-          </Field>
-
-          <Button class="button--danger" :loading="loading">
-            Import
-          </Button>
-        </form>
-
-        <!-- Protobuf -->
-        <form v-show="section === 'protobuf'" @submit.prevent="importProtobuf">
-          <Field title="Protobuf" description="Private key in a recognizable format for IPFS." hint="`Identity.PrivKey` in the IPFS node configuration.">
-            <textarea
-              v-model="protobuf"
-              required
-              placeholder="CAASrBIwggkoAgEAAoICAQCzcx5z/vT..."
-              class="h-40 input" />
-          </Field>
-
-          <Button class="button--danger" :loading="loading">
-            Import
-          </Button>
-        </form>
-
-        <!-- Key File -->
-        <Field v-show="section === 'file'" title="Key File">
-          <input
-            v-show="false"
-            ref="file"
-            type="file"
-            @change="upload">
-
-          <div class="buttons">
-            <Button class="button--danger" :loading="loading" @click="$refs.file.click()">
-              Upload
-            </Button>
-          </div>
+      <!-- PEM -->
+      <form v-show="section === 'pem'" @submit.prevent="importPem">
+        <Field title="PEM" description="Import using the contents of the key.">
+          <textarea
+            v-model="pem"
+            required
+            placeholder="-----BEGIN PRIVATE KEY-----"
+            class="h-40 input" />
         </Field>
-      </div>
 
-      <template #footer>
-        <div class="flex justify-end gap-3">
-          <Button class="button--danger button--sm" :loading="loading" @click="close">
-            Close
+        <Button class="button--danger" :loading="loading">
+          Import
+        </Button>
+      </form>
+
+      <!-- Protobuf -->
+      <form v-show="section === 'protobuf'" @submit.prevent="importProtobuf">
+        <Field title="Protobuf" description="Private key in a recognizable format for IPFS." hint="`Identity.PrivKey` in the IPFS node configuration.">
+          <textarea
+            v-model="protobuf"
+            required
+            placeholder="CAASrBIwggkoAgEAAoICAQCzcx5z/vT..."
+            class="h-40 input" />
+        </Field>
+
+        <Button class="button--danger" :loading="loading">
+          Import
+        </Button>
+      </form>
+
+      <!-- Key File -->
+      <Field v-show="section === 'key-file'" title="Key File">
+        <input
+          v-show="false"
+          ref="file"
+          type="file"
+          @change="upload">
+
+        <div class="buttons">
+          <Button class="button--primary" :loading="loading" @click="$refs.file.click()">
+            Upload
           </Button>
         </div>
-      </template>
-    </Box>
-  </dialog>
+      </Field>
+    </div>
+
+    <template #footer>
+      <div class="flex justify-end gap-3">
+        <Button class="button--danger button--sm" :loading="loading" @click="$emit('close')">
+          Close
+        </Button>
+      </div>
+    </template>
+  </Box>
 </template>
 
 <script lang="ts">
-import Dialog from '~/mixins/Dialog'
+import Vue from 'vue'
 
-export default Dialog.extend({
+export default Vue.extend({
   data: () => ({
     section: 'protobuf',
     seed: '',
@@ -77,11 +73,7 @@ export default Dialog.extend({
 
   computed: {
     categories() {
-      return {
-        Protobuf: 'protobuf',
-        PEM: 'pem',
-        'Key File': 'file'
-      }
+      return ['Protobuf', 'PEM', 'Key File']
     }
   },
 
