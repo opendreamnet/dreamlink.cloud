@@ -181,7 +181,7 @@ export const actions = actionTree({ state, getters, mutations }, {
 
     // Root directory or file
     // @ts-ignore
-    const root = path.join(payload.path, !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
+    const root = path.join(payload.path || '', !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
 
     // Track progress function
     const progressFunc = (bytes: number) => {
@@ -193,7 +193,7 @@ export const actions = actionTree({ state, getters, mutations }, {
     for (let it = 0; it < files.length; ++it) {
       const file = files[it]
       // @ts-ignore
-      const filepath = path.join(payload.path, (file.webkitRelativePath || file.name))
+      const filepath = path.join(payload.path || '', (file.webkitRelativePath || file.name))
 
       await ipfs.api.files.write(`/.dreamlink/${filepath}`, file, {
         create: true,
