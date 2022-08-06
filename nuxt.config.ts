@@ -1,4 +1,5 @@
 import { setNuxtConfig } from '@opendreamnet/nuxtjs-base'
+import { isNil } from 'lodash'
 import pkg from './package.json'
 
 // Base env
@@ -7,13 +8,17 @@ process.env.npm_package_displayName = pkg.displayName
 process.env.npm_package_description = pkg.description
 process.env.npm_package_version = pkg.version
 
+if (!isNil(process.env.OPENDREAMNET)) {
+  console.log('OpenDreamnet build!')
+}
+
 export default setNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     script: [
       {
         // The latest IPFS-JS libraries are now ESM forcing us to use the
-        // @opendreamnet/ipfs version built with Webpack 5. (This NuxtJS uses Webpack 4)
+        // @opendreamnet/ipfs version built with Webpack 5. (This NuxtJS v2 uses Webpack 4)
         // We still include the library to use the types.
         src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.4/dist/index.umd.js'
       }
@@ -105,7 +110,7 @@ export default setNuxtConfig({
 
   // https://github.com/nuxt-community/google-fonts-module
   googleFonts: {
-    download: process.env.NODE_ENV === 'production' && process.env.OPENDREAMNET === 'true',
+    download: process.env.NODE_ENV === 'production' && !isNil(process.env.OPENDREAMNET),
     families: {
       Inter: [300, 400, 600, 800]
     }
@@ -119,7 +124,7 @@ export default setNuxtConfig({
 
   publicRuntimeConfig: {
     build: {
-      opendreamnet: process.env.OPENDREAMNET === 'true'
+      opendreamnet: !isNil(process.env.OPENDREAMNET)
     },
     app: {
       url: process.env.APP_URL,

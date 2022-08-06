@@ -99,3 +99,10 @@ sw.*
 !.yarn/versions
 .pnp.*
 /pages/playground.vue
+
+# Google fonts
+assets/css/fonts.css
+assets/fonts
+
+# Vscode
+.vscode
