@@ -82,7 +82,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/tailwindcss": "^4.2.1",
     "@opendreamnet/deploy-cli": "^1.4.0",
-    "@opendreamnet/nuxtjs-base": "^2.0.5",
+    "@opendreamnet/nuxtjs-base": "^2.0.6",
     "@tailwindcss/typography": "^0.4.1",
     "@types/crypto-js": "^4.1.1",
     "@types/lodash": "^4.14.182",
@@ -104,8 +104,5 @@
     "sass": "^1.54.0",
     "standard-version": "^9.5.0"
   },
-  "packageManager": "yarn@3.2.2",
-  "resolutions": {
-    "@opendreamnet/nuxtjs-base": "file:/C:/src/odn/monorepo/workspaces/nuxtjs-base"
-  }
+  "packageManager": "yarn@3.2.2"
 }

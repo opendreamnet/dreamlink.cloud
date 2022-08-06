@@ -3802,7 +3802,7 @@ __metadata:
     "@nuxtjs/tailwindcss": ^4.2.1
     "@opendreamnet/deploy-cli": ^1.4.0
     "@opendreamnet/ipfs": ^0.1.3
-    "@opendreamnet/nuxtjs-base": ^2.0.5
+    "@opendreamnet/nuxtjs-base": ^2.0.6
     "@sweetalert2/theme-dark": ^5.0.11
     "@tailwindcss/typography": ^0.4.1
     "@types/crypto-js": ^4.1.1
@@ -3887,9 +3887,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@opendreamnet/nuxtjs-base@file:/C:/src/odn/monorepo/workspaces/nuxtjs-base::locator=%40opendreamnet%2Fdreamlink.cloud%40workspace%3A.":
-  version: 2.0.5
-  resolution: "@opendreamnet/nuxtjs-base@file:/C%3A/src/odn/monorepo/workspaces/nuxtjs-base#/C%3A/src/odn/monorepo/workspaces/nuxtjs-base::hash=7d84d4&locator=%40opendreamnet%2Fdreamlink.cloud%40workspace%3A."
+"@opendreamnet/nuxtjs-base@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "@opendreamnet/nuxtjs-base@npm:2.0.6"
   dependencies:
     "@nuxtjs/style-resources": ^1
     "@tailwindcss/typography": ^0.4
@@ -3907,7 +3907,7 @@ __metadata:
       optional: true
     "@tailwindcss/typography":
       optional: true
-  checksum: d2a229f797e51786526b53b46def62e18b102547fd692103f4254cc1f9a523795f80ffdb4942a1696f66de42f0588b79aae509ee60938442bd74c7e69779742a
+  checksum: d91ed323b8fe1850eeb9092e544cb710bae54550ddf1868b45effff1c5c0491a76639546e75f537029ff5c4163e7d1884b01d7dfe506edbe2ab361303a9fa8e5
   languageName: node
   linkType: hard
 
