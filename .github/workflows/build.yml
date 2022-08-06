@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: 📁 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 📦 Cache node_modules
         uses: actions/cache@v3
@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: ⚙️ Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "16"
           check-latest: true
@@ -50,7 +50,7 @@ jobs:
         run: yarn run generate
 
       - name: ✨ Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist
