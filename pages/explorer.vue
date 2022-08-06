@@ -152,8 +152,10 @@ export default Vue.extend({
 }
 
 .explorer__cols {
-  @screen lg {
-    @apply flex gap-12 space-y-0;
+  @apply flex flex-col gap-12;
+
+  @screen md {
+    @apply flex-row space-y-0;
   }
 }
 
@@ -164,8 +166,8 @@ export default Vue.extend({
 .explorer__right {
   @apply space-y-12;
 
-  @screen lg {
-    width: 350px;
+  @screen md {
+    width: 300px;
   }
 }
 
