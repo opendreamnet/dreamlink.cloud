@@ -114,7 +114,7 @@ export default Vue.extend({
   @apply block font-semibold text-origin-darken transition-colors cursor-pointer;
 
   &:not(:last-child) {
-    @apply pb-6;
+    @apply mb-6;
   }
 
   &:hover {

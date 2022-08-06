@@ -26,7 +26,11 @@
 
 <style lang="scss">
 .container {
-  @apply mx-auto px-2;
+  @apply mx-auto px-4;
+
+  @screen lg {
+    @apply px-0;
+  }
 }
 
 .vm--overlay {

@@ -42,12 +42,19 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .profile {
-  @apply flex gap-12;
+  @apply flex flex-col gap-12;
+
+  @screen md {
+    @apply flex-row;
+  }
 }
 
 .profile__left {
   @apply space-y-12;
-  width: 280px;
+
+  @screen md {
+    width: 280px;
+  }
 }
 
 .profile__right {
@@ -58,27 +65,11 @@ export default Vue.extend({
   &:deep(.button) {
     @apply border-0 #{!important};
   }
-
-  /*
-  &::v-deep {
-    .button {
-      @apply border-0 #{!important};
-    }
-  }
-  */
 }
 
 .box--pins {
   &:deep(.box__body) {
     @apply px-0 #{!important};
   }
-
-  /*
-  &::v-deep {
-    .box__body {
-      @apply px-0 #{!important};
-    }
-  }
-  */
 }
 </style>

@@ -7,10 +7,10 @@
           <input
             v-model="value"
             placeholder="Search..."
-            class="input w-auto flex-1"
+            class="input w-3/4 flex-1"
             required>
 
-          <select v-model="type" class="input w-auto">
+          <select v-model="type" class="input w-1/4">
             <option value="any">
               Any
             </option>
