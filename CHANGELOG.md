@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.7.0...v1.8.0) (2022-08-06)
+
+
+### Features
+
+* new file explorer, improvements on checking file availability, new profile page ([2833ce5](https://github.com/opendreamnet/dreamlink.cloud/commit/2833ce5958b98d0b005e5ae9c5abde017edda41b))
+* upgraded @opendreamnet/ipfs, some performance changes ([1cc7b49](https://github.com/opendreamnet/dreamlink.cloud/commit/1cc7b49ca2ae527822eaf66da207f953e132de1a))
+
+
+### Bug Fixes
+
+* `payload.path` can be undefined ([17325f1](https://github.com/opendreamnet/dreamlink.cloud/commit/17325f1e9e32297adede4a16e5225c71c001b891))
+* ignore .dreamlink directory itself on external node ([5ba8afa](https://github.com/opendreamnet/dreamlink.cloud/commit/5ba8afaa95d606b57b17ada1f95a3e797d087f7c))
+* pastebin now uploads to mfs ([ee1f0b2](https://github.com/opendreamnet/dreamlink.cloud/commit/ee1f0b247ada9a1ffaf4998d95ba787b74647f9d))
+
 ## [1.7.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.6.9...v1.7.0) (2022-05-02)
 
 
