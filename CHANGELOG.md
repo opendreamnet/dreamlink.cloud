@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.0...v1.8.1) (2022-08-06)
+
+
+### Bug Fixes
+
+* cid, dnslink and ipns still using ?filename instead of ?name ([80d754e](https://github.com/opendreamnet/dreamlink.cloud/commit/80d754e9d3fdbc7c2617bd3a3d6c5d2b868d4117))
+
 ## [1.8.0](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.7.0...v1.8.0) (2022-08-06)
 
 

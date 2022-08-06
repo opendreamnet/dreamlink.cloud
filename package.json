@@ -2,7 +2,7 @@
   "name": "@opendreamnet/dreamlink.cloud",
   "displayName": "DreamLink",
   "description": "Easy, fast and censorship-proof file sharing on the IPFS network.",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "license": "AGPL-3.0-or-later",
   "private": true,
   "scripts": {
