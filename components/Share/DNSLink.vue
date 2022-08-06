@@ -38,7 +38,7 @@ export default Vue.extend({
 
         const query: ParsedQuery = {
           cid,
-          filename: this.filename
+          name: this.filename
         }
 
         this.$router.push({
