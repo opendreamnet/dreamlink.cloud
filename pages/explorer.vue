@@ -60,14 +60,14 @@ export default Vue.extend({
   }),
 
   head(): MetaInfo {
-    const title = this.$route.query.name as string || this.$route.query.cid as string
+    const title = this.name || this.cid
 
     return {
       titleTemplate: `%s - ${title}`,
       meta: [
         {
           name: 'description',
-          content: `Download ${title} file from IPFS.`
+          content: `Download ${title} from IPFS.`
         }
       ]
     }
@@ -78,8 +78,8 @@ export default Vue.extend({
       return this.$route.query.cid as string
     },
 
-    name(): string {
-      return this.$route.query.name as string
+    name(): string | null {
+      return this.$route.query.name as string | null || this.$route.query.filename as string | null
     }
   },
 
@@ -95,7 +95,7 @@ export default Vue.extend({
 
       try {
         this.entry = await this.$ipfs.fromCID(this.cid, {
-          name: this.name,
+          name: this.name ?? undefined,
           timeout: 15 * 60 * 1000, // 15 minutes
           cache: 'explorer',
           stats: true,
