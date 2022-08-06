@@ -1,11 +1,11 @@
 <template>
-  <Section title="Node" subtitle="Settings on the communication with the IPFS network.">
+  <Section title="Node" subtitle="IPFS network communication settings.">
     <form id="nodeForm" @submit.prevent="submit()">
       <!-- Type -->
       <Field title="Type" :description="typeDescription">
         <select v-model="type" class="max-w-xl input" required>
           <option value="browser">
-            Browser
+            Web Browser
           </option>
           <option value="external">
             External
@@ -49,10 +49,10 @@ export default Vue.extend({
 
     typeDescription(): string {
       if (this.type === 'external') {
-        return 'Use the IPFS node you have installed on your device and maintain a more reliable connection.'
+        return 'Use the IPFS node you have installed on your device.'
       }
 
-      return 'Node in your web browser ready to use, ideal for small files and operations, may have reliability problems.'
+      return 'A ready-to-use IPFS node in your web browser. Ideal for small files. May have speed and reliability issues.'
     }
   },
 

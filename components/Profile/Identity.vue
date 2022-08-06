@@ -37,7 +37,7 @@
         </div>
       </Field>
 
-      <Field v-else title="Private Key" description="IPFS does not allow us to access the private key of external nodes (for security reasons) so the private key and identity options are disabled." class="field--danger" />
+      <Field v-else title="Private Key" description="For security reasons the private key options are disabled when using an external IPFS node." class="field--danger" />
 
       <Field v-if="!$accessor.settings.isExternalNode" title="New identity" description="Create a new random private key without losing your files." class="field--danger">
         <Button class="button--danger" @click.prevent="openIdentityCreateDialog()">
