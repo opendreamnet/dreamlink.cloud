@@ -8,10 +8,6 @@ process.env.npm_package_displayName = pkg.displayName
 process.env.npm_package_description = pkg.description
 process.env.npm_package_version = pkg.version
 
-if (!isNil(process.env.OPENDREAMNET)) {
-  console.log('OpenDreamnet build!')
-}
-
 export default setNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -128,6 +124,7 @@ export default setNuxtConfig({
     },
     app: {
       url: process.env.APP_URL,
+      urlCid: process.env.APP_URL_CID || process.env.APP_URL,
       githubUrl: process.env.APP_GITHUB_URL
     },
     company: {

@@ -13,58 +13,14 @@
       <div class="w-10 h-10" />
 
       <!-- Gateways -->
-      <nav v-if="$accessor.ipfs.appCID" class="nav">
-        <div class="font-bold item">
-          Mirrors
-        </div>
-
-        <a href="https://www.dreamlink.cloud" target="_blank" class="item">
-          dreamlink.cloud
-        </a>
-
-        <a :href="`https://dweb.link/ipfs/${$accessor.ipfs.appCID}`" target="_blank" class="item">
-          dweb.link
-        </a>
-
-        <a :href="`https://infura-ipfs.io/ipfs/${$accessor.ipfs.appCID}`" target="_blank" class="item">
-          infura-ipfs.io
-        </a>
-
-        <a :href="`ipfs://${$accessor.ipfs.appCID}`" target="_blank" class="item">
-          ipfs://
-        </a>
-      </nav>
+      <FooterMirrors v-if="$accessor.ipfs.appCID" class="nav" />
 
       <!-- IPFS -->
-      <nav class="nav">
-        <div class="font-bold item">
-          IPFS
-        </div>
-
-        <a href="https://docs.ipfs.tech/concepts/what-is-ipfs/" target="_blank" class="item">
-          What is IPFS?
-        </a>
-
-        <a href="https://docs.ipfs.tech/concepts/persistence/" target="_blank" class="item">
-          What is a pinned file?
-        </a>
-
-        <a href="https://docs.ipfs.tech/concepts/privacy-and-encryption/" target="_blank" class="item">
-          Privacy and encryption
-        </a>
-
-        <a href="https://docs.ipfs.tech/install/ipfs-companion/" target="_blank" class="item">
-          Browser extension
-        </a>
-
-        <a href="https://docs.ipfs.tech/install/ipfs-desktop/" target="_blank" class="item">
-          Desktop app
-        </a>
-      </nav>
+      <FooterIPFS class="nav" />
 
       <!-- Links -->
       <nav class="nav">
-        <div class="font-bold item">
+        <div class="font-bold text-origin-lighten item">
           {{ $config.name }}
         </div>
 
@@ -109,7 +65,7 @@
 .nav {
   @apply space-y-4;
 
-  a {
+  &:deep(.item) {
     @apply block font-semibold text-origin-darken;
 
     &:hover {

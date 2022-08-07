@@ -15,9 +15,9 @@ const plugin: Plugin = async({ app, $config }, inject) => {
 
   // Set node settings and start it.
   app.$accessor.ipfs.start().then(() => {
-    if ($config.app.url) {
+    if ($config.app.urlCid) {
       // Fetch application CID
-      app.$accessor.ipfs.fetchAppCID($config.app.url)
+      app.$accessor.ipfs.fetchAppCID($config.app.urlCid)
     }
   })
 
