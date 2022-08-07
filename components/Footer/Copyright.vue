@@ -4,7 +4,9 @@
 
     <p>
       © {{ new Date().getFullYear() }} <a :href="$config.company.url" target="_blank">{{ $config.company.name }}</a>.
-      Distributed under the <a href="https://github.com/opendreamnet/dreamlink.cloud/blob/master/LICENSE" target="_blank">GNU AGPLv3 license</a>.
+      Distributed under the <NuxtLink to="/docs/license">
+        GNU AGPLv3 license.
+      </NuxtLink>
     </p>
 
     <p>

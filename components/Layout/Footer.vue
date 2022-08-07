@@ -24,15 +24,19 @@
           {{ $config.name }}
         </div>
 
-        <NuxtLink to="/docs/tos" class="item">
+        <NuxtLink to="/docs/license" class="item">
+          License
+        </NuxtLink>
+
+        <NuxtLink v-if="$config.build.opendreamnet" to="/docs/tos" class="item">
           Terms of Service
         </NuxtLink>
 
-        <NuxtLink to="/docs/privacy" class="item">
+        <NuxtLink v-if="$config.build.opendreamnet" to="/docs/privacy" class="item">
           Privacy Policy
         </NuxtLink>
 
-        <NuxtLink to="/docs/contact" class="item">
+        <NuxtLink v-if="$config.build.opendreamnet" to="/docs/contact" class="item">
           Contact
         </NuxtLink>
 

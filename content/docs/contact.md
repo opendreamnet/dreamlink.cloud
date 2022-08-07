@@ -3,7 +3,7 @@
 Questions about the project or IPFS? We will be glad to help you, just send us an email and we will try to get back to you as soon as possible.
 
 ```
-hello@opendreamnet.com
+support@opendreamnet.com
 ```
 
 ## 🚨 Report content
