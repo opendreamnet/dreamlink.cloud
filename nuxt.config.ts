@@ -67,6 +67,10 @@ export default setNuxtConfig({
     '@nuxt/content'
   ],
 
+  generate: {
+    routes: ['/docs/contact', '/docs/license', '/docs/privacy', '/docs/tos']
+  },
+
   // https://github.com/nuxt-community/fontawesome-module
   fontawesome: {
     icons: {
