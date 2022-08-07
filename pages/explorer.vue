@@ -125,7 +125,7 @@ export default Vue.extend({
   @apply mb-10 -mt-10;
 
   @screen md {
-    @apply -mt-20;
+    @apply -mt-14;
   }
 }
 
