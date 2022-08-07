@@ -218,7 +218,7 @@ export const actions = actionTree({ state, getters, mutations }, {
     await new Promise(resolve => setTimeout(resolve, UPLOAD_DELAY))
 
     // Request caching on the most popular gateway
-    await Gateway.isStoredOnFirst(cid, false)
+    await Gateway.isStoredOnFirst(cid, false, 5000)
   },
 
   /**
