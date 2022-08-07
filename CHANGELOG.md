@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.1...v1.8.2) (2022-08-07)
+
+
+### Bug Fixes
+
+* changed `APP_URL` to the url on fleek.co to get the CID of the latest version ([4ba6e35](https://github.com/opendreamnet/dreamlink.cloud/commit/4ba6e35de4eafca1ae0e92f56506d449450af1f2))
+
 ### [1.8.1](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.0...v1.8.1) (2022-08-06)
 
 
