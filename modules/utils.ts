@@ -101,9 +101,9 @@ export function decryptMessage(message: string, secretKey: string): Message | nu
   }
 }
 
-type ObjectType = 'directory' | 'video' | 'audio' | 'image' | 'text' | 'pdf' | null
+// type ObjectType = 'directory' | 'video' | 'audio' | 'image' | 'text' | 'pdf' | null
 
-export function getTypeFromFilename(filename?: string | null): ObjectType {
+export function getTypeFromFilename(filename?: string | null) {
   if (!filename) {
     return null
   }
@@ -138,5 +138,49 @@ export function getTypeFromMime(mimetype?: string) {
     return 'pdf'
   }
 
+  if (mimetype === 'application/gzip' || mimetype === 'application/zip') {
+    return 'archive'
+  }
+
+  if (mimetype === 'application/json') {
+    return 'code'
+  }
+
   return null
+}
+
+export function getIconFromMime(mimetype?: string) {
+  switch (getTypeFromMime(mimetype)) {
+    case 'directory':
+      return 'folder'
+
+    case 'video':
+      return 'file-video'
+
+    case 'audio':
+      return 'file-audio'
+
+    case 'image':
+      return 'file-image'
+
+    case 'text':
+      return 'file-alt'
+
+    case 'pdf':
+      return 'file-pdf'
+
+    case 'archive':
+      return 'file-archive'
+
+    case 'code':
+      return 'file-code'
+
+      /*
+    case 'excel':
+      return 'file-excel'
+    */
+
+    default:
+      return 'question'
+  }
 }

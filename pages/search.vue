@@ -3,16 +3,16 @@
     <Section title="Search" subtitle="Powered by ipfs-search.com">
       <!-- Form -->
       <form class="search__form" @submit.prevent="search">
-        <div class="search__input">
-          <input
-            v-model="value"
-            placeholder="Search..."
-            class="input w-3/4 flex-1"
-            required>
+        <input
+          v-model="value"
+          placeholder="What are you looking for?"
+          class="mb-6 input"
+          required>
 
-          <select v-model="type" class="input w-1/4">
+        <div class="search__input">
+          <select v-model="type" class="w-1/3 input">
             <option value="any">
-              Any
+              Any type
             </option>
             <option value="file">
               File
@@ -31,6 +31,65 @@
             </option>
             <option value="image">
               Image
+            </option>
+            <option value="zip">
+              Zip
+            </option>
+          </select>
+
+          <select v-model="sizes" class="w-1/3 input">
+            <option :value="[]">
+              Any size
+            </option>
+
+            <option :value="['<=1048576']">
+              0 - 1 MB
+            </option>
+
+            <option :value="['>1048576', '<=10485760']">
+              1 - 10 MB
+            </option>
+
+            <option :value="['>10485760', '<=52428800']">
+              10 - 50 MB
+            </option>
+
+            <option :value="['>52428800', '<=104857600']">
+              50 - 100 MB
+            </option>
+
+            <option :value="['>104857600', '<=1073741824']">
+              100 MB - 1 GB
+            </option>
+
+            <option :value="['>1073741824']">
+              1 GB+
+            </option>
+          </select>
+
+          <select v-model="lastSeen" class="w-1/3 input">
+            <option value="any">
+              All time
+            </option>
+
+            <option value="now-1h/h TO *">
+              &lt; 1h
+            </option>
+
+            <option value="now-12h/h TO *">
+              &lt; 12h
+            </option>
+
+            <option value="now-24h/h TO *">
+              &lt; 24h
+            </option>
+
+            <option value="now/h-7d TO *">
+              &lt; 7d
+            </option>
+
+            <option value="now/d-30d TO *">
+              &lt; 30d
             </option>
           </select>
         </div>
@@ -51,14 +110,20 @@
           :to="{ path: '/explorer', query: { cid: item.hash, name: (item.title || '').replace( /(<([^>]+)>)/ig, '') } }"
           target="_blank"
           class="item">
-          <div class="title" v-html="item.title" />
-
-          <div class="hash">
-            {{ item.hash }}
+          <div class="item__icon">
+            <FontAwesomeIcon :icon="getIcon(item.mimetype)" />
           </div>
 
-          <div class="extra">
-            {{ item.size | prettyBytes }}  - {{ item['last-seen'] | toRelative }}
+          <div class="item__data">
+            <div class="extra">
+              {{ item.size | prettyBytes }} - {{ item['last-seen'] | toRelative }} - {{ item.mimetype }}
+            </div>
+
+            <div class="title" v-html="item.title" />
+
+            <div class="hash">
+              {{ item.hash }}
+            </div>
           </div>
         </NuxtLink>
       </div>
@@ -99,21 +164,34 @@
 import Vue from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { debounce, DebouncedFunc } from 'lodash'
+import { debounce, DebouncedFunc, upperFirst } from 'lodash'
+import { getIconFromMime } from '~/modules/utils'
 
 interface IData {
   value: string
+  type: 'any' | 'file' | 'directory' | 'text' | 'audio' | 'video' | 'image' | 'zip'
+  sizes: string[]
+  lastSeen: string
+
   loading: boolean
   payload: any
   page: number
   search: DebouncedFunc<() => Promise<void>> | null
-  type: 'any' | 'file' | 'directory' | 'text' | 'audio' | 'video' | 'image'
   searched: boolean
 }
 
 export default Vue.extend({
+  filters: {
+    upperFirst(value: string) {
+      return upperFirst(value)
+    }
+  },
+
   data: (): IData => ({
     value: '',
+    sizes: [],
+    lastSeen: 'now-24h/h TO *',
+
     loading: false,
     payload: null,
     page: 0,
@@ -144,6 +222,17 @@ export default Vue.extend({
         case 'image':
           query += ' metadata.Content-Type:(image*)'
           break
+        case 'zip':
+          query += ' metadata.Content-Type:("application/gzip" OR "application/zip")'
+          break
+      }
+
+      for (const size of this.sizes) {
+        query += ` size:${size}`
+      }
+
+      if (this.lastSeen !== 'any') {
+        query += ` last-seen:[${this.lastSeen}]`
       }
 
       return query
@@ -155,6 +244,7 @@ export default Vue.extend({
         case 'audio':
         case 'video':
         case 'image':
+        case 'zip':
           return 'file'
 
         default:
@@ -171,6 +261,18 @@ export default Vue.extend({
     },
 
     type() {
+      if (this.search) {
+        this.search()
+      }
+    },
+
+    sizes() {
+      if (this.search) {
+        this.search()
+      }
+    },
+
+    lastSeen() {
       if (this.search) {
         this.search()
       }
@@ -221,6 +323,13 @@ export default Vue.extend({
       } finally {
         this.loading = false
       }
+    },
+
+    /**
+     * Returns the icon according to the file type.
+     */
+    getIcon(mimetype?: string): string {
+      return getIconFromMime(mimetype)
     }
   }
 })
@@ -240,14 +349,15 @@ export default Vue.extend({
 }
 
 .item {
-  @apply block p-4 cursor-pointer;
+  @apply flex gap-4;
+  @apply p-4 cursor-pointer;
 
   &:hover {
     @apply bg-menus-light;
   }
 
   .title {
-    @apply overflow-ellipsis overflow-hidden whitespace-nowrap;
+    @apply font-bold overflow-ellipsis overflow-hidden whitespace-nowrap;
 
     &:deep(em) {
       @apply text-primary-lighten;
@@ -260,7 +370,15 @@ export default Vue.extend({
   }
 
   .extra {
-    @apply text-xs text-origin-dark;
+    @apply font-semibold text-xs text-origin-dark;
   }
+}
+
+.item__icon {
+  @apply flex justify-center items-center text-2xl;
+}
+
+.item__data {
+  @apply flex-1 overflow-hidden;
 }
 </style>

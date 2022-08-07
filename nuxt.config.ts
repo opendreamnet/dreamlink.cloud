@@ -99,7 +99,14 @@ export default setNuxtConfig({
         'faHeartBroken',
         'faDatabase',
         'faCaretDown',
-        'faThumbtack'
+        'faThumbtack',
+        // 'faFileMusic',
+        'faFileArchive',
+        'faFileCode',
+        'faFileExcel',
+        'faFilePowerpoint',
+        'faFileWord',
+        'faFileCsv'
       ]
     }
   },

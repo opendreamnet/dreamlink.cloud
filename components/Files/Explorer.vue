@@ -84,7 +84,7 @@
 import Vue from 'vue'
 import { DateTime } from 'luxon'
 import type { Entry } from '@opendreamnet/ipfs'
-import { getTypeFromMime } from '~/modules/utils'
+import { getIconFromMime } from '~/modules/utils'
 
 export default Vue.extend({
   filters: {
@@ -109,28 +109,7 @@ export default Vue.extend({
      * Returns the icon according to the file type.
      */
     getIcon(mimetype?: string): string {
-      switch (getTypeFromMime(mimetype)) {
-        case 'directory':
-          return 'folder'
-
-        case 'video':
-          return 'file-video'
-
-        case 'audio':
-          return 'file-audio'
-
-        case 'image':
-          return 'file-image'
-
-        case 'text':
-          return 'file-alt'
-
-        case 'pdf':
-          return 'file-pdf'
-
-        default:
-          return 'question'
-      }
+      return getIconFromMime(mimetype)
     },
 
     async togglePin(entry: Entry) {
