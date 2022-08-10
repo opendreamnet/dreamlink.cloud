@@ -1,3 +1,4 @@
+/* eslint-disable require-await */
 import path from 'path'
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
 import qs from 'query-string'
@@ -5,6 +6,7 @@ import { isEmpty, isNil, noop, reduce, round } from 'lodash'
 import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 import type { DefaultNuxtLoading } from '@nuxt/types/app'
+import type { CID } from 'multiformats/cid'
 import { UPLOAD_DELAY } from '~/modules/defs'
 import { ipfs } from '~/modules/ipfs'
 import { Gateway } from '~/modules/gateway'
@@ -73,7 +75,7 @@ export const actions = actionTree({ state, getters, mutations }, {
       await ipfs.api.files.mkdir('/.dreamlink').catch(noop)
 
       // Avatar
-      commit('setAvatarURL', this.app.$accessor.ipfs.fetchAvatarURL())
+      commit('setAvatarURL', await this.app.$accessor.ipfs.fetchAvatarURL())
 
       // Migrate stored pins from version 1.7 to MFS
       this.app.$accessor.ipfs.migratePins()
@@ -104,7 +106,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    *
    * @param [peerId]
    */
-  fetchAvatarURL({}, peerId?: string): string {
+  async fetchAvatarURL({}, peerId?: string): Promise<string> {
     if (!peerId) {
       peerId = ipfs.identity?.id.toString() || 'unknown'
     }
@@ -187,9 +189,15 @@ export const actions = actionTree({ state, getters, mutations }, {
     // Uploaded size
     let uploadedBytes = 0
 
-    // Root directory or file
-    // @ts-ignore
-    const root = path.join(payload.path || '', !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
+    // True if the user has uploaded a directory
+    let type: 'single' | 'multiple' | 'directory' = 'single'
+
+    if (files.length > 1) {
+      // @ts-ignore
+      type = !isEmpty(files[0].webkitRelativePath) ? 'directory' : 'multiple'
+    }
+
+    const entries: Entry[] = []
 
     // Track progress function
     const progressFunc = (bytes: number) => {
@@ -209,15 +217,47 @@ export const actions = actionTree({ state, getters, mutations }, {
         mtime: DateTime.now().toJSDate(),
         progress: progressFunc
       })
+
+      if (type === 'multiple') {
+        const stat = await ipfs.api.files.stat(`/.dreamlink/${filepath}`)
+
+        entries.push(
+          Entry.fromIpfsEntry(ipfs, {
+            ...stat,
+            type: 'file',
+            name: file.name,
+            path: `/${stat.cid.toString()}`
+          })
+        )
+      }
     }
 
-    const stat = await ipfs.api.files.stat(`/.dreamlink/${root}`)
+    payload.loading.continuous = true
+
+    let cid: string
+    let name: string
+
+    if (type === 'single' || type === 'directory') {
+      // Root directory or file
+      // @ts-ignore
+      const root = path.join(payload.path || '', !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
+
+      const stat = await ipfs.api.files.stat(`/.dreamlink/${root}`)
+
+      cid = stat.cid.toString()
+      name = root
+    } else {
+      const entry = await Entry.fromEntries(entries)
+
+      cid = entry.cid.toString()
+      name = cid
+    }
 
     payload.loading.finish()
 
     return {
-      cid: stat.cid.toString(),
-      name: root
+      cid,
+      name
     }
   },
 
