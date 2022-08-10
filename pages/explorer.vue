@@ -109,7 +109,7 @@ export default Vue.extend({
           window.ipfsRecord = this.entry
         }
       } catch (err: any) {
-        console.warn('[NetworkObject] Failed to fetch the record:', err.message)
+        console.warn('[NetworkObject] Failed to fetch the entry:', err.message)
       }
     }
   }

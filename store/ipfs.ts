@@ -258,15 +258,6 @@ export const actions = actionTree({ state, getters, mutations }, {
       }
     }
 
-    // Testing
-    records.push({
-      cid: 'QmNorX99nkbJ6tzGEEbu3SqCpQDrRvX8p9XnpHczsQsKEk',
-      name: 'Caught.mp4'
-    }, {
-      cid: 'QmbPz7XvruCTSGvy4mb7AnBeb5kRku9ncitqhTR1Ley5vQ',
-      name: 'video.webm'
-    })
-
     if (records.length === 0) {
       return
     }
