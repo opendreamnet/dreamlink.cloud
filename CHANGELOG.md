@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.2...v1.8.3) (2022-08-10)
+
+
+### Bug Fixes
+
+* pinning files on explorer does not work ([114e8ae](https://github.com/opendreamnet/dreamlink.cloud/commit/114e8aeab7c891e7cf1b2d387caae9a4fb624dea))
+* uploading multiple files individually returned only the last file in explorer ([48732bf](https://github.com/opendreamnet/dreamlink.cloud/commit/48732bf8304d7688925f47d737557becfcf880ab))
+
 ### [1.8.2](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.1...v1.8.2) (2022-08-07)
 
 
