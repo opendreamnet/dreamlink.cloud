@@ -5,6 +5,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import type { Entry } from '@opendreamnet/ipfs'
+import { $ } from '~/modules/bus'
 
 interface IData {
   entries: Entry[]
@@ -35,7 +36,23 @@ export default Vue.extend({
     }
   },
 
+  created() {
+    $.on('files.explorer.update', this.onUpdate.bind(this))
+  },
+
+  beforeDestroy() {
+    $.off('files.explorer.update', this.onUpdate.bind(this))
+  },
+
   methods: {
+    onUpdate(path: string) {
+      if (this.path !== path) {
+        return
+      }
+
+      this.fetchEntries()
+    },
+
     async fetchEntries() {
       this.loading = true
 
@@ -64,7 +81,6 @@ export default Vue.extend({
         }
 
         this.errorMessage = err.message
-
         console.trace(err)
       } finally {
         this.loading = false

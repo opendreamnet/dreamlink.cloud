@@ -1,13 +1,15 @@
 import path from 'path'
 import { getterTree, mutationTree, actionTree } from 'typed-vuex'
-import queryString from 'query-string'
-import { isEmpty, reduce, round } from 'lodash'
+import qs from 'query-string'
+import { isEmpty, isNil, noop, reduce, round } from 'lodash'
 import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 import type { DefaultNuxtLoading } from '@nuxt/types/app'
 import { UPLOAD_DELAY } from '~/modules/defs'
 import { ipfs } from '~/modules/ipfs'
 import { Gateway } from '~/modules/gateway'
+import { storageDb, IPin as IStoragePin } from '~/modules/databases/storage'
+import { $ } from '~/modules/bus'
 
 export interface UploadPayload {
   files: FileList | File[]
@@ -59,11 +61,22 @@ export const actions = actionTree({ state, getters, mutations }, {
       })
 
       if (ipfs.error) {
+        // IPFS internal error
         throw ipfs.error
       }
 
+      if (!ipfs.api) {
+        throw new Error('IPFS API undefined!')
+      }
+
+      // Creates the directory where we store the uploaded files
+      await ipfs.api.files.mkdir('/.dreamlink').catch(noop)
+
       // Avatar
-      this.app.$accessor.ipfs.fetchAvatarURL()
+      commit('setAvatarURL', this.app.$accessor.ipfs.fetchAvatarURL())
+
+      // Migrate stored pins from version 1.7 to MFS
+      this.app.$accessor.ipfs.migratePins()
     } catch (err: any) {
       commit('setNodeError', err)
 
@@ -91,7 +104,7 @@ export const actions = actionTree({ state, getters, mutations }, {
    *
    * @param [peerId]
    */
-  fetchAvatarURL({ commit }, peerId?: string): string {
+  fetchAvatarURL({}, peerId?: string): string {
     if (!peerId) {
       peerId = ipfs.identity?.id.toString() || 'unknown'
     }
@@ -117,11 +130,7 @@ export const actions = actionTree({ state, getters, mutations }, {
       ]
     }
 
-    const avatarURL = `https://avatars.dicebear.com/api/micah/${peerId}.svg?${queryString.stringify(query)}`
-
-    commit('setAvatarURL', avatarURL)
-
-    return avatarURL
+    return `https://avatars.dicebear.com/api/micah/${peerId}.svg?${qs.stringify(query)}`
   },
 
   /**
@@ -132,9 +141,8 @@ export const actions = actionTree({ state, getters, mutations }, {
       throw new Error('IPFS API undefined!')
     }
 
-    for await (const data of this.$ipfs.api.repo.gc()) {
-      // nothing
-    }
+    // eslint-disable-next-line no-empty
+    for await (const {} of this.$ipfs.api.repo.gc({ quiet: true })) { }
 
     this.$events.emit('storage.gc')
     this.$events.emit('storage.refresh')
@@ -235,5 +243,48 @@ export const actions = actionTree({ state, getters, mutations }, {
     await ipfs.api.files.rm(`/.dreamlink/${path}`, {
       recursive: true
     })
+  },
+
+  async migratePins() {
+    const records: IStoragePin[] = []
+
+    // Fetch all pinned objects in the node.
+    for (const cid of ipfs.pins) {
+      // Get the record in the database for name and upload date.
+      const record = await storageDb.pins.where({ cid: cid.toString() }).first()
+
+      if (record) {
+        records.push(record)
+      }
+    }
+
+    // Testing
+    records.push({
+      cid: 'QmNorX99nkbJ6tzGEEbu3SqCpQDrRvX8p9XnpHczsQsKEk',
+      name: 'Caught.mp4'
+    }, {
+      cid: 'QmbPz7XvruCTSGvy4mb7AnBeb5kRku9ncitqhTR1Ley5vQ',
+      name: 'video.webm'
+    })
+
+    if (records.length === 0) {
+      return
+    }
+
+    if (!ipfs.api) {
+      throw new Error('IPFS API undefined!')
+    }
+
+    for (const record of records) {
+      await Promise.all([
+        ipfs.api.files.cp(`/ipfs/${record.cid}`, `/.dreamlink/${record.name ?? record.cid}`, { timeout: 15000 }),
+        ipfs.pin(record.cid, { timeout: 15000 })
+      ]).catch(console.warn)
+    }
+
+    $.emit('files.explorer.update', '/.dreamlink')
+
+    // Bye bye
+    await storageDb.pins.clear()
   }
 })

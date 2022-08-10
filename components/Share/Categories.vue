@@ -9,7 +9,7 @@
       <ShareUpload class="mb-10" />
 
       <!-- Root explorer -->
-      <FilesFromMFS />
+      <FilesFromMFS v-if="$ipfs.ready" />
     </div>
 
     <!-- Open CID -->
