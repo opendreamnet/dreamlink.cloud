@@ -59,8 +59,7 @@ export default Vue.extend({
       try {
         const entry = await this.$ipfs.fromMFS(this.path, {
           stats: true,
-          subentries: true,
-          cache: 'explorer'
+          subentries: true
         })
 
         await entry.waitUntil('loaded')
