@@ -189,7 +189,7 @@ export const actions = actionTree({ state, getters, mutations }, {
     // Uploaded size
     let uploadedBytes = 0
 
-    // True if the user has uploaded a directory
+    // Upload type
     let type: 'single' | 'multiple' | 'directory' = 'single'
 
     if (files.length > 1) {
@@ -211,6 +211,7 @@ export const actions = actionTree({ state, getters, mutations }, {
       // @ts-ignore
       const filepath = path.join(payload.path || '', (file.webkitRelativePath || file.name))
 
+      // Write on MFS
       await ipfs.api.files.write(`/.dreamlink/${filepath}`, file, {
         create: true,
         parents: true,
@@ -219,8 +220,11 @@ export const actions = actionTree({ state, getters, mutations }, {
       })
 
       if (type === 'multiple') {
+        // If multiple files are being uploaded we must have a record to wrap them in a directory at the end
         const stat = await ipfs.api.files.stat(`/.dreamlink/${filepath}`)
 
+        // Fast way to create an entry
+        // TODO: Make a function on @opendreamnet/ipfs
         entries.push(
           Entry.fromIpfsEntry(ipfs, {
             ...stat,
@@ -232,6 +236,7 @@ export const actions = actionTree({ state, getters, mutations }, {
       }
     }
 
+    // Files uploaded, no longer have a way to track progress
     payload.loading.continuous = true
 
     let cid: string
@@ -241,12 +246,12 @@ export const actions = actionTree({ state, getters, mutations }, {
       // Root directory or file
       // @ts-ignore
       const root = path.join(payload.path || '', !isEmpty(files[0].webkitRelativePath) ? files[0].webkitRelativePath.split('/')[0] : files[0].name)
-
       const stat = await ipfs.api.files.stat(`/.dreamlink/${root}`)
 
       cid = stat.cid.toString()
       name = root
     } else {
+      // Wrap the entries
       const entry = await Entry.fromEntries(entries)
 
       cid = entry.cid.toString()
