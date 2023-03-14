@@ -76,11 +76,9 @@
     <!-- Dialogs -->
     <DialogPersistence ref="dialogPersistence" />
   </div>
-  </div>
 </template>
 
 <script lang="ts">
-import mime from 'mime'
 // @ts-ignore
 import Moovie from 'mooviejs'
 import { startsWith, isNil } from 'lodash'

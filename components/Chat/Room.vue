@@ -90,8 +90,8 @@ import { DateTime } from 'luxon'
 import Swal from 'sweetalert2'
 import { toString, attempt, isString } from 'lodash'
 import queryString from 'query-string'
-import type { Message } from '@libp2p/interfaces/pubsub'
-import type { PeerId } from '@libp2p/interfaces/peer-id'
+import type { Message } from '@libp2p/interface-pubsub'
+import type { PeerId } from '@libp2p/interface-peer-id'
 import { ChatRecord } from '~/types'
 import { MAX_RECORDS, DEFAULT_ENCRYPTION_KEY } from '~/modules/defs'
 import { encryptMessage } from '~/modules/utils'
@@ -113,7 +113,7 @@ interface Data {
   messageLoading: boolean
   records: ChatRecord[]
   peers: PeerId[]
-  // eslint-disable-next-line no-undef
+
   peersTimeout: NodeJS.Timeout | null
 }
 
@@ -283,11 +283,13 @@ export default Vue.extend({
     },
 
     onMessage(payload: Message) {
+      /*
       this.records.push({
         from: payload.from.toString(),
         date: DateTime.now(),
         data: new TextDecoder().decode(payload.data)
       })
+      */
 
       if (this.records.length > MAX_RECORDS) {
         // Delete the oldest.

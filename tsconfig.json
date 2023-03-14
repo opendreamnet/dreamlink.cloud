@@ -26,7 +26,6 @@
     "types": [
       "@nuxt/types",
       "@nuxt/content",
-      "@nuxt/image",
       "@nuxtjs/markdownit",
       "@types/node"
     ],

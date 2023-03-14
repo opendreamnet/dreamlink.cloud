@@ -1,0 +1,16 @@
+{
+  "reject": [
+    "query-string",
+    "pretty-bytes",
+    "nuxt",
+    "@nuxt/types",
+    "lint-staged",
+    "husky",
+    "@tailwindcss/typography",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/content",
+    "@commitlint/cli",
+    "@commitlint/config-conventional",
+    "is-ipfs"
+  ]
+}

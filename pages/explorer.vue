@@ -39,8 +39,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { isString } from 'lodash'
 import { MetaInfo } from 'vue-meta/types'
-import isIPFS from 'is-ipfs'
+import { cid } from 'is-ipfs'
 
 interface IData {
   entry: Entry | null
@@ -50,7 +51,7 @@ export default Vue.extend({
   middleware: ({ route, redirect }) => {
     const { query } = route
 
-    if (!query.cid || !isIPFS.cid(query.cid)) {
+    if (!isString(query.cid) || !cid(query.cid)) {
       return redirect('/')
     }
   },
