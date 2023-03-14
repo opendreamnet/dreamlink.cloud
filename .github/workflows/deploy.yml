@@ -6,7 +6,7 @@ on:
     tags: [ v* ]
 
 env:
-  NODE_ENV: production 
+  NODE_ENV: production
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: 📁 Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 📦 Cache node_modules
         uses: actions/cache@v3
@@ -31,23 +31,20 @@ jobs:
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: ⚙️ Install Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
 
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
 
       - name: 🏗️ Build
-        env:
-          GOOGLE_TAG_MANAGER_ID: GTM-TNK475T
         run: yarn run generate
 
       - name: 🚀 Deploy
         run: yarn run deploy -n www-dreamlink
         timeout-minutes: 20
         env:
-          DEPLOY_PINATA_TOKEN: ${{ secrets.DEPLOY_PINATA_TOKEN }}
           DEPLOY_WEB3STORAGE_TOKEN: ${{ secrets.DEPLOY_WEB3STORAGE_TOKEN }}
           DEPLOY_CLOUDFLARE_EMAIL: ${{ secrets.DEPLOY_CLOUDFLARE_EMAIL }}
           DEPLOY_CLOUDFLARE_KEY: ${{ secrets.DEPLOY_CLOUDFLARE_KEY }}
@@ -55,7 +52,7 @@ jobs:
           DEPLOY_CLOUDFLARE_RECORD: _dnslink.www
 
       - name: ✨ Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist

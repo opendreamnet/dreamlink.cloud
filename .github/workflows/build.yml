@@ -9,9 +9,9 @@ on:
       - "!CHANGELOG.md"
     branches:
       - master
-    
+
 env:
-  NODE_ENV: production 
+  NODE_ENV: production
 
 jobs:
   deploy:
@@ -38,15 +38,13 @@ jobs:
       - name: ⚙️ Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "18"
           check-latest: true
 
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
 
       - name: 🏗️ Build
-        env:
-          GOOGLE_TAG_MANAGER_ID: GTM-TNK475T
         run: yarn run generate
 
       - name: ✨ Upload artifact

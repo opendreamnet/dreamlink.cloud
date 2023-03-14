@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext \".js,.vue\" .",
     "test:e2e": "wdio wdio.conf.js",
-    "deploy": "deploy dist -p web3.storage -p pinata -d cloudflare -u -c",
+    "deploy": "deploy dist -p web3.storage -d cloudflare -u -c",
     "release": "standard-version"
   },
   "lint-staged": {
