@@ -1,4 +1,4 @@
-import { setNuxtConfig } from '@opendreamnet/nuxtjs-base'
+import { setNuxtConfig, getNuxtConfig } from '@opendreamnet/nuxtjs-base'
 import { isNil } from 'lodash'
 import pkg from './package.json'
 
@@ -14,18 +14,17 @@ export default setNuxtConfig({
     script: [
       {
         // The latest IPFS-JS libraries are now ESM forcing us to use the
-        // @opendreamnet/ipfs version built with Webpack 5. (This NuxtJS v2 uses Webpack 4)
+        // @opendreamnet/ipfs version built with Webpack 5.
+        // (NuxtJS v2 uses Webpack 4)
         // We still include the library to use the types.
-        src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.4/dist/index.umd.js'
+        src: 'https://unpkg.com/@opendreamnet/ipfs@0.1.6/dist/index.umd.js'
       }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@opendreamnet/nuxtjs-base/assets/css/reset.scss',
-    '@opendreamnet/nuxtjs-base/assets/css/input.scss',
-    '@opendreamnet/nuxtjs-base/assets/css/checkbox.scss',
+    ...getNuxtConfig().css!,
 
     'tippy.js/dist/tippy.css',
     'mooviejs/css/moovie.css',
@@ -35,7 +34,7 @@ export default setNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    require.resolve('@opendreamnet/nuxtjs-base/plugins/boot.ts'),
+    ...getNuxtConfig().plugins!,
     '~/plugins/boot.ts',
     '~/plugins/ipfs.ts',
     '~/plugins/vue-modal.ts'
@@ -51,8 +50,6 @@ export default setNuxtConfig({
     '@nuxtjs/style-resources',
     // https://github.com/nuxt-community/fontawesome-module
     '@nuxtjs/fontawesome',
-    // https://github.com/nuxt-community/google-fonts-module
-    '@nuxtjs/google-fonts',
     // https://github.com/nuxt-community/markdownit-module
     '@nuxtjs/markdownit',
     // https://typed-vuex.roe.dev/
@@ -115,14 +112,6 @@ export default setNuxtConfig({
     }
   },
 
-  // https://github.com/nuxt-community/google-fonts-module
-  googleFonts: {
-    download: process.env.NODE_ENV === 'production' && !isNil(process.env.OPENDREAMNET),
-    families: {
-      Inter: [300, 400, 600, 800]
-    }
-  },
-
   pwa: {
     workbox: {
       enabled: false
@@ -139,21 +128,34 @@ export default setNuxtConfig({
       githubUrl: process.env.APP_GITHUB_URL
     },
     company: {
-      name: process.env.COMPANY_NAME || 'Iván Bravo Bravo',
+      name: process.env.COMPANY_NAME || 'OpenDreamnet',
       logo: process.env.COMPANY_LOGO,
-      url: process.env.COMPANY_URL || 'mailto:kolessios@gmail.com'
+      url: process.env.COMPANY_URL || 'mailto:support@opendreamnet.com'
     }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, { isClient }) {
+      if (isClient) {
+        config.devtool = 'source-map'
+      }
+    },
+
     // Customize Babel configuration for JavaScript and Vue files.
     babel: {
-      // @ts-ignore
-      presets(env, defaultPreset) {
-        // @ts-ignore
-        defaultPreset[1].targets = {}
+      presets({ isServer }) {
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              targets: isServer ? 'current node' : {},
+              corejs: { version: 3 }
+            }
+          ]
+        ]
       },
+
       plugins: [
         'lodash',
         '@babel/plugin-proposal-nullish-coalescing-operator',
