@@ -215,7 +215,6 @@ export const actions = actionTree({ state, getters, mutations }, {
       await ipfs.api.files.write(`/.dreamlink/${filepath}`, file, {
         create: true,
         parents: true,
-        mtime: DateTime.now().toJSDate(),
         progress: progressFunc
       })
 
