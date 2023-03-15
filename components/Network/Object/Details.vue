@@ -20,7 +20,7 @@
         <span v-else class="value">{{ entry.subEntries.length }}</span>
       </p>
 
-      <p v-tippy="'Number of IPFS nodes distributing this entry. (Not always correct)'">
+      <p v-tippy="'Approximate number of nodes distributing the file.'">
         <span class="title">Peers:</span>
         <span v-if="!entry.peers || entry.peers.length === 0 && entry.loading" class="value">Loading...</span>
         <span v-else class="value">{{ entry.peers.length }}</span>
@@ -47,7 +47,7 @@ export default NetworkObject.extend({
   computed: {
     downloadTooltip() {
       return this.$md.render(`Download the file using your IPFS node:
-      
+
 - If the file is not in your storage then this may take several minutes but you will increase the availability of the file by starting to distributing it.
 - Otherwise you will download the file instantly.`)
     }
