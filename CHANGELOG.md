@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.5](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.4...v1.8.5) (2023-03-15)
+
+
+### Bug Fixes
+
+* uploading files always gave a different cid ([06b9b00](https://github.com/opendreamnet/dreamlink.cloud/commit/06b9b00f377da7c75b1048d32839d1ea6ad5d8fb))
+
 ### [1.8.4](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.3...v1.8.4) (2023-03-15)
 
 ### [1.8.3](https://github.com/opendreamnet/dreamlink.cloud/compare/v1.8.2...v1.8.3) (2022-08-10)
