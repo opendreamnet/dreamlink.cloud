@@ -39,13 +39,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-          check-latest: true
 
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
 
       - name: 🏗️ Build
         run: yarn run generate
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: ✨ Upload artifact
         uses: actions/upload-artifact@v3
