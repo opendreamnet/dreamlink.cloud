@@ -33,15 +33,13 @@ jobs:
       - name: ⚙️ Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "16"
 
       - name: 👨🏻‍💻 Install dependencies
         run: yarn install
 
       - name: 🏗️ Build
         run: yarn run generate
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: 🚀 Deploy
         run: yarn run deploy -n www-dreamlink
