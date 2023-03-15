@@ -69,7 +69,7 @@
 
           <select v-model="lastSeen" class="w-1/3 input">
             <option value="any">
-              All time
+              At any time
             </option>
 
             <option value="now-1h/h TO *">
